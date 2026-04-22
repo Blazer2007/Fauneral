@@ -18,17 +18,18 @@ namespace TarodevController
         private CapsuleCollider2D _col; // Player's CapsuleCollider2D component.
         private FrameInput _frameInput; // Struct to hold the player's input for the current frame.
         private Vector2 _frameVelocity; // The velocity that will be applied to the player at the end of the frame
-        private bool _cachedQueryStartInColliders;
+        private bool _cachedQueryStartInColliders, _facingRight;
 
         #region Interface
 
         public Vector2 FrameInput => _frameInput.Move;
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
+        public event Action<bool> Dashed;
 
         #endregion
 
-        private float _time; // A timer to track time since the game started, used for coyote time and jump buffering.
+        private float _time; // A timer to track the game time, used for coyote time and jump buffering.
 
         private void Awake()
         {
@@ -50,7 +51,8 @@ namespace TarodevController
             {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
-                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))
+                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
+                DashDown = Input.GetKeyDown(KeyCode.LeftShift)
             };
 
             if (_frameInput.JumpDown) 
@@ -58,6 +60,11 @@ namespace TarodevController
                 _jumpToConsume = true; // Bool to check if the player has a jump to use
                 _timeJumpWasPressed = _time; // Save the time when the jump button was pressed for jump buffering
             }
+            if(_frameInput.DashDown)
+            {
+                _dashToConsume = true;
+            }
+            _facingRight = _frameInput.Move.x > 0 ? true : _frameInput.Move.x < 0 ? false : _facingRight; // Update the facing direction based on horizontal input
         }
 
         private void FixedUpdate()
@@ -67,6 +74,7 @@ namespace TarodevController
             HandleJump(); // Handle jumping logic, including coyote time and jump buffering
             HandleDirection(); // Handle horizontal movement based on player input
             HandleGravity(); // Handle gravity and falling logic, including variable jump height
+            HandleDash(); // Handle dashing logic, including dash cooldowns
 
             ApplyMovement(); // Apply the calculated velocity to the Rigidbody2D component
         }
@@ -114,7 +122,6 @@ namespace TarodevController
 
         #endregion
 
-
         #region Jumping
 
         private bool _jumpToConsume;
@@ -154,7 +161,7 @@ namespace TarodevController
         private void HandleDirection()
         {
             if (_frameInput.Move.x == 0)
-            {
+            { 
                 var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
@@ -184,6 +191,30 @@ namespace TarodevController
 
         #endregion
 
+        #region Dash
+        // New dash idea -> held dash. If the player taps the dash button, they will dash a short distance. If they hold the dash button, they will dash further.
+        private bool _dashToConsume;
+        private float _dashTimer = 0f;
+        private void HandleDash()
+        {
+            _dashTimer += Time.fixedDeltaTime;
+            if (!_dashToConsume) return;
+
+            if (_frameInput.DashDown && _dashTimer >= _stats.DashInterval)
+            {
+                _dashTimer = 0f; 
+                _dashToConsume = true;
+                Dash();
+            }
+            _dashToConsume = false;
+        }
+        private void Dash()
+        {
+            _frameVelocity.x += _facingRight ? _stats.DashPower : -_stats.DashPower;
+            Dashed?.Invoke(true);
+        }
+        #endregion
+
         private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 
 #if UNITY_EDITOR
@@ -200,6 +231,7 @@ namespace TarodevController
         public bool JumpDown;
         public bool JumpHeld;
         public Vector2 Move;
+        public bool DashDown;
     }
 
     public interface IPlayerController
@@ -207,6 +239,8 @@ namespace TarodevController
         public event Action<bool, float> GroundedChanged;
 
         public event Action Jumped;
+
+        public event Action<bool> Dashed;
         public Vector2 FrameInput { get; }
     }
 }

@@ -175,6 +175,7 @@ MonoBehaviour:
   _launchParticles: {fileID: 1464206505836985143, guid: 49067ecb3444aed4a823ce8602a8b4e2, type: 3}
   _moveParticles: {fileID: 1464206505836985143, guid: ceaf661b161434e43b699e5c4f466ce4, type: 3}
   _landParticles: {fileID: 1464206505836985143, guid: ceeb95a006af76543b0ba0b73b64873d, type: 3}
+  _dashParticles: {fileID: 1464206505836985143, guid: 17765f588e3aae849ac7f2d220c4d0fa, type: 3}
   _footsteps: []
 --- !u!95 &129257678
 Animator:

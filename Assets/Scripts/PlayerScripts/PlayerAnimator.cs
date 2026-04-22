@@ -22,6 +22,7 @@ namespace TarodevController
         [SerializeField] private ParticleSystem _launchParticles;
         [SerializeField] private ParticleSystem _moveParticles;
         [SerializeField] private ParticleSystem _landParticles;
+        [SerializeField] private ParticleSystem _dashParticles;
 
         [Header("Audio Clips")] [SerializeField]
         private AudioClip[] _footsteps;
@@ -39,6 +40,7 @@ namespace TarodevController
 
         private void OnEnable()
         {
+            _player.Dashed += OnDashed;
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
 
@@ -47,6 +49,7 @@ namespace TarodevController
 
         private void OnDisable()
         {
+            _player.Dashed -= OnDashed;
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
 
@@ -97,27 +100,37 @@ namespace TarodevController
                 _jumpParticles.Play();
             }
         }
+        private void OnDashed(bool dashed)
+        {
+            _anim.SetTrigger(DashKey);
+            _anim.ResetTrigger(CanUseDash);
+
+            if (dashed)
+            {
+                _dashParticles.Play();
+            }
+        }
 
         private void OnGroundedChanged(bool grounded, float impact)
         {
-            //_grounded = grounded;
-            
-            //if (grounded)
-            //{
-            //    DetectGroundColor();
-            //    SetColor(_landParticles);
+            _grounded = grounded;
 
-            //    _anim.SetTrigger(GroundedKey);
-            //    _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-            //    _moveParticles.Play();
+            if (grounded)
+            {
+                DetectGroundColor();
+                SetColor(_landParticles);
 
-            //    _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
-            //    _landParticles.Play();
-            //}
-            //else
-            //{
-            //    _moveParticles.Stop();
-            //}
+                _anim.SetTrigger(GroundedKey);
+                //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+                _moveParticles.Play();
+
+                _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
+                _landParticles.Play();
+            }
+            else
+            {
+                _moveParticles.Stop();
+            }
         }
 
         private void DetectGroundColor()
@@ -139,5 +152,7 @@ namespace TarodevController
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
+        private static readonly int DashKey = Animator.StringToHash("Dash");
+        private static readonly int CanUseDash = Animator.StringToHash("CanDash");
     }
 }
