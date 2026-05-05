@@ -45,28 +45,6 @@ namespace TarodevController
             GatherInput(); // Store the player's input for the current frame
         }
 
-        private void GatherInput()
-        {
-            _frameInput = new FrameInput
-            {
-                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
-                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
-                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
-                DashDown = Input.GetKeyDown(KeyCode.LeftShift)
-            };
-
-            if (_frameInput.JumpDown) 
-            {
-                _jumpToConsume = true; // Bool to check if the player has a jump to use
-                _timeJumpWasPressed = _time; // Save the time when the jump button was pressed for jump buffering
-            }
-            if(_frameInput.DashDown)
-            {
-                _dashToConsume = true;
-            }
-            _facingRight = _frameInput.Move.x > 0 ? true : _frameInput.Move.x < 0 ? false : _facingRight; // Update the facing direction based on horizontal input
-        }
-
         private void FixedUpdate()
         {
             CheckCollisions(); // Check for collisions and update grounded status
@@ -78,9 +56,35 @@ namespace TarodevController
 
             ApplyMovement(); // Apply the calculated velocity to the Rigidbody2D component
         }
+        #region Inputs
+        private void GatherInput()
+        {
+            _frameInput = new FrameInput
+            {
+                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
+                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
+                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
+                DashDown = Input.GetKeyDown(KeyCode.LeftShift)
+            };
+
+            if (_frameInput.JumpDown)
+            {
+                _jumpToConsume = true; // Bool to check if the player has a jump to use
+                _timeJumpWasPressed = _time; // Save the time when the jump button was pressed for jump buffering
+            }
+            if (_frameInput.DashDown)
+            {
+                _dashToConsume = true;
+            }
+            //if _frameInput.Move.x is bigger than 0(moving right) then _facingRight is true,
+            //but still check if _frameInput.Move.x is lower than 0(moving left), if that condition is true, then _facingRight is false
+            // and if the condition is false then _facingRight is true(this works just like an if/elseif)
+            _facingRight = _frameInput.Move.x > 0 ? true : _frameInput.Move.x < 0 ? false : _facingRight; // Update the facing direction based on horizontal input
+        }
+        #endregion
 
         #region Collisions
-        
+
         private float _frameLeftGrounded = float.MinValue; // The time when the player left the ground, used for coyote time calculations
         private bool _grounded; // Bool to check if the player is currently grounded or not
 

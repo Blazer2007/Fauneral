@@ -19,13 +19,13 @@ MonoBehaviour:
   Acceleration: 120
   GroundDeceleration: 60
   AirDeceleration: 30
-  GroundingForce: -1.5
+  GroundingForce: -10
   GrounderDistance: 0.5
-  JumpPower: 40
-  MaxFallSpeed: 40
-  FallAcceleration: 110
+  JumpPower: 50
+  MaxFallSpeed: 60
+  FallAcceleration: 130
   JumpEndEarlyGravityModifier: 3
   CoyoteTime: 0.15
   JumpBuffer: 0.2
   DashPower: 30
-  DashInterval: 0.2
+  DashInterval: 0.75
