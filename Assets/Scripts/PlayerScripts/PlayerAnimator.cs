@@ -4,34 +4,35 @@ namespace TarodevController
 {
     /// <summary>
     /// VERY primitive animator example.
+    /// This script was also provided by tarodev
     /// </summary>
     public class PlayerAnimator : MonoBehaviour
     {
         [Header("References")] 
-        [SerializeField] private Animator _anim;
+        [SerializeField] private Animator _anim; // Reference to the player's animator
 
-        [SerializeField] private SpriteRenderer _sprite;
+        [SerializeField] private SpriteRenderer _sprite; // Reference to the player's sprite
 
         [Header("Settings")] [Range(1f, 3f)]
         [SerializeField] private float _maxIdleSpeed = 2;
 
-        [SerializeField] private float _maxTilt = 5;
-        [SerializeField] private float _tiltSpeed = 20;
+        [SerializeField] private float _maxTilt = 5; // Tilt applied to the player's sprite
+        [SerializeField] private float _tiltSpeed = 20; // How fast the player gets in and out of a tilt motion
 
         [Header("Particles")] 
-        [SerializeField] private ParticleSystem _jumpParticles;
-        [SerializeField] private ParticleSystem _launchParticles;
-        [SerializeField] private ParticleSystem _moveParticles;
-        [SerializeField] private ParticleSystem _landParticles;
-        [SerializeField] private ParticleSystem _dashParticles;
+        [SerializeField] private ParticleSystem _jumpParticles; // particles for the player's jump
+        [SerializeField] private ParticleSystem _launchParticles; // particles for the player's launch of the ground
+        [SerializeField] private ParticleSystem _moveParticles; // particles for the player's movement
+        [SerializeField] private ParticleSystem _landParticles; // particles for when the player lands on the ground
+        [SerializeField] private ParticleSystem _dashParticles; // particles for the player's dash
 
         [Header("Audio Clips")] [SerializeField]
-        private AudioClip[] _footsteps;
+        private AudioClip[] _footsteps; // Audio for the player's footsteps
 
-        private AudioSource _source;
-        private IPlayerController _player;
-        private bool _grounded;
-        private ParticleSystem.MinMaxGradient _currentGradient;
+        private AudioSource _source; // Player's audio source to play its main audios
+        private IPlayerController _player; // Player's interface(Requirements for a player script)
+        private bool _grounded; // Bool to check if the player is currently on the ground
+        private ParticleSystem.MinMaxGradient _currentGradient; // Gradient color for the player's particles color 
 
         private void Awake()
         {
@@ -41,32 +42,40 @@ namespace TarodevController
 
         private void OnEnable()
         {
+            // Call actions
             _player.Dashed += OnDashed;
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
-
+             
+            // Play the move particles
             _moveParticles.Play();
         }
 
         private void OnDisable()
         {
+            // Remove actions
             _player.Dashed -= OnDashed;
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
 
+            // Stop the move particles
             _moveParticles.Stop();
         }
 
         private void Update()
         {
             if (_player == null) return;
-
+            
+            // Method to check the ground's color ( to switch the particle's color to that color)
             DetectGroundColor();
 
+            // Method to flip the player's sprite when looking at different directions
             HandleSpriteFlip();
 
+            // Method to handle the player's speed(for animations)
             HandleIdleSpeed();
 
+            // Method to change the player's sprite tilt when moving
             HandleCharacterTilt();
         }
 
@@ -88,7 +97,7 @@ namespace TarodevController
             _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
         }
 
-        private void OnJumped()
+        private void OnJumped() // change jump animation variables
         {
             _anim.SetTrigger(JumpKey);
             _anim.ResetTrigger(GroundedKey);
@@ -101,7 +110,7 @@ namespace TarodevController
                 _jumpParticles.Play();
             }
         }
-        private void OnDashed(bool dashed)
+        private void OnDashed(bool dashed) // change dash animation variables
         {
             _anim.SetTrigger(DashKey);
             _anim.ResetTrigger(CanUseDash);
@@ -112,6 +121,8 @@ namespace TarodevController
             }
         }
 
+        // handle animations, sounds and particles by checking when the player is grounded |
+        //                                                                                 V
         private void OnGroundedChanged(bool grounded, float impact)
         {
             _grounded = grounded;

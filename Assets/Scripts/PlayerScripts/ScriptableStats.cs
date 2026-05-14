@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//this ScriptableObject was also provided by tarodev
 namespace TarodevController
 {
     [CreateAssetMenu]

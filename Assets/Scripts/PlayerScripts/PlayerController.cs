@@ -52,7 +52,7 @@ namespace TarodevController
             HandleJump(); // Handle jumping logic, including coyote time and jump buffering
             HandleDirection(); // Handle horizontal movement based on player input
             HandleGravity(); // Handle gravity and falling logic, including variable jump height
-            HandleDash(); // Handle dashing logic, including dash cooldowns
+            HandleDash(); // Handle dashing logic
 
             ApplyMovement(); // Apply the calculated velocity to the Rigidbody2D component
         }
