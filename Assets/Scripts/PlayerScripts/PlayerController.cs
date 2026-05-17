@@ -30,7 +30,6 @@ namespace TarodevController
         #endregion
 
         private float _time; // A timer to track the game time, used for coyote time and jump buffering.
-
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -123,7 +122,14 @@ namespace TarodevController
             }
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
         }
-
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.collider.tag == "KillZone")
+            {
+                // Handle player death or respawn
+                Destroy(gameObject);
+            }
+        }
         #endregion
 
         #region Jumping
@@ -221,7 +227,7 @@ namespace TarodevController
 
         private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private void OnValidate()
         {
             if (_stats == null)

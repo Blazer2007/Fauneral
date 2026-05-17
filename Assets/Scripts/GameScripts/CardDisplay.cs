@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public ScriptableCard _Card;
-    public Sprite sprite;
+    public SpriteRenderer spriteRr;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI rarityText;
     public TextMeshProUGUI descriptionText;
@@ -17,11 +17,11 @@ public class CardDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sprite = _Card.sprite;
+        spriteRr.sprite = _Card.sprite;
         nameText.text = _Card.name;
         descriptionText.text = _Card.description;
         rarityText.text = _Card.rarity;
-        for(int i = 0; i < _Card.buffs.Length; i++) 
+        for(int i = 0; i < _Card.buffs.Length; i++)
         {
             string buffs = _Card.buffs[i].ToString();
             if(buffsText.text == null)
@@ -39,13 +39,22 @@ public class CardDisplay : MonoBehaviour
                 debuffsText.text = debuffsText.text.Trim() + "\n" + debuffs;
             Debug.Log("line" + i + ": " + debuffs);
         }
-        usesText.text = _Card.uses.ToString() + " uses";
+        
         timeText.text = _Card.time.ToString() + " seconds";
+        if (_Card.isinfinite)
+        {
+            usesText.text = _Card.uses.ToString() + " use" + " (Unlimited)";
+        }
+        else 
+        { 
+            if(_Card.uses > 1)
+                usesText.text = _Card.uses.ToString() + " uses" + " (Limited)";
+            else if(_Card.uses == 1)
+                usesText.text = _Card.uses.ToString() + " use" + " (Limited)";
+        }
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        //Changing cards during gameplay
     }
 }

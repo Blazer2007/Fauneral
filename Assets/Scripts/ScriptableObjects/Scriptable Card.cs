@@ -11,6 +11,7 @@ public class ScriptableCard : ScriptableObject
     public new string name;
     public string rarity;
     public string description;
+    public int cardindex;
     
 
     [Header("Card Effects")]

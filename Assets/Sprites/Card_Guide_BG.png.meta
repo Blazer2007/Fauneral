@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46a7c57f9b9506c4294ae49ce1dba364
+guid: ff87dac0870e01640be637d32a7e6201
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1711169665512727402
-    second: Deal with the devil_0
+      213: -7327205830083710259
+    second: Card_Guide_BG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.436, y: 0.528}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 561, y: 174, z: 807, w: 104}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Deal with the devil_0
+      name: Card_Guide_BG_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 176
-        width: 545
-        height: 799
+        x: 106
+        y: 101
+        width: 1712
+        height: 882
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a636f4f9ebb4fb710800000000000000
-      internalID: 1711169665512727402
+      spriteID: dc270b56e19805a90800000000000000
+      internalID: -7327205830083710259
       vertices: []
       indices: 
       edges: []
@@ -125,8 +125,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Deal with the devil_0: 1711169665512727402
+      Card_Guide_BG_0: -7327205830083710259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

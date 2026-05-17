@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Protective Aura
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1711169665512727402, guid: 46a7c57f9b9506c4294ae49ce1dba364, type: 3}
+  sprite: {fileID: 21300000, guid: ac80f037ce041b1489e006226ef7a0a5, type: 3}
   name: Protective Aura
   rarity: C
   description: A subtle aura covers you(+25% defense)

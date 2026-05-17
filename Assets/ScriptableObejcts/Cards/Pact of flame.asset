@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Pact of flame
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1711169665512727402, guid: 46a7c57f9b9506c4294ae49ce1dba364, type: 3}
+  sprite: {fileID: 21300000, guid: 46a7c57f9b9506c4294ae49ce1dba364, type: 3}
   name: 'Pact of Flame '
   rarity: (DWD)
   description: "Upon killing an enemy, the player gains a burst of massive speed
@@ -24,4 +24,4 @@ MonoBehaviour:
   - -8 hp/s
   uses: 10
   time: 10
-  isinfinite: 0
+  isinfinite: 1

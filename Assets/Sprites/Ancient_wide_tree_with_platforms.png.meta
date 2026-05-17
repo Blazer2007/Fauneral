@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 227dd720849ff554393ff1277bd9d401
+guid: 95defc5862bccd844b7f42ec39c3d969
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 426080063354195174
-    second: Ancient_wide_tree 1_0
+      213: -3693244848107735335
+    second: Ancient_wide_tree_with_platforms_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ancient_wide_tree 1_0
+      name: Ancient_wide_tree_with_platforms_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ec4a166f8db9e500800000000000000
-      internalID: 426080063354195174
+      spriteID: 9d63ff7d065febcc0800000000000000
+      internalID: -3693244848107735335
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ancient_wide_tree 1_0: 426080063354195174
+      Ancient_wide_tree_with_platforms_0: -3693244848107735335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

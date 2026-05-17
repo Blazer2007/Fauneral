@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Card: {fileID: 11400000, guid: ab657ff0b7f1a91489ff37d14a254921, type: 2}
-  sprite: {fileID: 1711169665512727402, guid: 46a7c57f9b9506c4294ae49ce1dba364, type: 3}
+  spriteRr: {fileID: 0}
   nameText: {fileID: 2926607036864845058}
   rarityText: {fileID: 837820447340666022}
   descriptionText: {fileID: 1557130873200241511}
@@ -1100,3 +1100,4 @@ MonoBehaviour:
   debuffsText: {fileID: 7526665911519326517}
   usesText: {fileID: 5122912205736644738}
   timeText: {fileID: 5625230219375112397}
+  isinfineText: {fileID: 0}
