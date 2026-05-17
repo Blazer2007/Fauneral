@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public ScriptableCard _Card;
-    public SpriteRenderer spriteRr;
+    public Image image;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI rarityText;
     public TextMeshProUGUI descriptionText;
@@ -14,43 +14,54 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI debuffsText;
     public TextMeshProUGUI usesText;
     public TextMeshProUGUI timeText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void OnValidate()
+    {
+        if (_Card == null) return;
+
+        // Atualiza os campos de texto no Editor em tempo real
+        if (nameText != null) nameText.text = _Card.name;
+        if (rarityText != null) rarityText.text = _Card.rarity;
+        if (descriptionText != null) descriptionText.text = _Card.description;
+        if (timeText != null) timeText.text = _Card.time.ToString() + " seconds";
+
+        if (image != null) image.sprite = _Card.image.sprite;
+    }
+
     void Start()
     {
-        spriteRr.sprite = _Card.sprite;
+        if (_Card != null) Refresh(); // ainda mantém o Refresh no Start para runtime
+    }
+
+    void Refresh()
+    {
+        image.sprite = _Card.image.sprite;
         nameText.text = _Card.name;
         descriptionText.text = _Card.description;
         rarityText.text = _Card.rarity;
-        for(int i = 0; i < _Card.buffs.Length; i++)
+
+        buffsText.text = string.Empty;
+        for (int i = 0; i < _Card.buffs.Length; i++)
         {
-            string buffs = _Card.buffs[i].ToString();
-            if(buffsText.text == null)
-                buffsText.text = buffs;
-            else
-                buffsText.text = buffsText.text.Trim() + "\n" + buffs;
-            Debug.Log("line"+ i +": "+ buffs);
+            string buff = _Card.buffs[i].ToString();
+            buffsText.text = string.IsNullOrEmpty(buffsText.text) ? buff: buffsText.text.Trim() + "\n" + buff;
         }
-        for(int i = 0; i < _Card.debuffs.Length; i++) 
+
+        debuffsText.text = string.Empty;
+        for (int i = 0; i < _Card.debuffs.Length; i++)
         {
-            string debuffs = _Card.debuffs[i].ToString();
-            if (debuffsText.text == null)
-                debuffsText.text = debuffs;
-            else
-                debuffsText.text = debuffsText.text.Trim() + "\n" + debuffs;
-            Debug.Log("line" + i + ": " + debuffs);
+            string debuff = _Card.debuffs[i].ToString();
+            debuffsText.text = string.IsNullOrEmpty(debuffsText.text) ? debuff : debuffsText.text.Trim() + "\n" + debuff;
         }
-        
+
         timeText.text = _Card.time.ToString() + " seconds";
+
         if (_Card.isinfinite)
         {
-            usesText.text = _Card.uses.ToString() + " use" + " (Unlimited)";
+            usesText.text = _Card.uses + " use (Unlimited)";
         }
-        else 
-        { 
-            if(_Card.uses > 1)
-                usesText.text = _Card.uses.ToString() + " uses" + " (Limited)";
-            else if(_Card.uses == 1)
-                usesText.text = _Card.uses.ToString() + " use" + " (Limited)";
+        else
+        {
+            usesText.text = _Card.uses + (_Card.uses == 1 ? " use" : " uses") + " (Limited)";
         }
     }
     void Update()

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Pact of flame
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 46a7c57f9b9506c4294ae49ce1dba364, type: 3}
+  image: {fileID: 0}
   name: 'Pact of Flame '
-  rarity: (DWD)
+  rarity: DWD
   description: "Upon killing an enemy, the player gains a burst of massive speed
     and strength \u2014 but loses health over time."
+  cardindex: 0
   buffs:
   - '+25% Speed '
   - +25% Strenght
