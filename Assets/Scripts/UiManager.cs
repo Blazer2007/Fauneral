@@ -54,9 +54,39 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("PlayMenu");
     }
 
-    public void startgamebutton ()
+    public void StartGameButton ()
     {
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void OptionsButton ()
+    {
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
+    public void BackFromOptionsButton ()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void CardGuideButton ()
+    {
+        SceneManager.LoadScene("CardGuide");
+    }
+
+    public void BackFromCardGuideButton ()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void CratesButton () 
+    {
+        SceneManager.LoadScene("CratesMenu");
+    }
+
+    public void BackFromCratesButton ()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
 
