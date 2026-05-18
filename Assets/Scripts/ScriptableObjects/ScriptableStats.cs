@@ -5,10 +5,10 @@ namespace TarodevController
     [CreateAssetMenu]
     public class ScriptableStats : ScriptableObject
     {
-        [Header("LAYERS")] [Tooltip("Set this to the layer your player is on")]
+        [Header("LAYERS"), Tooltip("Set this to the layer your player is on")]
         public LayerMask PlayerLayer;
 
-        [Header("MOVEMENT")] [Tooltip("The top horizontal movement speed")]
+        [Header("MOVEMENT"), Tooltip("The top horizontal movement speed")]
         public float MaxSpeed = 14;
 
         [Tooltip("The player's capacity to gain horizontal speed")]
@@ -50,5 +50,12 @@ namespace TarodevController
 
         [Tooltip("The minimum time between dashes"), Range(0.2f, 2f)]
         public float DashInterval = 0.5f;
+
+        [Header("ATTACK")]
+        [Tooltip("The player's attack damage"), Range(10f, 25f)]
+        public float AttackDamage = 15f;
+
+        [Tooltip("The player's attack speed"), Range(0.1f,2f)]
+        public float AttackSpeed = .1f;
     }
 }
