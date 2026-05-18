@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: Ancestral Fury
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  name: 
-  rarity: 
-  description: 
+  name: Ancestral Fury
+  rarity: S
+  description: The power of your ancestors runs in your veins, but it comes at a
+    price.
   cardindex: 0
-  buffs: []
-  debuffs: []
+  buffs:
+  - +70% Attack
+  - +30% Speed
+  debuffs:
+  - -50% Defense
+  - -3 hp/s
   uses: 1
-  time: 0
+  time: 30
   isinfinite: 0
