@@ -25,7 +25,9 @@ MonoBehaviour:
   MaxFallSpeed: 60
   FallAcceleration: 170
   JumpEndEarlyGravityModifier: 3
-  CoyoteTime: 0.15
+  CoyoteTime: 0.1
   JumpBuffer: 0.2
   DashPower: 30
   DashInterval: 0.75
+  AttackDamage: 15
+  AttackSpeed: 0.1
