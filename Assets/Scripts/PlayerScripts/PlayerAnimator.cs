@@ -8,13 +8,13 @@ namespace TarodevController
         [SerializeField] private Animator _anim;
         [SerializeField] private ScriptableStats _stats;
 
-        [SerializeField] private SpriteRenderer _sprite;
+        [SerializeField] private SpriteRenderer _sprite; // Reference to the player's sprite
 
         [Header("Settings")] [Range(1f, 3f)]
         [SerializeField] private float _maxIdleSpeed = 2; // How much the idle animation should speed up at max input
 
-        [SerializeField] private float _maxTilt = 5;
-        [SerializeField] private float _tiltSpeed = 20;
+        [SerializeField] private float _maxTilt = 5; // Tilt applied to the player's sprite
+        [SerializeField] private float _tiltSpeed = 20; // How fast the player gets in and out of a tilt motion
 
         [Header("Particles")] 
         [SerializeField] private ParticleSystem _jumpParticles;
@@ -25,7 +25,7 @@ namespace TarodevController
         [SerializeField] private ParticleSystem _attackParticles;
 
         [Header("Audio Clips")] [SerializeField]
-        private AudioClip[] _footsteps;
+        private AudioClip[] _footsteps; // Audio for the player's footsteps
 
         private AudioSource _source;
         private IPlayerController _player; // Reference to the player controller to read its state and subscribe to its events
@@ -57,6 +57,7 @@ namespace TarodevController
             _player.GroundedChanged -= OnGroundedChanged;
             _player.Attacked -= OnAttacked;
 
+            // Stop the move particles
             _moveParticles.Stop();
         }
 
@@ -107,7 +108,7 @@ namespace TarodevController
                 _jumpParticles.Play();
             }
         }
-        private void OnDashed(bool dashed)
+        private void OnDashed(bool dashed) // change dash animation variables
         {
             _anim.SetBool(DashKey, dashed);
             _anim.SetBool(CanUseDash, dashed);
@@ -123,6 +124,8 @@ namespace TarodevController
             _anim.SetBool(CanUseAttack, true);
         }
 
+        // handle animations, sounds and particles by checking when the player is grounded |
+        //                                                                                 V
         private void OnGroundedChanged(bool grounded, float impact)
         {
             _grounded = grounded;
