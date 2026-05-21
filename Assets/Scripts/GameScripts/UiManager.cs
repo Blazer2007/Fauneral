@@ -24,19 +24,9 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("JoinRoom");
     }
 
-    public void BackFromPlayButton()
+    public void BackButton(string destination)
     {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void BackFromCreateRoomButton()
-    {
-        SceneManager.LoadScene("PlayMenu");
-    }
-
-    public void BackFromJoinRoomButton()
-    {
-        SceneManager.LoadScene("PlayMenu");
+        SceneManager.LoadScene(destination);
     }
 
     public void CreateRoomAndJoinButton()
@@ -49,11 +39,6 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("LobbyMenu");
     }
 
-    public void BackFromLobbyButton()
-    {
-        SceneManager.LoadScene("PlayMenu");
-    }
-
     public void StartGameButton ()
     {
         SceneManager.LoadScene("GameScene");
@@ -64,40 +49,13 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("OptionsMenu");
     }
 
-    public void BackFromOptionsButton ()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void CardGuideButton ()
     {
         SceneManager.LoadScene("CardGuide");
     }
 
-    public void BackFromCardGuideButton ()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void CratesButton () 
     {
         SceneManager.LoadScene("CratesMenu");
-    }
-
-    public void BackFromCratesButton ()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 }

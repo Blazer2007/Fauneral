@@ -19,9 +19,9 @@ namespace TarodevController
         [SerializeField] private List<PlayerHealth> Players = new List<PlayerHealth>();
 
         
-        [field: Header("Runtime State (Read Only)")]
-        [field: SerializeField] public bool MatchOver { get; private set; } = false;
-        [field: SerializeField] public bool RoundActive { get; private set; } = false;
+        [Header("Runtime State (Read Only)")]
+        [SerializeField] public bool MatchOver { get; private set; } = false;
+        [SerializeField] public bool RoundActive { get; private set; } = false;
 
         // Tracks how many rounds each player has won. Key = PlayerIndex.
         public Dictionary<int, int> RoundWins { get; private set; } = new Dictionary<int, int>();

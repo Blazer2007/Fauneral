@@ -1,4 +1,5 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace TarodevController
@@ -11,7 +12,7 @@ namespace TarodevController
     /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PlayerController : MonoBehaviour, IPlayerController
+    public class PlayerController : NetworkBehaviour , IPlayerController
     {
         [SerializeField] private ScriptableStats _stats; // Reference to the player's stats.
         private Rigidbody2D _rb; // Player's Rigidbody2D component.
@@ -43,11 +44,13 @@ namespace TarodevController
         private void Update()
         {
             _time += Time.deltaTime; // Save the time in deltatime (for FPS balancing)
+            //if (!IsOwner) return;
             GatherInput(); // Store the player's input for the current frame
         }
 
         private void FixedUpdate()
         {
+            //if(!IsOwner) return;
             CheckCollisions(); // Check for collisions and update grounded status
 
             HandleJump(); // Handle jumping logic, including coyote time and jump buffering

@@ -8,8 +8,8 @@ namespace TarodevController
     public class PlayerHealth : MonoBehaviour
     {
         [Header("Stats")]
-        [Tooltip("Drag a PlayerHealthStats ScriptableObject here")]
-        [SerializeField] private PlayerHealthStats _stats;
+        [Tooltip("Drag a player health Scriptablefloat here")]
+        [SerializeField] private ScriptableFloat _health;
 
         [Header("Player Settings")]
         [Tooltip("Player index: 0 = P1, 1 = P2, 2 = P3, 3 = P4")]
@@ -25,7 +25,7 @@ namespace TarodevController
         [field: SerializeField] public bool IsAlive { get; private set; } = true;
 
         public int PlayerIndex => _playerIndex;
-        public float MaxHP => _stats != null ? _stats.MaxHP : 100f;
+        public float MaxHP => _health != null ? _health.InitialValue : 100f;
 
         //private RoundManager _roundManager;
 
@@ -33,7 +33,7 @@ namespace TarodevController
         {
            // _roundManager = FindFirstObjectByType<RoundManager>();
 
-            if (_stats == null)
+            if (_health == null)
                 Debug.LogWarning($"[PlayerHealth] No PlayerHealthStats assigned to {gameObject.name}!", this);
         }
 
