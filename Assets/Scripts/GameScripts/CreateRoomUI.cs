@@ -30,7 +30,8 @@ public class CreateRoomUI : MonoBehaviour
 
     [Header("Button Colors")]
     [SerializeField] private Color _selectedColor = Color.white;
-    [SerializeField] private Color _deselectedColor, _highlightedColor = new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
+    [SerializeField] private Color _deselectedColor= new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
+    private Color _highlightedColor = new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
 
     [HideInInspector] public bool _isPublic = false;
 
@@ -84,6 +85,7 @@ public class CreateRoomUI : MonoBehaviour
 
         string roomName = _roomNameInput != null ? _roomNameInput.text : "";
         int maxPlayers = _maxPlayersDropdown != null ? (int)_maxPlayersDropdown.value : 4;
+        bool isPublic = _isPublic;
 
         if (string.IsNullOrWhiteSpace(roomName))
         {
@@ -93,7 +95,7 @@ public class CreateRoomUI : MonoBehaviour
 
         if (_createButton != null) _createButton.interactable = false;
 
-        LobbyClientManager.Instance?.CreateLobby(roomName, _isPublic, maxPlayers);
+        LobbyClientManager.Instance?.CreateLobby(roomName, isPublic, maxPlayers);
     }
 
     public void OnBackButton()

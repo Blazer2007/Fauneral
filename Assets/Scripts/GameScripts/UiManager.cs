@@ -29,16 +29,6 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene(destination);
     }
 
-    public void CreateRoomAndJoinButton()
-    {
-        SceneManager.LoadScene("LobbyMenu");
-    }
-
-    public void JoinRoomAndJoinButton()
-    {
-        SceneManager.LoadScene("LobbyMenu");
-    }
-
     public void StartGameButton ()
     {
         SceneManager.LoadScene("GameScene");

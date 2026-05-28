@@ -32,7 +32,7 @@ public class LobbyListItem : MonoBehaviour
             _joinButton.onClick.AddListener(OnJoinClick);
     }
 
-    public void OnJoinClick()
+    private void OnJoinClick()
     {
         LobbyClientManager.Instance?.JoinLobby(_pin);
     }

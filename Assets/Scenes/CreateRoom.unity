@@ -616,10 +616,10 @@ RectTransform:
   - {fileID: 1570059208}
   - {fileID: 634380969}
   - {fileID: 440544128}
+  - {fileID: 721141183}
   - {fileID: 67908071}
   - {fileID: 307959575}
   - {fileID: 1018976475}
-  - {fileID: 721141183}
   - {fileID: 1209878076}
   - {fileID: 1285368014}
   - {fileID: 1640897585}
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 440544130}
   - component: {fileID: 440544129}
   m_Layer: 5
-  m_Name: 'Text (TMP) '
+  m_Name: TypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1219,7 +1219,7 @@ GameObject:
   - component: {fileID: 634380971}
   - component: {fileID: 634380970}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2152,7 +2152,7 @@ GameObject:
   - component: {fileID: 1018976477}
   - component: {fileID: 1018976476}
   m_Layer: 5
-  m_Name: PlayerText
+  m_Name: PlayersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3041,7 +3041,7 @@ GameObject:
   - component: {fileID: 1570059210}
   - component: {fileID: 1570059209}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CreateRoomText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3467,7 +3467,6 @@ MonoBehaviour:
   _createButton: {fileID: 1285368015}
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _deselectedColor: {r: 0.55, g: 0.55, b: 0.55, a: 1}
-  _highlightedColor: {r: 0.55, g: 0.55, b: 0.55, a: 1}
   _isPublic: 0
 --- !u!4 &1705130567
 Transform:
