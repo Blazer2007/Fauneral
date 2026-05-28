@@ -36,7 +36,7 @@ public class LobbyServerManager : NetworkBehaviour
 
     // ── SERVER RPCs ────────────────────────────────────────────────
 
-    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Server)]
+    [ServerRpc(RequireOwnership = false)]
     public void CreateLobbyServerRpc(string roomName, bool isPublic, int maxPlayers,
         ServerRpcParams rpc = default)
     {
@@ -68,7 +68,7 @@ public class LobbyServerManager : NetworkBehaviour
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
     }
 
-    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+    [ServerRpc(RequireOwnership = false)]
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
@@ -100,7 +100,7 @@ public class LobbyServerManager : NetworkBehaviour
         BroadcastUpdate(lobby, exclude: client);
     }
 
-    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+    [ServerRpc(RequireOwnership = false)]
     public void LeaveLobbyServerRpc(ServerRpcParams rpc = default)
     {
         RemoveClient(rpc.Receive.SenderClientId);
@@ -109,7 +109,7 @@ public class LobbyServerManager : NetworkBehaviour
     /// <summary>
     /// Devolve a lista de lobbies públicos ao cliente que pediu.
     /// </summary>
-    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+    [ServerRpc(RequireOwnership = false)]
     public void RequestPublicLobbiesServerRpc(ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
