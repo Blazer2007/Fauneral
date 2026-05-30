@@ -26,9 +26,7 @@ public class HatInventory : MonoBehaviour
     #region Unity Lifecycle
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         Load();
     }
     #endregion
