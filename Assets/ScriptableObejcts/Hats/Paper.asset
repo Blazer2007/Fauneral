@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cb1541c2566974b81b57e6c7dbf3e6, type: 3}
+  m_Name: Paper
+  m_EditorClassIdentifier: 
+  hatID: 5
+  displayName: Paper
+  description: You look Stupid
+  rarity: 1
+  previewSprite: {fileID: -8108558231363195077, guid: b7c5f9f894df06f459e7edc46a12b553, type: 3}
+  hatPrefab: {fileID: 0}

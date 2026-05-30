@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25a2a56ab51c814da1c59e6cb2bf91f, type: 3}
+  m_Name: NewCrate
+  m_EditorClassIdentifier: 
+  crateID: 0
+  displayName: Crate
+  description: Open to get goodies
+  crateSprite: {fileID: -1362058913294850930, guid: dc03db7349441be41a0e8b1f8f72568a, type: 3}
+  crateColor: {r: 1, g: 1, b: 1, a: 1}
+  weightC: 60
+  weightB: 25
+  weightA: 12
+  weightS: 3
+  hats:
+  - {fileID: 11400000, guid: 2c5b0bc7f513cbf4989beebcb5f51657, type: 2}
+  - {fileID: 11400000, guid: 58562968de4d2354ba8287de448494f5, type: 2}
+  - {fileID: 11400000, guid: 31ce599288849e046ab0c8d80262a75a, type: 2}
+  - {fileID: 11400000, guid: 326e33d1887bdf74cbe3634313fc9bae, type: 2}
+  - {fileID: 11400000, guid: 28d6b5482713142468f0754f4ac4d6d2, type: 2}
+  - {fileID: 11400000, guid: 94f50b2a89d3c70468752b22d1564d0d, type: 2}
+  - {fileID: 11400000, guid: ce8e9b5658c17d343b5b26c068647fce, type: 2}
+  - {fileID: 11400000, guid: e483425c9b6dde1468c3b948ffac3e35, type: 2}

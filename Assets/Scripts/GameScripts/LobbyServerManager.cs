@@ -85,6 +85,9 @@ public class LobbyServerManager : NetworkBehaviour
     public void LeaveLobbyServerRpc(ServerRpcParams rpc = default)
         => RemoveClient(rpc.Receive.SenderClientId);
 
+    /// <summary>
+    /// Devolve a lista de lobbies públicos ao cliente que pediu.
+    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     public void RequestPublicLobbiesServerRpc(ServerRpcParams rpc = default)
     {
