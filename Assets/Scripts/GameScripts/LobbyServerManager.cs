@@ -4,21 +4,14 @@ using UnityEngine;
 
 /// <summary>
 /// Corre EXCLUSIVAMENTE no servidor dedicado.
-/// Gere criação/entrada em lobbies.
-/// Suporta nome de sala, modo público/privado e limite de jogadores.
-///
-/// Setup:
-///   - GameObject "LobbyManager" com NetworkObject + este script.
-///   - NetworkManager com StartServer() (ver NetworkManagerUI).
+/// Gere lobbies com slots, estados de pronto e botão StartGame.
 /// </summary>
 public class LobbyServerManager : NetworkBehaviour
 {
     [Header("Configuração")]
     [SerializeField] private int _pinLength = 4;
 
-    // PIN → dados do lobby
     private Dictionary<string, LobbyData> _lobbies = new Dictionary<string, LobbyData>();
-    // clientId → PIN do lobby onde está
     private Dictionary<ulong, string> _clientLobbyMap = new Dictionary<ulong, string>();
 
     public override void OnNetworkSpawn()
@@ -34,21 +27,18 @@ public class LobbyServerManager : NetworkBehaviour
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleDisconnect;
     }
 
-    // ── SERVER RPCs ────────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════════
+    //  SERVER RPCs
+    // ═══════════════════════════════════════════════════════════════
 
     [ServerRpc(RequireOwnership = false)]
     public void CreateLobbyServerRpc(string roomName, bool isPublic, int maxPlayers,
         ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
+        if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
 
-        if (_clientLobbyMap.ContainsKey(client))
-        {
-            ErrorClientRpc("Já estás num lobby.", MakeTarget(client));
-            return;
-        }
-
-        maxPlayers = Mathf.Clamp(maxPlayers, 2, 16);
+        maxPlayers = Mathf.Clamp(maxPlayers, 2, 4);
         string pin = GenerateUniquePin();
 
         var lobby = new LobbyData
@@ -56,65 +46,49 @@ public class LobbyServerManager : NetworkBehaviour
             Pin = pin,
             RoomName = string.IsNullOrWhiteSpace(roomName) ? $"Sala {pin}" : roomName.Trim(),
             IsPublic = isPublic,
-            MaxPlayers = maxPlayers
+            MaxPlayers = maxPlayers,
+            CreatorClientId = client
         };
-        lobby.Clients.Add(client);
+        lobby.InitSlots();
+        lobby.AssignSlot(client);
 
         _lobbies[pin] = lobby;
         _clientLobbyMap[client] = pin;
 
-        Debug.Log($"[Server] Lobby criado: PIN={pin} Nome=\"{lobby.RoomName}\" Público={isPublic}");
+        Debug.Log($"[Server] Lobby criado: PIN={pin} \"{lobby.RoomName}\"");
 
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
+        BroadcastFullState(lobby);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
+        if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
+        if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) { ErrorClientRpc("PIN inválido.", MakeTarget(client)); return; }
+        if (lobby.IsFull) { ErrorClientRpc("Lobby cheio.", MakeTarget(client)); return; }
 
-        if (_clientLobbyMap.ContainsKey(client))
-        {
-            ErrorClientRpc("Já estás num lobby.", MakeTarget(client));
-            return;
-        }
-        if (!_lobbies.TryGetValue(pin, out LobbyData lobby))
-        {
-            ErrorClientRpc("PIN inválido.", MakeTarget(client));
-            return;
-        }
-        if (lobby.IsFull)
-        {
-            ErrorClientRpc("Lobby cheio.", MakeTarget(client));
-            return;
-        }
-
-        lobby.Clients.Add(client);
+        int slot = lobby.AssignSlot(client);
         _clientLobbyMap[client] = pin;
 
-        Debug.Log($"[Server] Cliente {client} entrou em {pin} ({lobby.PlayerCount}/{lobby.MaxPlayers})");
+        Debug.Log($"[Server] Cliente {client} → slot {slot} em {pin}");
 
         LobbyJoinedClientRpc(pin, lobby.RoomName, lobby.IsPublic,
             lobby.PlayerCount, lobby.MaxPlayers, MakeTarget(client));
 
-        BroadcastUpdate(lobby, exclude: client);
+        // Envia estado completo a TODOS (incluindo o novo)
+        BroadcastFullState(lobby);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void LeaveLobbyServerRpc(ServerRpcParams rpc = default)
-    {
-        RemoveClient(rpc.Receive.SenderClientId);
-    }
+        => RemoveClient(rpc.Receive.SenderClientId);
 
-    /// <summary>
-    /// Devolve a lista de lobbies públicos ao cliente que pediu.
-    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     public void RequestPublicLobbiesServerRpc(ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
-
-        // Serializa os lobbies públicos num formato simples: "PIN|Nome|actual|max"
         var sb = new System.Text.StringBuilder();
         foreach (var kvp in _lobbies)
         {
@@ -123,11 +97,36 @@ public class LobbyServerManager : NetworkBehaviour
             if (sb.Length > 0) sb.Append(";");
             sb.Append($"{l.Pin}|{l.RoomName}|{l.PlayerCount}|{l.MaxPlayers}");
         }
-
         PublicLobbiesClientRpc(sb.ToString(), MakeTarget(client));
     }
 
-    // ── CLIENT RPCs ────────────────────────────────────────────────
+    /// <summary>
+    /// Cliente comunica que está pronto (ready=true) ou cancela (ready=false).
+    /// Após alterar, o servidor verifica se TODOS estão prontos e notifica o criador.
+    /// </summary>
+    [ServerRpc(RequireOwnership = false)]
+    public void SetReadyServerRpc(bool ready, ServerRpcParams rpc = default)
+    {
+        ulong client = rpc.Receive.SenderClientId;
+        if (!_clientLobbyMap.TryGetValue(client, out string pin)) return;
+        if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) return;
+
+        lobby.SetReady(client, ready);
+        Debug.Log($"[Server] Cliente {client} ready={ready} em {pin}");
+
+        // Envia novo estado de prontos a todos
+        BroadcastReadyState(lobby);
+
+        // Se todos prontos, habilita StartGame só para o criador
+        if (lobby.AllReady())
+            EnableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
+        else
+            DisableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  CLIENT RPCs
+    // ═══════════════════════════════════════════════════════════════
 
     [ClientRpc]
     private void LobbyCreatedClientRpc(string pin, string roomName, bool isPublic,
@@ -139,10 +138,30 @@ public class LobbyServerManager : NetworkBehaviour
         int current, int max, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnLobbyJoined(pin, roomName, isPublic, current, max);
 
+    /// <summary>
+    /// Envia slots + estados de pronto a todos os membros.
+    /// slotsData  = "cId0,cId1,..."   (ulong.MaxValue = vazio)
+    /// readyData  = "true,false,..."
+    /// creatorId  = clientId do criador (para saber quem mostra StartGame)
+    /// </summary>
     [ClientRpc]
-    private void LobbyUpdatedClientRpc(string pin, int current, int max,
-        ClientRpcParams p = default)
-        => LobbyClientManager.Instance?.OnLobbyUpdated(pin, current, max);
+    private void FullStateClientRpc(string pin, string slotsData, string readyData,
+        int currentPlayers, int maxPlayers, ulong creatorId, ClientRpcParams p = default)
+        => LobbyClientManager.Instance?.OnFullStateReceived(
+               pin, slotsData, readyData, currentPlayers, maxPlayers, creatorId);
+
+    /// <summary>Só atualiza estados de pronto (sem mudar slots).</summary>
+    [ClientRpc]
+    private void ReadyStateClientRpc(string pin, string readyData, ClientRpcParams p = default)
+        => LobbyClientManager.Instance?.OnReadyStateReceived(pin, readyData);
+
+    [ClientRpc]
+    private void EnableStartGameClientRpc(ClientRpcParams p = default)
+        => LobbyMenuUI.Instance?.SetStartGameVisible(true);
+
+    [ClientRpc]
+    private void DisableStartGameClientRpc(ClientRpcParams p = default)
+        => LobbyMenuUI.Instance?.SetStartGameVisible(false);
 
     [ClientRpc]
     private void ErrorClientRpc(string message, ClientRpcParams p = default)
@@ -152,15 +171,26 @@ public class LobbyServerManager : NetworkBehaviour
     private void PublicLobbiesClientRpc(string data, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnPublicLobbiesReceived(data);
 
-    // ── HELPERS ────────────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════════
+    //  HELPERS
+    // ═══════════════════════════════════════════════════════════════
 
-    private void BroadcastUpdate(LobbyData lobby, ulong exclude)
+    /// <summary>Envia slots + ready states a todos os membros.</summary>
+    private void BroadcastFullState(LobbyData lobby)
     {
+        string slots = lobby.SerializeSlots();
+        string ready = lobby.SerializeReady();
         foreach (ulong id in lobby.Clients)
-        {
-            if (id == exclude) continue;
-            LobbyUpdatedClientRpc(lobby.Pin, lobby.PlayerCount, lobby.MaxPlayers, MakeTarget(id));
-        }
+            FullStateClientRpc(lobby.Pin, slots, ready,
+                lobby.PlayerCount, lobby.MaxPlayers, lobby.CreatorClientId, MakeTarget(id));
+    }
+
+    /// <summary>Envia só os ready states a todos os membros.</summary>
+    private void BroadcastReadyState(LobbyData lobby)
+    {
+        string ready = lobby.SerializeReady();
+        foreach (ulong id in lobby.Clients)
+            ReadyStateClientRpc(lobby.Pin, ready, MakeTarget(id));
     }
 
     private void RemoveClient(ulong clientId)
@@ -169,7 +199,7 @@ public class LobbyServerManager : NetworkBehaviour
         _clientLobbyMap.Remove(clientId);
         if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) return;
 
-        lobby.Clients.Remove(clientId);
+        lobby.ReleaseSlot(clientId);
         Debug.Log($"[Server] Cliente {clientId} saiu de {pin}");
 
         if (lobby.Clients.Count == 0)
@@ -179,7 +209,12 @@ public class LobbyServerManager : NetworkBehaviour
         }
         else
         {
-            BroadcastUpdate(lobby, ulong.MaxValue);
+            BroadcastFullState(lobby);
+            // Re-verifica prontos após saída (alguém que estava pronto saiu)
+            if (lobby.AllReady())
+                EnableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
+            else
+                DisableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
         }
     }
 
@@ -187,8 +222,7 @@ public class LobbyServerManager : NetworkBehaviour
 
     private string GenerateUniquePin()
     {
-        string pin;
-        int tries = 0;
+        string pin; int tries = 0;
         do { pin = ""; for (int i = 0; i < _pinLength; i++) pin += Random.Range(0, 10); }
         while (_lobbies.ContainsKey(pin) && ++tries < 1000);
         return pin;

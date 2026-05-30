@@ -1,11 +1,22 @@
-using System;
-using TMPro;
+﻿using TMPro;
+using TarodevController;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardDisplay : MonoBehaviour
+/// <summary>
+/// A carta é clicável directamente — sem Button filho.
+/// Requer na cena: EventSystem (já existe).
+/// Requer no GameObject da carta: qualquer Graphic com Raycast Target = true
+/// (a Image principal já serve, desde que Raycast Target esteja activo).
+/// </summary>
+public class CardDisplay : MonoBehaviour, IPointerClickHandler
 {
     public ScriptableCard _Card;
+
+    [Tooltip("Índice desta carta no CardDatabase. Definido por quem instancia o CardDisplay.")]
+    public int CardId;
+
     public Image image;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI rarityText;
@@ -14,22 +25,20 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI debuffsText;
     public TextMeshProUGUI usesText;
     public TextMeshProUGUI timeText;
+
     void OnValidate()
     {
         if (_Card == null) return;
-
-        // Atualiza os campos de texto no Editor em tempo real
         if (nameText != null) nameText.text = _Card.name;
         if (rarityText != null) rarityText.text = _Card.rarity;
         if (descriptionText != null) descriptionText.text = _Card.description;
         if (timeText != null) timeText.text = _Card.time.ToString() + " seconds";
-
         if (image != null) image.sprite = _Card.image.sprite;
     }
 
     void Start()
     {
-        if (_Card != null) Refresh(); // ainda mant�m o Refresh no Start para runtime
+        if (_Card != null) Refresh();
     }
 
     void Refresh()
@@ -43,29 +52,38 @@ public class CardDisplay : MonoBehaviour
         for (int i = 0; i < _Card.buffs.Length; i++)
         {
             string buff = _Card.buffs[i].ToString();
-            buffsText.text = string.IsNullOrEmpty(buffsText.text) ? buff: buffsText.text.Trim() + "\n" + buff;
+            buffsText.text = string.IsNullOrEmpty(buffsText.text)
+                ? buff : buffsText.text.Trim() + "\n" + buff;
         }
 
         debuffsText.text = string.Empty;
         for (int i = 0; i < _Card.debuffs.Length; i++)
         {
             string debuff = _Card.debuffs[i].ToString();
-            debuffsText.text = string.IsNullOrEmpty(debuffsText.text) ? debuff : debuffsText.text.Trim() + "\n" + debuff;
+            debuffsText.text = string.IsNullOrEmpty(debuffsText.text)
+                ? debuff : debuffsText.text.Trim() + "\n" + debuff;
         }
 
         timeText.text = _Card.time.ToString() + " seconds";
-
-        if (_Card.isinfinite)
-        {
-            usesText.text = _Card.uses + " use (Unlimited)";
-        }
-        else
-        {
-            usesText.text = _Card.uses + (_Card.uses == 1 ? " use" : " uses") + " (Limited)";
-        }
+        usesText.text = _Card.isinfinite
+            ? _Card.uses + " use (Unlimited)"
+            : _Card.uses + (_Card.uses == 1 ? " use" : " uses") + " (Limited)";
     }
-    void Update()
+
+    // ── CLIQUE ────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Chamado automaticamente pelo EventSystem quando o jogador clica na carta.
+    /// Não precisas de ligar nada no Inspector.
+    /// </summary>
+    public void OnPointerClick(PointerEventData eventData)
     {
-        //Changing cards during gameplay
+        if (_Card == null)
+        {
+            Debug.LogWarning("[CardDisplay] Nenhuma carta atribuída.");
+            return;
+        }
+
+        CardEffectManager.Instance?.UseCard(CardId);
     }
 }

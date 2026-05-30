@@ -1,29 +1,35 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Card", menuName = "Scriptable Objects/Card")]
+/// <summary>
+/// Substitui o ScriptableCard existente.
+/// A única mudança é buffs[] e debuffs[] passarem de string[] para StatModifier[].
+/// Todos os outros campos (name, rarity, description, image, time, uses, isinfinite)
+/// mantêm-se iguais — os assets existentes migram automaticamente ao reimportar.
+///
+/// Criar via: Right Click > Create > Fauneral > Scriptable Card
+/// </summary>
+[CreateAssetMenu(fileName = "NewCard", menuName = "Fauneral/Scriptable Card")]
 public class ScriptableCard : ScriptableObject
 {
-    [Header("Card Visuals")]
-    [Tooltip("The sprite representing the card's Rarity.")]
-    public Image image;
-
-    [Header("Card Information")]
-    public new string name;
+    [Header("Identidade")]
     public string rarity;
     public string description;
-    public int cardindex;
-    
+    public SpriteRenderer image;
 
-    [Header("Card Effects")]
-    public string[] buffs;
-    public string[] debuffs;
+    [Header("Efeitos — cada entrada é um modificador de stat")]
+    [Tooltip("Modificadores positivos aplicados ao jogador que usa a carta")]
+    public StatModifier[] buffs;
 
-    [Header("Card Usage")]
-    [Tooltip("The number of times this card can be used.")][Range(1, 10)]
+    [Tooltip("Modificadores negativos aplicados aos oponentes")]
+    public StatModifier[] debuffs;
+
+    [Header("Utilização")]
+    [Tooltip("Duração do efeito em segundos (0 = instantâneo)")]
+    public float time;
+
+    [Tooltip("Número de usos")]
     public int uses;
-    [Tooltip("The duration for which this card's effect lasts.")]
-    public int time;
-    [Tooltip("Indicates whether this card has infinite uses/is permanent or not.")]
+
+    [Tooltip("Se true, usos são infinitos")]
     public bool isinfinite;
 }

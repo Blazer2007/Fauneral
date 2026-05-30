@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 508206704268354291}
   - component: {fileID: 4841101709759739328}
   - component: {fileID: 8664665124327572043}
+  - component: {fileID: 2981820481530735267}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2051385778
+  GlobalObjectIdHash: 1763741166
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -78,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _stats: {fileID: 11400000, guid: 7dd9e7cb0fcb9544ab93e543e3682801, type: 2}
+  _playerStats: {fileID: 0}
 --- !u!50 &8458199936406251540
 Rigidbody2D:
   serializedVersion: 5
@@ -265,6 +267,29 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &2981820481530735267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079204256749916523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7be08ce3f7299145b380cb8f978ad42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseMoveSpeed: 8
+  _baseJumpHeight: 12
+  _baseGravity: -30
+  _baseDamage: 10
+  _baseAttackSpeed: 1
+  _baseKnockback: 5
+  _baseMaxHP: 100
+  _baseArmor: 0
+  _baseDmgReduction: 0
+  _baseCardCooldown: 3
+  _baseCardUses: 1
 --- !u!1 &5383004335717602447
 GameObject:
   m_ObjectHideFlags: 0

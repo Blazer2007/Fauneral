@@ -15,6 +15,7 @@ namespace TarodevController
     public class PlayerController : NetworkBehaviour , IPlayerController
     {
         [SerializeField] private ScriptableStats _stats; // Reference to the player's stats.
+        [SerializeField] private PlayerStats _playerStats; // Reference to the PlayerStats component.
         private Rigidbody2D _rb; // Player's Rigidbody2D component.
         private CapsuleCollider2D _col; // Player's CapsuleCollider2D component.
         private FrameInput _frameInput; // Struct to hold the player's input for the current frame.
@@ -194,7 +195,7 @@ namespace TarodevController
             }
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _playerStats.MoveSpeed, _stats.Acceleration * Time.fixedDeltaTime);
             }
         }
 

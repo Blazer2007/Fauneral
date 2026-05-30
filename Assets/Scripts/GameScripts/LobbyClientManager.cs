@@ -5,40 +5,22 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Persiste entre cenas via DontDestroyOnLoad.
-/// Envia ServerRpcs e recebe os callbacks do LobbyServerManager.
-/// 
-/// Setup:
-///   - 1 GameObject "LobbyClientManager" na primeira cena de rede (ex: PlayMenu).
-///   - Componentes: NetworkObject + este script.
-///   - NÃO duplicar em outras cenas — sobrevive automaticamente.
+/// Envia ServerRpcs e recebe callbacks do LobbyServerManager.
 /// </summary>
 public class LobbyClientManager : NetworkBehaviour
 {
     public static LobbyClientManager Instance { get; private set; }
 
-    // Referência lazy ao servidor (encontrada uma vez e cached)
     private LobbyServerManager _server;
     private LobbyServerManager Server
     {
-        get
-        {
-            if (_server == null)
-                _server = FindFirstObjectByType<LobbyServerManager>();
-            return _server;
-        }
+        get { if (_server == null) _server = FindFirstObjectByType<LobbyServerManager>(); return _server; }
     }
 
     public override void OnNetworkSpawn()
     {
         if (!IsClient) { enabled = false; return; }
-
-        if (Instance != null && Instance != this)
-        {
-            // Já existe um — destrói este duplicado (pode acontecer ao recarregar cenas)
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
         Debug.Log("[LobbyClientManager] Pronto e persistente.");
@@ -46,49 +28,47 @@ public class LobbyClientManager : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
-        if (Instance == this)
-        {
-            Instance = null;
-            LobbySessionData.Clear();
-        }
+        if (Instance == this) { Instance = null; LobbySessionData.Clear(); }
     }
 
     // ── API PÚBLICA ────────────────────────────────────────────────
 
-    /// <summary>Chamado pelo CreateRoomUI ao clicar "Criar".</summary>
     public void CreateLobby(string roomName, bool isPublic, int maxPlayers)
     {
         if (!CheckConnected()) return;
         Server?.CreateLobbyServerRpc(roomName, isPublic, maxPlayers);
     }
 
-    /// <summary>Chamado pelo JoinRoomUI ao confirmar o PIN.</summary>
     public void JoinLobby(string pin)
     {
         if (!CheckConnected()) return;
-        if (string.IsNullOrWhiteSpace(pin))
-        {
-            OnError("Introduz um PIN válido.");
-            return;
-        }
+        if (string.IsNullOrWhiteSpace(pin)) { OnError("Introduz um PIN válido."); return; }
         Server?.JoinLobbyServerRpc(pin.Trim());
     }
 
-    /// <summary>Chamado pelo JoinRoomUI ao entrar na cena para pedir salas públicas.</summary>
     public void RequestPublicLobbies()
     {
         if (!CheckConnected()) return;
         Server?.RequestPublicLobbiesServerRpc();
     }
 
-    /// <summary>Sai do lobby actual.</summary>
     public void LeaveLobby()
     {
         Server?.LeaveLobbyServerRpc();
         LobbySessionData.Clear();
     }
 
-    // ── CALLBACKS (chamados pelo LobbyServerManager via ClientRpc) ──
+    /// <summary>
+    /// Chamado pelo botão Ready de cada PlayerSpawn.
+    /// toggles o estado de pronto do cliente local.
+    /// </summary>
+    public void SetReady(bool ready)
+    {
+        if (!CheckConnected()) return;
+        Server?.SetReadyServerRpc(ready);
+    }
+
+    // ── CALLBACKS DO SERVIDOR ──────────────────────────────────────
 
     public void OnLobbyCreated(string pin, string roomName, bool isPublic, int maxPlayers)
     {
@@ -98,8 +78,9 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.MaxPlayers = maxPlayers;
         LobbySessionData.CurrentPlayers = 1;
         LobbySessionData.IsCreator = true;
+        LobbySessionData.MyClientId = NetworkManager.Singleton.LocalClientId;
 
-        Debug.Log($"[Client] Lobby criado: {pin} \"{roomName}\"");
+        Debug.Log($"[Client] Lobby criado: {pin}");
         SceneManager.LoadScene("LobbyMenu");
     }
 
@@ -111,26 +92,43 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.MaxPlayers = max;
         LobbySessionData.CurrentPlayers = current;
         LobbySessionData.IsCreator = false;
+        LobbySessionData.MyClientId = NetworkManager.Singleton.LocalClientId;
 
         Debug.Log($"[Client] Entrei no lobby {pin} ({current}/{max})");
         SceneManager.LoadScene("LobbyMenu");
     }
 
-    public void OnLobbyUpdated(string pin, int current, int max)
+    /// <summary>
+    /// Recebido sempre que alguém entra ou sai — traz slots + ready states completos.
+    /// </summary>
+    public void OnFullStateReceived(string pin, string slotsData, string readyData,
+        int currentPlayers, int maxPlayers, ulong creatorId)
     {
         if (LobbySessionData.Pin != pin) return;
-        LobbySessionData.CurrentPlayers = current;
 
-        // Notifica a LobbyMenuUI se estiver na cena certa
-        LobbyMenuUI.Instance?.RefreshPlayerCount(current, max);
+        LobbySessionData.CurrentPlayers = currentPlayers;
+        LobbySessionData.MaxPlayers = maxPlayers;
+        LobbySessionData.SlotsData = slotsData;
+        LobbySessionData.ReadyData = readyData;
+        LobbySessionData.CreatorId = creatorId;
+
+        LobbyMenuUI.Instance?.RefreshFullState(slotsData, readyData, currentPlayers, maxPlayers);
+    }
+
+    /// <summary>
+    /// Recebido sempre que alguém muda o estado de pronto — só ready states, slots não mudam.
+    /// </summary>
+    public void OnReadyStateReceived(string pin, string readyData)
+    {
+        if (LobbySessionData.Pin != pin) return;
+
+        LobbySessionData.ReadyData = readyData;
+        LobbyMenuUI.Instance?.RefreshReadyStates(readyData);
     }
 
     public void OnError(string message)
     {
-        Debug.LogWarning($"[Client] Erro do servidor: {message}");
-
-        // Notifica qualquer UI activa que implemente ILobbyErrorReceiver
-        // Em vez de depender de singletons específicos, usa um evento global simples
+        Debug.LogWarning($"[Client] Erro: {message}");
         OnServerError?.Invoke(message);
     }
 
@@ -140,7 +138,6 @@ public class LobbyClientManager : NetworkBehaviour
         JoinRoomUI.Instance?.PopulatePublicLobbies(list);
     }
 
-    /// <summary>Evento para qualquer UI receber erros do servidor.</summary>
     public static System.Action<string> OnServerError;
 
     // ── HELPERS ───────────────────────────────────────────────────
@@ -155,14 +152,10 @@ public class LobbyClientManager : NetworkBehaviour
         return true;
     }
 
-    /// <summary>
-    /// Parse do formato "PIN|Nome|actual|max;PIN|Nome|actual|max;..."
-    /// </summary>
     private List<PublicLobbyEntry> ParsePublicLobbies(string data)
     {
         var result = new List<PublicLobbyEntry>();
         if (string.IsNullOrEmpty(data)) return result;
-
         foreach (string entry in data.Split(';'))
         {
             string[] parts = entry.Split('|');
@@ -179,7 +172,6 @@ public class LobbyClientManager : NetworkBehaviour
     }
 }
 
-/// <summary>Entrada na lista de lobbies públicos.</summary>
 public class PublicLobbyEntry
 {
     public string Pin;
