@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14d395cbb5f2ef42862bfc03630cc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Card: {fileID: 11400000, guid: ab657ff0b7f1a91489ff37d14a254921, type: 2}
+  _Card: {fileID: 0}
+  CardId: 0
   image: {fileID: 1729546861495536607}
   nameText: {fileID: 711586578017418534}
   rarityText: {fileID: 3697690908819292825}
@@ -547,7 +548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pact of Flame '
+  m_text: Pact of flame
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -819,7 +820,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8037631587509753829, guid: 3d13b61c278510849bc6e0155bd28c66, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -15,7 +15,7 @@ public class CardEffectManager : NetworkBehaviour
 {
     public static CardEffectManager Instance { get; private set; }
 
-    [SerializeField] private CardDatabase _cardDatabase;
+    [SerializeField] private CardDataBase _cardDatabase;
 
     // clientId → PlayerStats (só no servidor)
     private Dictionary<ulong, PlayerStats> _playerMap = new();

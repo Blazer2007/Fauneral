@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: CardsToChoose
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 11400000, guid: 81e551cabd383bc4c9c53b464a507641, type: 2}
-  - {fileID: 11400000, guid: 81e551cabd383bc4c9c53b464a507641, type: 2}
+  - {fileID: 11400000, guid: 3b3bc6a0ccd8fa045b8f8cf85faaae24, type: 2}

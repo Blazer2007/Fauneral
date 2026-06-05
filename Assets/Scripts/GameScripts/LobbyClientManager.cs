@@ -5,17 +5,16 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Persiste entre cenas via DontDestroyOnLoad.
-/// Envia ServerRpcs e recebe callbacks do LobbyServerManager.
+/// Usa LobbyServerManager.Instance para chamar RPCs —
+/// funciona porque o servidor faz Spawn do LobbyServerManager como NetworkObject,
+/// tornando-o visível em todos os clientes.
 /// </summary>
 public class LobbyClientManager : NetworkBehaviour
 {
     public static LobbyClientManager Instance { get; private set; }
 
-    private LobbyServerManager _server;
-    private LobbyServerManager Server
-    {
-        get { if (_server == null) _server = FindFirstObjectByType<LobbyServerManager>(); return _server; }
-    }
+    // Atalho local para não repetir LobbyServerManager.Instance em todo o lado
+    private static LobbyServerManager Server => LobbyServerManager.Instance;
 
     public override void OnNetworkSpawn()
     {
@@ -36,14 +35,16 @@ public class LobbyClientManager : NetworkBehaviour
     public void CreateLobby(string roomName, bool isPublic, int maxPlayers)
     {
         if (!CheckConnected()) return;
-        Server?.CreateLobbyServerRpc(roomName, isPublic, maxPlayers);
+        if (Server == null) { Debug.LogWarning("[LobbyClientManager] Servidor ainda não está pronto."); return; }
+        Server.CreateLobbyServerRpc(roomName, isPublic, maxPlayers);
     }
 
     public void JoinLobby(string pin)
     {
         if (!CheckConnected()) return;
         if (string.IsNullOrWhiteSpace(pin)) { OnError("Introduz um PIN válido."); return; }
-        Server?.JoinLobbyServerRpc(pin.Trim());
+        if (Server == null) { Debug.LogWarning("[LobbyClientManager] Servidor ainda não está pronto."); return; }
+        Server.JoinLobbyServerRpc(pin.Trim());
     }
 
     public void RequestPublicLobbies()
@@ -58,10 +59,6 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.Clear();
     }
 
-    /// <summary>
-    /// Chamado pelo botão Ready de cada PlayerSpawn.
-    /// toggles o estado de pronto do cliente local.
-    /// </summary>
     public void SetReady(bool ready)
     {
         if (!CheckConnected()) return;
@@ -98,9 +95,6 @@ public class LobbyClientManager : NetworkBehaviour
         SceneManager.LoadScene("LobbyMenu");
     }
 
-    /// <summary>
-    /// Recebido sempre que alguém entra ou sai — traz slots + ready states completos.
-    /// </summary>
     public void OnFullStateReceived(string pin, string slotsData, string readyData,
         int currentPlayers, int maxPlayers, ulong creatorId)
     {
@@ -115,13 +109,9 @@ public class LobbyClientManager : NetworkBehaviour
         LobbyMenuUI.Instance?.RefreshFullState(slotsData, readyData, currentPlayers, maxPlayers);
     }
 
-    /// <summary>
-    /// Recebido sempre que alguém muda o estado de pronto — só ready states, slots não mudam.
-    /// </summary>
     public void OnReadyStateReceived(string pin, string readyData)
     {
         if (LobbySessionData.Pin != pin) return;
-
         LobbySessionData.ReadyData = readyData;
         LobbyMenuUI.Instance?.RefreshReadyStates(readyData);
     }
@@ -134,8 +124,7 @@ public class LobbyClientManager : NetworkBehaviour
 
     public void OnPublicLobbiesReceived(string data)
     {
-        var list = ParsePublicLobbies(data);
-        JoinRoomUI.Instance?.PopulatePublicLobbies(list);
+        JoinRoomUI.Instance?.PopulatePublicLobbies(ParsePublicLobbies(data));
     }
 
     public static System.Action<string> OnServerError;

@@ -5,16 +5,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// A carta é clicável directamente — sem Button filho.
-/// Requer na cena: EventSystem (já existe).
-/// Requer no GameObject da carta: qualquer Graphic com Raycast Target = true
-/// (a Image principal já serve, desde que Raycast Target esteja activo).
+/// Versão actualizada do CardDisplay.
+/// Alteração face ao original:
+///   - OnPointerClick verifica se estamos em fase de selecção de upgrade
+///     (_selectionMode = true) e redireciona para CardSelectionManager.
+///   - Em jogo normal (selectionMode = false) comporta-se como antes,
+///     chamando CardEffectManager.UseCard().
+///
+/// O CardSelectionManager activa o modo via CardDisplay.SetSelectionMode(true)
+/// ao popular os slots, e desactiva quando o canvas fecha.
 /// </summary>
 public class CardDisplay : MonoBehaviour, IPointerClickHandler
 {
     public ScriptableCard _Card;
 
-    [Tooltip("Índice desta carta no CardDatabase. Definido por quem instancia o CardDisplay.")]
+    [Tooltip("Índice desta carta no CardDatabase.")]
     public int CardId;
 
     public Image image;
@@ -26,6 +31,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI usesText;
     public TextMeshProUGUI timeText;
 
+    // Quando true, o clique vai para o CardSelectionManager (fase de upgrade)
+    // Quando false, vai para o CardEffectManager (uso de carta em combate)
+    private bool _selectionMode = false;
+
+    public void SetSelectionMode(bool active) => _selectionMode = active;
+
+    // ── UNITY ─────────────────────────────────────────────────────
+
     void OnValidate()
     {
         if (_Card == null) return;
@@ -33,7 +46,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
         if (rarityText != null) rarityText.text = _Card.rarity;
         if (descriptionText != null) descriptionText.text = _Card.description;
         if (timeText != null) timeText.text = _Card.time.ToString() + " seconds";
-        if (image != null) image.sprite = _Card.image.sprite;
+        if (image != null) image.sprite = _Card.image != null ? _Card.image.sprite : null;
     }
 
     void Start()
@@ -41,41 +54,54 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
         if (_Card != null) Refresh();
     }
 
-    void Refresh()
+    // ── REFRESH ───────────────────────────────────────────────────
+
+    public void Refresh()
     {
-        image.sprite = _Card.image.sprite;
-        nameText.text = _Card.name;
-        descriptionText.text = _Card.description;
-        rarityText.text = _Card.rarity;
+        if (_Card == null) return;
 
-        buffsText.text = string.Empty;
-        for (int i = 0; i < _Card.buffs.Length; i++)
+        if (image != null && _Card.image != null)
+            image.sprite = _Card.image.sprite;
+
+        if (nameText != null) nameText.text = _Card.name;
+        if (descriptionText != null) descriptionText.text = _Card.description;
+        if (rarityText != null) rarityText.text = _Card.rarity;
+
+        if (buffsText != null)
         {
-            string buff = _Card.buffs[i].ToString();
-            buffsText.text = string.IsNullOrEmpty(buffsText.text)
-                ? buff : buffsText.text.Trim() + "\n" + buff;
+            buffsText.text = string.Empty;
+            foreach (var buff in _Card.buffs)
+            {
+                string line = buff.ToString();
+                buffsText.text = string.IsNullOrEmpty(buffsText.text)
+                    ? line : buffsText.text.Trim() + "\n" + line;
+            }
         }
 
-        debuffsText.text = string.Empty;
-        for (int i = 0; i < _Card.debuffs.Length; i++)
+        if (debuffsText != null)
         {
-            string debuff = _Card.debuffs[i].ToString();
-            debuffsText.text = string.IsNullOrEmpty(debuffsText.text)
-                ? debuff : debuffsText.text.Trim() + "\n" + debuff;
+            debuffsText.text = string.Empty;
+            foreach (var debuff in _Card.debuffs)
+            {
+                string line = debuff.ToString();
+                debuffsText.text = string.IsNullOrEmpty(debuffsText.text)
+                    ? line : debuffsText.text.Trim() + "\n" + line;
+            }
         }
 
-        timeText.text = _Card.time.ToString() + " seconds";
-        usesText.text = _Card.isinfinite
-            ? _Card.uses + " use (Unlimited)"
-            : _Card.uses + (_Card.uses == 1 ? " use" : " uses") + " (Limited)";
+        if (timeText != null)
+            timeText.text = _Card.time > 0
+                ? _Card.time.ToString() + " seconds"
+                : "Permanent";
+
+        if (usesText != null)
+            usesText.text = _Card.isinfinite
+                ? _Card.uses + " use (Unlimited)"
+                : _Card.uses + (_Card.uses == 1 ? " use" : " uses") + " (Limited)";
     }
 
     // ── CLIQUE ────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Chamado automaticamente pelo EventSystem quando o jogador clica na carta.
-    /// Não precisas de ligar nada no Inspector.
-    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (_Card == null)
@@ -84,6 +110,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        CardEffectManager.Instance?.UseCard(CardId);
+        if (_selectionMode)
+        {
+            // Fase de upgrade entre rondas
+            CardSelectionManager.Instance?.PlayerSelectedCard(CardId);
+        }
+        else
+        {
+            // Uso de carta durante o combate
+            CardEffectManager.Instance?.UseCard(CardId);
+        }
     }
 }

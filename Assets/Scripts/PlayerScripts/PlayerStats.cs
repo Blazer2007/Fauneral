@@ -22,6 +22,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _baseMoveSpeed = 8f;
     [SerializeField] private float _baseJumpHeight = 12f;
     [SerializeField] private float _baseGravity = -30f;
+    [Range(0.2f, 2f)][SerializeField] private float _baseDashCooldown = 1f;
     [SerializeField] private float _baseDamage = 10f;
     [SerializeField] private float _baseAttackSpeed = 1f;
     [SerializeField] private float _baseKnockback = 5f;
@@ -40,6 +41,7 @@ public class PlayerStats : MonoBehaviour
 
     public float MoveSpeed => Compute(StatType.MoveSpeed, _baseMoveSpeed);
     public float JumpHeight => Compute(StatType.JumpHeight, _baseJumpHeight);
+    public float DashCooldown => Compute(StatType.DashCooldown, _baseDashCooldown); // Cooldown do dash (segundos)
     public float Gravity => Compute(StatType.Gravity, _baseGravity);
     public float Damage => Compute(StatType.Damage, _baseDamage);
     public float AttackSpeed => Compute(StatType.AttackSpeed, _baseAttackSpeed);
@@ -112,6 +114,7 @@ public class PlayerStats : MonoBehaviour
             StatType.MoveSpeed => MoveSpeed,
             StatType.JumpHeight => JumpHeight,
             StatType.Gravity => Gravity,
+            StatType.DashCooldown => DashCooldown,
             StatType.Damage => Damage,
             StatType.AttackSpeed => AttackSpeed,
             StatType.Knockback => Knockback,

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e9afbfa6c7bfb419c0bba476f573c1, type: 3}
+  m_Name: RarityTable
+  m_EditorClassIdentifier: 
+  Tiers:
+  - MinRound: 3
+    CommonWeight: 80
+    UncommonWeight: 20
+    RareWeight: 0
+    LegendaryWeight: 0
+  - MinRound: 3
+    CommonWeight: 50
+    UncommonWeight: 35
+    RareWeight: 15
+    LegendaryWeight: 0
+  - MinRound: 2
+    CommonWeight: 20
+    UncommonWeight: 40
+    RareWeight: 35
+    LegendaryWeight: 5
+  - MinRound: 1
+    CommonWeight: 0
+    UncommonWeight: 20
+    RareWeight: 50
+    LegendaryWeight: 30

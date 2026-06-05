@@ -1,55 +1,98 @@
-using Unity.Netcode;
+﻿using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 /// <summary>
-/// Controla o arranque da rede.
+/// Distingue servidor de cliente de duas formas (por prioridade):
+///   1. Command line argument "-server" (builds standalone e Multiplayer Playmode moderno)
+///   2. Tag "Server" no GameObject (Multiplayer Playmode antigo sem suporte a argumentos)
+///
+/// No Multiplayer Playmode antigo:
+///   Perfil "Server"  → Tag do perfil: "Server"   (criar esta tag em Unity: Edit > Tags)
+///   Perfis "Client1", "Client2" → Tag: "None"
+///
+/// No Multiplayer Playmode moderno / builds:
+///   Perfil servidor  → Additional Arguments: -server
 /// </summary>
 public class NetworkManagerUI : MonoBehaviour
 {
-    [Header("Auto-iniciar como servidor (para a build de servidor)")]
-    [Tooltip("Se true, arranca automaticamente como servidor dedicado ao iniciar")]
-    [SerializeField] private bool _autoStartAsServer = false;
+    [Header("Prefab do LobbyServerManager (só usado pelo servidor)")]
+    [SerializeField] private GameObject _lobbyManagerPrefab;
 
-    private void Awake()
+    [Header("Ligação")]
+    [SerializeField] private string _serverAddress = "127.0.0.1";
+    [SerializeField] private ushort _serverPort = 7777;
+
+    [Header("Fallback para Multiplayer Playmode antigo")]
+    [Tooltip("Tag do perfil que deve correr como servidor. Criar em Edit > Tags and Layers.")]
+    [SerializeField] private string _serverTag = "Server";
+
+    private void Start()
     {
-        if (_autoStartAsServer)
+        if (ShouldBeServer())
             StartDedicatedServer();
+        else
+            StartClient();
     }
 
-    /// <summary>
-    /// Arranca como servidor dedicado (sem cliente local).
-    /// Chama este m�todo na build do servidor.
-    /// </summary>
+    // ── DETECÇÃO ──────────────────────────────────────────────────
+
+    private bool ShouldBeServer()
+    {
+        // Prioridade 1: argumento de linha de comandos
+        foreach (string arg in System.Environment.GetCommandLineArgs())
+            if (arg.ToLower() == "-server") return true;
+
+        // Prioridade 2: tag do GameObject (Multiplayer Playmode antigo)
+        if (!string.IsNullOrEmpty(_serverTag) && gameObject.CompareTag(_serverTag))
+            return true;
+
+        return false;
+    }
+
+    // ── SERVIDOR / CLIENTE ────────────────────────────────────────
+
     public void StartDedicatedServer()
     {
+        ConfigureTransport();
+        NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.StartServer();
-        Debug.Log("[NetworkManagerUI] Servidor dedicado iniciado.");
+        Debug.Log($"[NetworkManagerUI] Servidor na porta {_serverPort}.");
     }
 
-    /// <summary>
-    /// Arranca como cliente e liga ao servidor.
-    /// Chama este m�todo nas builds dos jogadores.
-    /// </summary>
     public void StartClient()
     {
+        ConfigureTransport();
         NetworkManager.Singleton.StartClient();
-        Debug.Log("[NetworkManagerUI] Cliente a ligar...");
+        Debug.Log($"[NetworkManagerUI] Cliente a ligar a {_serverAddress}:{_serverPort}");
     }
 
-    // Mantido para compatibilidade, mas n�o � usado nesta arquitectura
-    public void StartHost()
-    {
-        Debug.LogWarning("[NetworkManagerUI] Host n�o � suportado nesta arquitectura. Usa StartDedicatedServer + StartClient.");
-    }
-
-    public void StartServer() => StartDedicatedServer();
-
-    /// <summary>
-    /// Desliga da rede (cliente ou servidor).
-    /// </summary>
     public void Disconnect()
     {
         NetworkManager.Singleton.Shutdown();
-        Debug.Log("[NetworkManagerUI] Desligado da rede.");
+    }
+
+    // ── HELPERS ───────────────────────────────────────────────────
+
+    private void ConfigureTransport()
+    {
+        var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+        if (transport != null)
+            transport.SetConnectionData(_serverAddress, _serverPort);
+    }
+
+    private void OnServerStarted()
+    {
+        NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
+
+        if (_lobbyManagerPrefab == null)
+        {
+            Debug.LogError("[Server] _lobbyManagerPrefab não atribuído!");
+            return;
+        }
+
+        GameObject go = Instantiate(_lobbyManagerPrefab);
+        go.GetComponent<NetworkObject>().Spawn();
+        Debug.Log("[Server] LobbyServerManager em spawn na rede.");
     }
 }

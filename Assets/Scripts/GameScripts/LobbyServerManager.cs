@@ -3,26 +3,49 @@ using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
-/// Corre EXCLUSIVAMENTE no servidor dedicado.
-/// Gere lobbies com slots, estados de pronto e botão StartGame.
+/// NetworkBehaviour gerido pelo servidor.
+/// O servidor faz Spawn deste objeto — os clientes chamam os ServerRpcs
+/// através da referência de rede (NetworkObjectId), não por FindFirstObjectByType.
+///
+/// Setup:
+///   1. Cria um Prefab "LobbyServerManager" com NetworkObject + este script
+///   2. Regista o prefab em NetworkManager > Network Prefabs
+///   3. No servidor (NetworkManagerUI.StartDedicatedServer), faz Spawn:
+///        Instantiate(lobbyManagerPrefab).GetComponent<NetworkObject>().Spawn()
+///      OU usa o campo _autoSpawnOnServer = true neste script
 /// </summary>
 public class LobbyServerManager : NetworkBehaviour
 {
+    public static LobbyServerManager Instance { get; private set; }
+
     [Header("Configuração")]
     [SerializeField] private int _pinLength = 4;
 
-    private Dictionary<string, LobbyData> _lobbies = new Dictionary<string, LobbyData>();
-    private Dictionary<ulong, string> _clientLobbyMap = new Dictionary<ulong, string>();
+    [Tooltip("Se true, faz spawn automático quando o servidor inicia (requer que este prefab esteja na cena do servidor)")]
+    [SerializeField] private bool _autoSpawnOnServer = true;
+
+    private Dictionary<string, LobbyData> _lobbies = new();
+    private Dictionary<ulong, string> _clientLobbyMap = new();
 
     public override void OnNetworkSpawn()
     {
-        if (!IsServer) { enabled = false; return; }
+        // Disponível tanto no servidor como nos clientes (para chamar RPCs)
+        Instance = this;
+
+        if (!IsServer)
+        {
+            Debug.Log("[LobbyServerManager] Referência de rede obtida pelo cliente.");
+            return;
+        }
+
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleDisconnect;
-        Debug.Log("[Server] LobbyServerManager pronto.");
+        Debug.Log("[Server] LobbyServerManager em rede e pronto.");
     }
 
     public override void OnNetworkDespawn()
     {
+        if (Instance == this) Instance = null;
+
         if (IsServer && NetworkManager.Singleton != null)
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleDisconnect;
     }
@@ -36,7 +59,11 @@ public class LobbyServerManager : NetworkBehaviour
         ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
-        if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
+        if (_clientLobbyMap.ContainsKey(client))
+        {
+            ErrorClientRpc("Já estás num lobby.", MakeTarget(client));
+            return;
+        }
 
         maxPlayers = Mathf.Clamp(maxPlayers, 2, 4);
         string pin = GenerateUniquePin();
@@ -57,7 +84,9 @@ public class LobbyServerManager : NetworkBehaviour
 
         Debug.Log($"[Server] Lobby criado: PIN={pin} \"{lobby.RoomName}\"");
 
+        // Envia PIN ao criador
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
+        // Envia estado completo (o criador já está no slot 0)
         BroadcastFullState(lobby);
     }
 
@@ -65,6 +94,7 @@ public class LobbyServerManager : NetworkBehaviour
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
+
         if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
         if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) { ErrorClientRpc("PIN inválido.", MakeTarget(client)); return; }
         if (lobby.IsFull) { ErrorClientRpc("Lobby cheio.", MakeTarget(client)); return; }
@@ -77,7 +107,6 @@ public class LobbyServerManager : NetworkBehaviour
         LobbyJoinedClientRpc(pin, lobby.RoomName, lobby.IsPublic,
             lobby.PlayerCount, lobby.MaxPlayers, MakeTarget(client));
 
-        // Envia estado completo a TODOS (incluindo o novo)
         BroadcastFullState(lobby);
     }
 
@@ -85,9 +114,6 @@ public class LobbyServerManager : NetworkBehaviour
     public void LeaveLobbyServerRpc(ServerRpcParams rpc = default)
         => RemoveClient(rpc.Receive.SenderClientId);
 
-    /// <summary>
-    /// Devolve a lista de lobbies públicos ao cliente que pediu.
-    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     public void RequestPublicLobbiesServerRpc(ServerRpcParams rpc = default)
     {
@@ -103,10 +129,6 @@ public class LobbyServerManager : NetworkBehaviour
         PublicLobbiesClientRpc(sb.ToString(), MakeTarget(client));
     }
 
-    /// <summary>
-    /// Cliente comunica que está pronto (ready=true) ou cancela (ready=false).
-    /// Após alterar, o servidor verifica se TODOS estão prontos e notifica o criador.
-    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     public void SetReadyServerRpc(bool ready, ServerRpcParams rpc = default)
     {
@@ -115,12 +137,8 @@ public class LobbyServerManager : NetworkBehaviour
         if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) return;
 
         lobby.SetReady(client, ready);
-        Debug.Log($"[Server] Cliente {client} ready={ready} em {pin}");
-
-        // Envia novo estado de prontos a todos
         BroadcastReadyState(lobby);
 
-        // Se todos prontos, habilita StartGame só para o criador
         if (lobby.AllReady())
             EnableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
         else
@@ -141,19 +159,12 @@ public class LobbyServerManager : NetworkBehaviour
         int current, int max, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnLobbyJoined(pin, roomName, isPublic, current, max);
 
-    /// <summary>
-    /// Envia slots + estados de pronto a todos os membros.
-    /// slotsData  = "cId0,cId1,..."   (ulong.MaxValue = vazio)
-    /// readyData  = "true,false,..."
-    /// creatorId  = clientId do criador (para saber quem mostra StartGame)
-    /// </summary>
     [ClientRpc]
     private void FullStateClientRpc(string pin, string slotsData, string readyData,
         int currentPlayers, int maxPlayers, ulong creatorId, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnFullStateReceived(
                pin, slotsData, readyData, currentPlayers, maxPlayers, creatorId);
 
-    /// <summary>Só atualiza estados de pronto (sem mudar slots).</summary>
     [ClientRpc]
     private void ReadyStateClientRpc(string pin, string readyData, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnReadyStateReceived(pin, readyData);
@@ -178,7 +189,6 @@ public class LobbyServerManager : NetworkBehaviour
     //  HELPERS
     // ═══════════════════════════════════════════════════════════════
 
-    /// <summary>Envia slots + ready states a todos os membros.</summary>
     private void BroadcastFullState(LobbyData lobby)
     {
         string slots = lobby.SerializeSlots();
@@ -188,7 +198,6 @@ public class LobbyServerManager : NetworkBehaviour
                 lobby.PlayerCount, lobby.MaxPlayers, lobby.CreatorClientId, MakeTarget(id));
     }
 
-    /// <summary>Envia só os ready states a todos os membros.</summary>
     private void BroadcastReadyState(LobbyData lobby)
     {
         string ready = lobby.SerializeReady();
@@ -203,7 +212,6 @@ public class LobbyServerManager : NetworkBehaviour
         if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) return;
 
         lobby.ReleaseSlot(clientId);
-        Debug.Log($"[Server] Cliente {clientId} saiu de {pin}");
 
         if (lobby.Clients.Count == 0)
         {
@@ -213,7 +221,6 @@ public class LobbyServerManager : NetworkBehaviour
         else
         {
             BroadcastFullState(lobby);
-            // Re-verifica prontos após saída (alguém que estava pronto saiu)
             if (lobby.AllReady())
                 EnableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
             else

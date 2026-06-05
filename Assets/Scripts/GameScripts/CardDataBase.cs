@@ -12,7 +12,7 @@ using UnityEngine;
 ///   4. Arrasta este asset para o campo CardDatabase do CardEffectManager
 /// </summary>
 [CreateAssetMenu(fileName = "CardDatabase", menuName = "Fauneral/Card Database")]
-public class CardDataBase : ScriptableObject
+public class CardDatabase : ScriptableObject
 {
     [Tooltip("Todas as cartas do jogo por ordem. O índice é o cardId.")]
     public ScriptableCard[] Cards;

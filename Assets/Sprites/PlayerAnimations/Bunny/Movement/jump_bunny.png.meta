@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: 980ebce48f4e34b41a941ed53509aa6c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5458503352831318767
+    second: jump_bunny_0
+  - first:
+      213: -4762650517800922108
+    second: jump_bunny_1
+  - first:
+      213: 4741017550959705283
+    second: jump_bunny_2
+  - first:
+      213: 3351235459234176362
+    second: jump_bunny_3
+  - first:
+      213: 2342519738398204168
+    second: jump_bunny_4
+  - first:
+      213: 3554279068398399992
+    second: jump_bunny_5
+  - first:
+      213: -6841363488885778731
+    second: jump_bunny_6
+  - first:
+      213: -5701482441179286313
+    second: jump_bunny_7
+  - first:
+      213: 7273315710153000157
+    second: jump_bunny_8
+  - first:
+      213: 354234785224088826
+    second: jump_bunny_9
+  - first:
+      213: 3117570010381452143
+    second: jump_bunny_10
+  - first:
+      213: -7847347782520543440
+    second: jump_bunny_11
+  - first:
+      213: 7958024341639379739
+    second: jump_bunny_12
+  - first:
+      213: 1490909783164119905
+    second: jump_bunny_13
+  - first:
+      213: -6511359585292791789
+    second: jump_bunny_14
+  - first:
+      213: -8556796037168736977
+    second: jump_bunny_15
+  - first:
+      213: 8759849042742777192
+    second: jump_bunny_16
+  - first:
+      213: -1535396519176484970
+    second: jump_bunny_17
+  - first:
+      213: 2894424825520535573
+    second: jump_bunny_18
+  - first:
+      213: 2099826353763613253
+    second: jump_bunny_19
+  - first:
+      213: 522273234255428155
+    second: jump_bunny_20
+  - first:
+      213: 6819372569703402279
+    second: jump_bunny_21
+  - first:
+      213: -3910333958365823590
+    second: jump_bunny_22
+  - first:
+      213: 7508946909092243995
+    second: jump_bunny_23
+  - first:
+      213: -5042220754201144612
+    second: jump_bunny_24
+  - first:
+      213: 1612404726857592781
+    second: jump_bunny_25
+  - first:
+      213: 4616590678992749946
+    second: jump_bunny_26
+  - first:
+      213: -3761513906641618002
+    second: jump_bunny_27
+  - first:
+      213: -8075957983386033125
+    second: jump_bunny_28
+  - first:
+      213: 7772923771415784453
+    second: jump_bunny_29
+  - first:
+      213: 1720109686561333691
+    second: jump_bunny_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: jump_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1918
+        width: 49
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea1ac601ef70cb40800000000000000
+      internalID: 5458503352831318767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 1918
+        width: 57
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4045521769aa7edb0800000000000000
+      internalID: -4762650517800922108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1916
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc78d6f75a7bc140800000000000000
+      internalID: 4741017550959705283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1920
+        width: 48
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d985205eaf18e20800000000000000
+      internalID: 3351235459234176362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 1920
+        width: 49
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801e0967a4d428020800000000000000
+      internalID: 2342519738398204168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 1920
+        width: 49
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f13e783bf5535130800000000000000
+      internalID: 3554279068398399992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 1921
+        width: 48
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6d2a967289e01a0800000000000000
+      internalID: -6841363488885778731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 1921
+        width: 48
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d4b1607de340e0b0800000000000000
+      internalID: -5701482441179286313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 1922
+        width: 49
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd400fa4a1200f460800000000000000
+      internalID: 7273315710153000157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1666
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc5e5c09ae7ae400800000000000000
+      internalID: 354234785224088826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1667
+        width: 52
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6382372865d34b20800000000000000
+      internalID: 3117570010381452143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1666
+        width: 54
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 037e9e1d4ce981390800000000000000
+      internalID: -7847347782520543440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 1666
+        width: 58
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bb35da9f4907e60800000000000000
+      internalID: 7958024341639379739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 1666
+        width: 61
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16be6a17c86c0b410800000000000000
+      internalID: 1490909783164119905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 1666
+        width: 63
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310d9c1b4f003a5a0800000000000000
+      internalID: -6511359585292791789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_15
+      rect:
+        serializedVersion: 2
+        x: 1628
+        y: 1666
+        width: 66
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25561d0757204980800000000000000
+      internalID: -8556796037168736977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_16
+      rect:
+        serializedVersion: 2
+        x: 1884
+        y: 1666
+        width: 66
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8659abeea4c319970800000000000000
+      internalID: 8759849042742777192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_17
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1411
+        width: 68
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6974d1d200d21bae0800000000000000
+      internalID: -1535396519176484970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_18
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 1412
+        width: 66
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51839322b001b2820800000000000000
+      internalID: 2894424825520535573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_19
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1412
+        width: 66
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a751281f4142d10800000000000000
+      internalID: 2099826353763613253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_20
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1412
+        width: 65
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a3d7b4dbc7f3700800000000000000
+      internalID: 522273234255428155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_21
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 1411
+        width: 64
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72bc638b83743ae50800000000000000
+      internalID: 6819372569703402279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_22
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 1411
+        width: 63
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d35729bf3bbb9c0800000000000000
+      internalID: -3910333958365823590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_23
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 1410
+        width: 60
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ae5b10e63253860800000000000000
+      internalID: 7508946909092243995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_24
+      rect:
+        serializedVersion: 2
+        x: 1894
+        y: 1409
+        width: 57
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd21dba50fe660ab0800000000000000
+      internalID: -5042220754201144612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_25
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1152
+        width: 52
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfe1826e89606610800000000000000
+      internalID: 1612404726857592781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_26
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1152
+        width: 48
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a750eb643cc611040800000000000000
+      internalID: 4616590678992749946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_27
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1151
+        width: 42
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab3fe0080b6ccbc0800000000000000
+      internalID: -3761513906641618002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_28
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1150
+        width: 40
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14ab4b900f6cef80800000000000000
+      internalID: -8075957983386033125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_29
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 1149
+        width: 38
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50c6d65ccf8fedb60800000000000000
+      internalID: 7772923771415784453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_bunny_30
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 1149
+        width: 37
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1623a75ae0fd710800000000000000
+      internalID: 1720109686561333691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      jump_bunny_0: 5458503352831318767
+      jump_bunny_1: -4762650517800922108
+      jump_bunny_10: 3117570010381452143
+      jump_bunny_11: -7847347782520543440
+      jump_bunny_12: 7958024341639379739
+      jump_bunny_13: 1490909783164119905
+      jump_bunny_14: -6511359585292791789
+      jump_bunny_15: -8556796037168736977
+      jump_bunny_16: 8759849042742777192
+      jump_bunny_17: -1535396519176484970
+      jump_bunny_18: 2894424825520535573
+      jump_bunny_19: 2099826353763613253
+      jump_bunny_2: 4741017550959705283
+      jump_bunny_20: 522273234255428155
+      jump_bunny_21: 6819372569703402279
+      jump_bunny_22: -3910333958365823590
+      jump_bunny_23: 7508946909092243995
+      jump_bunny_24: -5042220754201144612
+      jump_bunny_25: 1612404726857592781
+      jump_bunny_26: 4616590678992749946
+      jump_bunny_27: -3761513906641618002
+      jump_bunny_28: -8075957983386033125
+      jump_bunny_29: 7772923771415784453
+      jump_bunny_3: 3351235459234176362
+      jump_bunny_30: 1720109686561333691
+      jump_bunny_4: 2342519738398204168
+      jump_bunny_5: 3554279068398399992
+      jump_bunny_6: -6841363488885778731
+      jump_bunny_7: -5701482441179286313
+      jump_bunny_8: 7273315710153000157
+      jump_bunny_9: 354234785224088826
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

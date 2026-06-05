@@ -8,6 +8,7 @@ public enum StatType
     MoveSpeed,
     JumpHeight,
     Gravity,
+    DashCooldown,   // Cooldown do dash (segundos)
 
     // Combate
     Damage,
