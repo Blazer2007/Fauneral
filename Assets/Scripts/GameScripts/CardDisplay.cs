@@ -115,10 +115,10 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
             // Fase de upgrade entre rondas
             CardSelectionManager.Instance?.PlayerSelectedCard(CardId);
         }
-        else
-        {
-            // Uso de carta durante o combate
-            CardEffectManager.Instance?.UseCard(CardId);
-        }
+        //else
+        //{
+        //    // Uso de carta durante o combate
+        //    CardEffectManager.Instance?.UseCard(CardId);
+        //}
     }
 }
