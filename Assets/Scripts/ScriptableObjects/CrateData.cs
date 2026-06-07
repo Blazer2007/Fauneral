@@ -36,6 +36,9 @@ public class CrateData : ScriptableObject
     [Header("Chapéus disponíveis")]
     public List<HatData> hats = new();
 
+    [Header("Preço da Caixa")]
+    public int cost = 100;
+
     // ─────────────────────────────────────────────────────────────────────────
 
     public float TotalWeight() => weightC + weightB + weightA + weightS;

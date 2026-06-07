@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class CrateSystem : MonoBehaviour
 {
@@ -15,6 +18,9 @@ public class CrateSystem : MonoBehaviour
 
     private bool _isOpening = false;
 
+    public ScriptablePoints points;
+    public Action OnInsufficientPoints;
+
     private void Awake()
     {
         Instance = this;
@@ -22,6 +28,12 @@ public class CrateSystem : MonoBehaviour
 
     public bool OpenCrate()
     {
+        if (points != null && !points.TrySpend(crate.cost))
+        {
+            OnInsufficientPoints?.Invoke();
+            return false;
+        }
+
         if (_isOpening)
         {
             Debug.LogWarning("[CrateSystem] Já está a abrir uma caixa!");
