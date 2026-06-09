@@ -52,7 +52,7 @@ public class CardEffectManager : NetworkBehaviour
 
     // ── SERVER RPC ────────────────────────────────────────────────
 
-    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+    [ServerRpc(RequireOwnership =false)]
     private void UseCardServerRpc(int cardId, ServerRpcParams rpc = default)
     {
         ulong senderId = rpc.Receive.SenderClientId;
