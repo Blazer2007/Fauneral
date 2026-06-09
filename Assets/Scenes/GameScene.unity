@@ -1639,7 +1639,6 @@ GameObject:
   - component: {fileID: 1190466541}
   - component: {fileID: 1190466540}
   - component: {fileID: 1190466539}
-  - component: {fileID: 1190466543}
   - component: {fileID: 1190466542}
   m_Layer: 0
   m_Name: NetworkManager
@@ -1749,24 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23bdf36b2f67eb94281f9b21d810be5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1190466543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190466538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 980bd151ba687a44abe4e8ebf09b7e0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 3079204256749916523, guid: 172c8901d03a22e418cfb930bc1f2b0e, type: 3}
-  _spawnPoints:
-  - {fileID: 1189540522}
-  - {fileID: 1172429660}
-  - {fileID: 2050423152}
-  - {fileID: 1236890522}
 --- !u!1 &1236890521
 GameObject:
   m_ObjectHideFlags: 0

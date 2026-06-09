@@ -24,7 +24,7 @@ public class PlayerSpawner : MonoBehaviour
         int index = NetworkManager.Singleton.ConnectedClientsIds.Count - 1;
         Transform spawnPoint = _spawnPoints[index % _spawnPoints.Length];
 
-        var player = Instantiate(_playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+       // var player = Instantiate(_playerPrefab, spawnPoint.position, spawnPoint.rotation);
+       // player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
     }
 }
