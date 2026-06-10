@@ -751,7 +751,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -773,11 +779,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: af3c58f7-7faa-44b5-bc4f-306cf7ff714b
+  cloudProjectId: 4463d27a-c19c-42b1-baf8-1566ad7fbf75
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Fauneral 2026-04-14_16-17-54
-  organizationId: blazer2007
+  projectName: Fauneral (1)
+  organizationId: twofaces_xxx
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

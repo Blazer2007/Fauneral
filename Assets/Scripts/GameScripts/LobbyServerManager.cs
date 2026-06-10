@@ -1,19 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-/// <summary>
-/// NetworkBehaviour gerido pelo servidor.
-/// O servidor faz Spawn deste objeto — os clientes chamam os ServerRpcs
-/// através da referência de rede (NetworkObjectId), não por FindFirstObjectByType.
-///
-/// Setup:
-///   1. Cria um Prefab "LobbyServerManager" com NetworkObject + este script
-///   2. Regista o prefab em NetworkManager > Network Prefabs
-///   3. No servidor (NetworkManagerUI.StartDedicatedServer), faz Spawn:
-///        Instantiate(lobbyManagerPrefab).GetComponent<NetworkObject>().Spawn()
-///      OU usa o campo _autoSpawnOnServer = true neste script
-/// </summary>
 public class LobbyServerManager : NetworkBehaviour
 {
     public static LobbyServerManager Instance { get; private set; }
@@ -29,8 +17,8 @@ public class LobbyServerManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        // Disponível tanto no servidor como nos clientes (para chamar RPCs)
         Instance = this;
+        DontDestroyOnLoad(gameObject); // Garante que o gerenciador do lobby não morra ao mudar de cena
 
         if (!IsServer)
         {
@@ -50,15 +38,13 @@ public class LobbyServerManager : NetworkBehaviour
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleDisconnect;
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    //  SERVER RPCs
-    // ═══════════════════════════════════════════════════════════════
-
     [ServerRpc(RequireOwnership = false)]
-    public void CreateLobbyServerRpc(string roomName, bool isPublic, int maxPlayers,
+    public void CreateLobbyServerRpc(string roomName, bool isPublic, int maxPlayers, string forcedPin = "",
         ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
+        Debug.Log($"[Server] CreateLobbyServerRpc recebido de {client}. Pin: {forcedPin}");
+
         if (_clientLobbyMap.ContainsKey(client))
         {
             ErrorClientRpc("Já estás num lobby.", MakeTarget(client));
@@ -66,7 +52,7 @@ public class LobbyServerManager : NetworkBehaviour
         }
 
         maxPlayers = Mathf.Clamp(maxPlayers, 2, 4);
-        string pin = GenerateUniquePin();
+        string pin = string.IsNullOrEmpty(forcedPin) ? GenerateUniquePin() : forcedPin;
 
         var lobby = new LobbyData
         {
@@ -76,17 +62,16 @@ public class LobbyServerManager : NetworkBehaviour
             MaxPlayers = maxPlayers,
             CreatorClientId = client
         };
+
         lobby.InitSlots();
         lobby.AssignSlot(client);
 
         _lobbies[pin] = lobby;
         _clientLobbyMap[client] = pin;
 
-        Debug.Log($"[Server] Lobby criado: PIN={pin} \"{lobby.RoomName}\"");
+        Debug.Log($"[Server] Lobby registrado com sucesso: PIN={pin}. Enviando RPCs...");
 
-        // Envia PIN ao criador
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
-        // Envia estado completo (o criador já está no slot 0)
         BroadcastFullState(lobby);
     }
 
@@ -94,6 +79,7 @@ public class LobbyServerManager : NetworkBehaviour
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
     {
         ulong client = rpc.Receive.SenderClientId;
+        Debug.Log($"[Server] JoinLobbyServerRpc recebido de {client} para o Pin: {pin}");
 
         if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
         if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) { ErrorClientRpc("PIN inválido.", MakeTarget(client)); return; }
@@ -145,10 +131,6 @@ public class LobbyServerManager : NetworkBehaviour
             DisableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    //  CLIENT RPCs
-    // ═══════════════════════════════════════════════════════════════
-
     [ClientRpc]
     private void LobbyCreatedClientRpc(string pin, string roomName, bool isPublic,
         int maxPlayers, ClientRpcParams p = default)
@@ -184,10 +166,6 @@ public class LobbyServerManager : NetworkBehaviour
     [ClientRpc]
     private void PublicLobbiesClientRpc(string data, ClientRpcParams p = default)
         => LobbyClientManager.Instance?.OnPublicLobbiesReceived(data);
-
-    // ═══════════════════════════════════════════════════════════════
-    //  HELPERS
-    // ═══════════════════════════════════════════════════════════════
 
     private void BroadcastFullState(LobbyData lobby)
     {

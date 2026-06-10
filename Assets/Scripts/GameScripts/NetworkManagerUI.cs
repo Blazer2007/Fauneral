@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
@@ -29,10 +29,32 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Start()
     {
+        SubscribeToServerStarted();
+
         if (ShouldBeServer())
             StartDedicatedServer();
-        else
-            StartClient();
+    }
+
+    private void OnEnable()
+    {
+        SubscribeToServerStarted();
+    }
+
+    private void SubscribeToServerStarted()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
+            NetworkManager.Singleton.OnServerStarted += OnServerStarted;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
+        }
     }
 
     // ── DETECÇÃO ──────────────────────────────────────────────────
@@ -55,7 +77,6 @@ public class NetworkManagerUI : MonoBehaviour
     public void StartDedicatedServer()
     {
         ConfigureTransport();
-        NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.StartServer();
         Debug.Log($"[NetworkManagerUI] Servidor na porta {_serverPort}.");
     }
@@ -76,14 +97,17 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void ConfigureTransport()
     {
-        var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+        var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
         if (transport != null)
             transport.SetConnectionData(_serverAddress, _serverPort);
     }
 
     private void OnServerStarted()
     {
-        NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
+        // Only the server/host should spawn the lobby manager
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        Debug.Log("[NetworkManagerUI] Servidor iniciado. Verificando LobbyServerManager...");
 
         if (_lobbyManagerPrefab == null)
         {
@@ -91,8 +115,15 @@ public class NetworkManagerUI : MonoBehaviour
             return;
         }
 
+        // Check if already exists to avoid double spawn
+        if (LobbyServerManager.Instance != null)
+        {
+            Debug.Log("[Server] LobbyServerManager já existe, pulando spawn.");
+            return;
+        }
+
         GameObject go = Instantiate(_lobbyManagerPrefab);
         go.GetComponent<NetworkObject>().Spawn();
-        Debug.Log("[Server] LobbyServerManager em spawn na rede.");
+        Debug.Log("[Server] LobbyServerManager instanciado e spawnado na rede.");
     }
 }
