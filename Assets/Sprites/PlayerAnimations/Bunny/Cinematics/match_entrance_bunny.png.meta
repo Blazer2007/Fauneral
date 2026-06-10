@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: 71b9ae7b94305824b8f98c143e74b1a9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7804230872000139630
+    second: match_entrance_bunny_0
+  - first:
+      213: -3740219770757579538
+    second: match_entrance_bunny_1
+  - first:
+      213: -8230295163056883884
+    second: match_entrance_bunny_2
+  - first:
+      213: 8618866758756702407
+    second: match_entrance_bunny_3
+  - first:
+      213: 7269290069545952609
+    second: match_entrance_bunny_4
+  - first:
+      213: -3063936942794040033
+    second: match_entrance_bunny_5
+  - first:
+      213: 792728252157951867
+    second: match_entrance_bunny_6
+  - first:
+      213: 6701773000442265587
+    second: match_entrance_bunny_7
+  - first:
+      213: -5321829157543114996
+    second: match_entrance_bunny_8
+  - first:
+      213: 3104162508630182470
+    second: match_entrance_bunny_9
+  - first:
+      213: 1297905963763513004
+    second: match_entrance_bunny_10
+  - first:
+      213: -1416459183642679848
+    second: match_entrance_bunny_11
+  - first:
+      213: -666011872817009634
+    second: match_entrance_bunny_12
+  - first:
+      213: -4771085647761995862
+    second: match_entrance_bunny_13
+  - first:
+      213: -1178227841841715408
+    second: match_entrance_bunny_14
+  - first:
+      213: 7634828613671879886
+    second: match_entrance_bunny_15
+  - first:
+      213: 3079648874606085169
+    second: match_entrance_bunny_16
+  - first:
+      213: -1397637212092088075
+    second: match_entrance_bunny_17
+  - first:
+      213: -3678690598002828883
+    second: match_entrance_bunny_18
+  - first:
+      213: 1941354452285559125
+    second: match_entrance_bunny_19
+  - first:
+      213: -7164083103726406703
+    second: match_entrance_bunny_20
+  - first:
+      213: -8872887470271291776
+    second: match_entrance_bunny_21
+  - first:
+      213: -5444247324757900293
+    second: match_entrance_bunny_22
+  - first:
+      213: 6264379409810149722
+    second: match_entrance_bunny_23
+  - first:
+      213: 5571510745876132067
+    second: match_entrance_bunny_24
+  - first:
+      213: 8554379201917376742
+    second: match_entrance_bunny_25
+  - first:
+      213: 7249763503130453338
+    second: match_entrance_bunny_26
+  - first:
+      213: -6504597239223631772
+    second: match_entrance_bunny_27
+  - first:
+      213: 6355494488362378361
+    second: match_entrance_bunny_28
+  - first:
+      213: 8369120573526045406
+    second: match_entrance_bunny_29
+  - first:
+      213: -1236912433052723407
+    second: match_entrance_bunny_30
+  - first:
+      213: -3853266822798697260
+    second: match_entrance_bunny_31
+  - first:
+      213: -7996369346207275190
+    second: match_entrance_bunny_32
+  - first:
+      213: -5246816439434589903
+    second: match_entrance_bunny_33
+  - first:
+      213: -6013061788299840213
+    second: match_entrance_bunny_34
+  - first:
+      213: -5188405554202690733
+    second: match_entrance_bunny_35
+  - first:
+      213: -401848566403152252
+    second: match_entrance_bunny_36
+  - first:
+      213: 5071512642147421420
+    second: match_entrance_bunny_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: match_entrance_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1150
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6194b621a23e4c60800000000000000
+      internalID: 7804230872000139630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 1150
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eecf91e5fe1181cc0800000000000000
+      internalID: -3740219770757579538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 1150
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 457f069b72e18cd80800000000000000
+      internalID: -8230295163056883884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 1150
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c89d1207ad5c9770800000000000000
+      internalID: 8618866758756702407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 1150
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 165af8ccdc4b1e460800000000000000
+      internalID: 7269290069545952609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1896
+        y: 1150
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d909e7595ba75d0800000000000000
+      internalID: -3063936942794040033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 894
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f7a413526500b00800000000000000
+      internalID: 792728252157951867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 894
+        width: 43
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ff3aa0590b710d50800000000000000
+      internalID: 6701773000442265587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 894
+        width: 43
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c078355d3901526b0800000000000000
+      internalID: -5321829157543114996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 894
+        width: 43
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64accf3ea53341b20800000000000000
+      internalID: 3104162508630182470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 894
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca63cf1f896130210800000000000000
+      internalID: 1297905963763513004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 894
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d5632090e9b75ce0800000000000000
+      internalID: -1416459183642679848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 894
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1cac88fab9d1c6f0800000000000000
+      internalID: -666011872817009634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 894
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa78e24b1e2b9cdb0800000000000000
+      internalID: -4771085647761995862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 638
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 037ac86350816afe0800000000000000
+      internalID: -1178227841841715408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 638
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec486ee4c2c54f960800000000000000
+      internalID: 7634828613671879886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_16
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 638
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 134c3d3b55c1dba20800000000000000
+      internalID: 3079648874606085169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_17
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 638
+        width: 43
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f042605c589a9ce0800000000000000
+      internalID: -1397637212092088075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_18
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 638
+        width: 43
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9d873446aa2fcc0800000000000000
+      internalID: -3678690598002828883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_19
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 638
+        width: 45
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5519a9fa69311fa10800000000000000
+      internalID: 1941354452285559125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_20
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 638
+        width: 46
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d37205cf50149c90800000000000000
+      internalID: -7164083103726406703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_21
+      rect:
+        serializedVersion: 2
+        x: 1893
+        y: 638
+        width: 47
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e177a3bdb2dd480800000000000000
+      internalID: -8872887470271291776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_22
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 383
+        width: 48
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf34f6a27e52274b0800000000000000
+      internalID: -5444247324757900293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_23
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 383
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a51510412eb8fe650800000000000000
+      internalID: 6264379409810149722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_24
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 383
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0f736118bf15d40800000000000000
+      internalID: 5571510745876132067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_25
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 383
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e85644af8247b670800000000000000
+      internalID: 8554379201917376742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_26
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 383
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a55aea5ce755c9460800000000000000
+      internalID: 7249763503130453338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_27
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 383
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 460c61516470bb5a0800000000000000
+      internalID: -6504597239223631772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_28
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 383
+        width: 49
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974eac67090433850800000000000000
+      internalID: 6355494488362378361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_29
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 383
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed2fe63f1d6152470800000000000000
+      internalID: 8369120573526045406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_30
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 127
+        width: 52
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 137d0a112ba95dee0800000000000000
+      internalID: -1236912433052723407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_31
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 126
+        width: 47
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dc194a7d32768ac0800000000000000
+      internalID: -3853266822798697260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_32
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 126
+        width: 45
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a472e7a3270370190800000000000000
+      internalID: -7996369346207275190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_33
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 126
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13942d54f309f27b0800000000000000
+      internalID: -5246816439434589903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_34
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 126
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b25b9ef79205d8ca0800000000000000
+      internalID: -6013061788299840213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_35
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 126
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35bb51743a41ff7b0800000000000000
+      internalID: -5188405554202690733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_36
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 126
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4864a02abd85c6af0800000000000000
+      internalID: -401848566403152252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_bunny_37
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 126
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec8915c0e1a16640800000000000000
+      internalID: 5071512642147421420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      match_entrance_bunny_0: 7804230872000139630
+      match_entrance_bunny_1: -3740219770757579538
+      match_entrance_bunny_10: 1297905963763513004
+      match_entrance_bunny_11: -1416459183642679848
+      match_entrance_bunny_12: -666011872817009634
+      match_entrance_bunny_13: -4771085647761995862
+      match_entrance_bunny_14: -1178227841841715408
+      match_entrance_bunny_15: 7634828613671879886
+      match_entrance_bunny_16: 3079648874606085169
+      match_entrance_bunny_17: -1397637212092088075
+      match_entrance_bunny_18: -3678690598002828883
+      match_entrance_bunny_19: 1941354452285559125
+      match_entrance_bunny_2: -8230295163056883884
+      match_entrance_bunny_20: -7164083103726406703
+      match_entrance_bunny_21: -8872887470271291776
+      match_entrance_bunny_22: -5444247324757900293
+      match_entrance_bunny_23: 6264379409810149722
+      match_entrance_bunny_24: 5571510745876132067
+      match_entrance_bunny_25: 8554379201917376742
+      match_entrance_bunny_26: 7249763503130453338
+      match_entrance_bunny_27: -6504597239223631772
+      match_entrance_bunny_28: 6355494488362378361
+      match_entrance_bunny_29: 8369120573526045406
+      match_entrance_bunny_3: 8618866758756702407
+      match_entrance_bunny_30: -1236912433052723407
+      match_entrance_bunny_31: -3853266822798697260
+      match_entrance_bunny_32: -7996369346207275190
+      match_entrance_bunny_33: -5246816439434589903
+      match_entrance_bunny_34: -6013061788299840213
+      match_entrance_bunny_35: -5188405554202690733
+      match_entrance_bunny_36: -401848566403152252
+      match_entrance_bunny_37: 5071512642147421420
+      match_entrance_bunny_4: 7269290069545952609
+      match_entrance_bunny_5: -3063936942794040033
+      match_entrance_bunny_6: 792728252157951867
+      match_entrance_bunny_7: 6701773000442265587
+      match_entrance_bunny_8: -5321829157543114996
+      match_entrance_bunny_9: 3104162508630182470
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

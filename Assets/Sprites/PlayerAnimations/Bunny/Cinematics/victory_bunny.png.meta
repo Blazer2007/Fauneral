@@ -1,0 +1,1781 @@
+fileFormatVersion: 2
+guid: c0f6ae3ec56fee648b50aafa0a3f0e7a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3663332565458331481
+    second: victory_bunny_0
+  - first:
+      213: 6884326210643194382
+    second: victory_bunny_1
+  - first:
+      213: 1391145158952959824
+    second: victory_bunny_2
+  - first:
+      213: -5482475307124246444
+    second: victory_bunny_3
+  - first:
+      213: -1906001507343271535
+    second: victory_bunny_4
+  - first:
+      213: -1879713287581284228
+    second: victory_bunny_5
+  - first:
+      213: -3317445244930970841
+    second: victory_bunny_6
+  - first:
+      213: -6491835609027865565
+    second: victory_bunny_7
+  - first:
+      213: 4510869110845721880
+    second: victory_bunny_8
+  - first:
+      213: -6757687271089001613
+    second: victory_bunny_9
+  - first:
+      213: -6011244484750846264
+    second: victory_bunny_10
+  - first:
+      213: -2964753284096294909
+    second: victory_bunny_11
+  - first:
+      213: 5197245915944771595
+    second: victory_bunny_12
+  - first:
+      213: 206705382395777285
+    second: victory_bunny_13
+  - first:
+      213: -6121964231272633670
+    second: victory_bunny_14
+  - first:
+      213: -2894492876310471640
+    second: victory_bunny_15
+  - first:
+      213: -5968404448213335020
+    second: victory_bunny_16
+  - first:
+      213: 4360563105536235773
+    second: victory_bunny_17
+  - first:
+      213: -679051454241632221
+    second: victory_bunny_18
+  - first:
+      213: 4351248950878278147
+    second: victory_bunny_19
+  - first:
+      213: 2132419941143493539
+    second: victory_bunny_20
+  - first:
+      213: -1442418755424478457
+    second: victory_bunny_21
+  - first:
+      213: 2162044632213435763
+    second: victory_bunny_22
+  - first:
+      213: 1554798253410781504
+    second: victory_bunny_23
+  - first:
+      213: 2199960754215767422
+    second: victory_bunny_24
+  - first:
+      213: 8286997208817917881
+    second: victory_bunny_25
+  - first:
+      213: 8256821505948663254
+    second: victory_bunny_26
+  - first:
+      213: -3435957177055941915
+    second: victory_bunny_27
+  - first:
+      213: -8272805734836143984
+    second: victory_bunny_28
+  - first:
+      213: -3153865401158112028
+    second: victory_bunny_29
+  - first:
+      213: -5475759182236680860
+    second: victory_bunny_30
+  - first:
+      213: 2392537883695006495
+    second: victory_bunny_31
+  - first:
+      213: 6271586796473681865
+    second: victory_bunny_32
+  - first:
+      213: -1042897963638055552
+    second: victory_bunny_33
+  - first:
+      213: -654477449114363545
+    second: victory_bunny_34
+  - first:
+      213: 7591558336585173614
+    second: victory_bunny_35
+  - first:
+      213: -5622779008379462970
+    second: victory_bunny_36
+  - first:
+      213: 3496681325854416188
+    second: victory_bunny_37
+  - first:
+      213: 8013661288099620909
+    second: victory_bunny_38
+  - first:
+      213: 3699435123200632773
+    second: victory_bunny_39
+  - first:
+      213: -1209434074736040955
+    second: victory_bunny_40
+  - first:
+      213: -8070425941037228459
+    second: victory_bunny_41
+  - first:
+      213: -2826350199558777026
+    second: victory_bunny_42
+  - first:
+      213: -6560611506802490712
+    second: victory_bunny_43
+  - first:
+      213: -6635952332706746838
+    second: victory_bunny_44
+  - first:
+      213: 7108061015629797738
+    second: victory_bunny_45
+  - first:
+      213: -7753188370136097473
+    second: victory_bunny_46
+  - first:
+      213: 3293645705657886153
+    second: victory_bunny_47
+  - first:
+      213: -6125373550450142861
+    second: victory_bunny_48
+  - first:
+      213: 3538656387320925648
+    second: victory_bunny_49
+  - first:
+      213: -3350840699422391415
+    second: victory_bunny_50
+  - first:
+      213: -8442416584041136577
+    second: victory_bunny_51
+  - first:
+      213: -9121380672888186712
+    second: victory_bunny_52
+  - first:
+      213: 2476044999933808745
+    second: victory_bunny_53
+  - first:
+      213: 7426942165943311555
+    second: victory_bunny_54
+  - first:
+      213: -4855741821382236766
+    second: victory_bunny_55
+  - first:
+      213: 454954693690738873
+    second: victory_bunny_56
+  - first:
+      213: -874742828192006582
+    second: victory_bunny_57
+  - first:
+      213: -6339541922103096809
+    second: victory_bunny_58
+  - first:
+      213: 5584615728845391073
+    second: victory_bunny_59
+  - first:
+      213: -4873178502160661493
+    second: victory_bunny_60
+  - first:
+      213: -7134922241777793717
+    second: victory_bunny_61
+  - first:
+      213: -2465327674042205679
+    second: victory_bunny_62
+  - first:
+      213: 469748413725327696
+    second: victory_bunny_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: victory_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957a3422f85c6d230800000000000000
+      internalID: 3663332565458331481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e027c4fb63a0a8f50800000000000000
+      internalID: 6884326210643194382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05f3566c6275e4310800000000000000
+      internalID: 1391145158952959824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 458320d61c55ae3b0800000000000000
+      internalID: -5482475307124246444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 199f17d3ab58c85e0800000000000000
+      internalID: -1906001507343271535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78c22e59bae9e5e0800000000000000
+      internalID: -1879713287581284228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72ba416502116f1d0800000000000000
+      internalID: -3317445244930970841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1915
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32499a7a8ed58e5a0800000000000000
+      internalID: -6491835609027865565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81dcd348e83d99e30800000000000000
+      internalID: 4510869110845721880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37baf8f0b3fd732a0800000000000000
+      internalID: -6757687271089001613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c656647df4c39ca0800000000000000
+      internalID: -6011244484750846264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30084c698941bd6d0800000000000000
+      internalID: -2964753284096294909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b00ec36df93502840800000000000000
+      internalID: 5197245915944771595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5019cda337d5ed200800000000000000
+      internalID: 206705382395777285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abae85b97f96a0ba0800000000000000
+      internalID: -6121964231272633670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_15
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1659
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82c9d9e8012b4d7d0800000000000000
+      internalID: -2894492876310471640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_16
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1403
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 414026cb6c7fb2da0800000000000000
+      internalID: -5968404448213335020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_17
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1403
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8592e8a05d38c30800000000000000
+      internalID: 4360563105536235773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_18
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1403
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32017b5dc468396f0800000000000000
+      internalID: -679051454241632221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_19
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1403
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 302146eedddb26c30800000000000000
+      internalID: 4351248950878278147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_20
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1403
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ab31df63a0e79d10800000000000000
+      internalID: 2132419941143493539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_21
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1403
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b1091c8cf7bfbe0800000000000000
+      internalID: -1442418755424478457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_22
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1403
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3753f935320210e10800000000000000
+      internalID: 2162044632213435763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_23
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1403
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04982f716c0c39510800000000000000
+      internalID: 1554798253410781504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_24
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dc4da66a4d78e10800000000000000
+      internalID: 2199960754215767422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_25
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bfde361e04510370800000000000000
+      internalID: 8286997208817917881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_26
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd30e3c96f169270800000000000000
+      internalID: 8256821505948663254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_27
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ea6026e6270150d0800000000000000
+      internalID: -3435957177055941915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_28
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098f64fe307113d80800000000000000
+      internalID: -8272805734836143984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_29
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec6396a0283b34d0800000000000000
+      internalID: -3153865401158112028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_30
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46df23b19023204b0800000000000000
+      internalID: -5475759182236680860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_31
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1147
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f134e4d6780043120800000000000000
+      internalID: 2392537883695006495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_32
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c708dd86f6290750800000000000000
+      internalID: 6271586796473681865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_33
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d106cd3d1e681f0800000000000000
+      internalID: -1042897963638055552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_34
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 769d8044a34dae6f0800000000000000
+      internalID: -654477449114363545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_35
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a80d7d512aa5960800000000000000
+      internalID: 7591558336585173614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_36
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cad40b5840e7f1b0800000000000000
+      internalID: -5622779008379462970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_37
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d5b40c325b68030800000000000000
+      internalID: 3496681325854416188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_38
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d282a7bbb7e363f60800000000000000
+      internalID: 8013661288099620909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_39
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 891
+        width: 102
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c72af3e4a8075330800000000000000
+      internalID: 3699435123200632773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_40
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504ea1ced1a373fe0800000000000000
+      internalID: -1209434074736040955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_41
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ed0669d56100090800000000000000
+      internalID: -8070425941037228459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_42
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e37d178d779c6c8d0800000000000000
+      internalID: -2826350199558777026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_43
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a282bb189604f4a0800000000000000
+      internalID: -6560611506802490712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_44
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ee69e138c58e3a0800000000000000
+      internalID: -6635952332706746838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_45
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a699a6665d7e4a260800000000000000
+      internalID: 7108061015629797738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_46
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3d19596144276490800000000000000
+      internalID: -7753188370136097473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_47
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 635
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c5aabd915165bd20800000000000000
+      internalID: 3293645705657886153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_48
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37198d0a53d4efaa0800000000000000
+      internalID: -6125373550450142861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_49
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd4e645c35db1130800000000000000
+      internalID: 3538656387320925648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_50
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 983c10c232c6f71d0800000000000000
+      internalID: -3350840699422391415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_51
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3e7c5eb8d286da80800000000000000
+      internalID: -8442416584041136577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_52
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a8d26bea985a6180800000000000000
+      internalID: -9121380672888186712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_53
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 960dfec0fcdac5220800000000000000
+      internalID: 2476044999933808745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_54
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ccdb60ec8cc11760800000000000000
+      internalID: 7426942165943311555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_55
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 379
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5e08f4a80fc9cb0800000000000000
+      internalID: -4855741821382236766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_56
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b8455a22e2505600800000000000000
+      internalID: 454954693690738873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_57
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e7bc7480a4cd3f0800000000000000
+      internalID: -874742828192006582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_58
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71a095ec53c6508a0800000000000000
+      internalID: -6339541922103096809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_59
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e483e4ba6a808d40800000000000000
+      internalID: 5584615728845391073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_60
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b04c4a3b8fdfe5cb0800000000000000
+      internalID: -4873178502160661493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_61
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b450dc6060aabfc90800000000000000
+      internalID: -7134922241777793717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_62
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a36c5da8569cdd0800000000000000
+      internalID: -2465327674042205679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_bunny_63
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 123
+        width: 103
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051c6e581b1e48600800000000000000
+      internalID: 469748413725327696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      victory_bunny_0: 3663332565458331481
+      victory_bunny_1: 6884326210643194382
+      victory_bunny_10: -6011244484750846264
+      victory_bunny_11: -2964753284096294909
+      victory_bunny_12: 5197245915944771595
+      victory_bunny_13: 206705382395777285
+      victory_bunny_14: -6121964231272633670
+      victory_bunny_15: -2894492876310471640
+      victory_bunny_16: -5968404448213335020
+      victory_bunny_17: 4360563105536235773
+      victory_bunny_18: -679051454241632221
+      victory_bunny_19: 4351248950878278147
+      victory_bunny_2: 1391145158952959824
+      victory_bunny_20: 2132419941143493539
+      victory_bunny_21: -1442418755424478457
+      victory_bunny_22: 2162044632213435763
+      victory_bunny_23: 1554798253410781504
+      victory_bunny_24: 2199960754215767422
+      victory_bunny_25: 8286997208817917881
+      victory_bunny_26: 8256821505948663254
+      victory_bunny_27: -3435957177055941915
+      victory_bunny_28: -8272805734836143984
+      victory_bunny_29: -3153865401158112028
+      victory_bunny_3: -5482475307124246444
+      victory_bunny_30: -5475759182236680860
+      victory_bunny_31: 2392537883695006495
+      victory_bunny_32: 6271586796473681865
+      victory_bunny_33: -1042897963638055552
+      victory_bunny_34: -654477449114363545
+      victory_bunny_35: 7591558336585173614
+      victory_bunny_36: -5622779008379462970
+      victory_bunny_37: 3496681325854416188
+      victory_bunny_38: 8013661288099620909
+      victory_bunny_39: 3699435123200632773
+      victory_bunny_4: -1906001507343271535
+      victory_bunny_40: -1209434074736040955
+      victory_bunny_41: -8070425941037228459
+      victory_bunny_42: -2826350199558777026
+      victory_bunny_43: -6560611506802490712
+      victory_bunny_44: -6635952332706746838
+      victory_bunny_45: 7108061015629797738
+      victory_bunny_46: -7753188370136097473
+      victory_bunny_47: 3293645705657886153
+      victory_bunny_48: -6125373550450142861
+      victory_bunny_49: 3538656387320925648
+      victory_bunny_5: -1879713287581284228
+      victory_bunny_50: -3350840699422391415
+      victory_bunny_51: -8442416584041136577
+      victory_bunny_52: -9121380672888186712
+      victory_bunny_53: 2476044999933808745
+      victory_bunny_54: 7426942165943311555
+      victory_bunny_55: -4855741821382236766
+      victory_bunny_56: 454954693690738873
+      victory_bunny_57: -874742828192006582
+      victory_bunny_58: -6339541922103096809
+      victory_bunny_59: 5584615728845391073
+      victory_bunny_6: -3317445244930970841
+      victory_bunny_60: -4873178502160661493
+      victory_bunny_61: -7134922241777793717
+      victory_bunny_62: -2465327674042205679
+      victory_bunny_63: 469748413725327696
+      victory_bunny_7: -6491835609027865565
+      victory_bunny_8: 4510869110845721880
+      victory_bunny_9: -6757687271089001613
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
