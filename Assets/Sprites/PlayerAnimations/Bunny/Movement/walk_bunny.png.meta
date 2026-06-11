@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: b8e0116769605974393338725cd197ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6901585576347133921
+    second: walk_bunny_0
+  - first:
+      213: 6787188102867575292
+    second: walk_bunny_1
+  - first:
+      213: -4613547005898746763
+    second: walk_bunny_2
+  - first:
+      213: 9000244720008613747
+    second: walk_bunny_3
+  - first:
+      213: 2893777351699813614
+    second: walk_bunny_4
+  - first:
+      213: -8973045915248417483
+    second: walk_bunny_5
+  - first:
+      213: 5502772252574700379
+    second: walk_bunny_6
+  - first:
+      213: 5146177875116291404
+    second: walk_bunny_7
+  - first:
+      213: -2303910385584327035
+    second: walk_bunny_8
+  - first:
+      213: -1852461784757080928
+    second: walk_bunny_9
+  - first:
+      213: 864809550851576059
+    second: walk_bunny_10
+  - first:
+      213: -9566591421262987
+    second: walk_bunny_11
+  - first:
+      213: 2289801481105535298
+    second: walk_bunny_12
+  - first:
+      213: -3297195809623623905
+    second: walk_bunny_13
+  - first:
+      213: -2572785541056685797
+    second: walk_bunny_14
+  - first:
+      213: -482003797446977136
+    second: walk_bunny_15
+  - first:
+      213: -6049944063000101305
+    second: walk_bunny_16
+  - first:
+      213: -4457750717087657691
+    second: walk_bunny_17
+  - first:
+      213: 735622811836831391
+    second: walk_bunny_18
+  - first:
+      213: 3411462751622608480
+    second: walk_bunny_19
+  - first:
+      213: 3698271049704295465
+    second: walk_bunny_20
+  - first:
+      213: 546325689938386084
+    second: walk_bunny_21
+  - first:
+      213: -4075242614370680396
+    second: walk_bunny_22
+  - first:
+      213: 4964479578518521135
+    second: walk_bunny_23
+  - first:
+      213: -7006738276755850623
+    second: walk_bunny_24
+  - first:
+      213: 1720192034125322312
+    second: walk_bunny_25
+  - first:
+      213: -2884009201930480710
+    second: walk_bunny_26
+  - first:
+      213: 7340726048201569982
+    second: walk_bunny_27
+  - first:
+      213: -7155002686227730229
+    second: walk_bunny_28
+  - first:
+      213: 2380755863565655610
+    second: walk_bunny_29
+  - first:
+      213: -6116949457949199119
+    second: walk_bunny_30
+  - first:
+      213: -1438957072423436572
+    second: walk_bunny_31
+  - first:
+      213: 3005955318941496681
+    second: walk_bunny_32
+  - first:
+      213: 1769669154714621336
+    second: walk_bunny_33
+  - first:
+      213: 8220060611377458032
+    second: walk_bunny_34
+  - first:
+      213: -890483763919224193
+    second: walk_bunny_35
+  - first:
+      213: 6168770712435533221
+    second: walk_bunny_36
+  - first:
+      213: -3916083243846792248
+    second: walk_bunny_37
+  - first:
+      213: -3367932041095966081
+    second: walk_bunny_38
+  - first:
+      213: -6319050184199990344
+    second: walk_bunny_39
+  - first:
+      213: 2352132816573734050
+    second: walk_bunny_40
+  - first:
+      213: 7221839350644909818
+    second: walk_bunny_41
+  - first:
+      213: 4995590683169176921
+    second: walk_bunny_42
+  - first:
+      213: 4143424844323920930
+    second: walk_bunny_43
+  - first:
+      213: 1091017559605532732
+    second: walk_bunny_44
+  - first:
+      213: -5591952328368059711
+    second: walk_bunny_45
+  - first:
+      213: 3213867234414674028
+    second: walk_bunny_46
+  - first:
+      213: 5419862278195286886
+    second: walk_bunny_47
+  - first:
+      213: -479979613829569354
+    second: walk_bunny_48
+  - first:
+      213: -2104203637924837549
+    second: walk_bunny_49
+  - first:
+      213: 1174476630703023505
+    second: walk_bunny_50
+  - first:
+      213: -6928337915030023129
+    second: walk_bunny_51
+  - first:
+      213: 6678441307328792059
+    second: walk_bunny_52
+  - first:
+      213: 9040507306856473853
+    second: walk_bunny_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: walk_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1919
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f189ed60c74a830a0800000000000000
+      internalID: -6901585576347133921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 1918
+        width: 46
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1ed279e9fe03e50800000000000000
+      internalID: 6787188102867575292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 1918
+        width: 45
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57496d6117369ffb0800000000000000
+      internalID: -4613547005898746763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 1917
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37fc2b333ea47ec70800000000000000
+      internalID: 9000244720008613747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 1918
+        width: 44
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee453236b23c82820800000000000000
+      internalID: 2893777351699813614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 1918
+        width: 45
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53529540846597380800000000000000
+      internalID: -8973045915248417483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 1918
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5357927536cd5c40800000000000000
+      internalID: 5502772252574700379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 1919
+        width: 51
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45f7450385ea6740800000000000000
+      internalID: 5146177875116291404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1663
+        width: 54
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 586b9e006bdd600e0800000000000000
+      internalID: -2303910385584327035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 1662
+        width: 53
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ac619f42dbba46e0800000000000000
+      internalID: -1852461784757080928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1662
+        width: 52
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf09fdc54bb600c00800000000000000
+      internalID: 864809550851576059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1662
+        width: 52
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573df9c5c330edff0800000000000000
+      internalID: -9566591421262987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 1663
+        width: 51
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 241757fa05207cf10800000000000000
+      internalID: 2289801481105535298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 1673
+        width: 49
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f173a7461e10e32d0800000000000000
+      internalID: -3297195809623623905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 1675
+        width: 50
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b191e0e7e21ab4cd0800000000000000
+      internalID: -2572785541056685797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_15
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 1677
+        width: 49
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09998c899149f49f0800000000000000
+      internalID: -482003797446977136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_16
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1423
+        width: 50
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e35edbde74a0ca0800000000000000
+      internalID: -6049944063000101305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_17
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1423
+        width: 50
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5215fba4753e222c0800000000000000
+      internalID: -4457750717087657691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_18
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1423
+        width: 49
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f965534cc05753a00800000000000000
+      internalID: 735622811836831391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_19
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1422
+        width: 49
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06631f24c43f75f20800000000000000
+      internalID: 3411462751622608480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_20
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 1420
+        width: 46
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c4cb8ece5e25330800000000000000
+      internalID: 3698271049704295465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_21
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 1418
+        width: 43
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac92780250f49700800000000000000
+      internalID: 546325689938386084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_22
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 1413
+        width: 41
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b1c6ec0f64d177c0800000000000000
+      internalID: -4075242614370680396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_23
+      rect:
+        serializedVersion: 2
+        x: 1896
+        y: 1410
+        width: 40
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25074cafdf55e440800000000000000
+      internalID: 4964479578518521135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_24
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1153
+        width: 41
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18ab5db19a013ce90800000000000000
+      internalID: -7006738276755850623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_25
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1151
+        width: 43
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8481f738a895fd710800000000000000
+      internalID: 1720192034125322312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_26
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1150
+        width: 45
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab3d9f539e0f9f7d0800000000000000
+      internalID: -2884009201930480710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_27
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1150
+        width: 47
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb6f280b27f7fd560800000000000000
+      internalID: 7340726048201569982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_28
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1151
+        width: 48
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc03e6837f254bc90800000000000000
+      internalID: -7155002686227730229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_29
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 1151
+        width: 51
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e52c818d42a0120800000000000000
+      internalID: 2380755863565655610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_30
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 1150
+        width: 50
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f47be180ea3c1ba0800000000000000
+      internalID: -6116949457949199119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_31
+      rect:
+        serializedVersion: 2
+        x: 1894
+        y: 1150
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee3a23aa2cc70ce0800000000000000
+      internalID: -1438957072423436572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_32
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 894
+        width: 51
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9653434bf6c47b920800000000000000
+      internalID: 3005955318941496681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_33
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 893
+        width: 50
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8951bb858b02f8810800000000000000
+      internalID: 1769669154714621336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_34
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 894
+        width: 50
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b65550395831270800000000000000
+      internalID: 8220060611377458032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_35
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 896
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7287551cbd54a3f0800000000000000
+      internalID: -890483763919224193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_36
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 900
+        width: 49
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5ad878740eb9550800000000000000
+      internalID: 6168770712435533221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_37
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 905
+        width: 49
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb07abb90747a9c0800000000000000
+      internalID: -3916083243846792248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_38
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 907
+        width: 49
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7291d617a3b241d0800000000000000
+      internalID: -3367932041095966081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_39
+      rect:
+        serializedVersion: 2
+        x: 1899
+        y: 908
+        width: 49
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b394e456593e48a0800000000000000
+      internalID: -6319050184199990344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_40
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 653
+        width: 50
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac9a64a55474a020800000000000000
+      internalID: 2352132816573734050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_41
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 654
+        width: 50
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6a02060a0293460800000000000000
+      internalID: 7221839350644909818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_42
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 655
+        width: 50
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95dbc813247e35540800000000000000
+      internalID: 4995590683169176921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_43
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 655
+        width: 50
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c947f61f6608930800000000000000
+      internalID: 4143424844323920930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_44
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 655
+        width: 49
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c385004a0b2142f00800000000000000
+      internalID: 1091017559605532732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_45
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 654
+        width: 49
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca04ba1cf46562b0800000000000000
+      internalID: -5591952328368059711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_46
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 653
+        width: 48
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60cd8ec833f99c20800000000000000
+      internalID: 3213867234414674028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_47
+      rect:
+        serializedVersion: 2
+        x: 1896
+        y: 651
+        width: 46
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6639e5fb608373b40800000000000000
+      internalID: 5419862278195286886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_48
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 394
+        width: 43
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b462429515c659f0800000000000000
+      internalID: -479979613829569354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_49
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 390
+        width: 42
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357c76a90fd5cc2e0800000000000000
+      internalID: -2104203637924837549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_50
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 388
+        width: 47
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1952d02e5449c4010800000000000000
+      internalID: 1174476630703023505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_51
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 385
+        width: 44
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724d3cacf5999df90800000000000000
+      internalID: -6928337915030023129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_52
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 384
+        width: 44
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf5c0a03cf69eac50800000000000000
+      internalID: 6678441307328792059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_bunny_53
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 382
+        width: 45
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df4e0863f75567d70800000000000000
+      internalID: 9040507306856473853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      walk_bunny_0: -6901585576347133921
+      walk_bunny_1: 6787188102867575292
+      walk_bunny_10: 864809550851576059
+      walk_bunny_11: -9566591421262987
+      walk_bunny_12: 2289801481105535298
+      walk_bunny_13: -3297195809623623905
+      walk_bunny_14: -2572785541056685797
+      walk_bunny_15: -482003797446977136
+      walk_bunny_16: -6049944063000101305
+      walk_bunny_17: -4457750717087657691
+      walk_bunny_18: 735622811836831391
+      walk_bunny_19: 3411462751622608480
+      walk_bunny_2: -4613547005898746763
+      walk_bunny_20: 3698271049704295465
+      walk_bunny_21: 546325689938386084
+      walk_bunny_22: -4075242614370680396
+      walk_bunny_23: 4964479578518521135
+      walk_bunny_24: -7006738276755850623
+      walk_bunny_25: 1720192034125322312
+      walk_bunny_26: -2884009201930480710
+      walk_bunny_27: 7340726048201569982
+      walk_bunny_28: -7155002686227730229
+      walk_bunny_29: 2380755863565655610
+      walk_bunny_3: 9000244720008613747
+      walk_bunny_30: -6116949457949199119
+      walk_bunny_31: -1438957072423436572
+      walk_bunny_32: 3005955318941496681
+      walk_bunny_33: 1769669154714621336
+      walk_bunny_34: 8220060611377458032
+      walk_bunny_35: -890483763919224193
+      walk_bunny_36: 6168770712435533221
+      walk_bunny_37: -3916083243846792248
+      walk_bunny_38: -3367932041095966081
+      walk_bunny_39: -6319050184199990344
+      walk_bunny_4: 2893777351699813614
+      walk_bunny_40: 2352132816573734050
+      walk_bunny_41: 7221839350644909818
+      walk_bunny_42: 4995590683169176921
+      walk_bunny_43: 4143424844323920930
+      walk_bunny_44: 1091017559605532732
+      walk_bunny_45: -5591952328368059711
+      walk_bunny_46: 3213867234414674028
+      walk_bunny_47: 5419862278195286886
+      walk_bunny_48: -479979613829569354
+      walk_bunny_49: -2104203637924837549
+      walk_bunny_5: -8973045915248417483
+      walk_bunny_50: 1174476630703023505
+      walk_bunny_51: -6928337915030023129
+      walk_bunny_52: 6678441307328792059
+      walk_bunny_53: 9040507306856473853
+      walk_bunny_6: 5502772252574700379
+      walk_bunny_7: 5146177875116291404
+      walk_bunny_8: -2303910385584327035
+      walk_bunny_9: -1852461784757080928
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

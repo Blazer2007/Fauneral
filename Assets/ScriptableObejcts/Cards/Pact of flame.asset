@@ -23,6 +23,6 @@ MonoBehaviour:
   - +25% Strenght
   debuffs:
   - -8 hp/s
-  uses: 10
+  uses: 2
   time: 10
   isinfinite: 1

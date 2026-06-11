@@ -1,4 +1,5 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace TarodevController
@@ -11,9 +12,10 @@ namespace TarodevController
     /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PlayerController : MonoBehaviour, IPlayerController
+    public class PlayerController : NetworkBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats; // Reference to the player's stats.
+        [SerializeField] private PlayerStats _playerStats; // Reference to the PlayerStats component.
         private Rigidbody2D _rb; // Player's Rigidbody2D component.
         private CapsuleCollider2D _col; // Player's CapsuleCollider2D component.
         private FrameInput _frameInput; // Struct to hold the player's input for the current frame.
@@ -43,25 +45,28 @@ namespace TarodevController
         private void Update()
         {
             _time += Time.deltaTime; // Save the time in deltatime (for FPS balancing)
-            GatherInput(); // Store the player's input for the current frame
+            if (!IsOwner) return;
+            GatherInputServerRpc(); // Store the player's input for the current frame
         }
 
         private void FixedUpdate()
         {
-            CheckCollisions(); // Check for collisions and update grounded status
+            if (!IsOwner) return;
+            CheckCollisionsServerRpc(); // Check for collisions and update grounded status
 
-            HandleJump(); // Handle jumping logic, including coyote time and jump buffering
-            HandleDirection(); // Handle horizontal movement based on player input
-            HandleGravity(); // Handle gravity and falling logic, including variable jump height
-            HandleDash(); // Handle dashing logic, including dash cooldowns
-            HandleAttack(); // Handle attacking logic, including attack cooldowns and damage
+            HandleJumpServerRpc(); // Handle jumping logic, including coyote time and jump buffering
+            HandleDirectionServerRpc(); // Handle horizontal movement based on player input
+            HandleGravityServerRpc(); // Handle gravity and falling logic, including variable jump height
+            HandleDashServerRpc(); // Handle dashing logic, including dash cooldowns
+            HandleAttackServerRpc(); // Handle attacking logic, including attack cooldowns and damage
 
-            ApplyMovement(); // Apply the calculated velocity to the Rigidbody2D component
+            ApplyMovementServerRpc(); // Apply the calculated velocity to the Rigidbody2D component
         }
         #region Inputs
 
         // Gather the player's input for the current frame and store it in the _frameInput struct. This method also updates the facing direction based on horizontal input and sets bools to check if the player has a jump, dash, or attack to consume.
-        private void GatherInput()
+        [ServerRpc(RequireOwnership = false)]
+        private void GatherInputServerRpc()
         {
             _frameInput = new FrameInput
             {
@@ -80,8 +85,8 @@ namespace TarodevController
 
             if (_frameInput.DashDown)
                 _dashToConsume = true;
-            
-            if (_frameInput.AttackDown) 
+
+            if (_frameInput.AttackDown)
                 _attackToConsume = true;
 
             //if _frameInput.Move.x is bigger than 0(moving right) then _facingRight is true,
@@ -96,7 +101,8 @@ namespace TarodevController
         private float _frameLeftGrounded = float.MinValue; // The time when the player left the ground, used for coyote time calculations
         private bool _grounded; // Bool to check if the player is currently grounded or not
 
-        private void CheckCollisions()
+        [ServerRpc(RequireOwnership = false)]
+        private void CheckCollisionsServerRpc()
         {
             Physics2D.queriesStartInColliders = false;
 
@@ -106,9 +112,9 @@ namespace TarodevController
 
             // Hit a Ceiling
             if (ceilingHit)
-            { 
+            {
                 // if the player hits a ceiling, send them downwards and cancel any upwards velocity
-                _frameVelocity.y = Mathf.Min(0, _frameVelocity.y); 
+                _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
             }
 
             // Landed on the Ground
@@ -133,7 +139,7 @@ namespace TarodevController
         }
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.collider.tag == "KillZone")
+            if (collision.collider.tag == "KillZone")
             {
                 // Handle player death or respawn
                 Destroy(gameObject);
@@ -156,24 +162,27 @@ namespace TarodevController
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
 
         // Check if the player has a jump to consume and if they are either grounded or can use coyote time. If the player is in the air and releases the jump button while still moving upwards, they will end their jump early, which applies extra gravity to make them fall faster.
-        private void HandleJump()
+        [ServerRpc(RequireOwnership = false)]
+        private void HandleJumpServerRpc()
         {
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) Jump();
+            if (_grounded || CanUseCoyote) JumpServerRpc();
 
             _jumpToConsume = false;
         }
         // When the player jumps, reset all jump-related bools and timers, apply an immediate vertical velocity based on the jump power stat, and invoke the Jumped event to notify any subscribers that the player has jumped.
-        private void Jump()
+        [ServerRpc(RequireOwnership = false)]
+        private void JumpServerRpc()
         {
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
             _coyoteUsable = false;
-            _frameVelocity.y = _stats.JumpPower;
+            // JumpHeight vem do PlayerStats para respeitar buffs/debuffs de cartas
+            _frameVelocity.y = _playerStats != null ? _playerStats.JumpHeight : _stats.JumpPower;
             Jumped?.Invoke();
         }
 
@@ -182,16 +191,17 @@ namespace TarodevController
         #region Horizontal
 
         // If there is no horizontal input, apply deceleration to slow the player down. If there is horizontal input, apply acceleration towards the target speed based on the player's input and max speed stat.
-        private void HandleDirection()
+        [ServerRpc(RequireOwnership = false)]
+        private void HandleDirectionServerRpc()
         {
             if (_frameInput.Move.x == 0)
-            { 
+            {
                 var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
             else
             {
-                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+                _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _playerStats.MoveSpeed, _stats.Acceleration * Time.fixedDeltaTime);
             }
         }
 
@@ -199,19 +209,21 @@ namespace TarodevController
 
         #region Gravity
 
-        private void HandleGravity()
+        [ServerRpc(RequireOwnership = false)]
+        private void HandleGravityServerRpc()
         {
-            // If the player is grounded and their vertical velocity is less than or equal to 0, set their vertical velocity to the grounding force.
             if (_grounded && _frameVelocity.y <= 0f)
             {
                 _frameVelocity.y = _stats.GroundingForce;
             }
             else
             {
-                // If the player is in the air, apply gravity to their vertical velocity. If they ended their jump early and are still moving upwards, apply the jump end early gravity modifier to make them fall faster.
-                var inAirGravity = _stats.FallAcceleration;
+                // FallAcceleration e MaxFallSpeed escalados pelo Gravity do PlayerStats
+                // Gravity base = -30 no PlayerStats; valores mais negativos = mais pesado
+                float gravityScale = _playerStats != null ? Mathf.Abs(_playerStats.Gravity) / 30f : 1f;
+                var inAirGravity = _stats.FallAcceleration * gravityScale;
                 if (_endedJumpEarly && _frameVelocity.y > 0) inAirGravity *= _stats.JumpEndEarlyGravityModifier;
-                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+                _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, -_stats.MaxFallSpeed * gravityScale, inAirGravity * Time.fixedDeltaTime);
             }
         }
 
@@ -219,33 +231,39 @@ namespace TarodevController
 
         #region Dash
         // New dash idea -> held dash. If the player taps the dash button, they will dash a short distance. If they hold the dash button, they will dash further.
-        
+
         private bool _dashToConsume; // Bool to check if the player has a dash to use 
         private float _dashTimer = 0f; // Timer to track the time since the last dash, used for dash cooldowns
 
         // Check if the player has a dash to consume and if the dash button is pressed. If the dash button is pressed and the dash timer is greater than or equal to the dash interval, the player will dash and the dash timer will be reset. The dashToConsume bool is then set to false until the next time the player presses the dash button.
-        private void HandleDash()
+        [ServerRpc(RequireOwnership = false)]
+        private void HandleDashServerRpc()
         {
             _dashTimer += Time.fixedDeltaTime;
             if (!_dashToConsume)
-            { 
+            {
                 Dashed?.Invoke(false); // Invoke the Dashed event with false to indicate that the player is not currently dashing
                 return;
             }
 
-            if (_frameInput.DashDown && _dashTimer >= _stats.DashInterval)
+            if (_frameInput.DashDown && _dashTimer >= _playerStats.DashCooldown)
             {
-                _dashTimer = 0f; 
+                _dashTimer = 0f;
                 _dashToConsume = true;
-                Dash();
+                DashServerRpc();
             }
             _dashToConsume = false;
         }
 
         // Apply an immediate velocity in the direction the player is facing based on the dash power stat. The Dashed event is then invoked to notify any subscribers that the player has dashed.
-        private void Dash()
+        [ServerRpc(RequireOwnership = false)]
+        private void DashServerRpc()
         {
-            _frameVelocity.x += _facingRight ? _stats.DashPower : -_stats.DashPower;
+            // DashPower base do ScriptableStats, escalado pelo Knockback do PlayerStats
+            float dashForce = _stats.DashPower;
+            if (_playerStats != null)
+                dashForce *= (_playerStats.Knockback / 5f); // 5f = valor base de Knockback no PlayerStats
+            _frameVelocity.x += _facingRight ? dashForce : -dashForce;
             Dashed?.Invoke(true);
         }
         #endregion
@@ -254,37 +272,43 @@ namespace TarodevController
 
         private bool _attackToConsume; // Similar to dashToConsume, this bool checks if the player has an attack to use
         private float _attackTimer = 0f; // Timer to track the time since the last attack, used for attack cooldowns
-        
+
         // Same logic as handleDash, but for the player's attacks
-        private void HandleAttack()
+        [ServerRpc(RequireOwnership = false)]
+        private void HandleAttackServerRpc()
         {
             _attackTimer += Time.fixedDeltaTime;
-            if (!_attackToConsume) 
+            if (!_attackToConsume)
                 return;
 
-            if (_frameInput.AttackDown && _attackTimer >= _stats.AttackSpeed)
+            // AttackSpeed vem do PlayerStats — cartas podem reduzir o cooldown
+            float attackInterval = _playerStats != null ? _playerStats.AttackSpeed : _stats.AttackSpeed;
+            if (_frameInput.AttackDown && _attackTimer >= attackInterval)
             {
                 _attackTimer = 0f;
                 _attackToConsume = true;
-                Attack();
+                AttackServerRpc();
             }
             _attackToConsume = false;
-            Attacked?.Invoke(false); // Invoke the Attacked event with false to indicate that the player is not currently attacking
+            Attacked?.Invoke(false);
         }
         // Invoke the Attacked event to notify any subscribers that the player has attacked.
-        private void Attack()
+        [ServerRpc(RequireOwnership = false)]
+        private void AttackServerRpc()
         {
             // Implement attack logic here, such as detecting enemies in range and applying damage
             Attacked?.Invoke(true);
         }
         #endregion
-        private void ApplyMovement() => _rb.linearVelocity = _frameVelocity; // Apply the calculated velocity to the Rigidbody2D component at the end of the frame
+
+        [ServerRpc(RequireOwnership = false)]
+        private void ApplyMovementServerRpc() => _rb.linearVelocity = _frameVelocity; // Apply the calculated velocity to the Rigidbody2D component at the end of the frame
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
             if (_stats == null)
-            Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
+                Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
         }
 #endif
     }

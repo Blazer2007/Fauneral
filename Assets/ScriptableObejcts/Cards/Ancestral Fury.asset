@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Ancestral Fury
   m_EditorClassIdentifier: 
+  rarity: S
+  description: The power of your ancestors runs in your veins, but it comes at a
+    price.
   image: {fileID: 0}
-  name: 
-  rarity: 
-  description: 
-  cardindex: 0
-  buffs: []
-  debuffs: []
+  buffs:
+  - Stat: 0
+    Value: 0
+    IsPercent: 0
+  debuffs:
+  - Stat: 0
+    Value: 0
+    IsPercent: 0
+  time: 30
   uses: 1
-  time: 0
   isinfinite: 0

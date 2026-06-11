@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Fast Reflexes
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  name: 
-  rarity: 
-  description: 
+  name: Fast Reflexes
+  rarity: B
+  description: You start to weeve through the wind but lose your strenght
   cardindex: 0
-  buffs: []
-  debuffs: []
-  uses: 1
+  buffs:
+  - +25% Velocity
+  debuffs:
+  - -10% Attack
+  uses: 2
   time: 0
-  isinfinite: 0
+  isinfinite: 1

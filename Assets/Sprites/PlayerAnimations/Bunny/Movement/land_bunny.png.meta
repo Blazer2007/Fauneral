@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 9f3ea3c4fd40725459622e3c747130ad
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2732305168922420859
+    second: land_bunny_0
+  - first:
+      213: -6687848757047397588
+    second: land_bunny_1
+  - first:
+      213: 5769988819021527715
+    second: land_bunny_2
+  - first:
+      213: -2772119822648744352
+    second: land_bunny_3
+  - first:
+      213: 8979036467442747670
+    second: land_bunny_4
+  - first:
+      213: -1306847569724903613
+    second: land_bunny_5
+  - first:
+      213: 6601981617032819994
+    second: land_bunny_6
+  - first:
+      213: 1926681907952760278
+    second: land_bunny_7
+  - first:
+      213: 1955576670723285821
+    second: land_bunny_8
+  - first:
+      213: 6476897279008521947
+    second: land_bunny_9
+  - first:
+      213: 2048001305692107111
+    second: land_bunny_10
+  - first:
+      213: 5015383148310208990
+    second: land_bunny_11
+  - first:
+      213: -4240762212569785018
+    second: land_bunny_12
+  - first:
+      213: -8515282353916805287
+    second: land_bunny_13
+  - first:
+      213: 6576315853453059800
+    second: land_bunny_14
+  - first:
+      213: -9162998370957756412
+    second: land_bunny_15
+  - first:
+      213: -4781287701254062054
+    second: land_bunny_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: land_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1918
+        width: 47
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5895a6cdce6e41ad0800000000000000
+      internalID: -2732305168922420859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1919
+        width: 48
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23f6ac3dfcff23a0800000000000000
+      internalID: -6687848757047397588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1919
+        width: 48
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aaf0cb924e131050800000000000000
+      internalID: 5769988819021527715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 1919
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 066e33865b37789d0800000000000000
+      internalID: -2772119822648744352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 1919
+        width: 43
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 619043b1812fb9c70800000000000000
+      internalID: 8979036467442747670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 1918
+        width: 45
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34fe6fe2f052ddde0800000000000000
+      internalID: -1306847569724903613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 1897
+        y: 1918
+        width: 47
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1576e84d43fe9b50800000000000000
+      internalID: 6601981617032819994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1663
+        width: 47
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d532bebcf2fcba10800000000000000
+      internalID: 1926681907952760278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1663
+        width: 48
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33a085fe9a932b10800000000000000
+      internalID: 1955576670723285821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1663
+        width: 48
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bde3ff952cf82e950800000000000000
+      internalID: 6476897279008521947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1663
+        width: 49
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76170553656fb6c10800000000000000
+      internalID: 2048001305692107111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 1663
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed1a28796683a9540800000000000000
+      internalID: 5015383148310208990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 1662
+        width: 50
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64dd0e67c39c525c0800000000000000
+      internalID: -4240762212569785018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 1663
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ff2a4a0d3a3d980800000000000000
+      internalID: -8515282353916805287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1663
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d6e6d70d64c34b50800000000000000
+      internalID: 6576315853453059800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_15
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1407
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408749d778d76d080800000000000000
+      internalID: -9162998370957756412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_bunny_16
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 1407
+        width: 49
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10cec50b2475adb0800000000000000
+      internalID: -4781287701254062054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      land_bunny_0: -2732305168922420859
+      land_bunny_1: -6687848757047397588
+      land_bunny_10: 2048001305692107111
+      land_bunny_11: 5015383148310208990
+      land_bunny_12: -4240762212569785018
+      land_bunny_13: -8515282353916805287
+      land_bunny_14: 6576315853453059800
+      land_bunny_15: -9162998370957756412
+      land_bunny_16: -4781287701254062054
+      land_bunny_2: 5769988819021527715
+      land_bunny_3: -2772119822648744352
+      land_bunny_4: 8979036467442747670
+      land_bunny_5: -1306847569724903613
+      land_bunny_6: 6601981617032819994
+      land_bunny_7: 1926681907952760278
+      land_bunny_8: 1955576670723285821
+      land_bunny_9: 6476897279008521947
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

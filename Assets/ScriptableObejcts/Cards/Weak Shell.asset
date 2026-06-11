@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Weak Shell
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  name: 
-  rarity: 
-  description: 
+  name: Weak Shell
+  rarity: D
+  description: Feels like an armadillo
   cardindex: 0
-  buffs: []
+  buffs:
+  - +5% Defense
   debuffs: []
-  uses: 1
+  uses: 10
   time: 0
-  isinfinite: 0
+  isinfinite: 1

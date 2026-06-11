@@ -15,13 +15,13 @@ MonoBehaviour:
   image: {fileID: 0}
   name: Angels Blessing
   rarity: DWA
-  description: Uma luz suave envolve-te, curando as tuas feridas mais profundas.
+  description: A soft light graces your skin, you fell it healling your deepest wounds.
   cardindex: 0
   buffs:
-  - +20 HP
+  - +20 hp
   - +15% Defense for 2 Rounds
-  - -10% Velocity for 2 Rounds
-  debuffs: []
+  debuffs:
+  - -10% Speed for 2 Rounds
   uses: 1
   time: 0
-  isinfinite: 0
+  isinfinite: 1

@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: c1b1031070a3f0240a83041665213bca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6866507761874977769
+    second: basic_attack_bunny_0
+  - first:
+      213: 6482179685462154511
+    second: basic_attack_bunny_1
+  - first:
+      213: -5763674077277222808
+    second: basic_attack_bunny_2
+  - first:
+      213: -5312845279579809299
+    second: basic_attack_bunny_3
+  - first:
+      213: -3643883870563058498
+    second: basic_attack_bunny_4
+  - first:
+      213: -7224991200599646025
+    second: basic_attack_bunny_5
+  - first:
+      213: 7155062356125332274
+    second: basic_attack_bunny_6
+  - first:
+      213: 7012421483278533218
+    second: basic_attack_bunny_7
+  - first:
+      213: 717470860748896026
+    second: basic_attack_bunny_8
+  - first:
+      213: 632605859408861366
+    second: basic_attack_bunny_9
+  - first:
+      213: 6870825709197961348
+    second: basic_attack_bunny_10
+  - first:
+      213: -3533528351967463914
+    second: basic_attack_bunny_11
+  - first:
+      213: 5682389134980077313
+    second: basic_attack_bunny_12
+  - first:
+      213: -9133105591558325124
+    second: basic_attack_bunny_13
+  - first:
+      213: -580311392788192828
+    second: basic_attack_bunny_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: basic_attack_bunny_0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1918
+        width: 49
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3450add6cba4f50800000000000000
+      internalID: 6866507761874977769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_1
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1918
+        width: 52
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0d9932741455f950800000000000000
+      internalID: 6482179685462154511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_2
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1919
+        width: 93
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86883c6c6f05300b0800000000000000
+      internalID: -5763674077277222808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_3
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1919
+        width: 73
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9d80ced5bf446b0800000000000000
+      internalID: -5312845279579809299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_4
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 1919
+        width: 40
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebc30540de25e6dc0800000000000000
+      internalID: -3643883870563058498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_5
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 1918
+        width: 44
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b06fee58ccabbb90800000000000000
+      internalID: -7224991200599646025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_6
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 1919
+        width: 46
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233be92cd43eb4360800000000000000
+      internalID: 7155062356125332274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_7
+      rect:
+        serializedVersion: 2
+        x: 1889
+        y: 1919
+        width: 47
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26282268f20215160800000000000000
+      internalID: 7012421483278533218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_8
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 1663
+        width: 48
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17b1af42f7f4f900800000000000000
+      internalID: 717470860748896026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_9
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1662
+        width: 49
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b855ec6da777c800800000000000000
+      internalID: 632605859408861366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_10
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1662
+        width: 50
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488ad5e44931a5f50800000000000000
+      internalID: 6870825709197961348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_11
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 1662
+        width: 51
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61635317fa266fec0800000000000000
+      internalID: -3533528351967463914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_12
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 1662
+        width: 51
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107d60acfc6ebde40800000000000000
+      internalID: 5682389134980077313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_13
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1662
+        width: 52
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7c380f8ad0b04180800000000000000
+      internalID: -9133105591558325124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_attack_bunny_14
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 1662
+        width: 52
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c16fb5ecd152f7f0800000000000000
+      internalID: -580311392788192828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      basic_attack_bunny_0: 6866507761874977769
+      basic_attack_bunny_1: 6482179685462154511
+      basic_attack_bunny_10: 6870825709197961348
+      basic_attack_bunny_11: -3533528351967463914
+      basic_attack_bunny_12: 5682389134980077313
+      basic_attack_bunny_13: -9133105591558325124
+      basic_attack_bunny_14: -580311392788192828
+      basic_attack_bunny_2: -5763674077277222808
+      basic_attack_bunny_3: -5312845279579809299
+      basic_attack_bunny_4: -3643883870563058498
+      basic_attack_bunny_5: -7224991200599646025
+      basic_attack_bunny_6: 7155062356125332274
+      basic_attack_bunny_7: 7012421483278533218
+      basic_attack_bunny_8: 717470860748896026
+      basic_attack_bunny_9: 632605859408861366
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
