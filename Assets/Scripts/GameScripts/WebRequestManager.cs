@@ -11,7 +11,6 @@ public class WebRequestManager : MonoBehaviour
     private string _getDBURL = "/get-data-db";
     private string _postURL = "/post-data";
     
-    [SerializeField]ButtonManager buttonManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

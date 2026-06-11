@@ -24,7 +24,7 @@ public class CreateRoomUI : MonoBehaviour
     [Header("Button Colors")]
     [SerializeField] private Color _selectedColor = Color.white;
     [SerializeField] private Color _deselectedColor= new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
-    private Color _highlightedColor = new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
+    private Color _highlightedColor = new Color(0.55f, 0.55f, 0.55f);
 
     [HideInInspector] public bool _isPublic = false;
 
@@ -34,7 +34,6 @@ public class CreateRoomUI : MonoBehaviour
         SetButtonSelected(_privateBtn, true);
         SetButtonSelected(_publicBtn, false);
     }
-
     public void ActivatePublicButton()
     {
         _isPublic = true;
@@ -56,6 +55,8 @@ public class CreateRoomUI : MonoBehaviour
         cb.normalColor = selected ? _selectedColor : _deselectedColor;
         cb.highlightedColor = selected ? _selectedColor : _highlightedColor;
         btn.colors = cb;
+
+        Debug.Log($"Button '{btn.name}' set to {(selected ? "selected" : "deselected")}.");
     }
 
     private void OnEnable()

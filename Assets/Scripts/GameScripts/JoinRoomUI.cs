@@ -47,7 +47,6 @@ public class JoinRoomUI : MonoBehaviour
         // For now, let's focus on PIN joining via Node.js.
         // LobbyClientManager.Instance?.RequestPublicLobbies(); 
     }
-
     public async void OnJoinByPinButton()
     {
         HideError();
@@ -104,6 +103,7 @@ public class JoinRoomUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlayMenu");
     }
 
+    // Chamado por LobbyClientManager quando recebe a lista de salas públicas do servidor
     public void PopulatePublicLobbies(List<PublicLobbyEntry> lobbies)
     {
         if (_publicLobbyList != null)

@@ -15,6 +15,7 @@ public class LobbyServerManager : NetworkBehaviour
     private Dictionary<string, LobbyData> _lobbies = new();
     private Dictionary<ulong, string> _clientLobbyMap = new();
 
+    public Canvas _publicLobbiesCanvas;
     public override void OnNetworkSpawn()
     {
         Instance = this;
@@ -74,6 +75,8 @@ public class LobbyServerManager : NetworkBehaviour
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
         BroadcastFullState(lobby);
     }
+
+    // Método separado para adicionar o lobby criado à lista pública da cena do joinRoom, chamado logo após CreateLobbyServerRpc
 
     [ServerRpc(RequireOwnership = false)]
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
