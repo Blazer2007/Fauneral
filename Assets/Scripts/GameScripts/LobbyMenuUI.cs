@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -179,7 +179,10 @@ public class LobbyMenuUI : MonoBehaviour
 
     public void OnStartGameButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        if (Unity.Netcode.NetworkManager.Singleton.IsServer)
+        {
+            Unity.Netcode.NetworkManager.Singleton.SceneManager.LoadScene("GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
     }
 
     public void OnLeaveButton()

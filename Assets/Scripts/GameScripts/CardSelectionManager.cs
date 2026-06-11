@@ -203,6 +203,10 @@ public class CardSelectionManager : NetworkBehaviour
         var stats = GetPlayerStats(senderId);
         if (stats != null)
         {
+            //if (card.acessoryPrefab != null) 
+            //{
+                
+            //}
             // Buffs → sempre aplicados ao próprio jogador
             stats.ApplyAll(card.buffs, 0f);
 
