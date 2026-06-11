@@ -31,6 +31,11 @@ public class CrateUI : MonoBehaviour
     public float cardWidth = 120f;
     public float cardSpacing = 10f;
 
+    [Header("Points Label")]
+    public TextMeshProUGUI costLabel;
+    public TextMeshProUGUI pointsLabel;
+    public GameObject insufficientPointsMessage;
+
     // ─────────────────────────────────────────────────────────────────────────
 
     private void OnEnable_DISABLED()
@@ -53,6 +58,8 @@ public class CrateUI : MonoBehaviour
 
     private void Start()
     {
+        CrateSystem.Instance.OnInsufficientPoints += HandleInssufficientPoints;
+        CrateSystem.Instance.points.OnPointsChanged += UpdatePointsLabel;
         CrateSystem.Instance.OnCrateOpenStart += HandleOpenStart;
         CrateSystem.Instance.OnCrateOpenResult += HandleOpenResult;
         ShowIdle();
@@ -81,6 +88,41 @@ public class CrateUI : MonoBehaviour
         if (idlePanel != null) idlePanel.SetActive(true);
         spinPanel.SetActive(false);
         resultPanel.SetActive(false);
+
+        RefreshIdleLabels();
+    }
+
+    private void RefreshIdleLabels()
+    {
+        if (costLabel != null)
+            costLabel.text = $"Cost: {CrateSystem.Instance.crate.cost} pts";
+        
+        if (pointsLabel != null)
+            pointsLabel.text = $"Your Points: {CrateSystem.Instance.points.Points}";
+
+        if (insufficientPointsMessage != null)
+            insufficientPointsMessage.SetActive(false);
+    }
+
+    private void HandleInssufficientPoints()
+    {
+        if (insufficientPointsMessage != null) 
+        { 
+            insufficientPointsMessage.SetActive(true);
+            StartCoroutine(HideAfterDelay(insufficientPointsMessage, 2f));
+        }
+    }
+
+    private IEnumerator HideAfterDelay(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (obj != null) obj.SetActive(false);
+    }
+
+    private void UpdatePointsLabel(int newPoints)
+    {
+        if (pointsLabel != null)
+            pointsLabel.text = $"Credits: {newPoints}";
     }
 
     private void ShowSpin()

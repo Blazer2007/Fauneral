@@ -32,4 +32,6 @@ public class ScriptableCard : ScriptableObject
 
     [Tooltip("Se true, usos são infinitos")]
     public bool isinfinite;
+
+    public GameObject acessoryPrefab;
 }

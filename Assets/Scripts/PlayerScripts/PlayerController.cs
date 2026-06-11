@@ -65,7 +65,7 @@ namespace TarodevController
         #region Inputs
 
         // Gather the player's input for the current frame and store it in the _frameInput struct. This method also updates the facing direction based on horizontal input and sets bools to check if the player has a jump, dash, or attack to consume.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void GatherInputServerRpc()
         {
             _frameInput = new FrameInput
@@ -101,7 +101,7 @@ namespace TarodevController
         private float _frameLeftGrounded = float.MinValue; // The time when the player left the ground, used for coyote time calculations
         private bool _grounded; // Bool to check if the player is currently grounded or not
 
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void CheckCollisionsServerRpc()
         {
             Physics2D.queriesStartInColliders = false;
@@ -162,7 +162,7 @@ namespace TarodevController
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
 
         // Check if the player has a jump to consume and if they are either grounded or can use coyote time. If the player is in the air and releases the jump button while still moving upwards, they will end their jump early, which applies extra gravity to make them fall faster.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void HandleJumpServerRpc()
         {
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
@@ -174,7 +174,7 @@ namespace TarodevController
             _jumpToConsume = false;
         }
         // When the player jumps, reset all jump-related bools and timers, apply an immediate vertical velocity based on the jump power stat, and invoke the Jumped event to notify any subscribers that the player has jumped.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void JumpServerRpc()
         {
             _endedJumpEarly = false;
@@ -191,7 +191,7 @@ namespace TarodevController
         #region Horizontal
 
         // If there is no horizontal input, apply deceleration to slow the player down. If there is horizontal input, apply acceleration towards the target speed based on the player's input and max speed stat.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void HandleDirectionServerRpc()
         {
             if (_frameInput.Move.x == 0)
@@ -209,7 +209,7 @@ namespace TarodevController
 
         #region Gravity
 
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void HandleGravityServerRpc()
         {
             if (_grounded && _frameVelocity.y <= 0f)
@@ -236,7 +236,7 @@ namespace TarodevController
         private float _dashTimer = 0f; // Timer to track the time since the last dash, used for dash cooldowns
 
         // Check if the player has a dash to consume and if the dash button is pressed. If the dash button is pressed and the dash timer is greater than or equal to the dash interval, the player will dash and the dash timer will be reset. The dashToConsume bool is then set to false until the next time the player presses the dash button.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void HandleDashServerRpc()
         {
             _dashTimer += Time.fixedDeltaTime;
@@ -256,7 +256,7 @@ namespace TarodevController
         }
 
         // Apply an immediate velocity in the direction the player is facing based on the dash power stat. The Dashed event is then invoked to notify any subscribers that the player has dashed.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void DashServerRpc()
         {
             // DashPower base do ScriptableStats, escalado pelo Knockback do PlayerStats
@@ -274,7 +274,7 @@ namespace TarodevController
         private float _attackTimer = 0f; // Timer to track the time since the last attack, used for attack cooldowns
 
         // Same logic as handleDash, but for the player's attacks
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void HandleAttackServerRpc()
         {
             _attackTimer += Time.fixedDeltaTime;
@@ -293,7 +293,7 @@ namespace TarodevController
             Attacked?.Invoke(false);
         }
         // Invoke the Attacked event to notify any subscribers that the player has attacked.
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void AttackServerRpc()
         {
             // Implement attack logic here, such as detecting enemies in range and applying damage
@@ -301,7 +301,7 @@ namespace TarodevController
         }
         #endregion
 
-        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
+        [ServerRpc(RequireOwnership = false)]
         private void ApplyMovementServerRpc() => _rb.linearVelocity = _frameVelocity; // Apply the calculated velocity to the Rigidbody2D component at the end of the frame
 
 #if UNITY_EDITOR

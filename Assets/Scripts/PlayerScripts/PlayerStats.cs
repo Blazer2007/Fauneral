@@ -145,10 +145,10 @@ public class PlayerStats : MonoBehaviour
         float flat = 0f;
         float percent = 0f;
 
-        foreach (var m in mods)
+        foreach (var currentmod in mods)
         {
-            if (m.IsPercent) percent += m.Value;
-            else flat += m.Value;
+            if (currentmod.IsPercent) percent += currentmod.Value;
+            else flat += currentmod.Value;
         }
 
         return (baseValue + flat) * (1f + percent / 100f);

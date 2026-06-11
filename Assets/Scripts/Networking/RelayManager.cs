@@ -49,7 +49,6 @@ namespace Networking
                     allocation.Key,
                     allocation.ConnectionData
                 );
-
                 return joinCode;
             }
             catch (RelayServiceException e)
