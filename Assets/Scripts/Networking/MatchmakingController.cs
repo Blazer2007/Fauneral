@@ -11,10 +11,11 @@ namespace Networking
         public static MatchmakingController Instance { get; private set; }
 
         [Header("Prefabs")]
-        [SerializeField] private GameObject _lobbyManagerPrefab;
+        [SerializeField] private GameObject _lobbyManagerPrefab; // Referência ao prefab do sistema de lobby
 
         private void Awake()
         {
+            // Padrão Singleton para acesso global e persistência entre cenas
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -24,6 +25,7 @@ namespace Networking
             DontDestroyOnLoad(gameObject);
         }
 
+        // Garante que os serviços da Unity (Relay/Auth) estejam prontos
         private async Task EnsureInitialized()
         {
             if (UnityServices.State == ServicesInitializationState.Uninitialized)
@@ -37,11 +39,13 @@ namespace Networking
             }
         }
 
-        public async Task<string> StartHostOnline(int maxPlayers)
+        // Fluxo para iniciar como Host Online (Relay + Node.js)
+        public async Task<string> StartHostOnline(string roomName, bool isPublic, int maxPlayers)
         {
             Debug.Log("[Matchmaking] Iniciando Host Online...");
             await EnsureInitialized();
 
+            // Limpa conexões ativas antes de começar uma nova
             if (NetworkManager.Singleton.IsListening)
             {
                 Debug.Log("[Matchmaking] Parando conexão anterior...");
@@ -49,6 +53,7 @@ namespace Networking
                 await Task.Delay(1000);
             }
 
+            // 1. Cria alocação no Unity Relay
             Debug.Log("[Matchmaking] Criando alocação Relay...");
             string relayJoinCode = await RelayManager.Instance.CreateRelay(maxPlayers);
             if (string.IsNullOrEmpty(relayJoinCode))
@@ -57,6 +62,7 @@ namespace Networking
                 return null;
             }
 
+            // 2. Inicia o Host no Netcode
             Debug.Log($"[Matchmaking] Relay pronto: {relayJoinCode}. Iniciando Host Netcode...");
             bool hostStarted = NetworkManager.Singleton.StartHost();
             if (!hostStarted)
@@ -65,7 +71,7 @@ namespace Networking
                 return null;
             }
 
-            // Força o spawn do LobbyServerManager se necessário
+            // 3. Força o spawn do LobbyServerManager para gerenciar os slots
             if (LobbyServerManager.Instance == null)
             {
                 if (_lobbyManagerPrefab != null)
@@ -80,7 +86,7 @@ namespace Networking
                 }
             }
 
-            // Garante que o LobbyServerManager seja instanciado
+            // Aguarda a sincronização do sistema de lobby
             float timeout = 5f;
             while (LobbyServerManager.Instance == null && timeout > 0)
             {
@@ -95,9 +101,10 @@ namespace Networking
                 return null;
             }
 
+            // 4. Registra os detalhes da sala no servidor Node.js
             Debug.Log("[Matchmaking] Registrando sala no servidor Node.js...");
             TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
-            DiscoveryManager.Instance.CreateRoom(relayJoinCode, (nodeJsCode) =>
+            DiscoveryManager.Instance.CreateRoom(relayJoinCode, roomName, isPublic, maxPlayers, (nodeJsCode) =>
             {
                 tcs.SetResult(nodeJsCode);
             });
@@ -107,11 +114,13 @@ namespace Networking
             return finalCode;
         }
 
+        // Fluxo para conectar como Cliente Online usando o PIN
         public async Task<bool> StartClientOnline(string nodeJsCode)
         {
             Debug.Log($"[Matchmaking] Iniciando Cliente Online para o código: {nodeJsCode}...");
             await EnsureInitialized();
 
+            // Limpa conexões antigas
             if (NetworkManager.Singleton.IsListening)
             {
                 Debug.Log("[Matchmaking] Parando conexão anterior...");
@@ -119,6 +128,7 @@ namespace Networking
                 await Task.Delay(1000);
             }
 
+            // 1. Busca o IP (Código Relay) no Node.js através do PIN
             Debug.Log("[Matchmaking] Buscando código Relay no Node.js...");
             TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
             DiscoveryManager.Instance.JoinRoom(nodeJsCode, (relayJoinCode) =>
@@ -133,6 +143,7 @@ namespace Networking
                 return false;
             }
 
+            // 2. Conecta ao Relay
             Debug.Log($"[Matchmaking] Código Relay obtido: {relayJoinCode}. Conectando ao Relay...");
             bool relayJoined = await RelayManager.Instance.JoinRelay(relayJoinCode);
             if (!relayJoined)
@@ -141,6 +152,7 @@ namespace Networking
                 return false;
             }
 
+            // 3. Inicia o Cliente no Netcode
             Debug.Log("[Matchmaking] Iniciando Cliente Netcode...");
             return NetworkManager.Singleton.StartClient();
         }

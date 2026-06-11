@@ -1,14 +1,9 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Componente de um item na lista de salas públicas.
-/// 
-/// Setup no Prefab (LobbyItemPrefab):
-///   RoomNameText    → TMP_Text com o nome da sala
-///   PlayerCountText → TMP_Text com "X/Y jogadores"
-///   JoinButton      → Button "Entrar"
+/// Componente que controla cada linha (sala) na tabela de salas públicas.
 /// </summary>
 public class LobbyListItem : MonoBehaviour
 {
@@ -16,8 +11,9 @@ public class LobbyListItem : MonoBehaviour
     [SerializeField] private TMP_Text _playerCountText;
     [SerializeField] private Button _joinButton;
 
-    private string _pin;
+    private string _pin; // PIN associado a esta linha da tabela
 
+    // Configura os textos e o PIN da sala
     public void Setup(string pin, string roomName, int current, int max)
     {
         _pin = pin;
@@ -29,11 +25,17 @@ public class LobbyListItem : MonoBehaviour
             _playerCountText.text = $"{current}/{max}";
 
         if (_joinButton != null)
+        {
+            // Remove ouvintes antigos para evitar cliques duplicados
+            _joinButton.onClick.RemoveAllListeners();
             _joinButton.onClick.AddListener(OnJoinClick);
+        }
     }
 
+    // Chamado ao clicar no botão "Entrar" da linha
     private void OnJoinClick()
     {
-        LobbyClientManager.Instance?.JoinLobby(_pin);
+        // Dispara o processo global de entrada usando o PIN desta sala
+        JoinRoomUI.Instance?.JoinRoom(_pin);
     }
 }

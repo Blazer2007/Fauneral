@@ -14,23 +14,27 @@ using UnityEngine;
 /// No Multiplayer Playmode moderno / builds:
 ///   Perfil servidor  → Additional Arguments: -server
 /// </summary>
+/// <summary>
+/// Controla a inicialização do NetworkManager e o spawn automático do LobbyServerManager.
+/// </summary>
 public class NetworkManagerUI : MonoBehaviour
 {
     [Header("Prefab do LobbyServerManager (só usado pelo servidor)")]
-    [SerializeField] private GameObject _lobbyManagerPrefab;
+    [SerializeField] private GameObject _lobbyManagerPrefab; // Prefab que controla os dados das salas
 
     [Header("Ligação")]
     [SerializeField] private string _serverAddress = "127.0.0.1";
     [SerializeField] private ushort _serverPort = 7777;
 
     [Header("Fallback para Multiplayer Playmode antigo")]
-    [Tooltip("Tag do perfil que deve correr como servidor. Criar em Edit > Tags and Layers.")]
+    [Tooltip("Tag do perfil que deve correr como servidor.")]
     [SerializeField] private string _serverTag = "Server";
 
     private void Start()
     {
         SubscribeToServerStarted();
 
+        // Verifica se esta instância deve rodar como servidor dedicado
         if (ShouldBeServer())
             StartDedicatedServer();
     }
@@ -44,6 +48,7 @@ public class NetworkManagerUI : MonoBehaviour
     {
         if (NetworkManager.Singleton != null)
         {
+            // Evita duplicidade de inscrição
             NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
             NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         }
@@ -57,15 +62,15 @@ public class NetworkManagerUI : MonoBehaviour
         }
     }
 
-    // ── DETECÇÃO ──────────────────────────────────────────────────
+    // ── DETECÇÃO DE MODO (SERVIÇO/CLIENTE) ─────────────────────────
 
     private bool ShouldBeServer()
     {
-        // Prioridade 1: argumento de linha de comandos
+        // Verifica argumentos de linha de comando (-server)
         foreach (string arg in System.Environment.GetCommandLineArgs())
             if (arg.ToLower() == "-server") return true;
 
-        // Prioridade 2: tag do GameObject (Multiplayer Playmode antigo)
+        // Verifica tag do GameObject (para testes no editor)
         if (!string.IsNullOrEmpty(_serverTag) && gameObject.CompareTag(_serverTag))
             return true;
 
@@ -102,9 +107,10 @@ public class NetworkManagerUI : MonoBehaviour
             transport.SetConnectionData(_serverAddress, _serverPort);
     }
 
+    // Chamado automaticamente quando o Netcode inicia o servidor/host
     private void OnServerStarted()
     {
-        // Only the server/host should spawn the lobby manager
+        // Apenas o Servidor ou Host deve instanciar o gerenciador de lobby
         if (!NetworkManager.Singleton.IsServer) return;
 
         Debug.Log("[NetworkManagerUI] Servidor iniciado. Verificando LobbyServerManager...");
@@ -115,13 +121,14 @@ public class NetworkManagerUI : MonoBehaviour
             return;
         }
 
-        // Check if already exists to avoid double spawn
+        // Evita spawn duplicado se o objeto já existir na cena
         if (LobbyServerManager.Instance != null)
         {
             Debug.Log("[Server] LobbyServerManager já existe, pulando spawn.");
             return;
         }
 
+        // Instancia e sincroniza o objeto na rede
         GameObject go = Instantiate(_lobbyManagerPrefab);
         go.GetComponent<NetworkObject>().Spawn();
         Debug.Log("[Server] LobbyServerManager instanciado e spawnado na rede.");

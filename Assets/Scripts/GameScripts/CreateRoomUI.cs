@@ -7,15 +7,15 @@ using Networking;
 
 /// <summary>
 /// UI da cena CreateRoom.
-/// Liga os campos ao LobbyClientManager e mostra erros do servidor.
+/// Liga os campos ao LobbyClientManager para criar a sessão online.
 /// </summary>
 public class CreateRoomUI : MonoBehaviour
 {
     [Header("Inputs")]
-    [SerializeField] private TMP_InputField _roomNameInput;
+    [SerializeField] private TMP_InputField _roomNameInput; // Nome da sala digitado pelo usuário
     [SerializeField] private UnityEngine.UI.Button _publicBtn;
     [SerializeField] private UnityEngine.UI.Button _privateBtn;
-    [SerializeField] private TMP_Dropdown _maxPlayersDropdown;
+    [SerializeField] private TMP_Dropdown _maxPlayersDropdown; // Seleção de 2, 3 ou 4 jogadores
 
     [Header("Feedback")]
     [SerializeField] private TMP_Text _errorText;
@@ -23,17 +23,18 @@ public class CreateRoomUI : MonoBehaviour
 
     [Header("Button Colors")]
     [SerializeField] private Color _selectedColor = Color.white;
-    [SerializeField] private Color _deselectedColor= new Color(0.55f, 0.55f, 0.55f); // cinzento escuro
-    private Color _highlightedColor = new Color(0.55f, 0.55f, 0.55f);
+    [SerializeField] private Color _deselectedColor= new Color(0.55f, 0.55f, 0.55f); 
 
-    [HideInInspector] public bool _isPublic = false;
+    [HideInInspector] public bool _isPublic = false; // Estado de visibilidade da sala
 
     private void Awake()
     {
         HideError();
-        SetButtonSelected(_privateBtn, true);
+        SetButtonSelected(_privateBtn, true); // Privado por padrão
         SetButtonSelected(_publicBtn, false);
     }
+
+    // Chamado pelo clique no botão Público
     public void ActivatePublicButton()
     {
         _isPublic = true;
@@ -41,6 +42,7 @@ public class CreateRoomUI : MonoBehaviour
         SetButtonSelected(_privateBtn, false);
     }
 
+    // Chamado pelo clique no botão Privado
     public void ActivatePrivateButton()
     {
         _isPublic = false;
@@ -48,15 +50,14 @@ public class CreateRoomUI : MonoBehaviour
         SetButtonSelected(_publicBtn, false);
     }
 
+    // Muda a cor visual dos botões de seleção
     private void SetButtonSelected(UnityEngine.UI.Button btn, bool selected)
     {
         if (btn == null) return;
         ColorBlock cb = btn.colors;
         cb.normalColor = selected ? _selectedColor : _deselectedColor;
-        cb.highlightedColor = selected ? _selectedColor : _highlightedColor;
+        cb.highlightedColor = selected ? _selectedColor : _selectedColor;
         btn.colors = cb;
-
-        Debug.Log($"Button '{btn.name}' set to {(selected ? "selected" : "deselected")}.");
     }
 
     private void OnEnable()
@@ -69,12 +70,13 @@ public class CreateRoomUI : MonoBehaviour
         LobbyClientManager.OnServerError -= ShowError;
     }
 
+    // Fluxo principal de criação ao clicar no botão Criar
     public async void OnCreateButton()
     {
         HideError();
 
         string roomName = _roomNameInput != null ? _roomNameInput.text : "";
-        int maxPlayers = _maxPlayersDropdown != null ? _maxPlayersDropdown.value + 2 : 4; // Dropdown index + offset if needed
+        int maxPlayers = _maxPlayersDropdown != null ? _maxPlayersDropdown.value + 2 : 4; 
         bool isPublic = _isPublic;
 
         if (string.IsNullOrWhiteSpace(roomName))
@@ -85,17 +87,19 @@ public class CreateRoomUI : MonoBehaviour
 
         if (_createButton != null) _createButton.interactable = false;
 
-        ShowError("Connecting to Relay...");
-        string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(maxPlayers);
+        // 1. Inicia o Host via Relay e Node.js
+        ShowError("Conectando ao Relay...");
+        string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(roomName, isPublic, maxPlayers);
 
         if (string.IsNullOrEmpty(nodeJsCode))
         {
-            ShowError("Failed to create online room. Check connection.");
+            ShowError("Erro ao criar sala online. Verifique a conexão.");
             if (_createButton != null) _createButton.interactable = true;
             return;
         }
 
-        float timeout = 10f; // Aumentado para 10s para maior estabilidade online
+        // 2. Aguarda a sincronização do sistema de rede
+        float timeout = 10f; 
         while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
         {
             await System.Threading.Tasks.Task.Delay(100);
@@ -104,11 +108,12 @@ public class CreateRoomUI : MonoBehaviour
 
         if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
         {
+            // 3. Inicializa o gerenciador de lobby com os dados da sala
             LobbyClientManager.Instance.CreateLobby(roomName, isPublic, maxPlayers, nodeJsCode);
         }
         else
         {
-            ShowError("Lobby system failed to spawn. Check network.");
+            ShowError("O sistema de lobby falhou ao iniciar.");
             if (_createButton != null) _createButton.interactable = true;
         }
     }

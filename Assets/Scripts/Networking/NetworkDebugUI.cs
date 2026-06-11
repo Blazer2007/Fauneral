@@ -20,7 +20,7 @@ namespace Networking
         private async void OnHostClicked()
         {
             _statusText.text = "Creating room...";
-            string roomCode = await MatchmakingController.Instance.StartHostOnline(4);
+            string roomCode = await MatchmakingController.Instance.StartHostOnline("Debug Room", true, 4);
             if (!string.IsNullOrEmpty(roomCode))
             {
                 _statusText.text = $"Room created! Code: {roomCode}";

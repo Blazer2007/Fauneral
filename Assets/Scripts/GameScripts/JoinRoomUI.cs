@@ -6,23 +6,23 @@ using Networking;
 
 /// <summary>
 /// UI da cena JoinRoom.
-/// Mostra um campo de PIN e a lista de salas públicas.
+/// Mostra um campo de PIN e a lista de salas públicas obtidas via Node.js.
 /// </summary>
 public class JoinRoomUI : MonoBehaviour
 {
     public static JoinRoomUI Instance { get; private set; }
 
     [Header("Entrada por PIN")]
-    [SerializeField] private TMP_InputField _pinInputField;
+    [SerializeField] private TMP_InputField _pinInputField; // Campo onde o jogador digita o PIN
     [SerializeField] private Button _joinByPinButton;
 
     [Header("Lista de salas públicas")]
-    [SerializeField] private Transform _publicLobbyList;
-    [SerializeField] private GameObject _lobbyItemPrefab;
+    [SerializeField] private Transform _publicLobbyList; // Container (Content do ScrollView) para os itens da lista
+    [SerializeField] private GameObject _lobbyItemPrefab; // Prefab de cada linha da tabela
 
     [Header("Feedback")]
-    [SerializeField] private TMP_Text _errorText;
-    [SerializeField] private TMP_Text _emptyListText;
+    [SerializeField] private TMP_Text _errorText; // Texto para exibir mensagens de erro e status
+    [SerializeField] private TMP_Text _emptyListText; // Texto "Nenhuma sala encontrada"
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class JoinRoomUI : MonoBehaviour
 
     private void OnEnable()
     {
+        // Escuta erros vindos do sistema de rede
         LobbyClientManager.OnServerError += ShowError;
     }
 
@@ -41,34 +42,43 @@ public class JoinRoomUI : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    private void Start()
+    private async void Start()
     {
-        // For online, public lobbies might need a different system or just using PIN.
-        // For now, let's focus on PIN joining via Node.js.
-        // LobbyClientManager.Instance?.RequestPublicLobbies(); 
+        // Pequeno atraso para garantir inicialização
+        await System.Threading.Tasks.Task.Delay(500);
+        
+        Debug.Log("[JoinRoomUI] Solicitando lista de lobbies públicos ao iniciar.");
+        RefreshPublicLobbies(); // Busca a lista automaticamente ao abrir a tela
     }
-    public async void OnJoinByPinButton()
-    {
-        HideError();
-        string pin = _pinInputField != null ? _pinInputField.text : "";
 
+    // Chamado pelo botão de entrar manual
+    public void OnJoinByPinButton()
+    {
+        string pin = _pinInputField != null ? _pinInputField.text : "";
         if (string.IsNullOrWhiteSpace(pin))
         {
             ShowError("Introduz um PIN válido.");
             return;
         }
+        JoinRoom(pin.Trim());
+    }
 
+    // Processo de conexão unificado (Relay + Netcode + Lobby)
+    public async void JoinRoom(string pin)
+    {
+        HideError();
         if (_joinByPinButton != null) _joinByPinButton.interactable = false;
 
-        ShowError("Buscando sala no servidor...");
-        bool success = await MatchmakingController.Instance.StartClientOnline(pin.Trim());
+        ShowError($"Conectando à sala {pin}...");
+        // 1. Busca código Relay no Node.js e conecta
+        bool success = await MatchmakingController.Instance.StartClientOnline(pin);
 
         if (success)
         {
-            ShowError("Conectando ao Host...");
+            ShowError("Sincronizando rede...");
             
-            // Wait for LobbyClientManager to spawn and connect
-            float timeout = 10f; // Increase timeout for online connections
+            // 2. Aguarda o sistema de rede sincronizar os objetos do Host
+            float timeout = 10f;
             while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
             {
                 await System.Threading.Tasks.Task.Delay(250);
@@ -78,11 +88,12 @@ public class JoinRoomUI : MonoBehaviour
             if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
             {
                 ShowError("Entrando no Lobby...");
-                LobbyClientManager.Instance.JoinLobby(pin.Trim());
+                // 3. Solicita entrada no lobby via RPC
+                LobbyClientManager.Instance.JoinLobby(pin);
             }
             else
             {
-                ShowError("Falha na sincronização de rede. Tente novamente.");
+                ShowError("Falha na sincronização. Tente novamente.");
                 if (_joinByPinButton != null) _joinByPinButton.interactable = true;
             }
         }
@@ -93,9 +104,37 @@ public class JoinRoomUI : MonoBehaviour
         }
     }
 
+    // Atualiza a tabela chamando a API do Node.js
     public void OnRefreshButton()
     {
-        // LobbyClientManager.Instance?.RequestPublicLobbies();
+        Debug.Log("[JoinRoomUI] Atualizando lista de lobbies públicos.");
+        RefreshPublicLobbies();
+    }
+
+    private void RefreshPublicLobbies()
+    {
+        if (_emptyListText != null) { _emptyListText.text = "Buscando..."; _emptyListText.gameObject.SetActive(true); }
+        
+        // Chama o DiscoveryManager para buscar dados via HTTP
+        DiscoveryManager.Instance.GetPublicRooms((rooms) => {
+            if (rooms == null)
+            {
+                PopulatePublicLobbies(new List<PublicLobbyEntry>());
+                return;
+            }
+
+            List<PublicLobbyEntry> entries = new List<PublicLobbyEntry>();
+            foreach (var room in rooms)
+            {
+                entries.Add(new PublicLobbyEntry {
+                    Pin = room.code,
+                    RoomName = room.name,
+                    CurrentPlayers = room.currentPlayers,
+                    MaxPlayers = room.maxPlayers
+                });
+            }
+            PopulatePublicLobbies(entries); // Preenche a UI
+        });
     }
 
     public void OnBackButton()
@@ -103,9 +142,11 @@ public class JoinRoomUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlayMenu");
     }
 
-    // Chamado por LobbyClientManager quando recebe a lista de salas públicas do servidor
+    // Instancia os prefabs na tabela conforme os dados recebidos
     public void PopulatePublicLobbies(List<PublicLobbyEntry> lobbies)
     {
+        Debug.Log($"[JoinRoomUI] Populando lista com {lobbies.Count} lobbies.");
+        
         if (_publicLobbyList != null)
         {
             foreach (Transform child in _publicLobbyList)
@@ -114,7 +155,12 @@ public class JoinRoomUI : MonoBehaviour
 
         if (lobbies == null || lobbies.Count == 0)
         {
-            if (_emptyListText != null) _emptyListText.gameObject.SetActive(true);
+            if (_emptyListText != null) 
+            {
+                _emptyListText.text = "Nenhuma sala pública disponível.";
+                _emptyListText.gameObject.SetActive(true);
+            }
+            if (_joinByPinButton != null) _joinByPinButton.interactable = true;
             return;
         }
 
@@ -124,6 +170,8 @@ public class JoinRoomUI : MonoBehaviour
         {
             if (_lobbyItemPrefab == null || _publicLobbyList == null) break;
 
+            Debug.Log($"[JoinRoomUI] Sala: {entry.RoomName}, PIN: {entry.Pin}, Jogadores: {entry.CurrentPlayers}/{entry.MaxPlayers}");
+            
             GameObject item = Instantiate(_lobbyItemPrefab, _publicLobbyList);
             LobbyListItem listItem = item.GetComponent<LobbyListItem>();
             listItem?.Setup(entry.Pin, entry.RoomName, entry.CurrentPlayers, entry.MaxPlayers);

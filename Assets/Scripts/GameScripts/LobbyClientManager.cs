@@ -4,20 +4,20 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 /// <summary>
+/// Gerencia a lógica do lado do Cliente para o Lobby.
 /// Persiste entre cenas via DontDestroyOnLoad.
-/// Usa LobbyServerManager.Instance para chamar RPCs —
-/// funciona porque o servidor faz Spawn do LobbyServerManager como NetworkObject,
-/// tornando-o visível em todos os clientes.
+/// Usa LobbyServerManager.Instance para chamar RPCs no servidor.
 /// </summary>
 public class LobbyClientManager : NetworkBehaviour
 {
     public static LobbyClientManager Instance { get; private set; }
 
-    // Atalho local para não repetir LobbyServerManager.Instance em todo o lado
+    // Atalho para facilitar a chamada de métodos no LobbyServerManager
     private static LobbyServerManager Server => LobbyServerManager.Instance;
 
     private void Awake()
     {
+        // Garante que apenas um LobbyClientManager exista para evitar conflitos de rede
         if (Instance != null && Instance != this)
         {
             Debug.Log("[LobbyClientManager] Destruindo duplicata.");
@@ -25,12 +25,13 @@ public class LobbyClientManager : NetworkBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); // Mantém o objeto vivo ao trocar de cena
         Debug.Log("[LobbyClientManager] Instância configurada e persistente.");
     }
 
     public override void OnNetworkSpawn()
     {
+        // Só habilita o script se for um cliente (o Host também é cliente)
         if (!IsClient) { enabled = false; return; }
         Instance = this; 
         Debug.Log($"[LobbyClientManager] Spawnado na rede. ClientId: {NetworkManager.Singleton.LocalClientId}");
@@ -41,15 +42,17 @@ public class LobbyClientManager : NetworkBehaviour
         if (Instance == this) { Instance = null; LobbySessionData.Clear(); }
     }
 
-    // ── API PÚBLICA ────────────────────────────────────────────────
+    // ── API PÚBLICA (Chamada pela UI) ──────────────────────────────
 
+    // Solicita a criação de um lobby no servidor
     public async void CreateLobby(string roomName, bool isPublic, int maxPlayers, string forcedPin = "")
     {
         Debug.Log($"[LobbyClientManager] Preparando criação de lobby. PIN: {forcedPin}. IsSpawned: {IsSpawned}");
         if (!CheckConnected()) return;
 
+        // Aguarda o servidor (LobbyServerManager) estar sincronizado na rede
         float waitTime = 0;
-        while (Server == null && waitTime < 10f) // Aumentado para 10s para conexões lentas
+        while (Server == null && waitTime < 10f)
         {
             Debug.Log("[LobbyClientManager] Aguardando LobbyServerManager aparecer na rede...");
             await System.Threading.Tasks.Task.Delay(250);
@@ -66,13 +69,15 @@ public class LobbyClientManager : NetworkBehaviour
         Server.CreateLobbyServerRpc(roomName, isPublic, maxPlayers, forcedPin);
     }
 
+    // Solicita entrada em um lobby usando o PIN
     public async void JoinLobby(string pin)
     {
         Debug.Log($"[LobbyClientManager] Preparando entrada no lobby: {pin}. IsSpawned: {IsSpawned}");
         if (!CheckConnected()) return;
 
+        // Aguarda a sincronização do servidor de lobby
         float waitTime = 0;
-        while (Server == null && waitTime < 10f) // Aumentado para 10s
+        while (Server == null && waitTime < 10f)
         {
             Debug.Log("[LobbyClientManager] Aguardando LobbyServerManager aparecer na rede...");
             await System.Threading.Tasks.Task.Delay(250);
@@ -89,30 +94,34 @@ public class LobbyClientManager : NetworkBehaviour
         Server.JoinLobbyServerRpc(pin.Trim());
     }
 
+    // Solicita a lista de salas públicas (Legado, agora usamos DiscoveryManager)
     public void RequestPublicLobbies()
     {
         if (!CheckConnected()) return;
         Server?.RequestPublicLobbiesServerRpc();
     }
 
+    // Sai do lobby atual
     public void LeaveLobby()
     {
         Server?.LeaveLobbyServerRpc();
         LobbySessionData.Clear();
     }
 
+    // Define se o jogador está pronto
     public void SetReady(bool ready)
     {
         if (!CheckConnected()) return;
         Server?.SetReadyServerRpc(ready);
     }
 
-    // ── CALLBACKS DO SERVIDOR ──────────────────────────────────────
+    // ── CALLBACKS DO SERVIDOR (Executados via ClientRpc no Server) ──
 
     public void OnLobbyCreated(string pin, string roomName, bool isPublic, int maxPlayers)
     {
         Debug.Log($"[LobbyClientManager] SUCESSO: Lobby criado no servidor. PIN: {pin}. Mudando para LobbyMenu...");
         
+        // Salva os dados na classe estática para acesso fácil na cena de Lobby
         LobbySessionData.Pin = pin;
         LobbySessionData.RoomName = roomName;
         LobbySessionData.IsPublic = isPublic;
@@ -121,7 +130,7 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.IsCreator = true;
         LobbySessionData.MyClientId = NetworkManager.Singleton.LocalClientId;
 
-        SceneManager.LoadScene("LobbyMenu");
+        SceneManager.LoadScene("LobbyMenu"); // Muda de cena
     }
 
     public void OnLobbyJoined(string pin, string roomName, bool isPublic, int current, int max)
@@ -139,6 +148,7 @@ public class LobbyClientManager : NetworkBehaviour
         SceneManager.LoadScene("LobbyMenu");
     }
 
+    // Recebe o estado completo de todos os slots e jogadores no lobby
     public void OnFullStateReceived(string pin, string slotsData, string readyData,
         int currentPlayers, int maxPlayers, ulong creatorId)
     {
@@ -150,9 +160,11 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.ReadyData = readyData;
         LobbySessionData.CreatorId = creatorId;
 
+        // Atualiza a UI se a cena do Lobby estiver aberta
         LobbyMenuUI.Instance?.RefreshFullState(slotsData, readyData, currentPlayers, maxPlayers);
     }
 
+    // Recebe apenas a atualização de quem está "Pronto"
     public void OnReadyStateReceived(string pin, string readyData)
     {
         if (LobbySessionData.Pin != pin) return;
@@ -166,6 +178,7 @@ public class LobbyClientManager : NetworkBehaviour
         OnServerError?.Invoke(message);
     }
 
+    // Recebe a lista de lobbies via rede (agora preferimos via API HTTP no DiscoveryManager)
     public void OnPublicLobbiesReceived(string data)
     {
         JoinRoomUI.Instance?.PopulatePublicLobbies(ParsePublicLobbies(data));
@@ -185,6 +198,7 @@ public class LobbyClientManager : NetworkBehaviour
         return true;
     }
 
+    // Transforma string vinda do servidor em lista de objetos
     private List<PublicLobbyEntry> ParsePublicLobbies(string data)
     {
         var result = new List<PublicLobbyEntry>();

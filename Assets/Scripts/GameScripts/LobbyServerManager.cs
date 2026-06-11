@@ -36,7 +36,15 @@ public class LobbyServerManager : NetworkBehaviour
         if (Instance == this) Instance = null;
 
         if (IsServer && NetworkManager.Singleton != null)
+        {
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleDisconnect;
+            
+            // If the server manager is being destroyed, we should probably clear all its rooms from discovery
+            foreach(var pin in _lobbies.Keys)
+            {
+                Networking.DiscoveryManager.Instance?.DeleteRoom(pin);
+            }
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -71,12 +79,13 @@ public class LobbyServerManager : NetworkBehaviour
         _clientLobbyMap[client] = pin;
 
         Debug.Log($"[Server] Lobby registrado com sucesso: PIN={pin}. Enviando RPCs...");
+        
+        // Sincroniza a nova sala com o servidor de descoberta Node.js
+        Networking.DiscoveryManager.Instance?.UpdateRoom(pin, 1);
 
         LobbyCreatedClientRpc(pin, lobby.RoomName, isPublic, maxPlayers, MakeTarget(client));
         BroadcastFullState(lobby);
     }
-
-    // Método separado para adicionar o lobby criado à lista pública da cena do joinRoom, chamado logo após CreateLobbyServerRpc
 
     [ServerRpc(RequireOwnership = false)]
     public void JoinLobbyServerRpc(string pin, ServerRpcParams rpc = default)
@@ -92,6 +101,9 @@ public class LobbyServerManager : NetworkBehaviour
         _clientLobbyMap[client] = pin;
 
         Debug.Log($"[Server] Cliente {client} → slot {slot} em {pin}");
+        
+        // Atualiza a contagem de jogadores no Node.js
+        Networking.DiscoveryManager.Instance?.UpdateRoom(pin, lobby.PlayerCount);
 
         LobbyJoinedClientRpc(pin, lobby.RoomName, lobby.IsPublic,
             lobby.PlayerCount, lobby.MaxPlayers, MakeTarget(client));
@@ -198,9 +210,11 @@ public class LobbyServerManager : NetworkBehaviour
         {
             _lobbies.Remove(pin);
             Debug.Log($"[Server] Lobby {pin} destruído");
+            Networking.DiscoveryManager.Instance?.DeleteRoom(pin);
         }
         else
         {
+            Networking.DiscoveryManager.Instance?.UpdateRoom(pin, lobby.PlayerCount);
             BroadcastFullState(lobby);
             if (lobby.AllReady())
                 EnableStartGameClientRpc(MakeTarget(lobby.CreatorClientId));
