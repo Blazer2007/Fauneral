@@ -29,7 +29,7 @@ namespace TarodevController
         public event Action<bool, float> GroundedChanged;
         public event Action Jumped;
         public event Action<bool> Dashed;
-        public event Action<bool> Attacked;
+        public event Action<bool, bool> Attacked;
 
         #endregion
 
@@ -74,7 +74,8 @@ namespace TarodevController
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
                 Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
                 DashDown = Input.GetKeyDown(KeyCode.LeftShift),
-                AttackDown = Input.GetKeyDown(KeyCode.J)
+                AttackDown = Input.GetKeyDown(KeyCode.J),
+                HeavyAttackDown = Input.GetKeyDown(KeyCode.K)
             };
 
             if (_frameInput.JumpDown)
@@ -87,6 +88,9 @@ namespace TarodevController
                 _dashToConsume = true;
 
             if (_frameInput.AttackDown)
+                _attackToConsume = true;
+
+            if (_frameInput.HeavyAttackDown)
                 _attackToConsume = true;
 
             //if _frameInput.Move.x is bigger than 0(moving right) then _facingRight is true,
@@ -272,12 +276,16 @@ namespace TarodevController
 
         private bool _attackToConsume; // Similar to dashToConsume, this bool checks if the player has an attack to use
         private float _attackTimer = 0f; // Timer to track the time since the last attack, used for attack cooldowns
+        private bool _heavyAttackToConsume; // Bool to check if the player is performing a heavy attack
+        private float _heavyAttackTimer = 0f; // Timer to track the time since the last heavy attack, used for heavy attack cooldowns
 
         // Same logic as handleDash, but for the player's attacks
         [ServerRpc(RequireOwnership = false)]
         private void HandleAttackServerRpc()
         {
             _attackTimer += Time.fixedDeltaTime;
+            _heavyAttackTimer += Time.fixedDeltaTime;
+
             if (!_attackToConsume)
                 return;
 
@@ -287,17 +295,35 @@ namespace TarodevController
             {
                 _attackTimer = 0f;
                 _attackToConsume = true;
-                AttackServerRpc();
+                LightAttackServerRpc();
+                Attacked?.Invoke(true, false);
+                return;
             }
             _attackToConsume = false;
-            Attacked?.Invoke(false);
+
+            if (_heavyAttackToConsume && _frameInput.HeavyAttackDown && _heavyAttackTimer >= attackInterval * 2)
+            {
+                _heavyAttackTimer = 0f;
+                _heavyAttackToConsume = true;
+                HeavyAttackServerRpc();
+                Attacked?.Invoke(true, true);
+                return;
+            }
+            _heavyAttackToConsume = false;
+
+            Attacked?.Invoke(false, false);
         }
         // Invoke the Attacked event to notify any subscribers that the player has attacked.
         [ServerRpc(RequireOwnership = false)]
-        private void AttackServerRpc()
+        private void LightAttackServerRpc()
         {
-            // Implement attack logic here, such as detecting enemies in range and applying damage
-            Attacked?.Invoke(true);
+            Attacked?.Invoke(true, false);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void HeavyAttackServerRpc()
+        {
+            Attacked?.Invoke(true, true);
         }
         #endregion
 
@@ -321,6 +347,7 @@ namespace TarodevController
         public Vector2 Move;
         public bool DashDown;
         public bool AttackDown;
+        public bool HeavyAttackDown;
     }
 
     // Interface to define the player's input and events for grounded status, jumping, dashing, and attacking. This allows other scripts to subscribe to these events and access the player's input without needing a direct reference to the PlayerController component.
@@ -332,7 +359,7 @@ namespace TarodevController
 
         public event Action<bool> Dashed;
 
-        public event Action<bool> Attacked;
+        public event Action<bool, bool> Attacked;
         public Vector2 FrameInput { get; }
     }
 }
