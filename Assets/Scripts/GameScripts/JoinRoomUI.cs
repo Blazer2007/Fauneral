@@ -1,21 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Networking;
 
 /// <summary>
 /// UI da cena JoinRoom.
 /// Mostra um campo de PIN e a lista de salas públicas.
-///
-/// Setup no Inspector:
-///   PinInputField    → TMP_InputField para o PIN
-///   JoinByPinButton  → Button "Entrar com PIN"
-///   PublicLobbyList  → Transform pai onde os itens da lista são instanciados
-///   LobbyItemPrefab  → Prefab de um item da lista (ver comentário abaixo)
-///   ErrorText        → TMP_Text para erros
-///   RefreshButton    → Button "Actualizar lista"
-///
-/// O LobbyItemPrefab precisa de ter um LobbyListItem component.
 /// </summary>
 public class JoinRoomUI : MonoBehaviour
 {
@@ -52,24 +43,59 @@ public class JoinRoomUI : MonoBehaviour
 
     private void Start()
     {
-        // Pede logo a lista de salas públicas ao entrar na cena
-        LobbyClientManager.Instance?.RequestPublicLobbies();
+        // For online, public lobbies might need a different system or just using PIN.
+        // For now, let's focus on PIN joining via Node.js.
+        // LobbyClientManager.Instance?.RequestPublicLobbies(); 
     }
-
-    // ── BOTÕES ─────────────────────────────────────────────────────
-
-    public void OnJoinByPinButton()
+    public async void OnJoinByPinButton()
     {
         HideError();
         string pin = _pinInputField != null ? _pinInputField.text : "";
 
+        if (string.IsNullOrWhiteSpace(pin))
+        {
+            ShowError("Introduz um PIN válido.");
+            return;
+        }
+
         if (_joinByPinButton != null) _joinByPinButton.interactable = false;
-        LobbyClientManager.Instance?.JoinLobby(pin);
+
+        ShowError("Buscando sala no servidor...");
+        bool success = await MatchmakingController.Instance.StartClientOnline(pin.Trim());
+
+        if (success)
+        {
+            ShowError("Conectando ao Host...");
+            
+            // Wait for LobbyClientManager to spawn and connect
+            float timeout = 10f; // Increase timeout for online connections
+            while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
+            {
+                await System.Threading.Tasks.Task.Delay(250);
+                timeout -= 0.25f;
+            }
+
+            if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
+            {
+                ShowError("Entrando no Lobby...");
+                LobbyClientManager.Instance.JoinLobby(pin.Trim());
+            }
+            else
+            {
+                ShowError("Falha na sincronização de rede. Tente novamente.");
+                if (_joinByPinButton != null) _joinByPinButton.interactable = true;
+            }
+        }
+        else
+        {
+            ShowError("Sala não encontrada ou conexão falhou.");
+            if (_joinByPinButton != null) _joinByPinButton.interactable = true;
+        }
     }
 
     public void OnRefreshButton()
     {
-        LobbyClientManager.Instance?.RequestPublicLobbies();
+        // LobbyClientManager.Instance?.RequestPublicLobbies();
     }
 
     public void OnBackButton()
@@ -77,14 +103,9 @@ public class JoinRoomUI : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlayMenu");
     }
 
-    // ── CHAMADO PELO LobbyClientManager ───────────────────────────
-
-    /// <summary>
-    /// Preenche a lista com as salas públicas recebidas do servidor.
-    /// </summary>
+    // Chamado por LobbyClientManager quando recebe a lista de salas públicas do servidor
     public void PopulatePublicLobbies(List<PublicLobbyEntry> lobbies)
     {
-        // Limpa a lista actual
         if (_publicLobbyList != null)
         {
             foreach (Transform child in _publicLobbyList)
@@ -108,11 +129,8 @@ public class JoinRoomUI : MonoBehaviour
             listItem?.Setup(entry.Pin, entry.RoomName, entry.CurrentPlayers, entry.MaxPlayers);
         }
 
-        // Re-activa o botão de PIN se estava desactivado por erro anterior
         if (_joinByPinButton != null) _joinByPinButton.interactable = true;
     }
-
-    // ── HELPERS ───────────────────────────────────────────────────
 
     private void ShowError(string message)
     {

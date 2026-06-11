@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -16,13 +16,24 @@ public class LobbyClientManager : NetworkBehaviour
     // Atalho local para não repetir LobbyServerManager.Instance em todo o lado
     private static LobbyServerManager Server => LobbyServerManager.Instance;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("[LobbyClientManager] Destruindo duplicata.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        Debug.Log("[LobbyClientManager] Instância configurada e persistente.");
+    }
+
     public override void OnNetworkSpawn()
     {
         if (!IsClient) { enabled = false; return; }
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        Debug.Log("[LobbyClientManager] Pronto e persistente.");
+        Instance = this; 
+        Debug.Log($"[LobbyClientManager] Spawnado na rede. ClientId: {NetworkManager.Singleton.LocalClientId}");
     }
 
     public override void OnNetworkDespawn()
@@ -32,18 +43,49 @@ public class LobbyClientManager : NetworkBehaviour
 
     // ── API PÚBLICA ────────────────────────────────────────────────
 
-    public void CreateLobby(string roomName, bool isPublic, int maxPlayers)
+    public async void CreateLobby(string roomName, bool isPublic, int maxPlayers, string forcedPin = "")
     {
+        Debug.Log($"[LobbyClientManager] Preparando criação de lobby. PIN: {forcedPin}. IsSpawned: {IsSpawned}");
         if (!CheckConnected()) return;
-        if (Server == null) { Debug.LogWarning("[LobbyClientManager] Servidor ainda não está pronto."); return; }
-        Server.CreateLobbyServerRpc(roomName, isPublic, maxPlayers);
+
+        float waitTime = 0;
+        while (Server == null && waitTime < 10f) // Aumentado para 10s para conexões lentas
+        {
+            Debug.Log("[LobbyClientManager] Aguardando LobbyServerManager aparecer na rede...");
+            await System.Threading.Tasks.Task.Delay(250);
+            waitTime += 0.25f;
+        }
+
+        if (Server == null) 
+        { 
+            Debug.LogError("[LobbyClientManager] ERRO: LobbyServerManager não encontrado no servidor! RPC não enviado."); 
+            return; 
+        }
+        
+        Debug.Log($"[LobbyClientManager] Enviando CreateLobbyServerRpc para o servidor. Nome: {roomName}");
+        Server.CreateLobbyServerRpc(roomName, isPublic, maxPlayers, forcedPin);
     }
 
-    public void JoinLobby(string pin)
+    public async void JoinLobby(string pin)
     {
+        Debug.Log($"[LobbyClientManager] Preparando entrada no lobby: {pin}. IsSpawned: {IsSpawned}");
         if (!CheckConnected()) return;
-        if (string.IsNullOrWhiteSpace(pin)) { OnError("Introduz um PIN válido."); return; }
-        if (Server == null) { Debug.LogWarning("[LobbyClientManager] Servidor ainda não está pronto."); return; }
+
+        float waitTime = 0;
+        while (Server == null && waitTime < 10f) // Aumentado para 10s
+        {
+            Debug.Log("[LobbyClientManager] Aguardando LobbyServerManager aparecer na rede...");
+            await System.Threading.Tasks.Task.Delay(250);
+            waitTime += 0.25f;
+        }
+
+        if (Server == null) 
+        { 
+            Debug.LogError("[LobbyClientManager] ERRO: LobbyServerManager não encontrado! Verifique a conexão com o Host."); 
+            return; 
+        }
+
+        Debug.Log($"[LobbyClientManager] Enviando JoinLobbyServerRpc para PIN: {pin}");
         Server.JoinLobbyServerRpc(pin.Trim());
     }
 
@@ -69,6 +111,8 @@ public class LobbyClientManager : NetworkBehaviour
 
     public void OnLobbyCreated(string pin, string roomName, bool isPublic, int maxPlayers)
     {
+        Debug.Log($"[LobbyClientManager] SUCESSO: Lobby criado no servidor. PIN: {pin}. Mudando para LobbyMenu...");
+        
         LobbySessionData.Pin = pin;
         LobbySessionData.RoomName = roomName;
         LobbySessionData.IsPublic = isPublic;
@@ -77,12 +121,13 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.IsCreator = true;
         LobbySessionData.MyClientId = NetworkManager.Singleton.LocalClientId;
 
-        Debug.Log($"[Client] Lobby criado: {pin}");
         SceneManager.LoadScene("LobbyMenu");
     }
 
     public void OnLobbyJoined(string pin, string roomName, bool isPublic, int current, int max)
     {
+        Debug.Log($"[LobbyClientManager] SUCESSO: Entrei no lobby {pin}. Mudando para LobbyMenu...");
+
         LobbySessionData.Pin = pin;
         LobbySessionData.RoomName = roomName;
         LobbySessionData.IsPublic = isPublic;
@@ -91,7 +136,6 @@ public class LobbyClientManager : NetworkBehaviour
         LobbySessionData.IsCreator = false;
         LobbySessionData.MyClientId = NetworkManager.Singleton.LocalClientId;
 
-        Debug.Log($"[Client] Entrei no lobby {pin} ({current}/{max})");
         SceneManager.LoadScene("LobbyMenu");
     }
 

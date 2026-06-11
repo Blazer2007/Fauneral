@@ -619,7 +619,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5967729557375991158}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9135314697983710027, guid: 146e00863150fab4c85766de79d1e4fd, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3893869524958021572
 MonoBehaviour:
   m_ObjectHideFlags: 0
