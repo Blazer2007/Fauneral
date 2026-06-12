@@ -15,8 +15,9 @@ app.post('/update-room/:code', requesthandlers.updateRoom);
 app.delete('/delete-room/:code', requesthandlers.deleteRoom);
 
 
-app.listen(config.server.port,()=>{
-    console.log(`Server is running on ${config.server.host}:${config.server.port}`);
+const PORT = process.env.PORT || config.server.port;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
 
