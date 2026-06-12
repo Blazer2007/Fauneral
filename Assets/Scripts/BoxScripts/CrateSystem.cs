@@ -18,8 +18,8 @@ public class CrateSystem : MonoBehaviour
 
     private bool _isOpening = false;
 
-    public ScriptablePoints points;
-    public Action OnInsufficientPoints;
+    public ScriptableCredits credits;
+    public Action OnInsufficientCredits;
 
     private void Awake()
     {
@@ -28,9 +28,9 @@ public class CrateSystem : MonoBehaviour
 
     public bool OpenCrate()
     {
-        if (points != null && !points.TrySpend(crate.cost))
+        if (credits != null && !credits.TrySpend(crate.cost))
         {
-            OnInsufficientPoints?.Invoke();
+            OnInsufficientCredits?.Invoke();
             return false;
         }
 

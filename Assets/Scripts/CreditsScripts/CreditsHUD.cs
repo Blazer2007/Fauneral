@@ -3,25 +3,33 @@ using TMPro;
 
 public class PointsHUD : MonoBehaviour
 {
-    public ScriptablePoints points;
+    public ScriptableCredits credits;
     public TextMeshProUGUI label;
     public string prefix = "credits: ";
 
+
+    private void Update()
+    {
+        OnEnable();
+        OnDisable();
+        UpdateLabel(credits != null ? credits.Credits : 0);
+    }
+
     private void OnEnable()
     {
-        if (points != null)
+        if (credits != null)
         {
-            points.OnPointsChanged += UpdateLabel;
+            credits.OnCreditsChanged += UpdateLabel;
         }
 
-        UpdateLabel(points != null ? points.Points : 0);
+        UpdateLabel(credits != null ? credits.Credits : 0);
     }
 
     private void OnDisable()
     {
-        if (points != null) 
+        if (credits != null) 
         {
-            points.OnPointsChanged -= UpdateLabel;
+            credits.OnCreditsChanged -= UpdateLabel;
         }
     }
 

@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crate: {fileID: 11400000, guid: 1eb90d39d42fbff4d900cbfdc8e3dea5, type: 2}
-  points: {fileID: 11400000, guid: 4bebf18cbf7f42a419f9ca1d05314e32, type: 2}
+  credits: {fileID: 0}
 --- !u!1 &401682157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d155f95b08c214793138a5beabe080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: {fileID: 11400000, guid: 4bebf18cbf7f42a419f9ca1d05314e32, type: 2}
+  credits: {fileID: 11400000, guid: 4bebf18cbf7f42a419f9ca1d05314e32, type: 2}
   label: {fileID: 565046262}
   prefix: 'Credits: '
 --- !u!114 &565046262
