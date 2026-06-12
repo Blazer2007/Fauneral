@@ -17,8 +17,7 @@ public class RoundManager : NetworkBehaviour
     [Header("Settings")]
     [SerializeField] private RoundSettings _settings;
 
-    [Header("Players")]
-    [SerializeField] private List<PlayerHealth> Players = new List<PlayerHealth>();
+    private List<PlayerHealth> Players = new List<PlayerHealth>();
 
     [Header("Runtime State (Read Only)")]
     public bool MatchOver { get; private set; } = false;

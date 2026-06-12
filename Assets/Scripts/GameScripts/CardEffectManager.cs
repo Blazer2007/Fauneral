@@ -81,7 +81,42 @@ public class CardEffectManager : NetworkBehaviour
         // Notifica clientes para VFX / som
         CardUsedClientRpc(cardId, senderId);
     }
+    [ServerRpc(RequireOwnership = false)]
+    private void UseCardInGameServerRpc(int cardId, ServerRpcParams rpc = default) // Usado para cartas que só podem ser usadas in-game (ex: "Spawn Enemy")
+    {
+        ulong senderId = rpc.Receive.SenderClientId;
 
+        ScriptableCard card = _cardDatabase?.Get(cardId);
+        if (card == null) { Debug.LogWarning($"[Server] cardId={cardId} inválido."); return; }
+
+        if (!_playerMap.TryGetValue(senderId, out PlayerStats casterStats))
+        {
+            Debug.LogWarning($"[Server] PlayerStats não encontrado para {senderId}");
+            return;
+        }
+        if(card.accessoryPrefab != null)
+        {
+            Instantiate(card.accessoryPrefab, casterStats.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            // Buffs → caster
+            casterStats.ApplyAll(card.buffs, card.time);
+        }
+        
+
+        // Debuffs → todos os oponentes
+        foreach (var kvp in _playerMap)
+        {
+            if (kvp.Key == senderId) continue;
+            kvp.Value.ApplyAll(card.debuffs, card.time);
+        }
+
+        Debug.Log($"[Server] {senderId} usou '{card.name}'");
+
+        // Notifica clientes para VFX / som
+        CardUsedClientRpc(cardId, senderId);
+    }
     // ── CLIENT RPC ────────────────────────────────────────────────
 
     [ClientRpc]

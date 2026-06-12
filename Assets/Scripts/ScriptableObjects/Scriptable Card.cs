@@ -2,9 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// Substitui o ScriptableCard existente.
-/// A única mudança é buffs[] e debuffs[] passarem de string[] para StatModifier[].
+/// A ï¿½nica mudanï¿½a ï¿½ buffs[] e debuffs[] passarem de string[] para StatModifier[].
 /// Todos os outros campos (name, rarity, description, image, time, uses, isinfinite)
-/// mantêm-se iguais — os assets existentes migram automaticamente ao reimportar.
+/// mantï¿½m-se iguais ï¿½ os assets existentes migram automaticamente ao reimportar.
 ///
 /// Criar via: Right Click > Create > Fauneral > Scriptable Card
 /// </summary>
@@ -15,23 +15,25 @@ public class ScriptableCard : ScriptableObject
     public string rarity;
     public string description;
     public SpriteRenderer image;
+    public int id;
 
-    [Header("Efeitos — cada entrada é um modificador de stat")]
+    [Header("Efeitos ï¿½ cada entrada ï¿½ um modificador de stat")]
     [Tooltip("Modificadores positivos aplicados ao jogador que usa a carta")]
     public StatModifier[] buffs;
 
     [Tooltip("Modificadores negativos aplicados aos oponentes")]
     public StatModifier[] debuffs;
 
-    [Header("Utilização")]
-    [Tooltip("Duração do efeito em segundos (0 = instantâneo)")]
+    [Header("Utilizaï¿½ï¿½o")]
+    [Tooltip("Duraï¿½ï¿½o do efeito em segundos (0 = instantï¿½neo)")]
     public float time;
 
-    [Tooltip("Número de usos")]
+    [Tooltip("Nï¿½mero de usos")]
     public int uses;
 
-    [Tooltip("Se true, usos são infinitos")]
+    [Tooltip("Se true, usos sï¿½o infinitos")]
     public bool isinfinite;
 
-    public GameObject acessoryPrefab;
+    [Tooltip("Prefab do acessï¿½rio que se spawna com o poder da carta")]
+    public GameObject accessoryPrefab;
 }
