@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crate: {fileID: 11400000, guid: 1eb90d39d42fbff4d900cbfdc8e3dea5, type: 2}
-  credits: {fileID: 0}
+  credits: {fileID: 11400000, guid: 4bebf18cbf7f42a419f9ca1d05314e32, type: 2}
 --- !u!1 &401682157
 GameObject:
   m_ObjectHideFlags: 0

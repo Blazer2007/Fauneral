@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 
 /*
-    <--------| PARA NAO ME ESQUECER QUANDO AQUI APARECER OUTRA VEZ |-------->
+    IMPORTANTE
 
     Se quiser adicionar mais comandos é so:
 
-    1 - adicionar, se for preciso, a referencia a outro script
-    2 - criar a função que vai fazer o comando funcionar
-    3 - adicionar ao RegisterCommands() o comando e a função que vai ser chamada quando escrever esse comando
+    1 - Referenciar script se necessário
+    2 - criar a função do comando que tem de ser void com uma string[] args
+    3 - adicionar ao RegisterCommands() o comando e a função
     4 - adicionar ao GetCommandDescription() a descrição do comando para aparecer no /help
 */
 
