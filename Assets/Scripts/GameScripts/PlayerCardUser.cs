@@ -111,7 +111,7 @@ public class PlayerCardUser : NetworkBehaviour
         }
 
         // Envia para o servidor executar o efeito
-        UseCardServerRpc(_activeCard.cardID);
+        UseCardServerRpc(_activeCard.id);
     }
 
     // ── SERVER RPC ────────────────────────────────────────────────
