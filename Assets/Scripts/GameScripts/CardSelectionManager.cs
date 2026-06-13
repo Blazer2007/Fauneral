@@ -34,9 +34,9 @@ public class CardSelectionManager : NetworkBehaviour
     // ── INSPECTOR ─────────────────────────────────────────────────
 
     [Header("Referências")]
-    [SerializeField] private CardDataBase  _cardDatabase;
-    [SerializeField] private RarityTable   _rarityTable;
-    [SerializeField] private GameObject    _selectionCanvas;
+    [SerializeField] private CardDataBase _cardDatabase;
+    [SerializeField] private RarityTable _rarityTable;
+    [SerializeField] private GameObject _selectionCanvas;
 
     [Tooltip("Arrasta aqui os GameObjects dos slots de carta (CardDisplay), em ordem")]
     [SerializeField] private List<CardDisplay> _cardSlots;
@@ -77,8 +77,8 @@ public class CardSelectionManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        _currentRound  = roundNumber;
-        _lastWinnerId  = winnerId;
+        _currentRound = roundNumber;
+        _lastWinnerId = winnerId;
         _pendingChoices.Clear();
 
         // Regista todos os clientes como "ainda não escolheram"
@@ -104,7 +104,7 @@ public class CardSelectionManager : NetworkBehaviour
     private int[] DrawCardsForPlayer(ulong clientId)
     {
         bool isWinner = (clientId == _lastWinnerId);
-        bool isDraw   = (_lastWinnerId == ulong.MaxValue);
+        bool isDraw = (_lastWinnerId == ulong.MaxValue);
 
         // VENCEDOR → Deal with the Devil
         //   Pool de cartas mais raras/poderosas, mas os debuffs da carta são aplicados a si próprio.
@@ -120,7 +120,7 @@ public class CardSelectionManager : NetworkBehaviour
         if (isWinner && !isDraw) effectiveRound += 2; // Devil: acede a pool mais poderosa
 
         var offered = new List<int>();
-        var used    = new HashSet<int>();
+        var used = new HashSet<int>();
         int attempts = 0;
 
         while (offered.Count < _offeredCardCount && attempts < 200)
@@ -174,7 +174,7 @@ public class CardSelectionManager : NetworkBehaviour
     // ── CLIENT RPC: mostra as cartas ao jogador ───────────────────
 
     [ClientRpc]
-    private void SendCardOfferClientRpc(int[] cardIds, ClientRpcParams _ = default)
+    private void SendCardOfferClientRpc(int[] cardIds, ClientRpcParams rpcParams = default)
     {
         ShowCanvas(cardIds);
     }
@@ -182,9 +182,9 @@ public class CardSelectionManager : NetworkBehaviour
     // ── SERVER RPC: jogador confirmou a sua escolha ───────────────
 
     [ServerRpc(RequireOwnership = false)]
-    private void ConfirmSelectionServerRpc(int cardId, ServerRpcParams rpc = default)
+    private void ConfirmSelectionServerRpc(int cardId, ServerRpcParams rpcParams = default)
     {
-        ulong senderId = rpc.Receive.SenderClientId;
+        ulong senderId = rpcParams.Receive.SenderClientId;
 
         if (!_pendingChoices.ContainsKey(senderId))
         {
@@ -203,6 +203,10 @@ public class CardSelectionManager : NetworkBehaviour
         var stats = GetPlayerStats(senderId);
         if (stats != null)
         {
+            //if (card.acessoryPrefab != null) 
+            //{
+                
+            //}
             // Buffs → sempre aplicados ao próprio jogador
             stats.ApplyAll(card.buffs, 0f);
 
@@ -218,6 +222,12 @@ public class CardSelectionManager : NetworkBehaviour
 
         _pendingChoices[senderId] = cardId;
         Debug.Log($"[CardSelection] Jogador {senderId} escolheu carta '{card.name}'");
+
+        // Notifica o cliente para adicionar a carta ao inventário de uso em ronda
+        AddCardToPlayerClientRpc(cardId, new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = new[] { senderId } }
+        });
 
         // Notifica o cliente para fechar o canvas
         HideCanvasClientRpc(new ClientRpcParams
@@ -240,10 +250,30 @@ public class CardSelectionManager : NetworkBehaviour
         _roundManager?.StartRound();
     }
 
+    // ── CLIENT RPC: adiciona carta ao PlayerCardUser ──────────────
+
+    [ClientRpc]
+    private void AddCardToPlayerClientRpc(int cardId, ClientRpcParams rpcParams = default)
+    {
+        ScriptableCard card = _cardDatabase?.Get(cardId);
+        if (card == null) return;
+
+        // Encontra o PlayerCardUser do jogador local (dono do NetworkObject local)
+        foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
+        {
+            if (netObj.IsOwner)
+            {
+                var cardUser = netObj.GetComponent<PlayerCardUser>();
+                cardUser?.AddCard(card);
+                break;
+            }
+        }
+    }
+
     // ── CLIENT RPC: fecha o canvas ────────────────────────────────
 
     [ClientRpc]
-    private void HideCanvasClientRpc(ClientRpcParams _ = default)
+    private void HideCanvasClientRpc(ClientRpcParams rpcParams = default)
     {
         HideCanvas();
     }
@@ -269,11 +299,8 @@ public class CardSelectionManager : NetworkBehaviour
             _cardSlots[i].gameObject.SetActive(true);
             _cardSlots[i]._Card = card;
             _cardSlots[i].CardId = cardIds[i];
-
-            // Chama Refresh via reflexão para não quebrar a API actual do CardDisplay
-            var refreshMethod = typeof(CardDisplay).GetMethod("Refresh",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            refreshMethod?.Invoke(_cardSlots[i], null);
+            _cardSlots[i].SetSelectionMode(true);
+            _cardSlots[i].Refresh();
         }
     }
 

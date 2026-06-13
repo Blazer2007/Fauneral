@@ -28,7 +28,7 @@ public enum StatType
     CardCooldown,
     CardUses,
 
-    //Mischelaneous
+    //Diferenciados
     RepulsionForce,
     PoisonDamage
 }

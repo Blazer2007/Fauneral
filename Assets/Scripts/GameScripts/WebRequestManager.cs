@@ -16,24 +16,25 @@ public class WebRequestManager : MonoBehaviour
     {
         
     }
-    public void ButtonClicked(string buttonType)
-    {
-        Debug.Log($"O botão clicado foi:{buttonType}");
+    
+    //public void ButtonClicked(string buttonType)
+    //{
+    //    Debug.Log($"O botão clicado foi:{buttonType}");
         
-        if (buttonType == "get")
-        {
-            StartCoroutine(GetRequest(_serverPath+_getURL));
+    //    if (buttonType == "get")
+    //    {
+    //        StartCoroutine(GetRequest(_serverPath+_getURL));
 
-        }
-        else if (buttonType == "post")
-        {
-            StartCoroutine(PostRequest());
-        }
-        else if(buttonType == "getDB")
-        {
-             StartCoroutine(GetRequest(_serverPath+_getDBURL));
-        }
-    }
+    //    }
+    //    else if (buttonType == "post")
+    //    {
+    //        StartCoroutine(PostRequest());
+    //    }
+    //    else if(buttonType == "getDB")
+    //    {
+    //         StartCoroutine(GetRequest(_serverPath+_getDBURL));
+    //    }
+    //}
     
     public IEnumerator GetRequest(string url)
     {
