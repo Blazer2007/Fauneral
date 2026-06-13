@@ -588,9 +588,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -145}
+  m_AnchoredPosition: {x: -100, y: -40}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &133117013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +962,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887663347}
   m_CullTransparentMesh: 1
+--- !u!114 &1101991311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2895813570320703003, guid: eb5217211603e904e85745d96151270e, type: 3}
+  m_PrefabInstance: {fileID: 1583722474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1204822710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2895813570320703003, guid: eb5217211603e904e85745d96151270e, type: 3}
+  m_PrefabInstance: {fileID: 1455038735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1209494184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1138,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301932316}
   m_CullTransparentMesh: 1
+--- !u!114 &1303949093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2895813570320703003, guid: eb5217211603e904e85745d96151270e, type: 3}
+  m_PrefabInstance: {fileID: 57328073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355006302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,25 +2146,25 @@ MonoBehaviour:
     DisconnectedPanel: {fileID: 1658200934208182529}
     ReadyIndicator: {fileID: 1658200934208182528}
     PlayerCharacter: {fileID: 1658200934208182527}
-    ReadyButton: {fileID: 0}
+    ReadyButton: {fileID: 1658200934208182531}
     ReadyButtonLabel: {fileID: 0}
   - ConnectedPanel: {fileID: 1455038740}
     DisconnectedPanel: {fileID: 1455038739}
     ReadyIndicator: {fileID: 1455038738}
     PlayerCharacter: {fileID: 1455038737}
-    ReadyButton: {fileID: 0}
+    ReadyButton: {fileID: 1204822710}
     ReadyButtonLabel: {fileID: 0}
   - ConnectedPanel: {fileID: 1583722479}
     DisconnectedPanel: {fileID: 1583722478}
     ReadyIndicator: {fileID: 1583722477}
     PlayerCharacter: {fileID: 1583722476}
-    ReadyButton: {fileID: 0}
+    ReadyButton: {fileID: 1101991311}
     ReadyButtonLabel: {fileID: 0}
   - ConnectedPanel: {fileID: 57328078}
     DisconnectedPanel: {fileID: 57328077}
     ReadyIndicator: {fileID: 57328076}
     PlayerCharacter: {fileID: 57328075}
-    ReadyButton: {fileID: 0}
+    ReadyButton: {fileID: 1303949093}
     ReadyButtonLabel: {fileID: 0}
   _roomNameText: {fileID: 1355006304}
   _pinText: {fileID: 747038547}
@@ -2597,6 +2630,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8854489343756483566, guid: eb5217211603e904e85745d96151270e, type: 3}
   m_PrefabInstance: {fileID: 1658200934208182526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1658200934208182531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2895813570320703003, guid: eb5217211603e904e85745d96151270e, type: 3}
+  m_PrefabInstance: {fileID: 1658200934208182526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
