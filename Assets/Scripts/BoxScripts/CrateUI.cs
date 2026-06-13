@@ -58,8 +58,8 @@ public class CrateUI : MonoBehaviour
 
     private void Start()
     {
-        CrateSystem.Instance.OnInsufficientPoints += HandleInssufficientPoints;
-        CrateSystem.Instance.points.OnPointsChanged += UpdatePointsLabel;
+        CrateSystem.Instance.OnInsufficientCredits += HandleInssufficientPoints;
+        CrateSystem.Instance.credits.OnCreditsChanged += UpdatePointsLabel;
         CrateSystem.Instance.OnCrateOpenStart += HandleOpenStart;
         CrateSystem.Instance.OnCrateOpenResult += HandleOpenResult;
         ShowIdle();
@@ -98,7 +98,7 @@ public class CrateUI : MonoBehaviour
             costLabel.text = $"Cost: {CrateSystem.Instance.crate.cost} pts";
         
         if (pointsLabel != null)
-            pointsLabel.text = $"Your Points: {CrateSystem.Instance.points.Points}";
+            pointsLabel.text = $"Your Points: {CrateSystem.Instance.credits.Credits}";
 
         if (insufficientPointsMessage != null)
             insufficientPointsMessage.SetActive(false);
