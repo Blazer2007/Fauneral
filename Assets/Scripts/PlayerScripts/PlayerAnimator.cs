@@ -118,7 +118,7 @@ namespace TarodevController
                 _dashParticles.Play();
             }
         }
-        private void OnAttacked(bool attacked)
+        private void OnAttacked(bool attacked, bool isHeavy)
         {
             _anim.SetTrigger(AttackKey);
             _anim.SetBool(CanUseAttack, true);
