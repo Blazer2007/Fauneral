@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class WebRequestManager : MonoBehaviour
 {
-    private string _serverPath = "http://127.0.0.1:8080";
+    private string _serverPath = "https://node-server-4eg2.onrender.com";
     private string _getURL = "/get-data";
     private string _getDBURL = "/get-data-db";
     private string _postURL = "/post-data";
