@@ -10,21 +10,22 @@ namespace Networking
     {
         public static DiscoveryManager Instance { get; private set; }
 
-        private const string BaseUrl = "http://127.0.0.1:8080"; // Endereço do servidor Node.js
+        [Header("Configuração de Endereço")]
+        [SerializeField] private string _baseUrl = "https://node-server-4eg2.onrender.com";
 
         private void Awake()
         {
-            // Singleton para garantir que a comunicação com o Node.js seja centralizada
+            // Singleton para garantir que a comunicação com o servidor seja centralizada
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Mantém o gerenciador ativo entre cenas
         }
 
-        // Solicita ao Node.js a criação de uma sala e retorna o PIN gerado
+        // Solicita ao servidor externo a criação de uma sala e recebe o PIN de 4 dígitos
         public void CreateRoom(string relayJoinCode, string roomName, bool isPublic, int maxPlayers, Action<string> onComplete)
         {
             StartCoroutine(CreateRoomCoroutine(relayJoinCode, roomName, isPublic, maxPlayers, onComplete));
@@ -32,7 +33,7 @@ namespace Networking
 
         private IEnumerator CreateRoomCoroutine(string relayJoinCode, string roomName, bool isPublic, int maxPlayers, Action<string> onComplete)
         {
-            // Envia o código do Relay e metadados da sala
+            // Envia o código do Unity Relay e os metadados (nome, público/privado, etc)
             var roomData = new RoomData 
             { 
                 ip = relayJoinCode, 
@@ -43,19 +44,24 @@ namespace Networking
             };
             string json = JsonUtility.ToJson(roomData);
 
-            using (UnityWebRequest request = new UnityWebRequest($"{BaseUrl}/create-room", "POST"))
+            string url = $"{_baseUrl}/create-room";
+            Debug.Log($"[DiscoveryManager] Tentando CreateRoom em: {url}");
+
+            using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
             {
                 byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.timeout = 0; // sem timeout — só para teste
 
+                request.certificateHandler = new AcceptAllCertificates();
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     var response = JsonUtility.FromJson<CreateRoomResponse>(request.downloadHandler.text);
-                    onComplete?.Invoke(response.code); // Retorna o PIN de 4 dígitos
+                    onComplete?.Invoke(response.code); // Retorna o PIN gerado pelo servidor
                 }
                 else
                 {
@@ -65,7 +71,7 @@ namespace Networking
             }
         }
 
-        // Busca a lista de todas as salas marcadas como públicas no servidor Node.js
+        // Busca a lista de todas as salas públicas ativas no servidor (usado para preencher a tabela)
         public void GetPublicRooms(Action<RoomData[]> onComplete)
         {
             StartCoroutine(GetPublicRoomsCoroutine(onComplete));
@@ -73,13 +79,17 @@ namespace Networking
 
         private IEnumerator GetPublicRoomsCoroutine(Action<RoomData[]> onComplete)
         {
-            using (UnityWebRequest request = UnityWebRequest.Get($"{BaseUrl}/public-rooms"))
+            string url = $"{_baseUrl}/public-rooms";
+            Debug.Log($"[DiscoveryManager] Buscando salas em: {url}");
+
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
+                request.timeout = 20;
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
-                    // Faz o parse da lista de salas (formato JSON array)
+                    // Converte a lista JSON recebida em objetos C#
                     string json = request.downloadHandler.text;
                     if (!json.StartsWith("{")) json = "{\"rooms\":" + json + "}";
                     var response = JsonUtility.FromJson<RoomListResponse>(json);
@@ -87,13 +97,13 @@ namespace Networking
                 }
                 else
                 {
-                    Debug.LogError($"GetPublicRooms failed: {request.error}");
+                    Debug.LogError($"GetPublicRooms failed: {request.error} em {url}");
                     onComplete?.Invoke(null);
                 }
             }
         }
 
-        // Busca os dados de conexão de uma sala específica usando o PIN
+        // Busca os dados de conexão de uma sala específica usando o PIN de 4 dígitos
         public void JoinRoom(string nodeJsCode, Action<string> onComplete)
         {
             StartCoroutine(JoinRoomCoroutine(nodeJsCode, onComplete));
@@ -101,24 +111,28 @@ namespace Networking
 
         private IEnumerator JoinRoomCoroutine(string nodeJsCode, Action<string> onComplete)
         {
-            using (UnityWebRequest request = UnityWebRequest.Get($"{BaseUrl}/join-room/{nodeJsCode}"))
+            string url = $"{_baseUrl}/join-room/{nodeJsCode}";
+            Debug.Log($"[DiscoveryManager] Entrando na sala em: {url}");
+
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
+                request.timeout = 20;
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     var response = JsonUtility.FromJson<RoomData>(request.downloadHandler.text);
-                    onComplete?.Invoke(response.ip); // Retorna o código do Relay
+                    onComplete?.Invoke(response.ip); // Retorna o código de entrada do Relay
                 }
                 else
                 {
-                    Debug.LogError($"JoinRoom failed: {request.error}");
+                    Debug.LogError($"JoinRoom failed: {request.error} em {url}");
                     onComplete?.Invoke(null);
                 }
             }
         }
 
-        // Avisa o servidor Node.js que a quantidade de jogadores mudou (para atualizar na lista pública)
+        // Notifica o servidor sobre mudanças na contagem de jogadores (para atualizar a lista pública)
         public void UpdateRoom(string nodeJsCode, int currentPlayers)
         {
             StartCoroutine(UpdateRoomCoroutine(nodeJsCode, currentPlayers));
@@ -129,7 +143,7 @@ namespace Networking
             var roomUpdate = new RoomUpdate { currentPlayers = currentPlayers };
             string json = JsonUtility.ToJson(roomUpdate);
 
-            using (UnityWebRequest request = new UnityWebRequest($"{BaseUrl}/update-room/{nodeJsCode}", "POST"))
+            using (UnityWebRequest request = new UnityWebRequest($"{_baseUrl}/update-room/{nodeJsCode}", "POST"))
             {
                 byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -145,7 +159,7 @@ namespace Networking
             }
         }
 
-        // Remove a sala do catálogo global do Node.js
+        // Remove a sala do catálogo global (chamado quando o Host fecha a partida)
         public void DeleteRoom(string nodeJsCode)
         {
             StartCoroutine(DeleteRoomCoroutine(nodeJsCode));
@@ -153,7 +167,7 @@ namespace Networking
 
         private IEnumerator DeleteRoomCoroutine(string nodeJsCode)
         {
-            using (UnityWebRequest request = UnityWebRequest.Delete($"{BaseUrl}/delete-room/{nodeJsCode}"))
+            using (UnityWebRequest request = UnityWebRequest.Delete($"{_baseUrl}/delete-room/{nodeJsCode}"))
             {
                 yield return request.SendWebRequest();
 
@@ -168,7 +182,11 @@ namespace Networking
             }
         }
 
-        // Classes auxiliares para serialização JSON
+        public class AcceptAllCertificates : CertificateHandler
+        {
+            protected override bool ValidateCertificate(byte[] certificateData) => true;
+        }
+        // Classes de suporte para conversão de dados JSON
         [Serializable]
         private class RoomUpdate
         {

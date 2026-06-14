@@ -97,3 +97,4 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+  _baseUrl: https://node-server-4eg2.onrender.com
