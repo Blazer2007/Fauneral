@@ -52,15 +52,17 @@ namespace TarodevController
         private void FixedUpdate()
         {
             if (!IsOwner) return;
-            CheckCollisionsServerRpc(); // Check for collisions and update grounded status
+            CheckCollisionsServerRpc();
+            HandleJumpServerRpc();
+            HandleDirectionServerRpc();
+            HandleGravityServerRpc();
+            HandleDashServerRpc();
 
-            HandleJumpServerRpc(); // Handle jumping logic, including coyote time and jump buffering
-            HandleDirectionServerRpc(); // Handle horizontal movement based on player input
-            HandleGravityServerRpc(); // Handle gravity and falling logic, including variable jump height
-            HandleDashServerRpc(); // Handle dashing logic, including dash cooldowns
-            HandleAttackServerRpc(); // Handle attacking logic, including attack cooldowns and damage
+            // Só chama se houver ataque para processar
+            if (_attackToConsume || _heavyAttackToConsume)
+                HandleAttackServerRpc();
 
-            ApplyMovementServerRpc(); // Apply the calculated velocity to the Rigidbody2D component
+            ApplyMovementServerRpc();
         }
         #region Inputs
 
@@ -88,10 +90,18 @@ namespace TarodevController
                 _dashToConsume = true;
 
             if (_frameInput.AttackDown)
+            {
                 _attackToConsume = true;
+                Debug.Log("Light attack input detected");
+            }
+                
 
             if (_frameInput.HeavyAttackDown)
-                _attackToConsume = true;
+            {
+                _heavyAttackToConsume = true;
+                Debug.Log("Heavy attack input detected");
+            }
+                
 
             //if _frameInput.Move.x is bigger than 0(moving right) then _facingRight is true,
             //but still check if _frameInput.Move.x is lower than 0(moving left), if that condition is true, then _facingRight is false
@@ -283,33 +293,33 @@ namespace TarodevController
         [ServerRpc(RequireOwnership = false)]
         private void HandleAttackServerRpc()
         {
+            Debug.Log("HandleAttack called");
+            if (!IsOwner) return; 
             _attackTimer += Time.fixedDeltaTime;
             _heavyAttackTimer += Time.fixedDeltaTime;
 
-            if (!_attackToConsume)
-                return;
-
-            // AttackSpeed vem do PlayerStats — cartas podem reduzir o cooldown
             float attackInterval = _playerStats != null ? _playerStats.AttackSpeed : _stats.AttackSpeed;
-            if (_frameInput.AttackDown && _attackTimer >= attackInterval)
-            {
+
+            if (_attackToConsume && _attackTimer >= attackInterval)
+            {               
                 _attackTimer = 0f;
-                _attackToConsume = true;
+                _attackToConsume = false;
                 LightAttackServerRpc();
                 Attacked?.Invoke(true, false);
                 return;
             }
-            _attackToConsume = false;
 
-            if (_heavyAttackToConsume && _frameInput.HeavyAttackDown && _heavyAttackTimer >= attackInterval * 2)
+            if (_heavyAttackToConsume && _heavyAttackTimer >= attackInterval * 2f)
             {
                 _heavyAttackTimer = 0f;
-                _heavyAttackToConsume = true;
+                _heavyAttackToConsume = false;
                 HeavyAttackServerRpc();
                 Attacked?.Invoke(true, true);
                 return;
             }
-            _heavyAttackToConsume = false;
+
+            if (!_attackToConsume) _attackToConsume = false;
+            if (!_heavyAttackToConsume) _heavyAttackToConsume = false;
 
             Attacked?.Invoke(false, false);
         }

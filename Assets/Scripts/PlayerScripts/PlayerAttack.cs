@@ -43,16 +43,21 @@ public class PlayerAttack : MonoBehaviour
 
         if (isHeavy)
         {
+            Debug.Log("Heavy attack executed");
             DoHeavyAttack();
         }
         else
         {
+
+            Debug.Log("Light attack executed");
             DoLightAttack();
         }
     }
 
     private void DoLightAttack()
     {
+        Debug.Log("light attack executed");
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(_lightAttackHtBx.position, _lightAttackRange, _playerLayer);
         
         foreach (var hit in hits)
@@ -69,6 +74,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void DoHeavyAttack()
     {
+
+        Debug.Log("Heavy attack executed");
         Collider2D[] hits = Physics2D.OverlapCircleAll(_heavyAttackHtBx.position, _heavyAttackRange, _playerLayer);
 
         foreach (var hit in hits)
