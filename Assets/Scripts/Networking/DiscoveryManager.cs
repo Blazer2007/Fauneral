@@ -44,13 +44,18 @@ namespace Networking
             };
             string json = JsonUtility.ToJson(roomData);
 
-            using (UnityWebRequest request = new UnityWebRequest($"{_baseUrl}/create-room", "POST"))
+            string url = $"{_baseUrl}/create-room";
+            Debug.Log($"[DiscoveryManager] Tentando CreateRoom em: {url}");
+
+            using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
             {
                 byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.timeout = 0; // sem timeout — só para teste
 
+                request.certificateHandler = new AcceptAllCertificates();
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
@@ -74,8 +79,12 @@ namespace Networking
 
         private IEnumerator GetPublicRoomsCoroutine(Action<RoomData[]> onComplete)
         {
-            using (UnityWebRequest request = UnityWebRequest.Get($"{_baseUrl}/public-rooms"))
+            string url = $"{_baseUrl}/public-rooms";
+            Debug.Log($"[DiscoveryManager] Buscando salas em: {url}");
+
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
+                request.timeout = 20;
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
@@ -88,7 +97,7 @@ namespace Networking
                 }
                 else
                 {
-                    Debug.LogError($"GetPublicRooms failed: {request.error}");
+                    Debug.LogError($"GetPublicRooms failed: {request.error} em {url}");
                     onComplete?.Invoke(null);
                 }
             }
@@ -102,8 +111,12 @@ namespace Networking
 
         private IEnumerator JoinRoomCoroutine(string nodeJsCode, Action<string> onComplete)
         {
-            using (UnityWebRequest request = UnityWebRequest.Get($"{_baseUrl}/join-room/{nodeJsCode}"))
+            string url = $"{_baseUrl}/join-room/{nodeJsCode}";
+            Debug.Log($"[DiscoveryManager] Entrando na sala em: {url}");
+
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
+                request.timeout = 20;
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
@@ -113,7 +126,7 @@ namespace Networking
                 }
                 else
                 {
-                    Debug.LogError($"JoinRoom failed: {request.error}");
+                    Debug.LogError($"JoinRoom failed: {request.error} em {url}");
                     onComplete?.Invoke(null);
                 }
             }
@@ -169,6 +182,10 @@ namespace Networking
             }
         }
 
+        public class AcceptAllCertificates : CertificateHandler
+        {
+            protected override bool ValidateCertificate(byte[] certificateData) => true;
+        }
         // Classes de suporte para conversão de dados JSON
         [Serializable]
         private class RoomUpdate

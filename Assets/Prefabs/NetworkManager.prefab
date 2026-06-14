@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lobbyManagerPrefab: {fileID: 4086198486598439204, guid: 900061a895d1b8d4795a05e1451ce44c, type: 3}
-  _serverAddress: 127.0.0.1
+  _serverAddress: https://node-server-4eg2.onrender.com
   _serverPort: 7777
   _serverTag: Server
 --- !u!114 &4908786209823386679
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 127.0.0.1
+    Address: https://node-server-4eg2.onrender.com
     Port: 7777
     WebSocketPath: /
-    ServerListenAddress: 127.0.0.1
+    ServerListenAddress: https://node-server-4eg2.onrender.com
     ClientBindPort: 0
   DebugSimulator:
     PacketDelayMS: 0
