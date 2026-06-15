@@ -30,6 +30,8 @@ public class PlayerHealth : NetworkBehaviour
 
     // MaxHP vem do PlayerStats - cartas de upgrade alteram este valor correctamente
     public float MaxHP => _playerStats != null ? _playerStats.MaxHP : 100f;
+    
+
 
     private RoundManager _roundManager;
     private SpriteRenderer[] _renderers;

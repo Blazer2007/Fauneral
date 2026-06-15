@@ -20,6 +20,7 @@ public enum StatType
 
     // Defesa / Vida
     MaxHP,
+    HP,
     Armor,          // redução de dano (flat)
     DamageReduction, // redução de dano (%)
     SpikeDamage,     // dano causado por espinhos (flat)

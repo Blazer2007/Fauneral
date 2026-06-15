@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _baseAttackSpeed = 1f;
     [SerializeField] private float _baseKnockback = 5f;
     [SerializeField] private float _baseMaxHP = 100f;
+    [SerializeField] private float _baseHP = 100f;
     [SerializeField] private float _baseArmor = 0f;
     [SerializeField] private float _baseDmgReduction = 0f;   // 0–1 (percentagem)
     [SerializeField] private float _baseCardCooldown = 3f;
@@ -47,6 +48,7 @@ public class PlayerStats : MonoBehaviour
     public float AttackSpeed => Compute(StatType.AttackSpeed, _baseAttackSpeed);
     public float Knockback => Compute(StatType.Knockback, _baseKnockback);
     public float MaxHP => Compute(StatType.MaxHP, _baseMaxHP);
+    public float HP => Compute(StatType.HP, _baseHP);
     public float Armor => Compute(StatType.Armor, _baseArmor);
     public float DamageReduction => Compute(StatType.DamageReduction, _baseDmgReduction);
     public float CardCooldown => Compute(StatType.CardCooldown, _baseCardCooldown);
@@ -119,6 +121,7 @@ public class PlayerStats : MonoBehaviour
             StatType.AttackSpeed => AttackSpeed,
             StatType.Knockback => Knockback,
             StatType.MaxHP => MaxHP,
+            StatType.HP => HP,
             StatType.Armor => Armor,
             StatType.DamageReduction => DamageReduction,
             StatType.CardCooldown => CardCooldown,

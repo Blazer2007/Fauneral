@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -46,11 +46,42 @@ namespace TarodevController
 
         private void Update()
         {
-            _time += Time.deltaTime;
-            if (!IsOwner||!IsHost) return;
+            _time += Time.deltaTime; // Save the time in deltatime (for FPS balancing)
+            if (!IsOwner) return;
+            else
+            GatherInputServerRpc(); // Store the player's input for the current frame
+        }
 
-            // Gather local input
-            var input = new FrameInput
+        private void FixedUpdate()
+        {
+            if (!IsOwner) return;
+            else { 
+                CheckCollisionsServerRpc();
+            HandleJumpServerRpc();
+            HandleDirectionServerRpc();
+            HandleGravityServerRpc();
+            HandleDashServerRpc();
+
+            _attackTimer += Time.fixedDeltaTime;
+            _heavyAttackTimer += Time.fixedDeltaTime;
+
+            float attackInterval = _playerStats != null ? _playerStats.AttackSpeed : _stats.AttackSpeed;
+
+            if (_attackToConsume && _attackTimer >= attackInterval)
+                HandleAttackServerRpc();
+            else if (_heavyAttackToConsume && _heavyAttackTimer >= attackInterval * 2f)
+                HandleAttackServerRpc();
+
+            ApplyMovementServerRpc();
+         }
+        }
+        #region Inputs
+
+        // Gather the player's input for the current frame and store it in the _frameInput struct. This method also updates the facing direction based on horizontal input and sets bools to check if the player has a jump, dash, or attack to consume.
+        [ServerRpc(RequireOwnership = false)]
+        private void GatherInputServerRpc()
+        {
+            _frameInput = new FrameInput
             {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
