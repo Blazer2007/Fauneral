@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Unity.Netcode;
 /// <summary>
 /// Handles all in-game UI: HP bars, round win counters, and end screens.
 /// All elements are placeholder hook up in the Inspector.
 /// </summary>
 public class GameUI : MonoBehaviour
 {
+    public static GameUI Instance { get; private set; }
+
     [Header("HP Bars — one Slider per player, in order P1, P2, ...")]
     [Tooltip("Drag the HP Slider for each player here, in player order")]
     public List<Slider> HPBars = new List<Slider>();
@@ -28,23 +30,25 @@ public class GameUI : MonoBehaviour
     public Button RestartButton;
 
     // Reference to players so we can read HP every frame
-    private List<PlayerHealth> _players = new List<PlayerHealth>();
+    private List<PlayerHealth> _playerHPs = new List<PlayerHealth>();
+
+
 
     private void Start()
     {
         // Find all players in the scene automatically
-        _players.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
+        _playerHPs.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
         // Sort by PlayerIndex so P1 maps to HPBars[0], P2 to HPBars[1], etc.
-        _players.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
+        _playerHPs.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
 
         // Initialise HP bars
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < _playerHPs.Count; i++)
         {
             if (i < HPBars.Count && HPBars[i] != null)
             {
                 HPBars[i].minValue = 0;
-                HPBars[i].maxValue = _players[i].MaxHP;
-                HPBars[i].value = _players[i].CurrentHP;
+                HPBars[i].maxValue = _playerHPs[i].MaxHP;
+                HPBars[i].value = _playerHPs[i].CurrentHP;
             }
         }
 
@@ -54,12 +58,15 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         // Update HP bars every frame
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < _playerHPs.Count; i++)
         {
             if (i < HPBars.Count && HPBars[i] != null)
-                HPBars[i].value = _players[i].CurrentHP;
+                HPBars[i].value = _playerHPs[i].CurrentHP;
         }
+        
     }
+
+    
 
     /// <summary>
     /// Updates the round win counters displayed on screen.
@@ -117,5 +124,41 @@ public class GameUI : MonoBehaviour
 
         if (EndText != null)
             EndText.text = message;
+    }
+
+    // This method is called when the players are first spawned,
+    // to link the HP bars to the correct players on each client and connect the respective PlayerHealth between them.
+    [ClientRpc]
+    public void ConnectHPBarsAndPlayerHPWithPlayers(ulong ClientId, ClientRpcParams rpcParams = default)
+    {
+        UpdateIndividualHPBars(ClientId);
+        PlayerHealth[] playersHP = FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None);
+        _playerHPs.Clear();
+        foreach (PlayerHealth php in playersHP)
+        {
+            var no = php.GetComponentInParent<NetworkObject>();
+            if (no.OwnerClientId == ClientId)
+            {
+                _playerHPs.Add(php);
+            }
+        }
+    }
+    // This method is called every frame to update the HP bars of the respective players on each client.
+    [ClientRpc]
+    public void UpdateIndividualHPBars(ulong ClientId, ClientRpcParams rpcParams = default)
+    {
+        // Update individual player's HP bars considering the ClientId to only update the HP bars of the respective player on each client.
+        for (int i = 0; i < _playerHPs.Count; i++)
+        {
+            if (i < HPBars.Count && HPBars[i] != null)
+            {
+                var no = _playerHPs[i].GetComponentInParent<NetworkObject>();
+                if (no.OwnerClientId == ClientId)
+                {
+                    HPBars[i].value = _playerHPs[i].CurrentHP;
+                }
+            }
+        }
+
     }
 }

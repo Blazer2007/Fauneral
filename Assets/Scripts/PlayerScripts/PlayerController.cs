@@ -157,14 +157,7 @@ namespace TarodevController
             }
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders; // Reset the queriesStartInColliders setting to its original value
         }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.tag == "KillZone")
-            {
-                // Handle player death or respawn
-                Destroy(gameObject);
-            }
-        }
+        
         #endregion
 
         #region Jumping

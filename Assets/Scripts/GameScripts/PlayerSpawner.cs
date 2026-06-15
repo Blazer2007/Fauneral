@@ -92,18 +92,23 @@ public class PlayerSpawner : MonoBehaviour
 
         Debug.Log($"[PlayerSpawner] Found {points.Count} spawn points");
 
+        GameUI gameUI = GameObject.FindFirstObjectByType<GameUI>(); // Tenta encontrar o GameUI na cena carregada
+        if (gameUI == null)
+        {
+            Debug.LogError("[PlayerSpawner] GameUI não encontrado na GameScene!");
+            return;
+        }
+
         int i = 0;
         foreach (ulong clientId in clientsCompleted)
         {
             Transform point = points[i % points.Count];
-            Debug.Log($"[PlayerSpawner] Instantiating player for clientId {clientId} at {point.position}");
             var player = Instantiate(_playerPrefab, point.position, point.rotation);
             var netObj = player.GetComponent<NetworkObject>();
             if (netObj != null)
             {
-                // destroyCurrentPlayerObject = true handles replacement
                 netObj.SpawnAsPlayerObject(clientId, true);
-                Debug.Log($"[PlayerSpawner] Spawned clientId {clientId} successfully.");
+                gameUI.ConnectHPBarsAndPlayerHPWithPlayers(clientId);
             }
             else
             {

@@ -102,6 +102,8 @@ public class RoundManager : NetworkBehaviour
         _gameUI?.HideEndScreen();
 
         Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {Players.Count} jogadores.");
+
+
     }
 
     /// <summary>
@@ -200,5 +202,19 @@ public class RoundManager : NetworkBehaviour
         if (player == null) return ulong.MaxValue;
         var netObj = player.GetComponent<NetworkObject>();
         return netObj != null ? netObj.OwnerClientId : ulong.MaxValue;
+    }
+
+    private void Update()
+    {
+        if(_gameUI== null) return;
+           
+        //Atualiza todas as barras de vida de cada jogador a cada frame com a função UpdateIndividualHPBars do script GameUI.cs
+        foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            
+            _gameUI.UpdateIndividualHPBars(clientId);
+
+        }
+
     }
 }
