@@ -17,23 +17,36 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[PlayerSpawner] Start ó NetworkManager existe: {NetworkManager.Singleton != null}");
+        Debug.Log($"[PlayerSpawner] Start - NetworkManager existe: {NetworkManager.Singleton != null}");
 
         if (NetworkManager.Singleton == null)
         {
-            Debug.LogError("[PlayerSpawner] NetworkManager.Singleton È null no Start!");
+            Debug.LogError("[PlayerSpawner] NetworkManager.Singleton is null in Start!");
             return;
         }
 
-        // Subscreve ao evento de conex„o do NetworkManager para esperar pela rede iniciar
+        // Subscreve ao evento de conex√£o do NetworkManager para esperar pela rede iniciar
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
-        Debug.Log("[PlayerSpawner] Subscrito ao OnServerStarted");
+        
+        // Se o servidor j√° iniciou antes do Start (ex: host j√° ativo), chama manualmente
+        if (NetworkManager.Singleton.IsListening && NetworkManager.Singleton.IsServer)
+        {
+            Debug.Log("[PlayerSpawner] Server already listening, calling OnServerStarted manually.");
+            OnServerStarted();
+        }
+        
+        Debug.Log("[PlayerSpawner] Subscribed to OnServerStarted");
     }
 
     private void OnServerStarted()
     {
-        Debug.Log("[PlayerSpawner] OnServerStarted chamado ó a subscrever OnLoadEventCompleted");
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadCompleted;
+        Debug.Log("[PlayerSpawner] OnServerStarted called - subscribing to OnLoadEventCompleted");
+        // Evita subscri√ß√£o dupla
+        if (NetworkManager.Singleton.SceneManager != null)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnSceneLoadCompleted;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadCompleted;
+        }
     }
 
     private void OnDestroy()
@@ -47,17 +60,23 @@ public class PlayerSpawner : MonoBehaviour
     private void OnSceneLoadCompleted(string sceneName, LoadSceneMode mode,
         List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
-        Debug.Log($"[PlayerSpawner] OnSceneLoadCompleted ó cena: {sceneName}, IsServer: {NetworkManager.Singleton.IsServer}");
+        Debug.Log($"[PlayerSpawner] OnSceneLoadCompleted - scene: {sceneName}, IsServer: {NetworkManager.Singleton.IsServer}");
 
         if (!NetworkManager.Singleton.IsServer) return;
-        if (sceneName != "GameScene") return;
+        
+        // Compara ignorando mai√∫sculas/min√∫sculas e possivelmente caminhos
+        if (!sceneName.EndsWith("GameScene"))
+        {
+            Debug.Log($"[PlayerSpawner] Scene {sceneName} is not GameScene, skipping spawn.");
+            return;
+        }
 
-        Debug.Log($"[PlayerSpawner] A spawnar {clientsCompleted.Count} jogadores");
+        Debug.Log($"[PlayerSpawner] Spawning {clientsCompleted.Count} players in {sceneName}");
 
         GameObject spawnPointsParent = GameObject.Find("PlayerSpawnPoints");
         if (spawnPointsParent == null)
         {
-            Debug.LogError("[PlayerSpawner] 'PlayerSpawnPoints' n„o encontrado na GameScene!");
+            Debug.LogError($"[PlayerSpawner] 'PlayerSpawnPoints' not found in {sceneName}!");
             return;
         }
 
@@ -65,15 +84,31 @@ public class PlayerSpawner : MonoBehaviour
         foreach (Transform t in spawnPointsParent.GetComponentsInChildren<Transform>())
             if (t != spawnPointsParent.transform) points.Add(t);
 
-        Debug.Log($"[PlayerSpawner] Encontrados {points.Count} spawn points");
+        if (points.Count == 0)
+        {
+            Debug.LogError("[PlayerSpawner] No spawn points found under 'PlayerSpawnPoints'!");
+            return;
+        }
+
+        Debug.Log($"[PlayerSpawner] Found {points.Count} spawn points");
 
         int i = 0;
         foreach (ulong clientId in clientsCompleted)
         {
             Transform point = points[i % points.Count];
+            Debug.Log($"[PlayerSpawner] Instantiating player for clientId {clientId} at {point.position}");
             var player = Instantiate(_playerPrefab, point.position, point.rotation);
-            player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-            Debug.Log($"[PlayerSpawner] Spawned cliente {clientId} no ponto {i}");
+            var netObj = player.GetComponent<NetworkObject>();
+            if (netObj != null)
+            {
+                // destroyCurrentPlayerObject = true handles replacement
+                netObj.SpawnAsPlayerObject(clientId, true);
+                Debug.Log($"[PlayerSpawner] Spawned clientId {clientId} successfully.");
+            }
+            else
+            {
+                Debug.LogError("[PlayerSpawner] Player prefab missing NetworkObject!");
+            }
             i++;
         }
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
@@ -38,41 +38,70 @@ public class RoundManager : NetworkBehaviour
 
         if (_settings == null)
             Debug.LogWarning("[RoundManager] No RoundSettings assigned!", this);
-
-        Players.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
-        Players.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
-
-        foreach (var player in Players)
-            RoundWins[player.PlayerIndex] = 0;
+            
+        // No Awake não procuramos mais jogadores fixos, faremos isso ao iniciar a ronda
     }
 
     private void Start()
     {
-        // Abre a fase de selecção antes da primeira ronda
-        // O CardSelectionManager chamará StartRound() quando todos escolherem
         if (IsServer)
-            BeginCardSelection(ulong.MaxValue); // Sem vencedor na primeira ronda
+        {
+            // Começa a monitorizar jogadores que se ligam para inicializar os seus RoundWins
+            NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
+            
+            // Inicializa vitórias para quem já está ligado
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                HandleClientConnected(client.ClientId);
+            }
+
+            BeginCardSelection(ulong.MaxValue); 
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer && NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
+        }
+    }
+
+    private void HandleClientConnected(ulong clientId)
+    {
+        // Precisamos de associar o clientId a um índice de jogador (0..3)
+        // Por agora, assumimos que o RoundWins usa o PlayerIndex do PlayerHealth.
+        // Como o PlayerHealth só existe no GameObject do jogador, 
+        // as vitórias serão inicializadas quando a ronda começar e encontrarmos os componentes.
     }
 
     // ── ROUND LOOP ────────────────────────────────────────────
 
-    /// <summary>
-    /// Chamado pelo CardSelectionManager quando todos os jogadores escolheram.
-    /// </summary>
     public void StartRound()
     {
         if (MatchOver) return;
 
         RoundNumber++;
+        RoundActive = true;
+
+        // Refresh the list of players in the scene
+        Players.Clear();
+        Players.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
+        Players.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
 
         foreach (var player in Players)
+        {
+            // Inicializa RoundWins para novos índices encontrados
+            if (!RoundWins.ContainsKey(player.PlayerIndex))
+                RoundWins[player.PlayerIndex] = 0;
+                
             player.ResetHP();
+        }
 
-        RoundActive = true;
         _gameUI?.UpdateRoundWins(RoundWins);
         _gameUI?.HideEndScreen();
 
-        Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada.");
+        Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {Players.Count} jogadores.");
     }
 
     /// <summary>

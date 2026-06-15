@@ -1,13 +1,14 @@
 using UnityEngine;
 using TarodevController;
+using Unity.Netcode;
 
 /// <summary>
 /// Manages the player's HP, death, and respawn.
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : NetworkBehaviour
 {
     [Header("Stats")]
-    [Tooltip("ReferÍncia ao PlayerStats do mesmo GameObject ó MaxHP vem daqui")]
+    [Tooltip("Refer√™ncia ao PlayerStats do mesmo GameObject - MaxHP vem daqui")]
     private PlayerStats _playerStats;
 
     [Header("Player Settings")]
@@ -18,49 +19,60 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("The position this player respawns at")]
     [SerializeField] private Transform _spawnPoint;
 
-    [field: Header("Runtime State (Read Only)")]
-    [field: SerializeField] public float CurrentHP { get; private set; }
-    [field: SerializeField] public bool IsAlive { get; private set; } = true;
+    [field: Header("Runtime State (Networked)")]
+    public NetworkVariable<float> NetCurrentHP = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> NetIsAlive = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    public float CurrentHP => NetCurrentHP.Value;
+    public bool IsAlive => NetIsAlive.Value;
 
     public int PlayerIndex => _playerIndex;
 
-    // MaxHP vem do PlayerStats ó cartas de upgrade alteram este valor correctamente
+    // MaxHP vem do PlayerStats - cartas de upgrade alteram este valor correctamente
     public float MaxHP => _playerStats != null ? _playerStats.MaxHP : 100f;
 
     private RoundManager _roundManager;
+    private SpriteRenderer[] _renderers;
+    private Collider2D[] _colliders;
 
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
         _roundManager = FindFirstObjectByType<RoundManager>();
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
+        _colliders = GetComponentsInChildren<Collider2D>();
 
         if (_playerStats == null)
-            Debug.LogWarning($"[PlayerHealth] PlayerStats n„o encontrado em {gameObject.name}!", this);
+            Debug.LogWarning($"[PlayerHealth] PlayerStats n√£o encontrado em {gameObject.name}!", this);
     }
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
-        ResetHP();
+        if (IsServer)
+        {
+            ResetHP();
+        }
     }
 
     /// <summary>
-    /// Apply damage to this player.
+    /// Apply damage to this player. Should be called on server.
     /// </summary>
     public void TakeDamage(float amount)
     {
+        if (!IsServer) return;
         if (!IsAlive) return;
 
-        // Aplica reduÁ„o de dano se existir (flat armor primeiro, depois percentagem)
+        // Aplica redu√ß√£o de dano se existir (flat armor primeiro, depois percentagem)
         float armor = _playerStats != null ? _playerStats.Armor : 0f;
         float dmgRedPct = _playerStats != null ? _playerStats.DamageReduction : 0f;
 
         float mitigated = Mathf.Max(0f, amount - armor);
         mitigated *= (1f - Mathf.Clamp01(dmgRedPct));
 
-        CurrentHP -= mitigated;
-        CurrentHP = Mathf.Clamp(CurrentHP, 0, MaxHP);
+        NetCurrentHP.Value -= mitigated;
+        NetCurrentHP.Value = Mathf.Clamp(NetCurrentHP.Value, 0, MaxHP);
 
-        if (CurrentHP <= 0)
+        if (NetCurrentHP.Value <= 0)
             Die();
     }
 
@@ -69,16 +81,18 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     public void FallDeath()
     {
+        if (!IsServer) return;
         if (!IsAlive) return;
-        CurrentHP = 0;
+        NetCurrentHP.Value = 0;
         Die();
     }
 
     private void Die()
     {
-        IsAlive = false;
-        gameObject.SetActive(false);
-        _roundManager?.OnPlayerDied(this); // Notifica o RoundManager
+        NetIsAlive.Value = false;
+        // Em vez de desactivar o GameObject (que quebra a rede), desactivamos visuais e colis√µes
+        SetPlayerState(false);
+        _roundManager?.OnPlayerDied(this); // Notifica o RoundManager (no servidor)
     }
 
     /// <summary>
@@ -86,11 +100,37 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     public void ResetHP()
     {
-        CurrentHP = MaxHP;
-        IsAlive = true;
-        gameObject.SetActive(true);
+        if (!IsServer) return;
+        
+        NetCurrentHP.Value = MaxHP;
+        NetIsAlive.Value = true;
+        SetPlayerState(true);
 
         if (_spawnPoint != null)
+        {
+            // O NetworkTransform sincronizar√° isto
             transform.position = _spawnPoint.position;
+        }
+    }
+
+    private void SetPlayerState(bool active)
+    {
+        // Envia RPC para todos garantirem o estado visual
+        SetPlayerStateClientRpc(active);
+    }
+
+    [ClientRpc]
+    private void SetPlayerStateClientRpc(bool active)
+    {
+        foreach (var r in _renderers) r.enabled = active;
+        foreach (var c in _colliders) c.enabled = active;
+        
+        // Se houver um Animator, podemos querer par√°-lo
+        var anim = GetComponentInChildren<Animator>();
+        if (anim != null) anim.enabled = active;
+        
+        // Se houver um PlayerController, desactivamos o input
+        var ctrl = GetComponent<PlayerController>();
+        if (ctrl != null) ctrl.enabled = active;
     }
 }
