@@ -119,27 +119,32 @@ public class CardSelectionManager : NetworkBehaviour
         int effectiveRound = _currentRound;
         if (isWinner && !isDraw) effectiveRound += 2; // Devil: acede a pool mais poderosa
 
-        var offered = new List<int>();
-        var used = new HashSet<int>();
-        int attempts = 0;
+        var offered = new List<int>(); // Índices das cartas sorteadas
+        var used = new HashSet<int>(); // Índices já sorteados 
+        int attempts = 0; 
 
+        
         while (offered.Count < _offeredCardCount && attempts < 200)
         {
-            attempts++;
+            
+            attempts++; 
             string targetRarity = _rarityTable != null
                 ? _rarityTable.RollRarity(effectiveRound)
                 : "Common";
 
-            int idx = TryGetCardOfRarity(targetRarity, used);
+            int idx = TryGetCardOfRarity(targetRarity, used); // Sorteia uma carta da raridade pedida, excluindo as já sorteadas
+            
             if (idx >= 0)
             {
+                // Adiciona a carta sorteada à lista de oferecidas e marca como usada
                 offered.Add(idx);
                 used.Add(idx);
             }
+            
         }
 
         // Fallback: completa com cartas aleatórias se não houver suficientes de uma raridade
-        int safetyAttempts = 0;
+        int safetyAttempts = 0; 
         while (offered.Count < _offeredCardCount && safetyAttempts < 200)
         {
             safetyAttempts++;
