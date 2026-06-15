@@ -91,6 +91,7 @@ public class PlayerHealth : NetworkBehaviour
 
     private void Die()
     {
+        Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu.");
         NetIsAlive.Value = false;
         // Em vez de desactivar o GameObject (que quebra a rede), desactivamos visuais e colisões
         SetPlayerState(false);
@@ -134,5 +135,14 @@ public class PlayerHealth : NetworkBehaviour
         // Se houver um PlayerController, desactivamos o input
         var ctrl = GetComponent<PlayerController>();
         if (ctrl != null) ctrl.enabled = active;
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "KillZone")
+        {
+            Die();
+        }
     }
 }
