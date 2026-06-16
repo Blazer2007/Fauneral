@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -181,6 +182,10 @@ public class LobbyMenuUI : MonoBehaviour
     {
         if (Unity.Netcode.NetworkManager.Singleton.IsServer)
         {
+            // Parar o broadcast LAN antes de mudar de cena
+            if (Networking.LANDiscovery.Instance != null)
+                Networking.LANDiscovery.Instance.StopAll();
+
             Unity.Netcode.NetworkManager.Singleton.SceneManager.LoadScene("GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
@@ -189,6 +194,28 @@ public class LobbyMenuUI : MonoBehaviour
     {
         LobbyClientManager.Instance?.LeaveLobby();
         UnityEngine.SceneManagement.SceneManager.LoadScene("PlayMenu");
+    }
+
+    public void CopyPinToClipboard()
+    {
+        if (string.IsNullOrEmpty(LobbySessionData.Pin)) return;
+        
+        GUIUtility.systemCopyBuffer = LobbySessionData.Pin;
+        Debug.Log($"[Lobby] PIN {LobbySessionData.Pin} copiado para a área de transferência.");
+        
+        // Feedback visual temporário
+        if (_pinText != null)
+        {
+            string originalText = _pinText.text;
+            _pinText.text = "<color=green>COPIED!</color>";
+            StartCoroutine(RestorePinText(originalText));
+        }
+    }
+
+    private IEnumerator RestorePinText(string original)
+    {
+        yield return new WaitForSeconds(2f);
+        if (_pinText != null) _pinText.text = original;
     }
 
     // ── HELPERS ───────────────────────────────────────────────────

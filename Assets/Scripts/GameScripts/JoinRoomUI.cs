@@ -13,6 +13,7 @@ public class JoinRoomUI : MonoBehaviour
     public static JoinRoomUI Instance { get; private set; }
 
     [Header("Entrada por PIN")]
+    [SerializeField] private GameObject _pinContainer; // Parent of PIN input field and join button
     [SerializeField] private TMP_InputField _pinInputField; // Campo onde o jogador digita o PIN
     [SerializeField] private Button _joinByPinButton;
 
@@ -28,6 +29,10 @@ public class JoinRoomUI : MonoBehaviour
     {
         Instance = this;
         HideError();
+
+        // Mode specific setup
+        if (_pinContainer != null)
+            _pinContainer.SetActive(NetworkSessionSettings.IsOnlineMode);
     }
 
     private void OnEnable()
@@ -49,18 +54,59 @@ public class JoinRoomUI : MonoBehaviour
         
         Debug.Log("[JoinRoomUI] Solicitando lista de lobbies públicos ao iniciar.");
         RefreshPublicLobbies(); // Busca a lista automaticamente ao abrir a tela
+
+        // LAN Discovery
+        if (LANDiscovery.Instance != null)
+        {
+            LANDiscovery.Instance.OnServerFound += HandleLanServerFound;
+            LANDiscovery.Instance.StartSearching();
+        }
     }
 
-    // Chamado pelo botão de entrar manual
-    public void OnJoinByPinButton()
+    private void HandleLanServerFound(string ip, string roomName, string pin)
     {
-        string pin = _pinInputField != null ? _pinInputField.text : "";
-        if (string.IsNullOrWhiteSpace(pin))
+        // Add to the list if not already there
+        // For simplicity, we'll just add it as a PublicLobbyEntry with a special marker or just use the IP as the "PIN"
+        // But the listItem needs to know it's LAN to call the right join method.
+        
+        // Let's create a temporary entry
+        var entry = new PublicLobbyEntry {
+            Pin = pin,
+            RoomName = "[LAN] " + roomName,
+            CurrentPlayers = 1, // We don't know the exact count easily from broadcast without more data
+            MaxPlayers = 4
+        };
+        
+        // We need to store that this specific PIN/Entry is LAN
+        if (!_lanServers.ContainsKey(pin))
         {
-            ShowError("Introduz um PIN válido.");
-            return;
+            _lanServers[pin] = ip;
+            AddLanEntryToList(entry);
         }
-        JoinRoom(pin.Trim());
+    }
+
+    private Dictionary<string, string> _lanServers = new Dictionary<string, string>();
+
+    private void AddLanEntryToList(PublicLobbyEntry entry)
+    {
+        if (_lobbyItemPrefab == null || _publicLobbyList == null) return;
+
+        GameObject item = Instantiate(_lobbyItemPrefab, _publicLobbyList);
+        LobbyListItem listItem = item.GetComponent<LobbyListItem>();
+        // We might need to override the button behavior for LAN items
+        listItem?.Setup(entry.Pin, entry.RoomName, entry.CurrentPlayers, entry.MaxPlayers);
+        
+        // Since LobbyListItem probably calls JoinRoomUI.Instance.JoinRoom(pin)
+        // we need to make JoinRoom handle LAN pins
+    }
+
+    private void OnDestroy()
+    {
+        if (LANDiscovery.Instance != null)
+        {
+            LANDiscovery.Instance.OnServerFound -= HandleLanServerFound;
+            LANDiscovery.Instance.StopAll();
+        }
     }
 
     // Processo de conexão unificado (Relay + Netcode + Lobby)
@@ -68,6 +114,13 @@ public class JoinRoomUI : MonoBehaviour
     {
         HideError();
         if (_joinByPinButton != null) _joinByPinButton.interactable = false;
+
+        // Check if it's a LAN server
+        if (_lanServers.TryGetValue(pin, out string ip))
+        {
+            JoinLanRoom(ip, pin);
+            return;
+        }
 
         ShowError($"Conectando à sala {pin}...");
         // 1. Busca código Relay no Node.js e conecta
@@ -104,6 +157,33 @@ public class JoinRoomUI : MonoBehaviour
         }
     }
 
+    public async void JoinLanRoom(string ip, string pin)
+    {
+        ShowError($"Conectando LAN {ip}...");
+        bool success = MatchmakingController.Instance.StartClientLAN(ip);
+
+        if (success)
+        {
+            ShowError("Sincronizando LAN...");
+            float timeout = 5f;
+            while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
+            {
+                await System.Threading.Tasks.Task.Delay(200);
+                timeout -= 0.2f;
+            }
+
+            if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
+            {
+                LobbyClientManager.Instance.JoinLobby(pin);
+            }
+        }
+        else
+        {
+            ShowError("Falha na conexão LAN.");
+            if (_joinByPinButton != null) _joinByPinButton.interactable = true;
+        }
+    }
+
     // Atualiza a tabela chamando a API do Node.js
     public void OnRefreshButton()
     {
@@ -115,26 +195,47 @@ public class JoinRoomUI : MonoBehaviour
     {
         if (_emptyListText != null) { _emptyListText.text = "Buscando..."; _emptyListText.gameObject.SetActive(true); }
         
-        // Chama o DiscoveryManager para buscar dados via HTTP
-        DiscoveryManager.Instance.GetPublicRooms((rooms) => {
-            if (rooms == null)
-            {
-                PopulatePublicLobbies(new List<PublicLobbyEntry>());
-                return;
-            }
+        _lanServers.Clear(); // Clear LAN cache on refresh
+        
+        // If LAN mode, we don't necessarily call Node.js, but we can call both just in case
+        // But for clarity, if NOT online, maybe only show LAN?
+        // User wants separation, so let's stick to the mode.
 
-            List<PublicLobbyEntry> entries = new List<PublicLobbyEntry>();
-            foreach (var room in rooms)
+        if (NetworkSessionSettings.IsOnlineMode)
+        {
+            DiscoveryManager.Instance.GetPublicRooms((rooms) => {
+                if (rooms == null)
+                {
+                    PopulatePublicLobbies(new List<PublicLobbyEntry>());
+                    return;
+                }
+
+                List<PublicLobbyEntry> entries = new List<PublicLobbyEntry>();
+                foreach (var room in rooms)
+                {
+                    entries.Add(new PublicLobbyEntry {
+                        Pin = room.code,
+                        RoomName = room.name,
+                        CurrentPlayers = room.currentPlayers,
+                        MaxPlayers = room.maxPlayers
+                    });
+                }
+                PopulatePublicLobbies(entries); // Preenche a UI
+            });
+        }
+        else
+        {
+            // Just populate with what LANDiscovery found so far (it keeps running)
+            // The items are added via AddLanEntryToList dynamically.
+            if (_lanServers.Count == 0)
             {
-                entries.Add(new PublicLobbyEntry {
-                    Pin = room.code,
-                    RoomName = room.name,
-                    CurrentPlayers = room.currentPlayers,
-                    MaxPlayers = room.maxPlayers
-                });
+                if (_emptyListText != null) _emptyListText.text = "Procurando partidas locais...";
             }
-            PopulatePublicLobbies(entries); // Preenche a UI
-        });
+            else
+            {
+                if (_emptyListText != null) _emptyListText.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void OnBackButton()

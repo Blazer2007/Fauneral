@@ -15,6 +15,7 @@ public class CreateRoomUI : MonoBehaviour
     [SerializeField] private TMP_InputField _roomNameInput; // Nome da sala digitado pelo usuário
     [SerializeField] private UnityEngine.UI.Button _publicBtn;
     [SerializeField] private UnityEngine.UI.Button _privateBtn;
+    [SerializeField] private UnityEngine.UI.Button _lanBtn;
     [SerializeField] private TMP_Dropdown _maxPlayersDropdown; // Seleção de 2, 3 ou 4 jogadores
 
     [Header("Feedback")]
@@ -26,28 +27,60 @@ public class CreateRoomUI : MonoBehaviour
     [SerializeField] private Color _deselectedColor= new Color(0.55f, 0.55f, 0.55f); 
 
     [HideInInspector] public bool _isPublic = false; // Estado de visibilidade da sala
+    [HideInInspector] public bool _isLan = false;
 
     private void Awake()
     {
         HideError();
-        SetButtonSelected(_privateBtn, true); // Privado por padrão
-        SetButtonSelected(_publicBtn, false);
+        
+        // Auto-configure based on session mode
+        if (NetworkSessionSettings.IsOnlineMode)
+        {
+            if (_lanBtn != null) _lanBtn.gameObject.SetActive(false);
+            _publicBtn.gameObject.SetActive(true);
+            _privateBtn.gameObject.SetActive(true);
+            ActivatePrivateButton();
+        }
+        else
+        {
+            if (_lanBtn != null) _lanBtn.gameObject.SetActive(true);
+            _publicBtn.gameObject.SetActive(false);
+            _privateBtn.gameObject.SetActive(false);
+            ActivateLanButton();
+        }
+        
+        UpdateButtonVisuals();
     }
 
     // Chamado pelo clique no botão Público
     public void ActivatePublicButton()
     {
         _isPublic = true;
-        SetButtonSelected(_publicBtn, true);
-        SetButtonSelected(_privateBtn, false);
+        _isLan = false;
+        UpdateButtonVisuals();
     }
 
     // Chamado pelo clique no botão Privado
     public void ActivatePrivateButton()
     {
         _isPublic = false;
-        SetButtonSelected(_privateBtn, true);
-        SetButtonSelected(_publicBtn, false);
+        _isLan = false;
+        UpdateButtonVisuals();
+    }
+
+    public void ActivateLanButton()
+    {
+        _isPublic = false;
+        _isLan = true;
+        UpdateButtonVisuals();
+        Debug.Log("[CreateRoomUI] LAN Mode Activated");
+    }
+
+    private void UpdateButtonVisuals()
+    {
+        SetButtonSelected(_publicBtn, _isPublic && !_isLan);
+        SetButtonSelected(_privateBtn, !_isPublic && !_isLan);
+        SetButtonSelected(_lanBtn, _isLan);
     }
 
     // Muda a cor visual dos botões de seleção
@@ -57,6 +90,8 @@ public class CreateRoomUI : MonoBehaviour
         ColorBlock cb = btn.colors;
         cb.normalColor = selected ? _selectedColor : _deselectedColor;
         cb.highlightedColor = selected ? _selectedColor : _selectedColor;
+        cb.pressedColor = selected ? _selectedColor : _deselectedColor;
+        cb.selectedColor = selected ? _selectedColor : _deselectedColor;
         btn.colors = cb;
     }
 
@@ -87,9 +122,37 @@ public class CreateRoomUI : MonoBehaviour
 
         if (_createButton != null) _createButton.interactable = false;
 
+        if (_isLan)
+        {
+            ShowError("Iniciando Host LAN...");
+            string lanPin = MatchmakingController.Instance.StartHostLAN(roomName, maxPlayers);
+            
+            if (!string.IsNullOrEmpty(lanPin))
+            {
+                // Wait for sync
+                float lanTimeout = 5f;
+                while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && lanTimeout > 0)
+                {
+                    await System.Threading.Tasks.Task.Delay(100);
+                    lanTimeout -= 0.1f;
+                }
+
+                if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
+                {
+                    LobbyClientManager.Instance.CreateLobby(roomName, false, maxPlayers, lanPin);
+                }
+            }
+            else
+            {
+                ShowError("Falha ao criar sala LAN.");
+                if (_createButton != null) _createButton.interactable = true;
+            }
+            return;
+        }
+
         // 1. Inicia o Host via Relay e Node.js
         ShowError("Conectando ao Relay...");
-        string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(roomName, isPublic, maxPlayers);
+string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(roomName, isPublic, maxPlayers);
 
         if (string.IsNullOrEmpty(nodeJsCode))
         {
