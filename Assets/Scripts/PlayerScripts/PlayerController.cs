@@ -76,6 +76,7 @@ namespace TarodevController
         [ServerRpc(RequireOwnership = false)]
         private void GatherInputServerRpc()
         {
+            if (!IsOwner) return;
             _frameInput = new FrameInput
             {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
@@ -304,7 +305,6 @@ namespace TarodevController
                 _attackTimer = 0f;
                 _attackToConsume = false;
                 LightAttackServerRpc();
-                Attacked?.Invoke(true, false);
                 return;
             }
 
@@ -313,7 +313,6 @@ namespace TarodevController
                 _heavyAttackTimer = 0f;
                 _heavyAttackToConsume = false;
                 HeavyAttackServerRpc();
-                Attacked?.Invoke(true, true);
                 return;
             }
 

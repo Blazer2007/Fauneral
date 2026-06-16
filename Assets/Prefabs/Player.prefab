@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2147559761158548768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,6 +267,7 @@ MonoBehaviour:
   _baseAttackSpeed: 1
   _baseKnockback: 5
   _baseMaxHP: 100
+  _baseHP: 100
   _baseArmor: 0
   _baseDmgReduction: 0
   _baseCardCooldown: 3
@@ -302,9 +303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerstats: {fileID: 2981820481530735267}
   _lightAttackHtBx: {fileID: 4717449762931161222}
-  _lightAttackRange: 0.5
+  _lightAttackRange: 1.5
   _heavyAttackHtBx: {fileID: 7941050840790023024}
-  _heavyAttackRange: 0.8
+  _heavyAttackRange: 2
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -607,7 +608,7 @@ Transform:
   m_GameObject: {fileID: 6994019797240556497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0, z: 0}
+  m_LocalPosition: {x: 3.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

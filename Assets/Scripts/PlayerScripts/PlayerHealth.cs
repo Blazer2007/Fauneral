@@ -59,6 +59,14 @@ public class PlayerHealth : NetworkBehaviour
     /// <summary>
     /// Apply damage to this player. Should be called on server.
     /// </summary>
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TakeDamageServerRpc(float amount)
+    {
+        TakeDamage(amount);
+    }
+
+
     public void TakeDamage(float amount)
     {
         if (!IsServer) return;
@@ -138,11 +146,11 @@ public class PlayerHealth : NetworkBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.tag == "KillZone")
+        if (collision.tag == "KillZone")
         {
-            Die();
+            FallDeath();
         }
     }
 }

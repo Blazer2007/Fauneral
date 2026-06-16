@@ -67,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(_playerstats.Damage);
+                health.TakeDamageServerRpc(_playerstats.Damage);
             }
         }
     }
@@ -85,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(_playerstats.Damage * 2);
+                health.TakeDamageServerRpc(_playerstats.Damage * 2);
             }
         }
     }
