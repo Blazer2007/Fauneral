@@ -211,9 +211,7 @@ public class RoundManager : NetworkBehaviour
         //Atualiza todas as barras de vida de cada jogador a cada frame com a função UpdateIndividualHPBars do script GameUI.cs
         foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
-            
             _gameUI.UpdateIndividualHPBars(clientId);
-
         }
 
     }

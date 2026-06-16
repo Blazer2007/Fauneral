@@ -8,6 +8,7 @@ public class PlayerSpawner : MonoBehaviour
     public static PlayerSpawner Instance { get; private set; }
     [SerializeField] private GameObject _playerPrefab;
     // Remove o _spawnPoints do Inspector � vamos buscar da cena dinamicamente
+    private Transform spawnPointsParent;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerSpawner : MonoBehaviour
     private void Start()
     {
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
+        {
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadCompleted;
         }
     }
@@ -29,16 +31,10 @@ public class PlayerSpawner : MonoBehaviour
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnSceneLoadCompleted;
     }
 
-    private void OnSceneLoadCompleted(string sceneName, LoadSceneMode mode,
-        List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void OnSceneLoadCompleted(string sceneName, LoadSceneMode mode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
         if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsServer) return;
-        
-        // Use EndsWith to be safe with full paths
-        if (!sceneName.EndsWith("GameScene")) return;
 
-        if (!NetworkManager.Singleton.IsServer) return;
-        
         // Compara ignorando maiúsculas/minúsculas e possivelmente caminhos
         if (!sceneName.EndsWith("GameScene"))
         {
@@ -46,7 +42,8 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
-        Transform[] spawnPoints = spawnPointsParent.GetComponentsInChildren<Transform>();
+        Transform[] spawnPoints = GameObject.FindGameObjectWithTag("PlayerSpawnPoints")?.GetComponentsInChildren<Transform>();
+
         // GetComponentsInChildren inclui o pr�prio pai, por isso filtramos
         List<Transform> points = new List<Transform>();
         foreach (Transform t in spawnPointsParent.GetComponentsInChildren<Transform>())
