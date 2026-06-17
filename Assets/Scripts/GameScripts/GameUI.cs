@@ -129,6 +129,7 @@ public class GameUI : MonoBehaviour
     [ClientRpc]
     public void UpdateIndividualHPBars(ulong ClientId, ClientRpcParams rpcParams = default)
     {
+        bool _hpbarsConnected = false;
         // Update individual player's HP bars considering the ClientId to only update the HP bars of the respective player on each client.
         for (int i = 0; i < _playerHPs.Count; i++)
         {
@@ -139,6 +140,17 @@ public class GameUI : MonoBehaviour
                 {
                     HPBars[i].value = _playerHPs[i].CurrentHP;
                 }
+            }
+        }
+        if (_hpbarsConnected) return;
+
+        // verificar quantos clientes estao conectados e atualizar as HP bars de acordo com o numero de clientes conectados
+        int connectedClients = NetworkManager.Singleton.ConnectedClients.Count;
+        for (int i = 0; i < connectedClients; i++)
+        {
+            if (i < HPBars.Count && HPBars[i] != null)
+            {
+                HPBars[i].gameObject.SetActive(true);
             }
         }
 

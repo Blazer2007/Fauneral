@@ -72,7 +72,6 @@ public class PlayerSpawner : MonoBehaviour
             var netObj = player.GetComponent<NetworkObject>();
             var health = player.GetComponent<PlayerHealth>();
             if (health != null) health.SetPlayerIndex(i);
-
             if (netObj != null)
             {
                 netObj.SpawnAsPlayerObject(clientId, true);

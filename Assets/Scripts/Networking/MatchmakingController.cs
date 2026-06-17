@@ -188,6 +188,7 @@ namespace Networking
 
             string localPin = "LAN" + Random.Range(10, 99);
             LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
+            // LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
 
             return localPin;
         }
@@ -211,6 +212,7 @@ namespace Networking
             if (clientStarted)
             {
                 LANDiscovery.Instance.StopAll();
+               // LANDiscovery.Instance.StopAll();
             }
 
             return clientStarted;

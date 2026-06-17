@@ -55,10 +55,10 @@ public class PlayerHealth : NetworkBehaviour
             ResetHP();
         }
     }
-    private void Update()
-    {
-        UpdateHP();
-    }
+    //private void Update()
+    //{
+    //    UpdateHP();
+    //}
 
     /// <summary>
     /// Apply damage to this player. Should be called on server.
@@ -110,14 +110,14 @@ public class PlayerHealth : NetworkBehaviour
         _roundManager?.OnPlayerDied(this); // Notifica o RoundManager (no servidor)
     }
     /// Clamps HP to valid range and updates the UI. Called every frame.
-    public void UpdateHP() 
-    {   
+    //public void UpdateHP() 
+    //{   
         
-        if (_playerStats != null)
-        {
-            CurrentHP = Mathf.Clamp(CurrentHP, 0, _playerStats.MaxHP);
-        }
-    }
+    //    if (_playerStats != null)
+    //    {
+    //        CurrentHP = Mathf.Clamp(CurrentHP, 0, _playerStats.MaxHP);
+    //    }
+    //}
     /// <summary>
     /// Resets HP and re-enables the player. Called between rounds.
     /// </summary>
