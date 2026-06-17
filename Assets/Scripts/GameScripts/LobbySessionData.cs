@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Dados estáticos do lobby actual. Sobrevive a mudanças de cena.
 /// </summary>
 public static class LobbySessionData
@@ -22,8 +22,9 @@ public static class LobbySessionData
 
     public static void Clear()
     {
+        UnityEngine.Debug.Log("[LobbySessionData] Limpando dados da sessão.");
         Pin = null; RoomName = null; IsPublic = false;
-        MaxPlayers = 0; CurrentPlayers = 0;
+MaxPlayers = 0; CurrentPlayers = 0;
         IsCreator = false; MyClientId = 0; CreatorId = 0;
         SlotsData = null; ReadyData = null;
     }

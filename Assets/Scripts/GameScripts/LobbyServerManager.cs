@@ -16,14 +16,24 @@ public class LobbyServerManager : NetworkBehaviour
     private Dictionary<ulong, string> _clientLobbyMap = new();
 
     public Canvas _publicLobbiesCanvas;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public override void OnNetworkSpawn()
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Garante que o gerenciador do lobby não morra ao mudar de cena
-
+        
         if (!IsServer)
         {
-            Debug.Log("[LobbyServerManager] Referência de rede obtida pelo cliente.");
+            Debug.Log("[LobbyServerManager] Cliente sincronizado com o Lobby.");
             return;
         }
 
@@ -100,7 +110,24 @@ BroadcastFullState(lobby);
         Debug.Log($"[Server] JoinLobbyServerRpc recebido de {client} para o Pin: {pin}");
 
         if (_clientLobbyMap.ContainsKey(client)) { ErrorClientRpc("Já estás num lobby.", MakeTarget(client)); return; }
-        if (!_lobbies.TryGetValue(pin, out LobbyData lobby)) { ErrorClientRpc("PIN inválido.", MakeTarget(client)); return; }
+        
+        LobbyData lobby = null;
+        if (pin == "AUTO" || string.IsNullOrEmpty(pin))
+        {
+            // Tenta encontrar o primeiro lobby disponível (útil para conexão direta por IP em LAN)
+            foreach (var kvp in _lobbies)
+            {
+                lobby = kvp.Value;
+                break;
+            }
+            if (lobby != null) pin = lobby.Pin;
+        }
+        else
+        {
+            _lobbies.TryGetValue(pin.Trim(), out lobby);
+        }
+
+        if (lobby == null) { ErrorClientRpc("PIN inválido ou sala não encontrada.", MakeTarget(client)); return; }
         if (lobby.IsFull) { ErrorClientRpc("Lobby cheio.", MakeTarget(client)); return; }
 
         int slot = lobby.AssignSlot(client);

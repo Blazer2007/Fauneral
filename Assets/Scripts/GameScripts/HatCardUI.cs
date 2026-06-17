@@ -23,12 +23,14 @@ public class HatCardUI : MonoBehaviour, IPointerClickHandler
         _isUnlocked = isUnlocked;
         _parent = parent;
 
-        hatIcon.sprite = data.icon;
+        hatIcon.sprite = data.previewSprite;
         nameText.text = data.displayName;
-        rarityText.text = data.rarity;
+        rarityText.text = data.rarity.ToString();
         lockOverlay.SetActive(!isUnlocked);
         checkBadge.SetActive(false);
     }
+
+    public string GetDisplayName() => _data.displayName;
 
     public void SetSelected(bool selected)
     {
@@ -39,6 +41,6 @@ public class HatCardUI : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!_isUnlocked) return;
-        _parent.OnCardSelected(this, _data.hatId);
+        _parent.OnCardSelected(this, _data.hatID);
     }
 }

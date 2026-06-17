@@ -39,18 +39,38 @@ namespace Networking
             }
         }
 
+        private async Task EnsureShutdown()
+        {
+            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+            {
+                Debug.Log("[Matchmaking] Parando conexão anterior...");
+                NetworkManager.Singleton.Shutdown();
+                
+                // Aguarda até 2 segundos para o shutdown completar
+                float timeout = 2.0f;
+                while (NetworkManager.Singleton.IsListening && timeout > 0)
+                {
+                    await Task.Delay(100);
+                    timeout -= 0.1f;
+                }
+                
+                // Delay extra de segurança para os sockets
+                await Task.Delay(500);
+                Debug.Log("[Matchmaking] Conexão anterior parada.");
+            }
+        }
+
         // Fluxo para iniciar como Host Online (Relay + Node.js)
         public async Task<string> StartHostOnline(string roomName, bool isPublic, int maxPlayers)
         {
             Debug.Log("[Matchmaking] Iniciando Host Online...");
             await EnsureInitialized();
+            await EnsureShutdown();
 
-            // Limpa conexões ativas antes de começar uma nova
-            if (NetworkManager.Singleton.IsListening)
+            if (NetworkManager.Singleton == null)
             {
-                Debug.Log("[Matchmaking] Parando conexão anterior...");
-                NetworkManager.Singleton.Shutdown();
-                await Task.Delay(1000);
+                Debug.LogError("[Matchmaking] NetworkManager.Singleton é nulo! Certifique-se de que o NetworkManager está na cena ou foi carregado do MainMenu.");
+                return null;
             }
 
             // 1. Cria alocação no Unity Relay
@@ -119,13 +139,12 @@ namespace Networking
         {
             Debug.Log($"[Matchmaking] Iniciando Cliente Online para o código: {nodeJsCode}...");
             await EnsureInitialized();
+            await EnsureShutdown();
 
-            // Limpa conexões antigas
-            if (NetworkManager.Singleton.IsListening)
+            if (NetworkManager.Singleton == null)
             {
-                Debug.Log("[Matchmaking] Parando conexão anterior...");
-                NetworkManager.Singleton.Shutdown();
-                await Task.Delay(1000);
+                Debug.LogError("[Matchmaking] NetworkManager.Singleton é nulo!");
+                return false;
             }
 
             // 1. Busca o IP (Código Relay) no Node.js através do PIN
@@ -157,19 +176,31 @@ namespace Networking
             return NetworkManager.Singleton.StartClient();
         }
 
-        public string StartHostLAN(string roomName, int maxPlayers)
+        public async Task<string> StartHostLAN(string roomName, int maxPlayers)
         {
             Debug.Log($"[Matchmaking] Iniciando Host LAN: {roomName}");
 
+            if (NetworkManager.Singleton == null)
+            {
+                Debug.LogError("[Matchmaking] NetworkManager.Singleton é nulo!");
+                return null;
+            }
+
             if (NetworkManager.Singleton.IsListening)
             {
+                Debug.Log("[Matchmaking] Parando conexão anterior...");
                 NetworkManager.Singleton.Shutdown();
+                await Task.Delay(1000);
             }
 
             var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
             if (transport != null)
             {
-                transport.SetConnectionData("0.0.0.0", 7777);
+                // Para o Host, o 'Address' deve ser o IP local real se possível,
+                // e o 'Listen Address' deve ser 0.0.0.0 para aceitar conexões externas.
+                string localIp = GetLocalIPAddress();
+                transport.SetConnectionData(localIp, 7777, "0.0.0.0");
+                Debug.Log($"[Matchmaking] Host configurado no IP: {localIp}");
             }
 
             bool hostStarted = NetworkManager.Singleton.StartHost();
@@ -186,20 +217,22 @@ namespace Networking
                 go.GetComponent<NetworkObject>().Spawn();
             }
 
-            string localPin = "LAN" + Random.Range(10, 99);
+            string localPin = "LAN" + UnityEngine.Random.Range(10, 99);
             LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
             // LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
 
             return localPin;
         }
 
-        public bool StartClientLAN(string ip)
+        public async Task<bool> StartClientLAN(string ip)
         {
             Debug.Log($"[Matchmaking] Conectando ao Host LAN: {ip}");
+            await EnsureShutdown();
 
-            if (NetworkManager.Singleton.IsListening)
+            if (NetworkManager.Singleton == null)
             {
-                NetworkManager.Singleton.Shutdown();
+                Debug.LogError("[Matchmaking] NetworkManager.Singleton é nulo!");
+                return false;
             }
 
             var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
@@ -216,6 +249,27 @@ namespace Networking
             }
 
             return clientStarted;
+        }
+
+        private string GetLocalIPAddress()
+        {
+            try
+            {
+                var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    {
+                        if (ip.ToString() == "127.0.0.1") continue;
+                        return ip.ToString();
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("[Matchmaking] Erro ao obter IP local: " + e.Message);
+            }
+            return "127.0.0.1";
         }
     }
 }

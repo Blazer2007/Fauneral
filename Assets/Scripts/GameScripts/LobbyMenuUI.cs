@@ -39,9 +39,10 @@ public class LobbyMenuUI : MonoBehaviour
     [SerializeField] private TMP_Text _pinText;
     [SerializeField] private TMP_Text _playerCountText;
     [SerializeField] private TMP_Text _visibilityText;
+    [SerializeField] private TMP_Text _hostIpText; // Novo campo para mostrar o IP no modo LAN
 
     [Header("Botão StartGame (só criador, só quando todos prontos)")]
-    [SerializeField] private Button _startGameButton;
+[SerializeField] private Button _startGameButton;
 
     [Header("Sprites")]
     [SerializeField] private Sprite _readySprite;
@@ -63,10 +64,14 @@ public class LobbyMenuUI : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    private void Start()
+    private async void Start()
     {
+        // Aguarda um pequeno momento para que os RPCs de estado cheguem (especialmente em conexões lentas)
+        await System.Threading.Tasks.Task.Delay(500);
+
         if (!LobbySessionData.IsInLobby)
         {
+            Debug.LogWarning("[LobbyMenu] Tentativa de entrar no lobby sem dados. Retornando...");
             UnityEngine.SceneManagement.SceneManager.LoadScene("PlayMenu");
             return;
         }
@@ -75,8 +80,24 @@ public class LobbyMenuUI : MonoBehaviour
         if (_pinText != null) _pinText.text = $"PIN: {LobbySessionData.Pin}";
         if (_visibilityText != null) _visibilityText.text = LobbySessionData.IsPublic ? "Pública" : "Privada";
 
+        // Mostra o IP do Host se estiver em modo LAN
+        if (_hostIpText != null)
+        {
+            if (!Networking.NetworkSessionSettings.IsOnlineMode)
+            {
+                string ip = GetLocalIPAddress();
+                _hostIpText.text = $"IP: {ip}";
+                _hostIpText.gameObject.SetActive(true);
+                Debug.Log($"[Lobby] Modo LAN detectado. IP do Host: {ip}");
+            }
+            else
+            {
+                _hostIpText.gameObject.SetActive(false);
+            }
+        }
+
         // StartGame: sempre inactivo no início (servidor activa quando todos prontos)
-        SetStartGameVisible(false);
+SetStartGameVisible(false);
 
         // Inicializa todos os spawns como vazios
         foreach (var s in _playerSpawns) s?.SetDisconnected();
@@ -216,6 +237,28 @@ public class LobbyMenuUI : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         if (_pinText != null) _pinText.text = original;
+    }
+
+    private string GetLocalIPAddress()
+    {
+        try
+        {
+            var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    // Evita IPs de loopback
+                    if (ip.ToString() == "127.0.0.1") continue;
+                    return ip.ToString();
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("[Lobby] Erro ao obter IP local: " + e.Message);
+        }
+        return "127.0.0.1";
     }
 
     // ── HELPERS ───────────────────────────────────────────────────

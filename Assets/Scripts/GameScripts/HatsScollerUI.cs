@@ -1,3 +1,7 @@
+using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
+
 public class HatsScrollerUI : MonoBehaviour
 {
     [SerializeField] private Transform _content;          // o Content do ScrollRect
@@ -10,8 +14,13 @@ public class HatsScrollerUI : MonoBehaviour
 
     void Start()
     {
-        // Dados vêm do PlayerProfileManager — por agora, dados hardcoded de teste
+        // Dados vï¿½m do PlayerProfileManager ï¿½ por agora, dados hardcoded de teste
         PopulateGrid(GetTestData(), new[] { "hat_crown", "hat_tophat", "hat_helmet", "hat_cap" });
+    }
+
+    private HatData[] GetTestData()
+    {
+        return Resources.LoadAll<HatData>("Hats") ?? new HatData[0];
     }
 
     void PopulateGrid(HatData[] allHats, string[] unlockedIds)
@@ -23,16 +32,16 @@ public class HatsScrollerUI : MonoBehaviour
         {
             var go = Instantiate(_hatCardPrefab, _content);
             var card = go.GetComponent<HatCardUI>();
-            card.Setup(hat, unlockedSet.Contains(hat.hatId), this);
+            card.Setup(hat, unlockedSet.Contains(hat.hatID), this);
         }
     }
 
-    public void OnCardSelected(HatCardUI card, string hatId)
+    public void OnCardSelected(HatCardUI card, string hatID)
     {
         _currentSelected?.SetSelected(false);
         _currentSelected = card;
         _currentSelected.SetSelected(true);
-        _pendingHatId = hatId;
+        _pendingHatId = hatID;
         _selectedLabel.text = $"Seleccionado: {card.GetDisplayName()}";
     }
 

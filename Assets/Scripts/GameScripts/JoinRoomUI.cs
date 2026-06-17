@@ -12,10 +12,15 @@ public class JoinRoomUI : MonoBehaviour
 {
     public static JoinRoomUI Instance { get; private set; }
 
-    [Header("Entrada por PIN")]
+    [Header("Entrada por PIN (Online)")]
     [SerializeField] private GameObject _pinContainer; // Parent of PIN input field and join button
     [SerializeField] private TMP_InputField _pinInputField; // Campo onde o jogador digita o PIN
     [SerializeField] private Button _joinByPinButton;
+
+    [Header("Entrada por IP (LAN)")]
+    [SerializeField] private GameObject _ipContainer; // Container para entrada manual de IP
+    [SerializeField] private TMP_InputField _ipInputField; // Campo de IP
+    [SerializeField] private Button _joinByIpButton;
 
     [Header("Lista de salas públicas")]
     [SerializeField] private Transform _publicLobbyList; // Container (Content do ScrollView) para os itens da lista
@@ -30,9 +35,10 @@ public class JoinRoomUI : MonoBehaviour
         Instance = this;
         HideError();
 
-        // Mode specific setup
-        if (_pinContainer != null)
-            _pinContainer.SetActive(NetworkSessionSettings.IsOnlineMode);
+        // Configura visibilidade baseada no modo
+        bool isOnline = NetworkSessionSettings.IsOnlineMode;
+        if (_pinContainer != null) _pinContainer.SetActive(isOnline);
+        if (_ipContainer != null) _ipContainer.SetActive(!isOnline);
     }
 
     private void OnEnable()
@@ -55,8 +61,8 @@ public class JoinRoomUI : MonoBehaviour
         Debug.Log("[JoinRoomUI] Solicitando lista de lobbies públicos ao iniciar.");
         RefreshPublicLobbies(); // Busca a lista automaticamente ao abrir a tela
 
-        // LAN Discovery
-        if (LANDiscovery.Instance != null)
+        // LAN Discovery - Só inicia se não estivermos no modo Online
+        if (LANDiscovery.Instance != null && !NetworkSessionSettings.IsOnlineMode)
         {
             LANDiscovery.Instance.OnServerFound += HandleLanServerFound;
             LANDiscovery.Instance.StartSearching();
@@ -65,10 +71,13 @@ public class JoinRoomUI : MonoBehaviour
 
     private void HandleLanServerFound(string ip, string roomName, string pin)
     {
+        // Se estivermos em modo Online, ignoramos anúncios LAN
+        if (NetworkSessionSettings.IsOnlineMode) return;
+
         // Add to the list if not already there
         // For simplicity, we'll just add it as a PublicLobbyEntry with a special marker or just use the IP as the "PIN"
         // But the listItem needs to know it's LAN to call the right join method.
-        
+
         // Let's create a temporary entry
         var entry = new PublicLobbyEntry {
             Pin = pin,
@@ -109,8 +118,32 @@ public class JoinRoomUI : MonoBehaviour
         }
     }
 
+    public void OnJoinByIpButton()
+    {
+        if (_ipInputField == null) return;
+        string ip = _ipInputField.text.Trim();
+        if (string.IsNullOrEmpty(ip))
+        {
+            ShowError("Introduz um IP válido.");
+            return;
+        }
+        JoinLanRoom(ip, "AUTO");
+    }
+
+    public void OnJoinByPinButton()
+    {
+        if (_pinInputField == null) return;
+        string pin = _pinInputField.text.Trim();
+        if (string.IsNullOrEmpty(pin))
+        {
+            ShowError("Introduz um PIN.");
+            return;
+        }
+        JoinRoom(pin);
+    }
+
     // Processo de conexão unificado (Relay + Netcode + Lobby)
-    public async void JoinRoom(string pin)
+public async void JoinRoom(string pin)
     {
         HideError();
         if (_joinByPinButton != null) _joinByPinButton.interactable = false;
@@ -128,29 +161,12 @@ public class JoinRoomUI : MonoBehaviour
 
         if (success)
         {
-            ShowError("Sincronizando rede...");
-            
-            // 2. Aguarda o sistema de rede sincronizar os objetos do Host
-            float timeout = 10f;
-            while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
-            {
-                await System.Threading.Tasks.Task.Delay(250);
-                timeout -= 0.25f;
-            }
-
-            if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
-            {
-                ShowError("Entrando no Lobby...");
-                // 3. Solicita entrada no lobby via RPC
-                LobbyClientManager.Instance.JoinLobby(pin);
-            }
-            else
-            {
-                ShowError("Falha na sincronização. Tente novamente.");
-                if (_joinByPinButton != null) _joinByPinButton.interactable = true;
-            }
+            ShowError("Entrando no Lobby...");
+            // Define o PIN imediatamente para evitar ser expulso da cena de Lobby
+            LobbySessionData.Pin = pin; 
+            LobbyClientManager.Instance.JoinLobby(pin);
         }
-        else
+else
         {
             ShowError("Sala não encontrada ou conexão falhou.");
             if (_joinByPinButton != null) _joinByPinButton.interactable = true;
@@ -160,24 +176,16 @@ public class JoinRoomUI : MonoBehaviour
     public async void JoinLanRoom(string ip, string pin)
     {
         ShowError($"Conectando LAN {ip}...");
-        bool success = MatchmakingController.Instance.StartClientLAN(ip);
+        bool success = await MatchmakingController.Instance.StartClientLAN(ip);
 
         if (success)
         {
-            ShowError("Sincronizando LAN...");
-            float timeout = 5f;
-            while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
-            {
-                await System.Threading.Tasks.Task.Delay(200);
-                timeout -= 0.2f;
-            }
-
-            if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
-            {
-                LobbyClientManager.Instance.JoinLobby(pin);
-            }
+            ShowError("Entrando no Lobby...");
+            // Se for AUTO, usamos o PIN que o servidor provavelmente tem
+            LobbySessionData.Pin = pin;
+            LobbyClientManager.Instance.JoinLobby(pin);
         }
-        else
+else
         {
             ShowError("Falha na conexão LAN.");
             if (_joinByPinButton != null) _joinByPinButton.interactable = true;
@@ -195,8 +203,15 @@ public class JoinRoomUI : MonoBehaviour
     {
         if (_emptyListText != null) { _emptyListText.text = "Buscando..."; _emptyListText.gameObject.SetActive(true); }
         
+        // Limpa a lista visual antes de começar a busca
+        if (_publicLobbyList != null)
+        {
+            foreach (Transform child in _publicLobbyList)
+                Destroy(child.gameObject);
+        }
+
         _lanServers.Clear(); // Clear LAN cache on refresh
-        
+
         // If LAN mode, we don't necessarily call Node.js, but we can call both just in case
         // But for clarity, if NOT online, maybe only show LAN?
         // User wants separation, so let's stick to the mode.

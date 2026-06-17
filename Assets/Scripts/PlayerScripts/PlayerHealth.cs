@@ -110,14 +110,10 @@ public class PlayerHealth : NetworkBehaviour
         _roundManager?.OnPlayerDied(this); // Notifica o RoundManager (no servidor)
     }
     /// Clamps HP to valid range and updates the UI. Called every frame.
-    //public void UpdateHP() 
-    //{   
-        
-    //    if (_playerStats != null)
-    //    {
-    //        CurrentHP = Mathf.Clamp(CurrentHP, 0, _playerStats.MaxHP);
-    //    }
-    //}
+    public void UpdateHP() 
+    {   
+        // Clamping is handled on the server.
+    }
     /// <summary>
     /// Resets HP and re-enables the player. Called between rounds.
     /// </summary>

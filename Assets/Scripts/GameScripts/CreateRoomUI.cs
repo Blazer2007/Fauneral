@@ -125,24 +125,15 @@ public class CreateRoomUI : MonoBehaviour
         if (_isLan)
         {
             ShowError("Iniciando Host LAN...");
-            string lanPin = MatchmakingController.Instance.StartHostLAN(roomName, maxPlayers);
+            string lanPin = await MatchmakingController.Instance.StartHostLAN(roomName, maxPlayers);
             
             if (!string.IsNullOrEmpty(lanPin))
             {
-                // Wait for sync
-                float lanTimeout = 5f;
-                while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && lanTimeout > 0)
-                {
-                    await System.Threading.Tasks.Task.Delay(100);
-                    lanTimeout -= 0.1f;
-                }
-
-                if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
-                {
-                    LobbyClientManager.Instance.CreateLobby(roomName, false, maxPlayers, lanPin);
-                }
+                ShowError("Criando Lobby...");
+                LobbySessionData.Pin = lanPin;
+                LobbyClientManager.Instance.CreateLobby(roomName, false, maxPlayers, lanPin);
             }
-            else
+else
             {
                 ShowError("Falha ao criar sala LAN.");
                 if (_createButton != null) _createButton.interactable = true;
@@ -152,31 +143,18 @@ public class CreateRoomUI : MonoBehaviour
 
         // 1. Inicia o Host via Relay e Node.js
         ShowError("Conectando ao Relay...");
-string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(roomName, isPublic, maxPlayers);
+        string nodeJsCode = await MatchmakingController.Instance.StartHostOnline(roomName, isPublic, maxPlayers);
 
-        if (string.IsNullOrEmpty(nodeJsCode))
+        if (!string.IsNullOrEmpty(nodeJsCode))
         {
-            ShowError("Erro ao criar sala online. Verifique a conexão.");
-            if (_createButton != null) _createButton.interactable = true;
-            return;
-        }
-
-        // 2. Aguarda a sincronização do sistema de rede
-        float timeout = 10f; 
-        while ((LobbyClientManager.Instance == null || !LobbyClientManager.Instance.IsSpawned) && timeout > 0)
-        {
-            await System.Threading.Tasks.Task.Delay(100);
-            timeout -= 0.1f;
-        }
-
-        if (LobbyClientManager.Instance != null && LobbyClientManager.Instance.IsSpawned)
-        {
+            ShowError("Criando Lobby...");
+            LobbySessionData.Pin = nodeJsCode;
             // 3. Inicializa o gerenciador de lobby com os dados da sala
             LobbyClientManager.Instance.CreateLobby(roomName, isPublic, maxPlayers, nodeJsCode);
         }
-        else
+else
         {
-            ShowError("O sistema de lobby falhou ao iniciar.");
+            ShowError("Erro ao criar sala online. Verifique a conexão.");
             if (_createButton != null) _createButton.interactable = true;
         }
     }
