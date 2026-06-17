@@ -10,6 +10,22 @@ namespace TarodevController
     /// I have a premium version on Patreon, which has every feature you'd expect from a polished controller. Link: https://www.patreon.com/tarodev
     /// You can play and compete for best times here: https://tarodev.itch.io/extended-ultimate-2d-controller
     /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
+    ///
+    /// ── NOTA SOBRE A ARQUITECTURA (Server Authoritative) ──────────────────────────
+    /// O Client (dono) só faz UMA coisa em Update(): lê o teclado local e envia o
+    /// resultado ao servidor via SubmitInputServerRpc. Nada de física acontece no Client.
+    ///
+    /// O Servidor é o único que corre CheckCollisions/HandleJump/HandleDirection/etc,
+    /// porque só ele tem o _frameInput correcto (recebido via RPC) e só ele deve mover
+    /// o Rigidbody2D — o NetworkTransform (Server Authoritative) propaga essa posição
+    /// para todos os clientes, incluindo o dono.
+    ///
+    /// IMPORTANTE: nunca colocar [ServerRpc] em métodos chamados a cada frame que lêem
+    /// Input.* — Input.GetAxisRaw só lê o teclado da máquina onde o código corre. Se o
+    /// método com [ServerRpc] correr no servidor, está a ler o teclado do SERVIDOR, não
+    /// o do cliente. Por isso o input tem de ser lido no Client e apenas os VALORES
+    /// (já lidos) são enviados via RPC — nunca a leitura em si.
+    /// ────────────────────────────────────────────────────────────────────────────
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : NetworkBehaviour, IPlayerController
@@ -42,21 +58,26 @@ namespace TarodevController
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders; // Cache the original value of queriesStartInColliders to reset it after collision checks
         }
 
+        // ── CLIENT (dono): só lê input local e envia ao servidor ──────────────────
         private void Update()
         {
             _time += Time.deltaTime; // Save the time in deltatime (for FPS balancing)
             if (!IsOwner) return;
-            GatherInputServerRpc(); // Store the player's input for the current frame
+
+            var input = ReadLocalInput(); // Lê o teclado local
+            SubmitInputServerRpc(input);  // Envia ao servidor para processamento
         }
 
+        // ── SERVIDOR: única instância que corre física e lógica de jogo ────────────
         private void FixedUpdate()
         {
-            if (!IsOwner) return;
-            CheckCollisionsServerRpc();
-            HandleJumpServerRpc();
-            HandleDirectionServerRpc();
-            HandleGravityServerRpc();
-            HandleDashServerRpc();
+            if (!IsServer) return;
+
+            CheckCollisions();
+            HandleJump();
+            HandleDirection();
+            HandleGravity();
+            HandleDash();
 
             _attackTimer += Time.fixedDeltaTime;
             _heavyAttackTimer += Time.fixedDeltaTime;
@@ -64,20 +85,20 @@ namespace TarodevController
             float attackInterval = _playerStats != null ? _playerStats.AttackSpeed : _stats.AttackSpeed;
 
             if (_attackToConsume && _attackTimer >= attackInterval)
-                HandleAttackServerRpc();
+                HandleAttack();
             else if (_heavyAttackToConsume && _heavyAttackTimer >= attackInterval * 2f)
-                HandleAttackServerRpc();
+                HandleAttack();
 
-            ApplyMovementServerRpc();
+            ApplyMovement();
         }
+
         #region Inputs
 
-        // Gather the player's input for the current frame and store it in the _frameInput struct. This method also updates the facing direction based on horizontal input and sets bools to check if the player has a jump, dash, or attack to consume.
-        [ServerRpc(RequireOwnership = false)]
-        private void GatherInputServerRpc()
+        // Lê o input local (apenas no Client dono). Não toca em nenhum estado do jogo —
+        // só devolve a leitura crua do teclado para ser enviada ao servidor.
+        private FrameInput ReadLocalInput()
         {
-            if (!IsOwner) return;
-            _frameInput = new FrameInput
+            return new FrameInput
             {
                 JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
                 JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
@@ -86,6 +107,13 @@ namespace TarodevController
                 AttackDown = Input.GetKeyDown(KeyCode.J),
                 HeavyAttackDown = Input.GetKeyDown(KeyCode.K)
             };
+        }
+
+        // Recebe o input do Client dono e actualiza o estado no SERVIDOR.
+        [ServerRpc]
+        private void SubmitInputServerRpc(FrameInput input, ServerRpcParams rpcParams = default)
+        {
+            _frameInput = input;
 
             if (_frameInput.JumpDown)
             {
@@ -102,13 +130,11 @@ namespace TarodevController
                 Debug.Log("Light attack input detected");
             }
 
-
             if (_frameInput.HeavyAttackDown)
             {
                 _heavyAttackToConsume = true;
                 Debug.Log("Heavy attack input detected");
             }
-
 
             //if _frameInput.Move.x is bigger than 0(moving right) then _facingRight is true,
             //but still check if _frameInput.Move.x is lower than 0(moving left), if that condition is true, then _facingRight is false
@@ -122,8 +148,8 @@ namespace TarodevController
         private float _frameLeftGrounded = float.MinValue; // The time when the player left the ground, used for coyote time calculations
         private bool _grounded; // Bool to check if the player is currently grounded or not
 
-        [ServerRpc(RequireOwnership = false)]
-        private void CheckCollisionsServerRpc()
+        // Corre apenas no servidor (chamado por FixedUpdate, que já filtra IsServer)
+        private void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
@@ -158,7 +184,7 @@ namespace TarodevController
             }
             Physics2D.queriesStartInColliders = _cachedQueryStartInColliders; // Reset the queriesStartInColliders setting to its original value
         }
-        
+
         #endregion
 
         #region Jumping
@@ -176,20 +202,18 @@ namespace TarodevController
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
 
         // Check if the player has a jump to consume and if they are either grounded or can use coyote time. If the player is in the air and releases the jump button while still moving upwards, they will end their jump early, which applies extra gravity to make them fall faster.
-        [ServerRpc(RequireOwnership = false)]
-        private void HandleJumpServerRpc()
+        private void HandleJump()
         {
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
 
             if (!_jumpToConsume && !HasBufferedJump) return;
 
-            if (_grounded || CanUseCoyote) JumpServerRpc();
+            if (_grounded || CanUseCoyote) Jump();
 
             _jumpToConsume = false;
         }
         // When the player jumps, reset all jump-related bools and timers, apply an immediate vertical velocity based on the jump power stat, and invoke the Jumped event to notify any subscribers that the player has jumped.
-        [ServerRpc(RequireOwnership = false)]
-        private void JumpServerRpc()
+        private void Jump()
         {
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
@@ -205,10 +229,8 @@ namespace TarodevController
         #region Horizontal
 
         // If there is no horizontal input, apply deceleration to slow the player down. If there is horizontal input, apply acceleration towards the target speed based on the player's input and max speed stat.
-        [ServerRpc(RequireOwnership = false)]
-        private void HandleDirectionServerRpc()
+        private void HandleDirection()
         {
-            if (!IsOwner) return;
             if (_frameInput.Move.x == 0)
             {
                 var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
@@ -224,8 +246,7 @@ namespace TarodevController
 
         #region Gravity
 
-        [ServerRpc(RequireOwnership = false)]
-        private void HandleGravityServerRpc()
+        private void HandleGravity()
         {
             if (_grounded && _frameVelocity.y <= 0f)
             {
@@ -251,10 +272,8 @@ namespace TarodevController
         private float _dashTimer = 0f; // Timer to track the time since the last dash, used for dash cooldowns
 
         // Check if the player has a dash to consume and if the dash button is pressed. If the dash button is pressed and the dash timer is greater than or equal to the dash interval, the player will dash and the dash timer will be reset. The dashToConsume bool is then set to false until the next time the player presses the dash button.
-        [ServerRpc(RequireOwnership = false)]
-        private void HandleDashServerRpc()
+        private void HandleDash()
         {
-            if (!IsOwner) return;
             _dashTimer += Time.fixedDeltaTime;
             if (!_dashToConsume)
             {
@@ -266,14 +285,13 @@ namespace TarodevController
             {
                 _dashTimer = 0f;
                 _dashToConsume = true;
-                DashServerRpc();
+                Dash();
             }
             _dashToConsume = false;
         }
 
         // Apply an immediate velocity in the direction the player is facing based on the dash power stat. The Dashed event is then invoked to notify any subscribers that the player has dashed.
-        [ServerRpc(RequireOwnership = false)]
-        private void DashServerRpc()
+        private void Dash()
         {
             // DashPower base do ScriptableStats, escalado pelo Knockback do PlayerStats
             float dashForce = _stats.DashPower;
@@ -292,13 +310,9 @@ namespace TarodevController
         private float _heavyAttackTimer = 0f; // Timer to track the time since the last heavy attack, used for heavy attack cooldowns
 
         // Same logic as handleDash, but for the player's attacks
-        [ServerRpc(RequireOwnership = false)]
-        private void HandleAttackServerRpc()
+        private void HandleAttack()
         {
             Debug.Log("HandleAttack called");
-            if (!IsOwner) return;
-            _attackTimer += Time.fixedDeltaTime;
-            _heavyAttackTimer += Time.fixedDeltaTime;
 
             float attackInterval = _playerStats != null ? _playerStats.AttackSpeed : _stats.AttackSpeed;
 
@@ -306,7 +320,7 @@ namespace TarodevController
             {
                 _attackTimer = 0f;
                 _attackToConsume = false;
-                LightAttackServerRpc();
+                LightAttack();
                 return;
             }
 
@@ -314,7 +328,7 @@ namespace TarodevController
             {
                 _heavyAttackTimer = 0f;
                 _heavyAttackToConsume = false;
-                HeavyAttackServerRpc();
+                HeavyAttack();
                 return;
             }
 
@@ -324,21 +338,18 @@ namespace TarodevController
             Attacked?.Invoke(false, false);
         }
         // Invoke the Attacked event to notify any subscribers that the player has attacked.
-        [ServerRpc(RequireOwnership = false)]
-        private void LightAttackServerRpc()
+        private void LightAttack()
         {
             Attacked?.Invoke(true, false);
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        private void HeavyAttackServerRpc()
+        private void HeavyAttack()
         {
             Attacked?.Invoke(true, true);
         }
         #endregion
 
-        [ServerRpc(RequireOwnership = false)]
-        private void ApplyMovementServerRpc() => _rb.linearVelocity = _frameVelocity; // Apply the calculated velocity to the Rigidbody2D component at the end of the frame
+        private void ApplyMovement() => _rb.linearVelocity = _frameVelocity; // Apply the calculated velocity to the Rigidbody2D component at the end of the frame
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -348,9 +359,9 @@ namespace TarodevController
         }
 #endif
     }
-    
+
     // Struct to hold the player's input for the current frame, including jump, movement, dash, and attack inputs
-    public struct FrameInput
+    public struct FrameInput : INetworkSerializable
     {
         public bool JumpDown;
         public bool JumpHeld;
@@ -358,6 +369,16 @@ namespace TarodevController
         public bool DashDown;
         public bool AttackDown;
         public bool HeavyAttackDown;
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref JumpDown);
+            serializer.SerializeValue(ref JumpHeld);
+            serializer.SerializeValue(ref Move);
+            serializer.SerializeValue(ref DashDown);
+            serializer.SerializeValue(ref AttackDown);
+            serializer.SerializeValue(ref HeavyAttackDown);
+        }
     }
 
     // Interface to define the player's input and events for grounded status, jumping, dashing, and attacking. This allows other scripts to subscribe to these events and access the player's input without needing a direct reference to the PlayerController component.
