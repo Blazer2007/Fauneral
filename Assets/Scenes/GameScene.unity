@@ -2174,8 +2174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBars:
-  - {fileID: 833199575}
   - {fileID: 1710207536236108042}
+  - {fileID: 833199575}
   - {fileID: 692650747}
   - {fileID: 859159100}
   WinsTexts: []

@@ -165,4 +165,9 @@ public class PlayerHealth : NetworkBehaviour
             FallDeath();
         }
     }
+
+    public void SetPlayerIndex(int index)
+    {
+        _playerIndex = index;
+    }
 }

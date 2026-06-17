@@ -28,6 +28,8 @@ public class RoundManager : NetworkBehaviour
     // Contador de rondas jogadas (começa em 1 na primeira ronda real)
     public int RoundNumber { get; private set; } = 0;
 
+    private PlayerSpawner _playerSpawner;
+
     private GameUI _gameUI;
 
     // ── UNITY ─────────────────────────────────────────────────
@@ -101,6 +103,7 @@ public class RoundManager : NetworkBehaviour
         _gameUI?.UpdateRoundWins(RoundWins);
         _gameUI?.HideEndScreen();
 
+     
         Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {Players.Count} jogadores.");
 
 
@@ -117,10 +120,11 @@ public class RoundManager : NetworkBehaviour
         foreach (var p in Players)
             if (p.IsAlive) alive.Add(p);
 
+        //
         if (alive.Count <= 1)
         {
             RoundActive = false;
-            PlayerHealth winner = alive.Count == 1 ? alive[0] : null;
+            PlayerHealth winner = alive.Count == 1 ? alive[0] : null; 
             StartCoroutine(EndRound(winner));
         }
     }
@@ -174,6 +178,7 @@ public class RoundManager : NetworkBehaviour
 
         if (IsServer)
             BeginCardSelection(ulong.MaxValue);
+
     }
 
     // ── HELPERS ───────────────────────────────────────────────
@@ -204,17 +209,5 @@ public class RoundManager : NetworkBehaviour
         return netObj != null ? netObj.OwnerClientId : ulong.MaxValue;
     }
 
-    private void Update()
-    {
-        if(_gameUI== null) return;
-           
-        //Atualiza todas as barras de vida de cada jogador a cada frame com a função UpdateIndividualHPBars do script GameUI.cs
-        foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            
-            _gameUI.UpdateIndividualHPBars(clientId);
-
-        }
-
-    }
+    
 }

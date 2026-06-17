@@ -1,9 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
-
+using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// Handles all in-game UI: HP bars, round win counters, and end screens.
 /// All elements are placeholder hook up in the Inspector.
@@ -37,38 +37,19 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
-        // Find all players in the scene automatically
-        _playerHPs.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
-        // Sort by PlayerIndex so P1 maps to HPBars[0], P2 to HPBars[1], etc.
-        _playerHPs.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
-
-        // Initialise HP bars
-        for (int i = 0; i < _playerHPs.Count; i++)
-        {
-            if (i < HPBars.Count && HPBars[i] != null)
-            {
-                HPBars[i].minValue = 0;
-                HPBars[i].maxValue = _playerHPs[i].MaxHP;
-                HPBars[i].value = _playerHPs[i].CurrentHP;
-            }
-        }
-
-        HideEndScreen();
+            
     }
 
     private void Update()
     {
-        // Update HP bars every frame
         for (int i = 0; i < _playerHPs.Count; i++)
-        {
             if (i < HPBars.Count && HPBars[i] != null)
                 HPBars[i].value = _playerHPs[i].CurrentHP;
-        }
-        
     }
 
-    
 
+
+    
     /// <summary>
     /// Updates the round win counters displayed on screen.
     /// </summary>
@@ -132,7 +113,7 @@ public class GameUI : MonoBehaviour
     [ClientRpc]
     public void ConnectHPBarsAndPlayerHPWithPlayers(ulong ClientId, ClientRpcParams rpcParams = default)
     {
-        UpdateIndividualHPBars(ClientId);
+        UpdateIndividualHPBars(ClientId); 
         PlayerHealth[] playersHP = FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None);
         _playerHPs.Clear();
         foreach (PlayerHealth php in playersHP)
@@ -140,7 +121,7 @@ public class GameUI : MonoBehaviour
             var no = php.GetComponentInParent<NetworkObject>();
             if (no.OwnerClientId == ClientId)
             {
-                _playerHPs.Add(php);
+                _playerHPs.Add(php);//
             }
         }
     }
@@ -161,5 +142,40 @@ public class GameUI : MonoBehaviour
             }
         }
 
+    }
+
+    public void RefreshPlayerList()
+    {
+        _playerHPs.Clear();
+        _playerHPs.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
+        _playerHPs.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
+
+        for (int i = 0; i < _playerHPs.Count; i++)
+        {
+            if (i < HPBars.Count && HPBars[i] != null)
+            {
+                HPBars[i].minValue = 0;
+                HPBars[i].maxValue = _playerHPs[i].MaxHP;
+                HPBars[i].value = _playerHPs[i].CurrentHP;
+                HPBars[i].gameObject.SetActive(true);
+            }
+        }
+
+        // Esconde barras sem jogador
+        for (int i = _playerHPs.Count; i < HPBars.Count; i++)
+            if (HPBars[i] != null)
+                HPBars[i].gameObject.SetActive(false);
+    }
+
+    [ClientRpc]
+    public void RefreshPlayerListClientRpc()
+    {
+        StartCoroutine(RefreshAfterDelay());
+    }
+
+    private IEnumerator RefreshAfterDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        RefreshPlayerList();
     }
 }

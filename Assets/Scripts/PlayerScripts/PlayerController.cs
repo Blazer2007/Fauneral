@@ -51,7 +51,7 @@ namespace TarodevController
 
         private void FixedUpdate()
         {
-            if (!IsOwner || !IsHost) return;
+            if (!IsOwner) return;
             CheckCollisionsServerRpc();
             HandleJumpServerRpc();
             HandleDirectionServerRpc();
@@ -208,6 +208,7 @@ namespace TarodevController
         [ServerRpc(RequireOwnership = false)]
         private void HandleDirectionServerRpc()
         {
+            if (!IsOwner) return;
             if (_frameInput.Move.x == 0)
             {
                 var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
@@ -253,6 +254,7 @@ namespace TarodevController
         [ServerRpc(RequireOwnership = false)]
         private void HandleDashServerRpc()
         {
+            if (!IsOwner) return;
             _dashTimer += Time.fixedDeltaTime;
             if (!_dashToConsume)
             {
