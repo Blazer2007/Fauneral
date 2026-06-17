@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
+
 /// <summary>
 /// Handles all in-game UI: HP bars, round win counters, and end screens.
 /// All elements are placeholder hook up in the Inspector.
@@ -11,11 +12,11 @@ public class GameUI : MonoBehaviour
 {
     public static GameUI Instance { get; private set; }
 
-    [Header("HP Bars — one Slider per player, in order P1, P2, ...")]
+    [Header("HP Bars ï¿½ one Slider per player, in order P1, P2, ...")]
     [Tooltip("Drag the HP Slider for each player here, in player order")]
     public List<Slider> HPBars = new List<Slider>();
 
-    [Header("Wins Text — one TMP_Text per player, in order P1, P2, ...")]
+    [Header("Wins Text ï¿½ one TMP_Text per player, in order P1, P2, ...")]
     [Tooltip("Drag the Wins TMP_Text for each player here, in player order")]
     public List<TMP_Text> WinsTexts = new List<TMP_Text>();
 
@@ -26,7 +27,7 @@ public class GameUI : MonoBehaviour
     [Tooltip("Text inside EndScreen that shows the result message")]
     public TMP_Text EndText;
 
-    [Tooltip("Button to restart the match — wire OnClick to RoundManager.RestartMatch")]
+    [Tooltip("Button to restart the match ï¿½ wire OnClick to RoundManager.RestartMatch")]
     public Button RestartButton;
 
     // Reference to players so we can read HP every frame
