@@ -209,5 +209,15 @@ public class RoundManager : NetworkBehaviour
         return netObj != null ? netObj.OwnerClientId : ulong.MaxValue;
     }
 
-    
+    private void Update()
+    {
+        if(_gameUI== null) return;
+           
+        //Atualiza todas as barras de vida de cada jogador a cada frame com a função UpdateIndividualHPBars do script GameUI.cs
+        foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            _gameUI.UpdateIndividualHPBars(clientId);
+        }
+
+    }
 }

@@ -156,5 +156,64 @@ namespace Networking
             Debug.Log("[Matchmaking] Iniciando Cliente Netcode...");
             return NetworkManager.Singleton.StartClient();
         }
+
+        public string StartHostLAN(string roomName, int maxPlayers)
+        {
+            Debug.Log($"[Matchmaking] Iniciando Host LAN: {roomName}");
+
+            if (NetworkManager.Singleton.IsListening)
+            {
+                NetworkManager.Singleton.Shutdown();
+            }
+
+            var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
+            if (transport != null)
+            {
+                transport.SetConnectionData("0.0.0.0", 7777);
+            }
+
+            bool hostStarted = NetworkManager.Singleton.StartHost();
+            if (!hostStarted)
+            {
+                Debug.LogError("[Matchmaking] Falha ao iniciar Host LAN.");
+                return null;
+            }
+
+            // Spawn LobbyServerManager manually for slot management
+            if (LobbyServerManager.Instance == null && _lobbyManagerPrefab != null)
+            {
+                GameObject go = Instantiate(_lobbyManagerPrefab);
+                go.GetComponent<NetworkObject>().Spawn();
+            }
+
+            string localPin = "LAN" + Random.Range(10, 99);
+            LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
+
+            return localPin;
+        }
+
+        public bool StartClientLAN(string ip)
+        {
+            Debug.Log($"[Matchmaking] Conectando ao Host LAN: {ip}");
+
+            if (NetworkManager.Singleton.IsListening)
+            {
+                NetworkManager.Singleton.Shutdown();
+            }
+
+            var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
+            if (transport != null)
+            {
+                transport.SetConnectionData(ip, 7777);
+            }
+
+            bool clientStarted = NetworkManager.Singleton.StartClient();
+            if (clientStarted)
+            {
+                LANDiscovery.Instance.StopAll();
+            }
+
+            return clientStarted;
+        }
     }
 }

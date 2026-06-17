@@ -7,6 +7,8 @@ public class PlayerSpawner : MonoBehaviour
 {
     public static PlayerSpawner Instance { get; private set; }
     [SerializeField] private GameObject _playerPrefab;
+    // Remove o _spawnPoints do Inspector � vamos buscar da cena dinamicamente
+    private Transform spawnPointsParent;
 
     private void Awake()
     {
@@ -17,76 +19,39 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[PlayerSpawner] Start - NetworkManager existe: {NetworkManager.Singleton != null}");
-
-        if (NetworkManager.Singleton == null)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
         {
-            Debug.LogError("[PlayerSpawner] NetworkManager.Singleton is null in Start!");
-            return;
-        }
-
-        // Subscreve ao evento de conexão do NetworkManager para esperar pela rede iniciar
-        NetworkManager.Singleton.OnServerStarted += OnServerStarted;
-        
-        // Se o servidor já iniciou antes do Start (ex: host já ativo), chama manualmente
-        if (NetworkManager.Singleton.IsListening && NetworkManager.Singleton.IsServer)
-        {
-            Debug.Log("[PlayerSpawner] Server already listening, calling OnServerStarted manually.");
-            OnServerStarted();
-        }
-        
-        Debug.Log("[PlayerSpawner] Subscribed to OnServerStarted");
-    }
-
-    private void OnServerStarted()
-    {
-        Debug.Log("[PlayerSpawner] OnServerStarted called - subscribing to OnLoadEventCompleted");
-        // Evita subscrição dupla
-        if (NetworkManager.Singleton.SceneManager != null)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnSceneLoadCompleted;
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadCompleted;
         }
     }
 
     private void OnDestroy()
     {
-        if (NetworkManager.Singleton == null) return;
-        NetworkManager.Singleton.OnServerStarted -= OnServerStarted;
-        if (NetworkManager.Singleton.SceneManager != null)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnSceneLoadCompleted;
     }
 
-    private void OnSceneLoadCompleted(string sceneName, LoadSceneMode mode,
-        List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void OnSceneLoadCompleted(string sceneName, LoadSceneMode mode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
-        Debug.Log($"[PlayerSpawner] OnSceneLoadCompleted - scene: {sceneName}, IsServer: {NetworkManager.Singleton.IsServer}");
+        if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsServer) return;
 
-        if (!NetworkManager.Singleton.IsServer) return;
-        
         // Compara ignorando maiúsculas/minúsculas e possivelmente caminhos
         if (!sceneName.EndsWith("GameScene"))
         {
-            Debug.Log($"[PlayerSpawner] Scene {sceneName} is not GameScene, skipping spawn.");
+            Debug.LogError("[PlayerSpawner] N�o encontrei 'PlayerSpawnPoints' na GameScene!");
             return;
         }
 
-        Debug.Log($"[PlayerSpawner] Spawning {clientsCompleted.Count} players in {sceneName}");
+        Transform[] spawnPoints = GameObject.FindGameObjectWithTag("PlayerSpawnPoints")?.GetComponentsInChildren<Transform>();
 
-        GameObject spawnPointsParent = GameObject.Find("PlayerSpawnPoints");
-        if (spawnPointsParent == null)
-        {
-            Debug.LogError($"[PlayerSpawner] 'PlayerSpawnPoints' not found in {sceneName}!");
-            return;
-        }
-
+        // GetComponentsInChildren inclui o pr�prio pai, por isso filtramos
         List<Transform> points = new List<Transform>();
         foreach (Transform t in spawnPointsParent.GetComponentsInChildren<Transform>())
             if (t != spawnPointsParent.transform) points.Add(t);
 
         if (points.Count == 0)
         {
-            Debug.LogError("[PlayerSpawner] No spawn points found under 'PlayerSpawnPoints'!");
+            Debug.LogError("[PlayerSpawner] PlayerSpawnPoints n�o tem filhos!");
             return;
         }
 

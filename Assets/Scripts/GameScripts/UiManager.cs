@@ -1,12 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Networking;
 
 public class UiManager : MonoBehaviour
 {
+    public void SetOnlineMode(bool online)
+    {
+        NetworkSessionSettings.IsOnlineMode = online;
+    }
 
     public void PlayButton()
     {
         SceneManager.LoadScene("PlayMenu");
+    }
+
+    public void OnlineModeButton()
+    {
+        SetOnlineMode(true);
+        SceneManager.LoadScene("CreateRoom");
+    }
+
+    public void LocalModeButton()
+    {
+        SetOnlineMode(false);
+        SceneManager.LoadScene("CreateRoom");
     }
 
     public void QuitButton()
