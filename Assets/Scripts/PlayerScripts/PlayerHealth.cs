@@ -48,6 +48,27 @@ public class PlayerHealth : NetworkBehaviour
         {
             ResetHP();
         }
+
+        // Regista esta barra de vida na UI (em todos os clientes)
+        if (GameUI.Instance != null)
+            GameUI.Instance.RegisterPlayer(this);
+
+        // Reorganiza as barras quando o índice do jogador é atribuído pelo servidor
+        NetPlayerIndex.OnValueChanged += OnPlayerIndexChanged;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        NetPlayerIndex.OnValueChanged -= OnPlayerIndexChanged;
+
+        if (GameUI.Instance != null)
+            GameUI.Instance.UnregisterPlayer(this);
+    }
+
+    private void OnPlayerIndexChanged(int oldVal, int newVal)
+    {
+        if (GameUI.Instance != null)
+            GameUI.Instance.RefreshBars();
     }
 
     [ServerRpc(RequireOwnership = false)]

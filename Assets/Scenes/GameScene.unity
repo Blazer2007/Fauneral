@@ -764,11 +764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1111,11 +1111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1291,11 +1291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2325,6 +2325,7 @@ MonoBehaviour:
   EndScreen: {fileID: 0}
   EndText: {fileID: 0}
   RestartButton: {fileID: 0}
+  _rescanInterval: 0.5
 --- !u!4 &1797522033
 Transform:
   m_ObjectHideFlags: 0
@@ -3006,11 +3007,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2742619477313987826, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_LocalPosition.x
