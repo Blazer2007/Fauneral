@@ -1,0 +1,1781 @@
+fileFormatVersion: 2
+guid: 99533496788d23147837dcb650aefa91
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1635871853505206156
+    second: match_entrance_wolf_0
+  - first:
+      213: -4598579634516687179
+    second: match_entrance_wolf_1
+  - first:
+      213: 5240054813631652930
+    second: match_entrance_wolf_2
+  - first:
+      213: -1420040781745890222
+    second: match_entrance_wolf_3
+  - first:
+      213: 3255849230195079225
+    second: match_entrance_wolf_4
+  - first:
+      213: -4256883226184452451
+    second: match_entrance_wolf_5
+  - first:
+      213: 6777304733466986237
+    second: match_entrance_wolf_6
+  - first:
+      213: 4473015028022262513
+    second: match_entrance_wolf_7
+  - first:
+      213: 5719494806237636044
+    second: match_entrance_wolf_8
+  - first:
+      213: -3891045272112581840
+    second: match_entrance_wolf_9
+  - first:
+      213: 3731458951054734018
+    second: match_entrance_wolf_10
+  - first:
+      213: 7180604466314469393
+    second: match_entrance_wolf_11
+  - first:
+      213: -4514678109676586825
+    second: match_entrance_wolf_12
+  - first:
+      213: -1402882461384026319
+    second: match_entrance_wolf_13
+  - first:
+      213: -7710568230366888505
+    second: match_entrance_wolf_14
+  - first:
+      213: 7187413887955223716
+    second: match_entrance_wolf_15
+  - first:
+      213: 608267264930140659
+    second: match_entrance_wolf_16
+  - first:
+      213: -1822461160115276305
+    second: match_entrance_wolf_17
+  - first:
+      213: -1457775150967344254
+    second: match_entrance_wolf_18
+  - first:
+      213: 8026665254272057546
+    second: match_entrance_wolf_19
+  - first:
+      213: 5770021190217546516
+    second: match_entrance_wolf_20
+  - first:
+      213: 1894605667059395961
+    second: match_entrance_wolf_21
+  - first:
+      213: -6510068499747350064
+    second: match_entrance_wolf_22
+  - first:
+      213: 4920069892204451769
+    second: match_entrance_wolf_23
+  - first:
+      213: -2270953362575202370
+    second: match_entrance_wolf_24
+  - first:
+      213: 8477340724753448975
+    second: match_entrance_wolf_25
+  - first:
+      213: 8294967827227703593
+    second: match_entrance_wolf_26
+  - first:
+      213: -4945318883951766885
+    second: match_entrance_wolf_27
+  - first:
+      213: -3995071122134050424
+    second: match_entrance_wolf_28
+  - first:
+      213: 4336130345411731434
+    second: match_entrance_wolf_29
+  - first:
+      213: 7374773687621394883
+    second: match_entrance_wolf_30
+  - first:
+      213: -8088524000630005329
+    second: match_entrance_wolf_31
+  - first:
+      213: 578993009669859967
+    second: match_entrance_wolf_32
+  - first:
+      213: 6918613861835529419
+    second: match_entrance_wolf_33
+  - first:
+      213: -1002788017209646364
+    second: match_entrance_wolf_34
+  - first:
+      213: -4477632488999345604
+    second: match_entrance_wolf_35
+  - first:
+      213: -4561336317297548849
+    second: match_entrance_wolf_36
+  - first:
+      213: -8534792800324721152
+    second: match_entrance_wolf_37
+  - first:
+      213: 4525742522091357908
+    second: match_entrance_wolf_38
+  - first:
+      213: -1466917120043723930
+    second: match_entrance_wolf_39
+  - first:
+      213: -521427573170078798
+    second: match_entrance_wolf_40
+  - first:
+      213: -1537387614910896170
+    second: match_entrance_wolf_41
+  - first:
+      213: -487566438401436727
+    second: match_entrance_wolf_42
+  - first:
+      213: -3979303144081176221
+    second: match_entrance_wolf_43
+  - first:
+      213: 7958825999780688949
+    second: match_entrance_wolf_44
+  - first:
+      213: -8794687419033448682
+    second: match_entrance_wolf_45
+  - first:
+      213: -4133035882278784961
+    second: match_entrance_wolf_46
+  - first:
+      213: 678142136617580260
+    second: match_entrance_wolf_47
+  - first:
+      213: -4769278362258860532
+    second: match_entrance_wolf_48
+  - first:
+      213: -7677215836299546415
+    second: match_entrance_wolf_49
+  - first:
+      213: -3371031004374437463
+    second: match_entrance_wolf_50
+  - first:
+      213: 4049574388568403103
+    second: match_entrance_wolf_51
+  - first:
+      213: -5081670067124153920
+    second: match_entrance_wolf_52
+  - first:
+      213: -1235431135273652948
+    second: match_entrance_wolf_53
+  - first:
+      213: -18908590921915192
+    second: match_entrance_wolf_54
+  - first:
+      213: -9158078844871824061
+    second: match_entrance_wolf_55
+  - first:
+      213: 4465198824685058668
+    second: match_entrance_wolf_56
+  - first:
+      213: 6205815469474143142
+    second: match_entrance_wolf_57
+  - first:
+      213: -7401889243501849811
+    second: match_entrance_wolf_58
+  - first:
+      213: -9024100516455710659
+    second: match_entrance_wolf_59
+  - first:
+      213: 5801642690042558058
+    second: match_entrance_wolf_60
+  - first:
+      213: -2823771292452529201
+    second: match_entrance_wolf_61
+  - first:
+      213: -3498002730121977180
+    second: match_entrance_wolf_62
+  - first:
+      213: -1616448516110495197
+    second: match_entrance_wolf_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: match_entrance_wolf_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1915
+        width: 77
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47823c967373c49e0800000000000000
+      internalID: -1635871853505206156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1915
+        width: 78
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b6894dcf209e20c0800000000000000
+      internalID: -4598579634516687179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_2
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 1915
+        width: 78
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244271a071a68b840800000000000000
+      internalID: 5240054813631652930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_3
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 1915
+        width: 78
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25cd775ce600b4ce0800000000000000
+      internalID: -1420040781745890222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_4
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 1915
+        width: 78
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938b108ef991f2d20800000000000000
+      internalID: 3255849230195079225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1915
+        width: 78
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d96f4fc72438ce4c0800000000000000
+      internalID: -4256883226184452451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_6
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 1915
+        width: 78
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df68fd45fb2dd0e50800000000000000
+      internalID: 6777304733466986237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 1915
+        width: 78
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa304c0877531e30800000000000000
+      internalID: 4473015028022262513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1659
+        width: 77
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc56c7c193abf5f40800000000000000
+      internalID: 5719494806237636044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 1659
+        width: 77
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03334cec0fa300ac0800000000000000
+      internalID: -3891045272112581840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 1660
+        width: 77
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2b197552ec8c330800000000000000
+      internalID: 3731458951054734018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1659
+        width: 76
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110e147b7b1a6a360800000000000000
+      internalID: 7180604466314469393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1659
+        width: 76
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b8be75dd24a851c0800000000000000
+      internalID: -4514678109676586825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 1659
+        width: 76
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 137549b85d5f78ce0800000000000000
+      internalID: -1402882461384026319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_14
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1658
+        width: 76
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cdb19cfb0f8ef490800000000000000
+      internalID: -7710568230366888505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_15
+      rect:
+        serializedVersion: 2
+        x: 1825
+        y: 1658
+        width: 75
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4c74db9d2deb360800000000000000
+      internalID: 7187413887955223716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_16
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1403
+        width: 75
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1d8aecadff07800800000000000000
+      internalID: 608267264930140659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_17
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 1403
+        width: 75
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5f16e0b3155b6e0800000000000000
+      internalID: -1822461160115276305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_18
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 1403
+        width: 74
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 283333c4931f4cbe0800000000000000
+      internalID: -1457775150967344254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_19
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1403
+        width: 74
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac04bdb8581746f60800000000000000
+      internalID: 8026665254272057546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_20
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1404
+        width: 73
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41bb46d93bb331050800000000000000
+      internalID: 5770021190217546516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_21
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 1404
+        width: 74
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d648ee0ddfa4a10800000000000000
+      internalID: 1894605667059395961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_22
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1404
+        width: 74
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d95919f03797a5a0800000000000000
+      internalID: -6510068499747350064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_23
+      rect:
+        serializedVersion: 2
+        x: 1842
+        y: 1404
+        width: 74
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b7d0f2df79974440800000000000000
+      internalID: 4920069892204451769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_24
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1148
+        width: 75
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7e932e2f3fb70e0800000000000000
+      internalID: -2270953362575202370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_25
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1148
+        width: 75
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f00c1ea697095a570800000000000000
+      internalID: 8477340724753448975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_26
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 1148
+        width: 75
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929733d4a45ad1370800000000000000
+      internalID: 8294967827227703593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_27
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1148
+        width: 76
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b92160d2da2be5bb0800000000000000
+      internalID: -4945318883951766885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_28
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 1148
+        width: 76
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88957c03bf7ae88c0800000000000000
+      internalID: -3995071122134050424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_29
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 1148
+        width: 76
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aefde0a43970d2c30800000000000000
+      internalID: 4336130345411731434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_30
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 1148
+        width: 76
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c1229d7895785660800000000000000
+      internalID: 7374773687621394883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_31
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 1148
+        width: 76
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa12a39b64acfbf80800000000000000
+      internalID: -8088524000630005329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_32
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 890
+        width: 77
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a6ecc131ff80800800000000000000
+      internalID: 578993009669859967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_33
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 891
+        width: 77
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bccdcc4a6aad30060800000000000000
+      internalID: 6918613861835529419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_34
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 891
+        width: 77
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e263318c916512f0800000000000000
+      internalID: -1002788017209646364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_35
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 891
+        width: 81
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c32227a89f04cd1c0800000000000000
+      internalID: -4477632488999345604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_36
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 892
+        width: 81
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1246259c0e2b0c0800000000000000
+      internalID: -4561336317297548849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_37
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 892
+        width: 80
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0066519da235e8980800000000000000
+      internalID: -8534792800324721152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_38
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 892
+        width: 79
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6c22e68daaece30800000000000000
+      internalID: 4525742522091357908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_39
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 892
+        width: 79
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663dad0c6a674abe0800000000000000
+      internalID: -1466917120043723930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_40
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 635
+        width: 79
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb7a15826483c8f0800000000000000
+      internalID: -521427573170078798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_41
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 636
+        width: 77
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7a6231c1a1aaae0800000000000000
+      internalID: -1537387614910896170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_42
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 636
+        width: 76
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c31ea258e0db39f0800000000000000
+      internalID: -487566438401436727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_43
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 636
+        width: 75
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369427bafdca6c8c0800000000000000
+      internalID: -3979303144081176221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_44
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 636
+        width: 74
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5343212441e637e60800000000000000
+      internalID: 7958825999780688949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_45
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 636
+        width: 73
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61f0aed736ef2f580800000000000000
+      internalID: -8794687419033448682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_46
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 637
+        width: 72
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3074d843c184a6c0800000000000000
+      internalID: -4133035882278784961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_47
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 637
+        width: 70
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e6b0582eae396900800000000000000
+      internalID: 678142136617580260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_48
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 381
+        width: 69
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c069a96299e10ddb0800000000000000
+      internalID: -4769278362258860532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_49
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0bc5d5fdc057590800000000000000
+      internalID: -7677215836299546415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_50
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1fe697921b731d0800000000000000
+      internalID: -3371031004374437463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_51
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9ca32a637af23830800000000000000
+      internalID: 4049574388568403103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_52
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1545f6ff74a79b0800000000000000
+      internalID: -5081670067124153920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_53
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2d6e859deddadee0800000000000000
+      internalID: -1235431135273652948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_54
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c465ea9cb2dcbff0800000000000000
+      internalID: -18908590921915192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_55
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 381
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d256aefc7f7e080800000000000000
+      internalID: -9158078844871824061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_56
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a38d46ca297fd30800000000000000
+      internalID: 4465198824685058668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_57
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab51a72a4c7f1650800000000000000
+      internalID: 6205815469474143142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_58
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d23994e23f4374990800000000000000
+      internalID: -7401889243501849811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_59
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d300d3b5464f3c280800000000000000
+      internalID: -9024100516455710659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_60
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a667ab5c943938050800000000000000
+      internalID: 5801642690042558058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_61
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcbdb6278f2ffc8d0800000000000000
+      internalID: -2823771292452529201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_62
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a2abb7dc09947fc0800000000000000
+      internalID: -3498002730121977180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: match_entrance_wolf_63
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 125
+        width: 67
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 322d68f83a83199e0800000000000000
+      internalID: -1616448516110495197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      match_entrance_wolf_0: -1635871853505206156
+      match_entrance_wolf_1: -4598579634516687179
+      match_entrance_wolf_10: 3731458951054734018
+      match_entrance_wolf_11: 7180604466314469393
+      match_entrance_wolf_12: -4514678109676586825
+      match_entrance_wolf_13: -1402882461384026319
+      match_entrance_wolf_14: -7710568230366888505
+      match_entrance_wolf_15: 7187413887955223716
+      match_entrance_wolf_16: 608267264930140659
+      match_entrance_wolf_17: -1822461160115276305
+      match_entrance_wolf_18: -1457775150967344254
+      match_entrance_wolf_19: 8026665254272057546
+      match_entrance_wolf_2: 5240054813631652930
+      match_entrance_wolf_20: 5770021190217546516
+      match_entrance_wolf_21: 1894605667059395961
+      match_entrance_wolf_22: -6510068499747350064
+      match_entrance_wolf_23: 4920069892204451769
+      match_entrance_wolf_24: -2270953362575202370
+      match_entrance_wolf_25: 8477340724753448975
+      match_entrance_wolf_26: 8294967827227703593
+      match_entrance_wolf_27: -4945318883951766885
+      match_entrance_wolf_28: -3995071122134050424
+      match_entrance_wolf_29: 4336130345411731434
+      match_entrance_wolf_3: -1420040781745890222
+      match_entrance_wolf_30: 7374773687621394883
+      match_entrance_wolf_31: -8088524000630005329
+      match_entrance_wolf_32: 578993009669859967
+      match_entrance_wolf_33: 6918613861835529419
+      match_entrance_wolf_34: -1002788017209646364
+      match_entrance_wolf_35: -4477632488999345604
+      match_entrance_wolf_36: -4561336317297548849
+      match_entrance_wolf_37: -8534792800324721152
+      match_entrance_wolf_38: 4525742522091357908
+      match_entrance_wolf_39: -1466917120043723930
+      match_entrance_wolf_4: 3255849230195079225
+      match_entrance_wolf_40: -521427573170078798
+      match_entrance_wolf_41: -1537387614910896170
+      match_entrance_wolf_42: -487566438401436727
+      match_entrance_wolf_43: -3979303144081176221
+      match_entrance_wolf_44: 7958825999780688949
+      match_entrance_wolf_45: -8794687419033448682
+      match_entrance_wolf_46: -4133035882278784961
+      match_entrance_wolf_47: 678142136617580260
+      match_entrance_wolf_48: -4769278362258860532
+      match_entrance_wolf_49: -7677215836299546415
+      match_entrance_wolf_5: -4256883226184452451
+      match_entrance_wolf_50: -3371031004374437463
+      match_entrance_wolf_51: 4049574388568403103
+      match_entrance_wolf_52: -5081670067124153920
+      match_entrance_wolf_53: -1235431135273652948
+      match_entrance_wolf_54: -18908590921915192
+      match_entrance_wolf_55: -9158078844871824061
+      match_entrance_wolf_56: 4465198824685058668
+      match_entrance_wolf_57: 6205815469474143142
+      match_entrance_wolf_58: -7401889243501849811
+      match_entrance_wolf_59: -9024100516455710659
+      match_entrance_wolf_6: 6777304733466986237
+      match_entrance_wolf_60: 5801642690042558058
+      match_entrance_wolf_61: -2823771292452529201
+      match_entrance_wolf_62: -3498002730121977180
+      match_entrance_wolf_63: -1616448516110495197
+      match_entrance_wolf_7: 4473015028022262513
+      match_entrance_wolf_8: 5719494806237636044
+      match_entrance_wolf_9: -3891045272112581840
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

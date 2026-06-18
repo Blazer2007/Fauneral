@@ -69,21 +69,17 @@ public class JoinRoomUI : MonoBehaviour
         }
     }
 
-    private void HandleLanServerFound(string ip, string roomName, string pin)
+    private void HandleLanServerFound(string ip, string roomName, string pin, int maxPlayers)
     {
         // Se estivermos em modo Online, ignoramos anúncios LAN
         if (NetworkSessionSettings.IsOnlineMode) return;
-
-        // Add to the list if not already there
-        // For simplicity, we'll just add it as a PublicLobbyEntry with a special marker or just use the IP as the "PIN"
-        // But the listItem needs to know it's LAN to call the right join method.
 
         // Let's create a temporary entry
         var entry = new PublicLobbyEntry {
             Pin = pin,
             RoomName = "[LAN] " + roomName,
-            CurrentPlayers = 1, // We don't know the exact count easily from broadcast without more data
-            MaxPlayers = 4
+            CurrentPlayers = 1, 
+            MaxPlayers = maxPlayers
         };
         
         // We need to store that this specific PIN/Entry is LAN

@@ -22,8 +22,8 @@ namespace Networking
         private bool _isSearching;
         private bool _isBroadcasting;
 
-        // Event for when a server is found: (IP, RoomName, PIN)
-        public event Action<string, string, string> OnServerFound;
+        // Event for when a server is found: (IP, RoomName, PIN, MaxPlayers)
+        public event Action<string, string, string, int> OnServerFound;
 
         private void Awake()
         {
@@ -32,7 +32,7 @@ namespace Networking
             DontDestroyOnLoad(gameObject);
         }
 
-        public void StartBroadcasting(string roomName, string pin)
+        public void StartBroadcasting(string roomName, string pin, int maxPlayers)
         {
             StopAll();
             _isBroadcasting = true;
@@ -42,7 +42,7 @@ namespace Networking
                 
                 Task.Run(async () =>
                 {
-                    byte[] data = Encoding.UTF8.GetBytes($"FAUNERAL_LAN|{roomName}|{pin}");
+                    byte[] data = Encoding.UTF8.GetBytes($"FAUNERAL_LAN|{roomName}|{pin}|{maxPlayers}");
                     IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(_broadcastAddress), _port);
 
                     while (_isBroadcasting)
@@ -55,7 +55,7 @@ namespace Networking
                         await Task.Delay(2000);
                     }
                 });
-                Debug.Log($"[LAN] Started Broadcasting: {roomName} ({pin})");
+                Debug.Log($"[LAN] Started Broadcasting: {roomName} ({pin}) Max: {maxPlayers}");
             } catch (Exception ex) {
                 Debug.LogError($"[LAN] StartBroadcasting Error: {ex.Message}");
             }
@@ -81,14 +81,15 @@ namespace Networking
                                 string[] parts = message.Split('|');
                                 string roomName = parts.Length > 1 ? parts[1] : "Local Game";
                                 string pin = parts.Length > 2 ? parts[2] : "0000";
+                                int maxPlayers = parts.Length > 3 && int.TryParse(parts[3], out int m) ? m : 4;
                                 string ip = result.RemoteEndPoint.Address.ToString();
                                 
                                 // Server sends its own IP, but we get the IP from the packet origin
-                                Debug.Log($"[LAN] Server found: {roomName} at {ip}");
+                                Debug.Log($"[LAN] Server found: {roomName} at {ip} (Max: {maxPlayers})");
                                 // We don't have a MainThreadDispatcher yet, so we'll just queue it for next update or use a simple list
                                 lock (_discoveredServers)
                                 {
-                                    _discoveredServers.Enqueue((ip, roomName, pin));
+                                    _discoveredServers.Enqueue((ip, roomName, pin, maxPlayers));
                                 }
                             }
                         } catch { /* Ignore socket closed errors */ }
@@ -100,18 +101,18 @@ namespace Networking
             }
         }
 
-        private Queue<(string ip, string name, string pin)> _discoveredServers = new Queue<(string, string, string)>();
+        private Queue<(string ip, string name, string pin, int maxPlayers)> _discoveredServers = new Queue<(string, string, string, int)>();
 
         private void Update()
         {
             while (_discoveredServers.Count > 0)
             {
-                (string ip, string name, string pin) server;
+                (string ip, string name, string pin, int maxPlayers) server;
                 lock (_discoveredServers)
                 {
                     server = _discoveredServers.Dequeue();
                 }
-                OnServerFound?.Invoke(server.ip, server.name, server.pin);
+                OnServerFound?.Invoke(server.ip, server.name, server.pin, server.maxPlayers);
             }
         }
 

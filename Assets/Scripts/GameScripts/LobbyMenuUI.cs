@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Networking;
 
 /// <summary>
 /// UI da cena LobbyMenu.
@@ -85,7 +86,7 @@ public class LobbyMenuUI : MonoBehaviour
         {
             if (!Networking.NetworkSessionSettings.IsOnlineMode)
             {
-                string ip = GetLocalIPAddress();
+                string ip = NetworkIPUtils.GetBestLocalIP();
                 _hostIpText.text = $"IP: {ip}";
                 _hostIpText.gameObject.SetActive(true);
                 Debug.Log($"[Lobby] Modo LAN detectado. IP do Host: {ip}");
@@ -102,10 +103,9 @@ SetStartGameVisible(false);
         // Inicializa todos os spawns como vazios
         foreach (var s in _playerSpawns) s?.SetDisconnected();
 
-        // Aplica estado guardado se já existir (ex: refresh de cena)
-        if (!string.IsNullOrEmpty(LobbySessionData.SlotsData))
-            RefreshFullState(LobbySessionData.SlotsData, LobbySessionData.ReadyData,
-                LobbySessionData.CurrentPlayers, LobbySessionData.MaxPlayers);
+        // Aplica estado inicial/guardado
+        RefreshFullState(LobbySessionData.SlotsData, LobbySessionData.ReadyData,
+            LobbySessionData.CurrentPlayers, LobbySessionData.MaxPlayers);
     }
 
     // ── API PÚBLICA (chamada pelo LobbyClientManager) ──────────────
@@ -149,6 +149,16 @@ SetStartGameVisible(false);
             {
                 _iAmReady = isReady;
                 spawn.SetReadyButtonLabel(_iAmReady ? "Cancelar" : "Ready");
+                
+                // Host cannot ready alone
+                if (LobbySessionData.IsCreator && currentPlayers < 2)
+                {
+                    if (spawn.ReadyButton != null) spawn.ReadyButton.interactable = false;
+                }
+                else
+                {
+                    if (spawn.ReadyButton != null) spawn.ReadyButton.interactable = true;
+                }
             }
         }
     }
@@ -194,6 +204,13 @@ SetStartGameVisible(false);
     /// </summary>
     public void OnReadyButton()
     {
+        // Host can only ready if there's someone else in the lobby
+        if (LobbySessionData.IsCreator && LobbySessionData.CurrentPlayers < 2)
+        {
+            Debug.Log("[Lobby] Host cannot ready alone.");
+            return;
+        }
+
         _iAmReady = !_iAmReady;
         LobbyClientManager.Instance?.SetReady(_iAmReady);
         // O visual é actualizado quando o servidor responder com ReadyStateClientRpc
@@ -237,28 +254,6 @@ SetStartGameVisible(false);
     {
         yield return new WaitForSeconds(2f);
         if (_pinText != null) _pinText.text = original;
-    }
-
-    private string GetLocalIPAddress()
-    {
-        try
-        {
-            var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    // Evita IPs de loopback
-                    if (ip.ToString() == "127.0.0.1") continue;
-                    return ip.ToString();
-                }
-            }
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning("[Lobby] Erro ao obter IP local: " + e.Message);
-        }
-        return "127.0.0.1";
     }
 
     // ── HELPERS ───────────────────────────────────────────────────

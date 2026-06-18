@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -252,7 +252,8 @@ public class CardSelectionManager : NetworkBehaviour
 
         // Todos escolheram → inicia a ronda
         Debug.Log("[CardSelection] Todos os jogadores escolheram. A iniciar ronda...");
-        _roundManager?.StartRoundClientRpc();
+        if (RoundManager.Instance != null)
+            RoundManager.Instance.StartNextRound();
     }
 
     // ── CLIENT RPC: adiciona carta ao PlayerCardUser ──────────────

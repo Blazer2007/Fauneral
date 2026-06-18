@@ -24,26 +24,13 @@ namespace Networking
         {
             if (_text != null)
             {
-                _text.text = "Meu IP: " + GetLocalIPAddress();
+                _text.text = "Meu IP: " + GetBestLocalIP();
             }
         }
 
-        private string GetLocalIPAddress()
+        private string GetBestLocalIP()
         {
-            try
-            {
-                var host = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        if (ip.ToString() == "127.0.0.1") continue;
-                        return ip.ToString();
-                    }
-                }
-            }
-            catch { }
-            return "127.0.0.1";
+            return NetworkIPUtils.GetBestLocalIP();
         }
-    }
+}
 }

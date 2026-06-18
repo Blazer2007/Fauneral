@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 17429db9f0427e8408f5767e45ae062e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7180130259367499135
+    second: jump_wolf_0
+  - first:
+      213: 5643120796813580323
+    second: jump_wolf_1
+  - first:
+      213: -6114412641298531265
+    second: jump_wolf_2
+  - first:
+      213: -4959065407439861080
+    second: jump_wolf_3
+  - first:
+      213: -2857486737291368812
+    second: jump_wolf_4
+  - first:
+      213: 8944902967885298617
+    second: jump_wolf_5
+  - first:
+      213: 6521484777123126469
+    second: jump_wolf_6
+  - first:
+      213: 2963086550363557142
+    second: jump_wolf_7
+  - first:
+      213: -4654208127653500877
+    second: jump_wolf_8
+  - first:
+      213: 7598490693376021931
+    second: jump_wolf_9
+  - first:
+      213: -7670266624883716817
+    second: jump_wolf_10
+  - first:
+      213: -8996652759306078946
+    second: jump_wolf_11
+  - first:
+      213: 3975182196691473429
+    second: jump_wolf_12
+  - first:
+      213: -4318354858078605664
+    second: jump_wolf_13
+  - first:
+      213: -8485313403816290759
+    second: jump_wolf_14
+  - first:
+      213: -4862894516587227880
+    second: jump_wolf_15
+  - first:
+      213: -4602200214514177427
+    second: jump_wolf_16
+  - first:
+      213: 7885691152506595674
+    second: jump_wolf_17
+  - first:
+      213: 4837916861411037047
+    second: jump_wolf_18
+  - first:
+      213: 896761587975986990
+    second: jump_wolf_19
+  - first:
+      213: -6621099008944763057
+    second: jump_wolf_20
+  - first:
+      213: -3338249148684567239
+    second: jump_wolf_21
+  - first:
+      213: -254356503003459806
+    second: jump_wolf_22
+  - first:
+      213: -5801337142279814311
+    second: jump_wolf_23
+  - first:
+      213: 3152998536835399564
+    second: jump_wolf_24
+  - first:
+      213: -5022491191227716824
+    second: jump_wolf_25
+  - first:
+      213: 1816853921247748931
+    second: jump_wolf_26
+  - first:
+      213: -5505481656361980750
+    second: jump_wolf_27
+  - first:
+      213: 1366974008354268565
+    second: jump_wolf_28
+  - first:
+      213: 8718876476880891592
+    second: jump_wolf_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: jump_wolf_0
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7512aecd62f4a360800000000000000
+      internalID: 7180130259367499135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_1
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32851b65774605e40800000000000000
+      internalID: 5643120796813580323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_2
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c3e39291e352ba0800000000000000
+      internalID: -6114412641298531265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_3
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aa8e93494cdd2bb0800000000000000
+      internalID: -4959065407439861080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_4
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 496ab59b3fa2858d0800000000000000
+      internalID: -2857486737291368812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_5
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bbf32f6bdda22c70800000000000000
+      internalID: 8944902967885298617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_6
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc9a8c3ad7f08a50800000000000000
+      internalID: 6521484777123126469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1910
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61d4829b48ffe1920800000000000000
+      internalID: 2963086550363557142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3382a70fd5ee86fb0800000000000000
+      internalID: -4654208127653500877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba51acfe603437960800000000000000
+      internalID: 7598490693376021931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d854bb42dbd8590800000000000000
+      internalID: -7670266624883716817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e15f5025bf7752380800000000000000
+      internalID: -8996652759306078946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 514904f752faa2730800000000000000
+      internalID: 3975182196691473429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae642ed22f1214c0800000000000000
+      internalID: -4318354858078605664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_14
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9365ba59a6c1e3a80800000000000000
+      internalID: -8485313403816290759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_15
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1654
+        width: 82
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8159f9ea337838cb0800000000000000
+      internalID: -4862894516587227880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_16
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1398
+        width: 83
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6ae7a4d943b120c0800000000000000
+      internalID: -4602200214514177427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_17
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1397
+        width: 85
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59a891b25a9f6d60800000000000000
+      internalID: 7885691152506595674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_18
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 1397
+        width: 86
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77f0749c0cbb32340800000000000000
+      internalID: 4837916861411037047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_19
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1397
+        width: 87
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f168bb9efe17c00800000000000000
+      internalID: 896761587975986990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_20
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 1397
+        width: 87
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4f082d08812d14a0800000000000000
+      internalID: -6621099008944763057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_21
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 1397
+        width: 89
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93df7e806182ca1d0800000000000000
+      internalID: -3338249148684567239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_22
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 1397
+        width: 89
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22f0b20bb18587cf0800000000000000
+      internalID: -254356503003459806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_23
+      rect:
+        serializedVersion: 2
+        x: 1873
+        y: 1397
+        width: 89
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953c12c1b928d7fa0800000000000000
+      internalID: -5801337142279814311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_24
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1141
+        width: 90
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f7665c673b1cb20800000000000000
+      internalID: 3152998536835399564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_25
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1141
+        width: 90
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82be7533fd68c4ab0800000000000000
+      internalID: -5022491191227716824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_26
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1142
+        width: 91
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3436fb8e303c63910800000000000000
+      internalID: 1816853921247748931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_27
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1142
+        width: 90
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bc6d135a999893b0800000000000000
+      internalID: -5505481656361980750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_28
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 1142
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 595e5293e9778f210800000000000000
+      internalID: 1366974008354268565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_wolf_29
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 1142
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ceaefc06fbaff870800000000000000
+      internalID: 8718876476880891592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      jump_wolf_0: 7180130259367499135
+      jump_wolf_1: 5643120796813580323
+      jump_wolf_10: -7670266624883716817
+      jump_wolf_11: -8996652759306078946
+      jump_wolf_12: 3975182196691473429
+      jump_wolf_13: -4318354858078605664
+      jump_wolf_14: -8485313403816290759
+      jump_wolf_15: -4862894516587227880
+      jump_wolf_16: -4602200214514177427
+      jump_wolf_17: 7885691152506595674
+      jump_wolf_18: 4837916861411037047
+      jump_wolf_19: 896761587975986990
+      jump_wolf_2: -6114412641298531265
+      jump_wolf_20: -6621099008944763057
+      jump_wolf_21: -3338249148684567239
+      jump_wolf_22: -254356503003459806
+      jump_wolf_23: -5801337142279814311
+      jump_wolf_24: 3152998536835399564
+      jump_wolf_25: -5022491191227716824
+      jump_wolf_26: 1816853921247748931
+      jump_wolf_27: -5505481656361980750
+      jump_wolf_28: 1366974008354268565
+      jump_wolf_29: 8718876476880891592
+      jump_wolf_3: -4959065407439861080
+      jump_wolf_4: -2857486737291368812
+      jump_wolf_5: 8944902967885298617
+      jump_wolf_6: 6521484777123126469
+      jump_wolf_7: 2963086550363557142
+      jump_wolf_8: -4654208127653500877
+      jump_wolf_9: 7598490693376021931
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

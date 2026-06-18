@@ -182,8 +182,46 @@ namespace Networking
             }
         }
 
-        public class AcceptAllCertificates : CertificateHandler
+        // --- ANALYTICS / DATABASE HOOKS ---
+
+        public void LogMatchStart(string pin, int playerCount)
         {
+            StartCoroutine(PostAnalyticsCoroutine("match-start", new MatchStartData { pin = pin, playerCount = playerCount }));
+        }
+
+        public void LogMatchEnd(string pin, int winnerIndex, int totalRounds)
+        {
+            StartCoroutine(PostAnalyticsCoroutine("match-end", new MatchEndData { pin = pin, winnerIndex = winnerIndex, totalRounds = totalRounds }));
+        }
+
+        private IEnumerator PostAnalyticsCoroutine(string endpoint, object data)
+        {
+            string json = JsonUtility.ToJson(data);
+            string url = $"{_baseUrl}/analytics/{endpoint}";
+
+            using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+            {
+                byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
+
+                yield return request.SendWebRequest();
+
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogWarning($"[Analytics] Failed to send {endpoint}: {request.error}");
+                }
+            }
+        }
+
+        [Serializable]
+        private class MatchStartData { public string pin; public int playerCount; }
+        [Serializable]
+        private class MatchEndData { public string pin; public int winnerIndex; public int totalRounds; }
+
+        public class AcceptAllCertificates : CertificateHandler
+{
             protected override bool ValidateCertificate(byte[] certificateData) => true;
         }
         // Classes de suporte para conversão de dados JSON

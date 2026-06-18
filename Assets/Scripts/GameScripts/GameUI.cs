@@ -30,55 +30,13 @@ public class GameUI : NetworkBehaviour
 
     private void Start()
     {
-        // Esconde todas as barras até sabermos quantos jogadores há
-        foreach (var bar in HPBars)
-            if (bar != null) bar.gameObject.SetActive(false);
-
         HideEndScreen();
     }
 
-    private void Update()
-    {
-        for (int i = 0; i < _playerHPs.Count; i++)
-            if (i < HPBars.Count && HPBars[i] != null)
-                HPBars[i].value = _playerHPs[i].CurrentHP;
-    }
-
-    /// <summary>
-    /// Chamado pelo PlayerSpawner depois de todos os jogadores estarem spawnados.
-    /// Corre em todos os clientes e mapeia as barras por PlayerIndex.
-    /// </summary>
     [ClientRpc]
     public void InitialiseHPBarsClientRpc()
     {
-        StartCoroutine(InitialiseAfterDelay());
-    }
-
-    private IEnumerator InitialiseAfterDelay()
-    {
-        // Espera um frame para garantir que todos os NetworkObjects estão inicializados
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-
-        _playerHPs.Clear();
-        _playerHPs.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
-        _playerHPs.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
-
-        for (int i = 0; i < _playerHPs.Count; i++)
-        {
-            if (i < HPBars.Count && HPBars[i] != null)
-            {
-                HPBars[i].minValue = 0;
-                HPBars[i].maxValue = _playerHPs[i].MaxHP;
-                HPBars[i].value = _playerHPs[i].CurrentHP;
-                HPBars[i].gameObject.SetActive(true);
-            }
-        }
-
-        // Esconde barras sem jogador
-        for (int i = _playerHPs.Count; i < HPBars.Count; i++)
-            if (HPBars[i] != null)
-                HPBars[i].gameObject.SetActive(false);
+        // Deixado vazio para o colega implementar a sua própria lógica de busca de jogadores
     }
 
     public void UpdateRoundWins(Dictionary<int, int> roundWins)
