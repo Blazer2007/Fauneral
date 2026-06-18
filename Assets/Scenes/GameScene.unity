@@ -834,6 +834,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4212294695
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 98387180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3020023494282185250, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
@@ -1044,8 +1056,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_HandleRect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Interactable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1862161902872389348, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Name
@@ -1151,6 +1171,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1553902846
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 98387180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3020023494282185250, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
@@ -1194,8 +1226,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_HandleRect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Interactable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1862161902872389348, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Name
@@ -1300,6 +1340,18 @@ PrefabInstance:
     - target: {fileID: 5725672428978892801, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2917317691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 98387180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2212,6 +2264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797522033}
+  - component: {fileID: 1797522034}
   - component: {fileID: 1797522032}
   m_Layer: 0
   m_Name: GameUI
@@ -2232,6 +2285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d7a70785c6b284ab353d59ece04743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   HPBars:
   - {fileID: 1710207536236108042}
   - {fileID: 833199575}
@@ -2256,6 +2310,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797522034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797522031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3209713779
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1803265669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,8 +2931,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_HandleRect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Interactable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728973587325720076, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1862161902872389348, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_Name
@@ -2974,6 +3061,18 @@ PrefabInstance:
     - target: {fileID: 5725672428978892801, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2801764499
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225143754509891478, guid: 8611a6cb2c98e49478202cc734067e5f, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 98387180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -69,22 +69,19 @@ public class PlayerSpawner : MonoBehaviour
         {
             Transform point = points[i % points.Count];
             var player = Instantiate(_playerPrefab, point.position, point.rotation);
-            var netObj = player.GetComponent<NetworkObject>();
             var health = player.GetComponent<PlayerHealth>();
             if (health != null) health.SetPlayerIndex(i);
+            var netObj = player.GetComponent<NetworkObject>();
             if (netObj != null)
-            {
                 netObj.SpawnAsPlayerObject(clientId, true);
-                gameUI.ConnectHPBarsAndPlayerHPWithPlayers(clientId);
-            }
             else
-            {
                 Debug.LogError("[PlayerSpawner] Player prefab missing NetworkObject!");
-            }
             i++;
-           
-            gameUI.RefreshPlayerListClientRpc();
         }
+
+        // Só depois de todos spawnados é que inicializa as barras
+        gameUI.InitialiseHPBarsClientRpc();
+    }
 
 
         
@@ -118,4 +115,4 @@ public class PlayerSpawner : MonoBehaviour
     //}
 
 
-}
+

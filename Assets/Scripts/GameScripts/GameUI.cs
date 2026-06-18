@@ -4,40 +4,37 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
-/// <summary>
-/// Handles all in-game UI: HP bars, round win counters, and end screens.
-/// All elements are placeholder hook up in the Inspector.
-/// </summary>
-public class GameUI : MonoBehaviour
+
+public class GameUI : NetworkBehaviour
 {
     public static GameUI Instance { get; private set; }
 
-    [Header("HP Bars � one Slider per player, in order P1, P2, ...")]
-    [Tooltip("Drag the HP Slider for each player here, in player order")]
+    [Header("HP Bars — P1, P2, P3, P4")]
     public List<Slider> HPBars = new List<Slider>();
 
-    [Header("Wins Text � one TMP_Text per player, in order P1, P2, ...")]
-    [Tooltip("Drag the Wins TMP_Text for each player here, in player order")]
+    [Header("Wins Text — P1, P2, P3, P4")]
     public List<TMP_Text> WinsTexts = new List<TMP_Text>();
 
     [Header("End Screen")]
-    [Tooltip("The Panel that shows when a round or match ends")]
     public GameObject EndScreen;
-
-    [Tooltip("Text inside EndScreen that shows the result message")]
     public TMP_Text EndText;
-
-    [Tooltip("Button to restart the match � wire OnClick to RoundManager.RestartMatch")]
     public Button RestartButton;
 
-    // Reference to players so we can read HP every frame
     private List<PlayerHealth> _playerHPs = new List<PlayerHealth>();
 
-
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
 
     private void Start()
     {
-            
+        // Esconde todas as barras até sabermos quantos jogadores há
+        foreach (var bar in HPBars)
+            if (bar != null) bar.gameObject.SetActive(false);
+
+        HideEndScreen();
     }
 
     private void Update()
@@ -47,117 +44,22 @@ public class GameUI : MonoBehaviour
                 HPBars[i].value = _playerHPs[i].CurrentHP;
     }
 
-
-
-    
     /// <summary>
-    /// Updates the round win counters displayed on screen.
+    /// Chamado pelo PlayerSpawner depois de todos os jogadores estarem spawnados.
+    /// Corre em todos os clientes e mapeia as barras por PlayerIndex.
     /// </summary>
-    public void UpdateRoundWins(Dictionary<int, int> roundWins)
-    {
-        foreach (var kvp in roundWins)
-        {
-            int index = kvp.Key; // PlayerIndex
-            if (index < WinsTexts.Count && WinsTexts[index] != null)
-                WinsTexts[index].text = $"Wins: {kvp.Value}";
-        }
-    }
-
-    /// <summary>
-    /// Shows a "Player X wins the round!" message briefly.
-    /// </summary>
-    public void ShowRoundWinner(int playerIndex, Dictionary<int, int> roundWins)
-    {
-        UpdateRoundWins(roundWins);
-        ShowEndScreen($"Player {playerIndex + 1} wins the round!");
-    }
-
-    /// <summary>
-    /// Shows the match winner screen with a restart option.
-    /// </summary>
-    public void ShowMatchWinner(int playerIndex)
-    {
-        ShowEndScreen($"Player {playerIndex + 1} wins the MATCH!\n\nPress Restart to play again.");
-        if (RestartButton != null)
-            RestartButton.gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Shows a draw message.
-    /// </summary>
-    public void ShowDraw()
-    {
-        ShowEndScreen("Draw! No points awarded.");
-    }
-
-    public void HideEndScreen()
-    {
-        if (EndScreen != null)
-            EndScreen.SetActive(false);
-
-        if (RestartButton != null)
-            RestartButton.gameObject.SetActive(false);
-    }
-
-    private void ShowEndScreen(string message)
-    {
-        if (EndScreen != null)
-            EndScreen.SetActive(true);
-
-        if (EndText != null)
-            EndText.text = message;
-    }
-
-    // This method is called when the players are first spawned,
-    // to link the HP bars to the correct players on each client and connect the respective PlayerHealth between them.
     [ClientRpc]
-    public void ConnectHPBarsAndPlayerHPWithPlayers(ulong ClientId, ClientRpcParams rpcParams = default)
+    public void InitialiseHPBarsClientRpc()
     {
-        UpdateIndividualHPBars(ClientId); 
-        PlayerHealth[] playersHP = FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None);
-        _playerHPs.Clear();
-        foreach (PlayerHealth php in playersHP)
-        {
-            var no = php.GetComponentInParent<NetworkObject>();
-            if (no.OwnerClientId == ClientId)
-            {
-                _playerHPs.Add(php);//
-            }
-        }
-    }
-    // This method is called every frame to update the HP bars of the respective players on each client.
-    [ClientRpc]
-    public void UpdateIndividualHPBars(ulong ClientId, ClientRpcParams rpcParams = default)
-    {
-        bool _hpbarsConnected = false;
-        // Update individual player's HP bars considering the ClientId to only update the HP bars of the respective player on each client.
-        for (int i = 0; i < _playerHPs.Count; i++)
-        {
-            if (i < HPBars.Count && HPBars[i] != null)
-            {
-                var no = _playerHPs[i].GetComponentInParent<NetworkObject>();
-                if (no.OwnerClientId == ClientId)
-                {
-                    HPBars[i].value = _playerHPs[i].CurrentHP;
-                }
-            }
-        }
-        if (_hpbarsConnected) return;
-
-        // verificar quantos clientes estao conectados e atualizar as HP bars de acordo com o numero de clientes conectados
-        int connectedClients = NetworkManager.Singleton.ConnectedClients.Count;
-        for (int i = 0; i < connectedClients; i++)
-        {
-            if (i < HPBars.Count && HPBars[i] != null)
-            {
-                HPBars[i].gameObject.SetActive(true);
-            }
-        }
-
+        StartCoroutine(InitialiseAfterDelay());
     }
 
-    public void RefreshPlayerList()
+    private IEnumerator InitialiseAfterDelay()
     {
+        // Espera um frame para garantir que todos os NetworkObjects estão inicializados
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
         _playerHPs.Clear();
         _playerHPs.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
         _playerHPs.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
@@ -179,15 +81,43 @@ public class GameUI : MonoBehaviour
                 HPBars[i].gameObject.SetActive(false);
     }
 
-    [ClientRpc]
-    public void RefreshPlayerListClientRpc()
+    public void UpdateRoundWins(Dictionary<int, int> roundWins)
     {
-        StartCoroutine(RefreshAfterDelay());
+        foreach (var kvp in roundWins)
+        {
+            int index = kvp.Key;
+            if (index < WinsTexts.Count && WinsTexts[index] != null)
+                WinsTexts[index].text = $"Wins: {kvp.Value}";
+        }
     }
 
-    private IEnumerator RefreshAfterDelay()
+    public void ShowRoundWinner(int playerIndex, Dictionary<int, int> roundWins)
     {
-        yield return new WaitForSeconds(0.2f);
-        RefreshPlayerList();
+        UpdateRoundWins(roundWins);
+        ShowEndScreen($"Player {playerIndex + 1} wins the round!");
+    }
+
+    public void ShowMatchWinner(int playerIndex)
+    {
+        ShowEndScreen($"Player {playerIndex + 1} wins the MATCH!\n\nPress Restart to play again.");
+        if (RestartButton != null)
+            RestartButton.gameObject.SetActive(true);
+    }
+
+    public void ShowDraw()
+    {
+        ShowEndScreen("Draw! No points awarded.");
+    }
+
+    public void HideEndScreen()
+    {
+        if (EndScreen != null) EndScreen.SetActive(false);
+        if (RestartButton != null) RestartButton.gameObject.SetActive(false);
+    }
+
+    private void ShowEndScreen(string message)
+    {
+        if (EndScreen != null) EndScreen.SetActive(true);
+        if (EndText != null) EndText.text = message;
     }
 }

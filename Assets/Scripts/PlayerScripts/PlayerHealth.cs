@@ -87,7 +87,7 @@ public class PlayerHealth : NetworkBehaviour
         NetCurrentHP.Value = Mathf.Clamp(NetCurrentHP.Value, 0, MaxHP);
 
         if (NetCurrentHP.Value <= 0)
-            Die();
+            DieClientRpc();
     }
 
     /// <summary>
@@ -98,10 +98,11 @@ public class PlayerHealth : NetworkBehaviour
         if (!IsServer) return;
         if (!IsAlive) return;
         NetCurrentHP.Value = 0;
-        Die();
+        DieClientRpc();
     }
 
-    private void Die()
+    [ClientRpc]
+    private void DieClientRpc()
     {
         Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu.");
         NetIsAlive.Value = false;
@@ -132,7 +133,7 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
-    private void SetPlayerState(bool active)
+    public void SetPlayerState(bool active)
     {
         // Envia RPC para todos garantirem o estado visual
         SetPlayerStateClientRpc(active);

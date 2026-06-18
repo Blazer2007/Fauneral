@@ -28,9 +28,9 @@ public class RoundManager : NetworkBehaviour
     // Contador de rondas jogadas (começa em 1 na primeira ronda real)
     public int RoundNumber { get; private set; } = 0;
 
-    private PlayerSpawner _playerSpawner;
-
     private GameUI _gameUI;
+
+   
 
     // ── UNITY ─────────────────────────────────────────────────
 
@@ -78,8 +78,8 @@ public class RoundManager : NetworkBehaviour
     }
 
     // ── ROUND LOOP ────────────────────────────────────────────
-
-    public void StartRound()
+    [ClientRpc]
+    public void StartRoundClientRpc()
     {
         if (MatchOver) return;
 
@@ -103,7 +103,35 @@ public class RoundManager : NetworkBehaviour
         _gameUI?.UpdateRoundWins(RoundWins);
         _gameUI?.HideEndScreen();
 
-     
+        GameObject spawnPointsParent = GameObject.Find("PlayerSpawnPoints");
+        
+
+        List<Transform> points = new List<Transform>();
+        foreach (Transform t in spawnPointsParent.GetComponentsInChildren<Transform>())
+            if (t != spawnPointsParent.transform) points.Add(t);
+
+        GameUI gameUI = GameObject.FindFirstObjectByType<GameUI>(); // Tenta encontrar o GameUI na cena carregada
+        if (gameUI == null)
+        {
+            Debug.LogError("[PlayerSpawner] GameUI não encontrado na GameScene!");
+            return;
+        }
+
+        int i = 0;
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            Transform point = points[i % points.Count];
+            var player = GetComponent<PlayerHealth>();
+
+            var health = player.GetComponent<PlayerHealth>();
+            if (health != null) health.SetPlayerIndex(i);
+            var netObj = player.GetComponent<NetworkObject>();
+            if (netObj != null)
+                netObj.transform.position = point.position;
+            else
+                Debug.LogError("[PlayerSpawner] Player prefab missing NetworkObject!");
+            i++;
+        }
         Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {Players.Count} jogadores.");
 
 
@@ -120,8 +148,8 @@ public class RoundManager : NetworkBehaviour
         foreach (var p in Players)
             if (p.IsAlive) alive.Add(p);
 
-        //
-        if (alive.Count <= 1)
+        
+        if (alive.Count == 2)
         {
             RoundActive = false;
             PlayerHealth winner = alive.Count == 1 ? alive[0] : null; 
@@ -194,7 +222,7 @@ public class RoundManager : NetworkBehaviour
         else
         {
             Debug.LogWarning("[RoundManager] CardSelectionManager não encontrado. A iniciar ronda sem selecção.");
-            StartRound();
+            StartRoundClientRpc();
         }
     }
 
