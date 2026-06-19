@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Paper
   description: You look Stupid
   rarity: 1
-  previewSprite: {fileID: -8108558231363195077, guid: b7c5f9f894df06f459e7edc46a12b553, type: 3}
+  previewSprite: {fileID: 1356287480637967605, guid: 03acdcbfd5d4ce146897f49eebde4c98, type: 3}
   hatPrefab: {fileID: 0}

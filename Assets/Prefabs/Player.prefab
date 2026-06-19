@@ -50,6 +50,8 @@ GameObject:
   - component: {fileID: 4475790568544512978}
   - component: {fileID: -5819488784865301555}
   - component: {fileID: -658312209205787943}
+  - component: {fileID: 3320938129009737915}
+  - component: {fileID: 6979389767326914972}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -294,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bff6f3a852bae48a77d64ff7492b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _playerstats: {fileID: 2981820481530735267}
   _lightAttackHtBx: {fileID: 4717449762931161222}
   _lightAttackRange: 1.5
@@ -317,11 +320,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _spawnPoint: {fileID: 0}
   NetCurrentHP:
-    UpdateTraits:
-      MinSecondsBetweenUpdates: 0
-      MaxSecondsBetweenUpdates: 0
-    m_InternalValue: 100
-  NetMaxHP:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
@@ -392,6 +390,38 @@ MonoBehaviour:
       Synchronize: 1
       ParameterType: 1
   AnimatorParametersExpanded: 0
+--- !u!114 &3320938129009737915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079204256749916523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb4d3f92e6ec204d98d7f3023a8bf1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _explosionPrefab: {fileID: 0}
+  _explosionDamage: 15
+  _explosionRadius: 2.5
+  _explosionFuse: 0.4
+--- !u!114 &6979389767326914972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079204256749916523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c975c4fd43beceb47b55fc52c91442a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _useCardAction: {fileID: -5850925043135572156, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _spawnOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5383004335717602447
 GameObject:
   m_ObjectHideFlags: 0

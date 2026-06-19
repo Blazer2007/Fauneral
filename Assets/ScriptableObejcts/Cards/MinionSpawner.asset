@@ -10,23 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
-  m_Name: Guardian Halo
+  m_Name: MinionSpawner
   m_EditorClassIdentifier: 
   rarity: Epic
-  description: "B\xCAN\xC7\xC3O: +8 Armadura e +25 Vida m\xE1xima."
-  image: {fileID: -6465184051132080503, guid: 29ed93365b867634791bbaddb4e38fd3, type: 3}
-  id: 8
-  dealType: 1
-  isClickable: 0
-  buffs:
-  - Stat: 12
-    Value: 8
-    IsPercent: 0
-  - Stat: 10
-    Value: 25
-    IsPercent: 0
+  description: Spawn a companion to help your battle
+  image: {fileID: -7557494978891415441, guid: bfc7ce63a743ba248beb8c129c6141b4, type: 3}
+  id: 14
+  abilityId: 
+  dealType: 0
+  isClickable: 1
+  buffs: []
   debuffs: []
   time: 0
   uses: 1
-  isinfinite: 1
-  accessoryPrefab: {fileID: 0}
+  isinfinite: 0
+  accessoryPrefab: {fileID: 6323043663549668830, guid: 0a8bed30db8be2f40972ab0ed9323425, type: 3}

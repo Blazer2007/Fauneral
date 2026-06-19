@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -92,6 +92,7 @@ public class PlayerCardUser : NetworkBehaviour
 
     private void OnUseCardInput(InputAction.CallbackContext ctx)
     {
+        Debug.Log("[PlayerCardUser] Tentativa de usar carta activa.");
         if (_activeCard == null)
         {
             Debug.Log("[PlayerCardUser] Nenhuma carta activa.");
@@ -132,7 +133,15 @@ public class PlayerCardUser : NetworkBehaviour
         // Decrementa usos no servidor
         ConsumeUseServerSide(senderId, card);
 
-        if (card.accessoryPrefab != null)
+        if (!string.IsNullOrEmpty(card.abilityId))
+        {
+            // TIPO 3 — Habilidade ligada directamente ao jogador (sem spawn próprio)
+            // Ex: "explosive_dash" concede N dashes explosivos via PlayerAbilityHandler.
+            // Aqui o "uso" da carta concede a habilidade (ex: 5 usos = 5 dashes explosivos
+            // concedidos de uma vez, geridos depois pelo PlayerAbilityHandler).
+            ApplyDirectAbility(card, senderId);
+        }
+        else if (card.accessoryPrefab != null)
         {
             // TIPO 1 — Spawna acessório
             SpawnAccessory(card, senderId);
@@ -151,6 +160,48 @@ public class PlayerCardUser : NetworkBehaviour
         {
             Send = new ClientRpcSendParams { TargetClientIds = new[] { senderId } }
         });
+    }
+
+    // ── HABILIDADE DIRECTA (servidor) ─────────────────────────────
+
+    /// <summary>
+    /// Aplica habilidades que actuam directamente sobre o PlayerAbilityHandler
+    /// do jogador, sem spawnar nenhum objecto próprio (ex: Explosive Dash).
+    /// Adiciona novos "case" aqui conforme criares mais cartas deste tipo.
+    /// </summary>
+    private void ApplyDirectAbility(ScriptableCard card, ulong ownerId)
+    {
+        var handler = GetPlayerAbilityHandler(ownerId);
+        if (handler == null)
+        {
+            Debug.LogWarning($"[PlayerCardUser] PlayerAbilityHandler não encontrado para {ownerId}.");
+            return;
+        }
+
+        switch (card.abilityId)
+        {
+            case "explosive_dash":
+                // card.uses define quantos dashes explosivos são concedidos por activação
+                handler.GrantExplosiveDash(card.uses > 0 ? card.uses : 1);
+                break;
+
+            default:
+                Debug.LogWarning($"[PlayerCardUser] abilityId '{card.abilityId}' não reconhecido.");
+                break;
+        }
+    }
+
+    private TarodevController.PlayerAbilityHandler GetPlayerAbilityHandler(ulong clientId)
+    {
+        foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
+        {
+            if (netObj.OwnerClientId == clientId)
+            {
+                var handler = netObj.GetComponent<TarodevController.PlayerAbilityHandler>();
+                if (handler != null) return handler;
+            }
+        }
+        return null;
     }
 
     // ── SPAWN DE ACESSÓRIO (servidor) ─────────────────────────────
@@ -323,8 +374,13 @@ public class PlayerCardUser : NetworkBehaviour
         foreach (var card in _cards.Keys)
             if (card.id == cardId) return card;
 
-        // Fallback: procura na CardDatabase
-        var db = FindFirstObjectByType<CardDataBase>();
-        return db != null ? db.Get(cardId) : null;
+        // Fallback (usado sobretudo no servidor, cujo _cards está vazio para clientes remotos):
+        // resolve pelo id através da base de dados partilhada do CardSelectionManager.
+        // NOTA: CardDataBase é um ScriptableObject (asset), por isso NÃO pode ser obtido
+        // com FindFirstObjectByType — esse método só encontra objectos na cena.
+        if (CardSelectionManager.Instance != null)
+            return CardSelectionManager.Instance.ResolveCardById(cardId);
+
+        return null;
     }
 }

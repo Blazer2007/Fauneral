@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: Common
   description: +10% Dano e +10% Velocidade de ataque.
-  image: {fileID: 0}
+  image: {fileID: -6555575649291838755, guid: bfc7ce63a743ba248beb8c129c6141b4, type: 3}
   id: 0
   dealType: 0
   isClickable: 0

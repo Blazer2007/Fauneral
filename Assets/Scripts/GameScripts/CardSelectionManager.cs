@@ -272,7 +272,8 @@ public class CardSelectionManager : NetworkBehaviour
             // Conta para o limite de 3 clicáveis.
             if (!_clickableCount.ContainsKey(senderId)) _clickableCount[senderId] = 0;
             _clickableCount[senderId]++;
-
+            Debug.Log($"[CardSelection] Jogador {senderId} adquiriu carta CLICÁVEL '{card.id}' " +
+                      $"({_clickableCount[senderId]}/3)"); 
             AddCardToPlayerClientRpc(cardId, new ClientRpcParams
             {
                 Send = new ClientRpcSendParams { TargetClientIds = new[] { senderId } }
@@ -328,13 +329,17 @@ public class CardSelectionManager : NetworkBehaviour
         ScriptableCard card = _cardDatabase?.Get(cardId);
         if (card == null) return;
 
-        // Encontra o PlayerCardUser do jogador local (dono do NetworkObject local)
+        // Encontra o PlayerCardUser do jogador local (dono do NetworkObject local).
+        // NOTA: no host o servidor é dono de vários NetworkObjects, por isso não basta
+        // verificar IsOwner — temos de confirmar que o objecto tem mesmo um PlayerCardUser.
         foreach (var netObj in FindObjectsByType<NetworkObject>(FindObjectsSortMode.None))
         {
-            if (netObj.IsOwner)
+            if (!netObj.IsOwner) continue;
+
+            var cardUser = netObj.GetComponent<PlayerCardUser>();
+            if (cardUser != null)
             {
-                var cardUser = netObj.GetComponent<PlayerCardUser>();
-                cardUser?.AddCard(card);
+                cardUser.AddCard(card);
                 break;
             }
         }
@@ -392,6 +397,21 @@ public class CardSelectionManager : NetworkBehaviour
     }
 
     // ── HELPERS SERVIDOR ──────────────────────────────────────────
+
+    /// <summary>
+    /// Resolve uma carta pelo campo <see cref="ScriptableCard.id"/> usando a base de dados
+    /// partilhada. Usado pelo PlayerCardUser no servidor, onde o dicionário local de cartas
+    /// do jogador não está preenchido (as cartas só são adicionadas no cliente dono).
+    /// </summary>
+    public ScriptableCard ResolveCardById(int id)
+    {
+        if (_cardDatabase == null || _cardDatabase.Cards == null) return null;
+
+        foreach (var card in _cardDatabase.Cards)
+            if (card != null && card.id == id) return card;
+
+        return null;
+    }
 
     private PlayerStats GetPlayerStats(ulong clientId)
     {

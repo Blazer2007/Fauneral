@@ -77,7 +77,7 @@ namespace TarodevController
             {
                 if (_moveParticles != null && _moveParticles.isPlaying) _moveParticles.Stop();
             }
-            Debug.Log($"NetMoveSpeed: {_player.NetMoveSpeed.Value}, animSpeed: {animSpeed}");
+
             // Tilt
             var runningTilt = isGrounded ? Quaternion.Euler(0, 0, _maxTilt * (_player.NetFacingRight.Value ? 1 : -1) * animSpeed) : Quaternion.identity;
             _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);

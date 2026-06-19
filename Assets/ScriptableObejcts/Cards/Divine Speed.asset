@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Divine Speed
   m_EditorClassIdentifier: 
-  rarity: Rare
+  rarity: Epic
   description: "B\xCAN\xC7\xC3O: +25% Velocidade e +15% Altura de salto."
-  image: {fileID: 0}
+  image: {fileID: -6465184051132080503, guid: 29ed93365b867634791bbaddb4e38fd3, type: 3}
   id: 5
   dealType: 1
   isClickable: 0

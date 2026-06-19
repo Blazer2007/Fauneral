@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Black Cap
   description: Ye no cap
   rarity: 0
-  previewSprite: {fileID: -8429022323870166909, guid: 0984828b41910d3468eeff9457927432, type: 3}
+  previewSprite: {fileID: 3537388000662477189, guid: 0984828b41910d3468eeff9457927432, type: 3}
   hatPrefab: {fileID: 0}

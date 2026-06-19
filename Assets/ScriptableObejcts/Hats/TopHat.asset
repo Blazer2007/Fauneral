@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: TopHat
   description: 'Reminds me of someone, Henry was it? '
   rarity: 1
-  previewSprite: {fileID: 3771552924041497463, guid: 647cb300b6e0ead47aefa00a358c7412, type: 3}
+  previewSprite: {fileID: 3859753152057796393, guid: 54d17ae3803f36149b2622e58283b5b3, type: 3}
   hatPrefab: {fileID: 0}

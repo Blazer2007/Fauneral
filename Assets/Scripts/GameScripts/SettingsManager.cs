@@ -7,21 +7,41 @@ public class SettingsManager : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Slider _masterVolumeSlider;
+    [SerializeField] private Toggle _muteToggle;
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
     [SerializeField] private Toggle _fullScreenToggle;
 
     private Resolution[] _resolutions;
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void LoadAudioSettings()
+    {
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        bool isMuted = PlayerPrefs.GetInt("Muted", 0) == 1;
+        AudioListener.volume = isMuted ? 0f : savedVolume;
+    }
+
     private void Start()
     {
         // 1. Configura Volume
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        bool savedMute = PlayerPrefs.GetInt("Muted", 0) == 1;
+
         if (_masterVolumeSlider != null)
         {
+            _masterVolumeSlider.minValue = 0f;
+            _masterVolumeSlider.maxValue = 1f;
             _masterVolumeSlider.value = savedVolume;
             _masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
         }
-        AudioListener.volume = savedVolume;
+
+        if (_muteToggle != null)
+        {
+            _muteToggle.isOn = savedMute;
+            _muteToggle.onValueChanged.AddListener(SetMute);
+        }
+
+        UpdateAudio(savedVolume, savedMute);
 
         // 2. Configura Resoluções
         _resolutions = Screen.resolutions;
@@ -59,8 +79,22 @@ public class SettingsManager : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
         PlayerPrefs.SetFloat("MasterVolume", volume);
+        bool isMuted = PlayerPrefs.GetInt("Muted", 0) == 1;
+        UpdateAudio(volume, isMuted);
+    }
+
+    public void SetMute(bool isMuted)
+    {
+        PlayerPrefs.SetInt("Muted", isMuted ? 1 : 0);
+        float volume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        UpdateAudio(volume, isMuted);
+    }
+
+    private void UpdateAudio(float volume, bool isMuted)
+    {
+        AudioListener.volume = isMuted ? 0f : volume;
+        PlayerPrefs.Save();
     }
 
     public void SetResolution(int index)

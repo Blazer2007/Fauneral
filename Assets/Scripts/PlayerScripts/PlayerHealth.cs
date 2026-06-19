@@ -4,6 +4,21 @@ using Unity.Netcode;
 
 /// <summary>
 /// Manages the player's HP, death, and respawn.
+///
+/// ALTERAÇÕES NESTA VERSÃO (face à tua):
+///   - TakeDamage tem agora uma sobrecarga com attackerId (ulong). A versão sem
+///     attackerId continua a existir e chama a nova passando ulong.MaxValue
+///     (= "sem atacante", ex: dano ambiental, FallDeath, drenagem do pacto Devil).
+///     Nada que já chamava TakeDamage(amount) precisa de mudar.
+///   - NetCurrentHP/NetIsAlive ficam exactamente iguais (Server Authoritative,
+///     já estava correcto).
+///   - Adicionado evento OnDamaged(ulong attackerId, float amount), disparado no
+///     SERVIDOR sempre que dano é aplicado com sucesso. PlayerAbilityHandler usa isto
+///     para Vampirism (cura o ATACANTE, não a vítima) — ver OnDealtDamage().
+///   - Adicionado Heal(float amount), usado pela Vampirism.
+///   - TakeDamageServerRpc tem agora uma sobrecarga que aceita attackerId, para que o
+///     cliente que ataca possa identificar-se ao servidor (necessário para Vampirism
+///     funcionar correctamente quando o ataque é despoletado a partir do cliente).
 /// </summary>
 public class PlayerHealth : NetworkBehaviour
 {
@@ -26,7 +41,15 @@ public class PlayerHealth : NetworkBehaviour
 
     // MaxHP vem do PlayerStats - cartas de upgrade alteram este valor correctamente
     public float MaxHP => _playerStats != null ? _playerStats.MaxHP : 100f;
-    
+
+    /// <summary>
+    /// Disparado no SERVIDOR sempre que este jogador sofre dano com sucesso.
+    /// Parâmetros: (attackerId, amount aplicado depois de armor/redução).
+    /// attackerId = ulong.MaxValue quando não há atacante identificável (ambiental, Devil drain).
+    /// Usado por PlayerAbilityHandler.OnDealtDamage (Vampirism) e por dano em área.
+    /// </summary>
+    public event System.Action<ulong, float> OnDamaged;
+
     private RoundManager _roundManager;
     private SpriteRenderer[] _renderers;
     private Collider2D[] _colliders;
@@ -93,13 +116,43 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
+    // ── TAKE DAMAGE (server RPC) ───────────────────────────────────
+
+    /// <summary>
+    /// Sobrecarga original — mantida por compatibilidade com chamadas existentes.
+    /// Sem atacante identificado (ex: trap genérica, projétil sem owner exposto).
+    /// </summary>
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamageServerRpc(float amount)
     {
         TakeDamage(amount);
     }
 
+    /// <summary>
+    /// Sobrecarga com atacante identificado — usa esta quando o ataque tem um dono
+    /// claro (ex: hitbox de PlayerController, minion, poison trail) para permitir
+    /// que efeitos como Vampirism curem correctamente quem causou o dano.
+    /// </summary>
+    [ServerRpc(RequireOwnership = false)]
+    public void TakeDamageServerRpc(float amount, ulong attackerId)
+    {
+        TakeDamage(amount, attackerId);
+    }
+
+    /// <summary>
+    /// Aplica dano sem atacante identificável (dano ambiental, drenagem de pacto, etc).
+    /// </summary>
     public void TakeDamage(float amount)
+    {
+        TakeDamage(amount, ulong.MaxValue);
+    }
+
+    /// <summary>
+    /// Aplica dano identificando quem o causou. Toda a lógica de armor/redução
+    /// e morte mantém-se exactamente igual à tua versão — a única adição é o
+    /// disparo de OnDamaged no fim, com o attackerId propagado.
+    /// </summary>
+    public void TakeDamage(float amount, ulong attackerId)
     {
         if (!IsServer) return;
         if (!IsAlive) return;
@@ -113,12 +166,26 @@ public class PlayerHealth : NetworkBehaviour
         NetCurrentHP.Value -= mitigated;
         NetCurrentHP.Value = Mathf.Clamp(NetCurrentHP.Value, 0, MaxHP);
 
+        OnDamaged?.Invoke(attackerId, mitigated);
+
         if (NetCurrentHP.Value <= 0)
         {
             NetIsAlive.Value = false;
             DieClientRpc();
             _roundManager?.OnPlayerDied(this);
         }
+    }
+
+    /// <summary>
+    /// Cura o jogador, sem exceder MaxHP. Só corre no servidor (autoridade de HP).
+    /// Usado por Vampirism (PlayerAbilityHandler.OnDealtDamage).
+    /// </summary>
+    public void Heal(float amount)
+    {
+        if (!IsServer) return;
+        if (!IsAlive) return;
+
+        NetCurrentHP.Value = Mathf.Clamp(NetCurrentHP.Value + amount, 0, MaxHP);
     }
 
     public void FallDeath()
@@ -141,7 +208,7 @@ public class PlayerHealth : NetworkBehaviour
     public void ResetHP()
     {
         if (!IsServer) return;
-        
+
         NetCurrentHP.Value = MaxHP;
         NetIsAlive.Value = true;
         SetPlayerState(true);
@@ -162,10 +229,10 @@ public class PlayerHealth : NetworkBehaviour
     {
         foreach (var r in _renderers) r.enabled = active;
         foreach (var c in _colliders) c.enabled = active;
-        
+
         var anim = GetComponentInChildren<Animator>();
         if (anim != null) anim.enabled = active;
-        
+
         var ctrl = GetComponent<PlayerController>();
         if (ctrl != null) ctrl.enabled = active;
     }

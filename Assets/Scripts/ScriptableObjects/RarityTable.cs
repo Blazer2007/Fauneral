@@ -18,8 +18,8 @@ public class RarityTable : ScriptableObject
         public int MinRound = 1;
 
         [Range(0, 100)] public int CommonWeight = 80;
-        [Range(0, 100)] public int UncommonWeight = 20;
-        [Range(0, 100)] public int RareWeight = 0;
+        [Range(0, 100)] public int RareWeight = 20;
+        [Range(0, 100)] public int EpicWeight = 0;
         [Range(0, 100)] public int LegendaryWeight = 0;
     }
 
@@ -51,14 +51,14 @@ public class RarityTable : ScriptableObject
         var w = GetWeights(roundNumber);
         if (w == null) return "Common";
 
-        int total = w.CommonWeight + w.UncommonWeight + w.RareWeight + w.LegendaryWeight;
+        int total = w.CommonWeight + w.RareWeight + w.EpicWeight + w.LegendaryWeight;
         if (total <= 0) return "Common";
 
         int roll = UnityEngine.Random.Range(0, total);
 
         if (roll < w.CommonWeight) return "Common";
-        if (roll < w.CommonWeight + w.UncommonWeight) return "Uncommon";
-        if (roll < w.CommonWeight + w.UncommonWeight + w.RareWeight) return "Rare";
+        if (roll < w.CommonWeight + w.RareWeight) return "Uncommon";
+        if (roll < w.CommonWeight + w.RareWeight + w.EpicWeight) return "Rare";
         return "Legendary";
     }
 }

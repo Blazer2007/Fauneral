@@ -31,6 +31,12 @@ public class ScriptableCard : ScriptableObject
     public Sprite image;
     public int id;
 
+    [Header("Ability (opcional)")]
+    [Tooltip("Identificador da habilidade ligada directamente ao jogador via " +
+                "PlayerAbilityHandler. Deixa vazio se a carta usar accessoryPrefab " +
+                "ou apenas buffs/debuffs de stats. Ex: ")]
+    public string abilityId;
+
     [Header("Tipo de Carta")]
     [Tooltip("Neutral = pool base | Angel = perdedores (só buffs) | Devil = vencedor (buff forte + custo)")]
     public CardDealType dealType = CardDealType.Neutral;

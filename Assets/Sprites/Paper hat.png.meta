@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b7c5f9f894df06f459e7edc46a12b553
+guid: 03acdcbfd5d4ce146897f49eebde4c98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8108558231363195077
-    second: Paper hat_0
+      213: 1356287480637967605
+    second: Paper hat 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paper hat_0
+      name: Paper hat 1_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 25
-        width: 28
-        height: 24
+        x: 219
+        y: 285
+        width: 288
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3fe603ef3d987f80800000000000000
-      internalID: -8108558231363195077
+      spriteID: 5fc4cb8174082d210800000000000000
+      internalID: 1356287480637967605
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Paper hat_0: -8108558231363195077
+      Paper hat 1_0: 1356287480637967605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

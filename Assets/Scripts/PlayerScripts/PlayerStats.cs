@@ -15,6 +15,10 @@ using UnityEngine;
 /// Setup no Inspector:
 ///   Preenche os valores base em "Base Stats".
 ///   Os valores actuais são calculados automaticamente (base + modificadores).
+///
+/// ALTERAÇÃO NESTA VERSÃO: adicionados RepulsionForce e PoisonDamage (sem base,
+/// só modificadores — tal como Vampirism/FreezeDuration/HpDrainPerSecond), para
+/// suportar as cartas Polarizer e Poison Trail. Nada do resto foi alterado.
 /// </summary>
 public class PlayerStats : MonoBehaviour
 {
@@ -56,6 +60,8 @@ public class PlayerStats : MonoBehaviour
     public float Vampirism => Compute(StatType.Vampirism, 0f);  // Não tem base, só modificadores
     public float FreezeDuration => Compute(StatType.freezeDuration, 0f); // Duração do congelamento (segundos)
     public float HpDrainPerSecond => Compute(StatType.HpDrainPerSecond, 0f); // Custo Devil: HP perdido/segundo
+    public float RepulsionForce => Compute(StatType.RepulsionForce, 0f);    // Força do Polarizer — sem base
+    public float PoisonDamage => Compute(StatType.PoisonDamage, 0f);        // Dano/tick do Poison Trail — sem base
 
     // ── API PÚBLICA ───────────────────────────────────────────────
 
@@ -130,6 +136,8 @@ public class PlayerStats : MonoBehaviour
             StatType.Vampirism => Vampirism,
             StatType.freezeDuration => FreezeDuration,
             StatType.HpDrainPerSecond => HpDrainPerSecond,
+            StatType.RepulsionForce => RepulsionForce,
+            StatType.PoisonDamage => PoisonDamage,
             _ => 0f
         };
     }

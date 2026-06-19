@@ -1,11 +1,25 @@
+﻿using Unity.Netcode;
 using UnityEngine;
 using TarodevController;
 
-public class PlayerAttack : MonoBehaviour
+/// <summary>
+/// ALTERAÇÕES NESTA VERSÃO:
+///   - PlayerAttack passa a herdar de NetworkBehaviour (precisa de OwnerClientId
+///     para identificar o atacante perante o PlayerHealth da vítima).
+///   - OnAttacked só dispara no servidor (PlayerController.Attacked já só é
+///     invocado dentro de blocos "if (!IsServer) return;"), por isso DoLightAttack/
+///     DoHeavyAttack chamam agora health.TakeDamage(...) DIRECTAMENTE em vez de
+///     TakeDamageServerRpc — já estamos no servidor, um RPC seria só overhead.
+///   - Ambas as chamadas passam agora OwnerClientId como attackerId, o que activa
+///     correctamente o evento PlayerHealth.OnDamaged → PlayerAbilityHandler.
+///     Vampirism (e qualquer efeito futuro "ao causar dano") passam a funcionar.
+/// </summary>
+public class PlayerAttack : NetworkBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private PlayerStats _playerstats;
     private IPlayerController _controller;
+    private TarodevController.PlayerAbilityHandler _abilityHandler;
 
     [Header("Ataque leve")]
     public Transform _lightAttackHtBx;
@@ -17,11 +31,12 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Layer")]
     public LayerMask _playerLayer;
-    
+
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
         _playerstats = GetComponent<PlayerStats>();
+        _abilityHandler = GetComponent<TarodevController.PlayerAbilityHandler>(); // opcional, pode não existir
     }
 
     private void OnEnable()
@@ -41,6 +56,11 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
+        // Salvaguarda: Attacked só deve disparar no servidor (ver PlayerController),
+        // mas confirmamos aqui também para garantir que TakeDamage nunca é chamado
+        // a partir de um cliente sem autoridade.
+        if (!IsServer) return;
+
         if (isHeavy)
         {
             Debug.Log("Heavy attack executed");
@@ -48,7 +68,6 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-
             Debug.Log("Light attack executed");
             DoLightAttack();
         }
@@ -56,10 +75,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void DoLightAttack()
     {
-      
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(_lightAttackHtBx.position, _lightAttackRange, _playerLayer);
-        
+
         foreach (var hit in hits)
         {
             if (hit.gameObject == gameObject) continue;
@@ -67,15 +84,18 @@ public class PlayerAttack : MonoBehaviour
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamageServerRpc(_playerstats.Damage);
+                float damageDealt = _playerstats.Damage;
+                health.TakeDamage(damageDealt, OwnerClientId);
+
+                // Vampirism e outros efeitos "ao causar dano" — opcional, só se a
+                // carta tiver sido escolhida (PlayerAbilityHandler trata disso internamente)
+                _abilityHandler?.OnDealtDamage(damageDealt);
             }
         }
     }
 
     private void DoHeavyAttack()
     {
-
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(_heavyAttackHtBx.position, _heavyAttackRange, _playerLayer);
 
         foreach (var hit in hits)
@@ -85,7 +105,10 @@ public class PlayerAttack : MonoBehaviour
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamageServerRpc(_playerstats.Damage * 2);
+                float damageDealt = _playerstats.Damage * 2;
+                health.TakeDamage(damageDealt, OwnerClientId);
+
+                _abilityHandler?.OnDealtDamage(damageDealt);
             }
         }
     }
@@ -104,8 +127,4 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.DrawWireSphere(_heavyAttackHtBx.position, _heavyAttackRange);
         }
     }
-
-
-
 }
-
