@@ -252,7 +252,7 @@ public class CardSelectionManager : NetworkBehaviour
 
         // Todos escolheram → inicia a ronda
         Debug.Log("[CardSelection] Todos os jogadores escolheram. A iniciar ronda...");
-        _roundManager?.StartRoundClientRpc();
+        //_roundManager?.StartRoundClientRpc();
     }
 
     // ── CLIENT RPC: adiciona carta ao PlayerCardUser ──────────────

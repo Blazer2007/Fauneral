@@ -3,249 +3,145 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-/// <summary>
-/// Versão actualizada do RoundManager.
-/// Alterações face ao original:
-///   - Conta rondas (_roundNumber)
-///   - Em vez de chamar StartRound() directamente após EndRound(),
-///     chama CardSelectionManager.BeginSelection() e aguarda que
-///     o CardSelectionManager chame StartRound() quando todos escolherem.
-///   - StartRound() passa a ser público para o CardSelectionManager o invocar.
-/// </summary>
 public class RoundManager : NetworkBehaviour
 {
     [Header("Settings")]
     [SerializeField] private RoundSettings _settings;
 
-    private List<PlayerHealth> Players = new List<PlayerHealth>();
-
-    [Header("Runtime State (Read Only)")]
     public bool MatchOver { get; private set; } = false;
     public bool RoundActive { get; private set; } = false;
-
-    public Dictionary<int, int> RoundWins { get; private set; } = new Dictionary<int, int>();
-
-    // Contador de rondas jogadas (começa em 1 na primeira ronda real)
+    public Dictionary<int, int> RoundWins { get; private set; } = new();
     public int RoundNumber { get; private set; } = 0;
 
     private GameUI _gameUI;
-
-   
-
-    // ── UNITY ─────────────────────────────────────────────────
+    private List<PlayerHealth> _players = new();
 
     private void Awake()
     {
         _gameUI = FindFirstObjectByType<GameUI>();
-
-        if (_settings == null)
-            Debug.LogWarning("[RoundManager] No RoundSettings assigned!", this);
-            
-        // No Awake não procuramos mais jogadores fixos, faremos isso ao iniciar a ronda
     }
 
     private void Start()
     {
-        if (IsServer)
-        {
-            // Começa a monitorizar jogadores que se ligam para inicializar os seus RoundWins
-            NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
-            
-            // Inicializa vitórias para quem já está ligado
-            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
-            {
-                HandleClientConnected(client.ClientId);
-            }
-
-            BeginCardSelection(ulong.MaxValue); 
-        }
+        if (!IsServer) return;
+        // Aguarda um momento para os jogadores spawnarem antes de começar
+        StartCoroutine(WaitAndStartRound());
     }
 
-    public override void OnNetworkDespawn()
+    private IEnumerator WaitAndStartRound()
     {
-        if (IsServer && NetworkManager.Singleton != null)
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
-        }
+        yield return new WaitForSeconds(1f);
+        StartRound();
     }
 
-    private void HandleClientConnected(ulong clientId)
+    public void StartRound()
     {
-        // Precisamos de associar o clientId a um índice de jogador (0..3)
-        // Por agora, assumimos que o RoundWins usa o PlayerIndex do PlayerHealth.
-        // Como o PlayerHealth só existe no GameObject do jogador, 
-        // as vitórias serão inicializadas quando a ronda começar e encontrarmos os componentes.
-    }
-
-    // ── ROUND LOOP ────────────────────────────────────────────
-    [ClientRpc]
-    public void StartRoundClientRpc()
-    {
+        if (!IsServer) return;
         if (MatchOver) return;
 
         RoundNumber++;
         RoundActive = true;
 
-        // Refresh the list of players in the scene
-        Players.Clear();
-        Players.AddRange(FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None));
-        Players.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
+        // Recolhe jogadores do PlayerSpawner
+        _players.Clear();
+        if (PlayerSpawner.Instance != null)
+            _players.AddRange(PlayerSpawner.Instance.SpawnedPlayers);
 
-        foreach (var player in Players)
+        List<Transform> points = PlayerSpawner.Instance?.GetSpawnPoints() ?? new();
+
+        for (int i = 0; i < _players.Count; i++)
         {
-            // Inicializa RoundWins para novos índices encontrados
-            if (!RoundWins.ContainsKey(player.PlayerIndex))
-                RoundWins[player.PlayerIndex] = 0;
-                
-            player.ResetHP();
+            if (_players[i] == null) continue;
+
+            // Inicializa wins
+            if (!RoundWins.ContainsKey(_players[i].PlayerIndex))
+                RoundWins[_players[i].PlayerIndex] = 0;
+
+            // Reset HP e posição
+            _players[i].ResetHP();
+            if (i < points.Count)
+                _players[i].TeleportTo(points[i].position);
         }
 
-        _gameUI?.UpdateRoundWins(RoundWins);
-        _gameUI?.HideEndScreen();
-
-        GameObject spawnPointsParent = GameObject.Find("PlayerSpawnPoints");
-        
-
-        List<Transform> points = new List<Transform>();
-        foreach (Transform t in spawnPointsParent.GetComponentsInChildren<Transform>())
-            if (t != spawnPointsParent.transform) points.Add(t);
-
-        GameUI gameUI = GameObject.FindFirstObjectByType<GameUI>(); // Tenta encontrar o GameUI na cena carregada
-        if (gameUI == null)
-        {
-            Debug.LogError("[PlayerSpawner] GameUI não encontrado na GameScene!");
-            return;
-        }
-
-        int i = 0;
-        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            Transform point = points[i % points.Count];
-            var player = GetComponent<PlayerHealth>();
-
-            var health = player.GetComponent<PlayerHealth>();
-            if (health != null) health.SetPlayerIndex(i);
-            var netObj = player.GetComponent<NetworkObject>();
-            if (netObj != null)
-                netObj.transform.position = point.position;
-            else
-                Debug.LogError("[PlayerSpawner] Player prefab missing NetworkObject!");
-            i++;
-        }
-        Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {Players.Count} jogadores.");
-
-
+        UpdateUIClientRpc();
+        Debug.Log($"[RoundManager] Ronda {RoundNumber} iniciada com {_players.Count} jogadores.");
     }
 
-    /// <summary>
-    /// Chamado pelo PlayerHealth quando um jogador morre.
-    /// </summary>
+    [ClientRpc]
+    private void UpdateUIClientRpc()
+    {
+        _gameUI?.UpdateRoundWins(RoundWins);
+        _gameUI?.HideEndScreen();
+    }
+
     public void OnPlayerDied(PlayerHealth deadPlayer)
     {
+        if (!IsServer) return;
         if (!RoundActive) return;
 
         var alive = new List<PlayerHealth>();
-        foreach (var p in Players)
-            if (p.IsAlive) alive.Add(p);
+        foreach (var p in _players)
+            if (p != null && p.IsAlive) alive.Add(p);
 
-        
-        if (alive.Count == 2)
+        if (alive.Count <= 1)
         {
             RoundActive = false;
-            PlayerHealth winner = alive.Count == 1 ? alive[0] : null; 
+            PlayerHealth winner = alive.Count == 1 ? alive[0] : null;
             StartCoroutine(EndRound(winner));
         }
     }
 
     private IEnumerator EndRound(PlayerHealth winner)
     {
-        float delay = _settings != null ? _settings.RoundEndDelay : 2f;
-        int roundsToWin = _settings != null ? _settings.RoundsToWin : 5;
+        yield return new WaitForSeconds(0.3f);
 
-        ulong winnerId = ulong.MaxValue; // Empate por defeito
+        int roundsToWin = _settings != null ? _settings.RoundsToWin : 5;
+        ulong winnerId = ulong.MaxValue;
 
         if (winner != null)
         {
             RoundWins[winner.PlayerIndex]++;
-            _gameUI?.ShowRoundWinner(winner.PlayerIndex, RoundWins);
-
-            // Determina o clientId do vencedor para o CardSelectionManager
-            winnerId = GetClientIdOfPlayer(winner);
+            ulong wId = winner.GetComponent<NetworkObject>()?.OwnerClientId ?? ulong.MaxValue;
+            ShowRoundWinnerClientRpc(winner.PlayerIndex);
 
             if (RoundWins[winner.PlayerIndex] >= roundsToWin)
             {
                 MatchOver = true;
-                _gameUI?.ShowMatchWinner(winner.PlayerIndex);
-                yield break; // Jogo terminou, não há mais selecção de cartas
+                ShowMatchWinnerClientRpc(winner.PlayerIndex);
+                yield break;
             }
+
+            winnerId = wId;
         }
         else
         {
-            _gameUI?.ShowDraw();
+            ShowDrawClientRpc();
         }
 
+        float delay = _settings != null ? _settings.RoundEndDelay : 2f;
         yield return new WaitForSeconds(delay);
 
-        // Em vez de StartRound() directo → abre selecção de cartas
-        if (IsServer)
-            BeginCardSelection(winnerId);
+        if (CardSelectionManager.Instance != null)
+            CardSelectionManager.Instance.BeginSelection(RoundNumber + 1, winnerId);
+        else
+            StartRound();
     }
 
-    // ── RESTART ───────────────────────────────────────────────
+    [ClientRpc] private void ShowRoundWinnerClientRpc(int playerIndex) => _gameUI?.ShowRoundWinner(playerIndex, RoundWins);
+    [ClientRpc] private void ShowMatchWinnerClientRpc(int playerIndex) => _gameUI?.ShowMatchWinner(playerIndex);
+    [ClientRpc] private void ShowDrawClientRpc() => _gameUI?.ShowDraw();
 
-    /// <summary>
-    /// Reinicia o match completo (botão "Play Again").
-    /// </summary>
     public void RestartMatch()
     {
+        if (!IsServer) return;
         MatchOver = false;
         RoundNumber = 0;
-
         foreach (var key in new List<int>(RoundWins.Keys))
             RoundWins[key] = 0;
 
-        if (IsServer)
-            BeginCardSelection(ulong.MaxValue);
-
-    }
-
-    // ── HELPERS ───────────────────────────────────────────────
-
-    private void BeginCardSelection(ulong winnerId)
-    {
-        // RoundNumber ainda não incrementou (acontece em StartRound),
-        // por isso passamos RoundNumber+1 como "próxima ronda"
-        int nextRound = RoundNumber + 1;
-
         if (CardSelectionManager.Instance != null)
-            CardSelectionManager.Instance.BeginSelection(nextRound, winnerId);
+            CardSelectionManager.Instance.BeginSelection(1, ulong.MaxValue);
         else
-        {
-            Debug.LogWarning("[RoundManager] CardSelectionManager não encontrado. A iniciar ronda sem selecção.");
-            StartRoundClientRpc();
-        }
-    }
-
-    /// <summary>
-    /// Devolve o clientId do dono de um PlayerHealth.
-    /// Requer que o jogador tenha um NetworkObject no mesmo GameObject.
-    /// </summary>
-    private ulong GetClientIdOfPlayer(PlayerHealth player)
-    {
-        if (player == null) return ulong.MaxValue;
-        var netObj = player.GetComponent<NetworkObject>();
-        return netObj != null ? netObj.OwnerClientId : ulong.MaxValue;
-    }
-
-    private void Update()
-    {
-        if(_gameUI== null) return;
-           
-        //Atualiza todas as barras de vida de cada jogador a cada frame com a função UpdateIndividualHPBars do script GameUI.cs
-        foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            _gameUI.UpdateIndividualHPBars(clientId);
-        }
-
+            StartRound();
     }
 }

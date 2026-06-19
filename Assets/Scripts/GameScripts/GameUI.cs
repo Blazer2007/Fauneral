@@ -31,13 +31,13 @@ public class GameUI : NetworkBehaviour
     private void Start()
     {
         // Esconde todas as barras até sabermos quantos jogadores há
-        foreach (var bar in HPBars)
-            if (bar != null) bar.gameObject.SetActive(false);
+        //foreach (var bar in HPBars)
+        //    if (bar != null) bar.gameObject.SetActive(false);
 
         HideEndScreen();
     }
 
-    private void Update()
+    public void Update()
     {
         for (int i = 0; i < _playerHPs.Count; i++)
             if (i < HPBars.Count && HPBars[i] != null)
@@ -74,11 +74,11 @@ public class GameUI : NetworkBehaviour
                 HPBars[i].gameObject.SetActive(true);
             }
         }
-
-        // Esconde barras sem jogador
-        for (int i = _playerHPs.Count; i < HPBars.Count; i++)
-            if (HPBars[i] != null)
-                HPBars[i].gameObject.SetActive(false);
+        
+        //// Esconde barras sem jogador
+        //for (int i = 0; i < HPBars.Count; i++)
+        //    if (HPBars[i] != null)
+        //       HPBars[i].gameObject.SetActive(false);
     }
 
     public void UpdateRoundWins(Dictionary<int, int> roundWins)
@@ -99,7 +99,7 @@ public class GameUI : NetworkBehaviour
 
     public void ShowMatchWinner(int playerIndex)
     {
-        ShowEndScreen($"Player {playerIndex + 1} wins the MATCH!\n\nPress Restart to play again.");
+        ShowEndScreen($"Player {playerIndex + 1} wins the MATCH!.");
         if (RestartButton != null)
             RestartButton.gameObject.SetActive(true);
     }

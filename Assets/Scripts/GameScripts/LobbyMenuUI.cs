@@ -78,7 +78,7 @@ public class LobbyMenuUI : MonoBehaviour
 
         if (_roomNameText != null) _roomNameText.text = LobbySessionData.RoomName;
         if (_pinText != null) _pinText.text = $"PIN: {LobbySessionData.Pin}";
-        if (_visibilityText != null) _visibilityText.text = LobbySessionData.IsPublic ? "Pública" : "Privada";
+        if (_visibilityText != null) _visibilityText.text = LobbySessionData.IsPublic ? "Publica" : "Privada";
 
         // Mostra o IP do Host se estiver em modo LAN
         if (_hostIpText != null)

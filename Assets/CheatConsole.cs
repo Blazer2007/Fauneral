@@ -145,7 +145,7 @@ public class CheatConsole : MonoBehaviour
 
     void Stonks(string[] args) 
     {
-        Print("Créditos no topo", Color.green);
+        Print("Creditos no topo", Color.green);
         credits.AddCredits(9999);
     }
 
