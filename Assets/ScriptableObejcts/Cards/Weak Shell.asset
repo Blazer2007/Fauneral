@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Weak Shell
   m_EditorClassIdentifier: 
+  rarity: Common
+  description: "+20 Vida m\xE1xima."
   image: {fileID: 0}
-  name: Weak Shell
-  rarity: D
-  description: Feels like an armadillo
-  cardindex: 0
+  id: 12
+  dealType: 0
+  isClickable: 0
   buffs:
-  - +5% Defense
+  - Stat: 10
+    Value: 20
+    IsPercent: 0
   debuffs: []
-  uses: 10
   time: 0
+  uses: 1
   isinfinite: 1
+  accessoryPrefab: {fileID: 0}

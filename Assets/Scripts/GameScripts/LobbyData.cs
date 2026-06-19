@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Dados de um lobby. Só existe no servidor.
+/// Dados de um lobby. Sï¿½ existe no servidor.
 /// Slots[i]      = clientId no slot i  (ulong.MaxValue = vazio)
 /// ReadyStates[i]= true se o jogador no slot i clicou Ready
 /// </summary>
@@ -31,7 +31,7 @@ public class LobbyData
         }
     }
 
-    /// <summary>Atribui o próximo slot livre. Devolve índice ou -1 se cheio.</summary>
+    /// <summary>Atribui o prï¿½ximo slot livre. Devolve ï¿½ndice ou -1 se cheio.</summary>
     public int AssignSlot(ulong clientId)
     {
         for (int i = 0; i < Slots.Length; i++)
@@ -63,25 +63,31 @@ public class LobbyData
         return -1;
     }
 
-    /// <summary>Marca o slot do cliente como pronto/não pronto.</summary>
+    /// <summary>Marca o slot do cliente como pronto/nï¿½o pronto.</summary>
     public void SetReady(ulong clientId, bool ready)
     {
         for (int i = 0; i < Slots.Length; i++)
             if (Slots[i] == clientId) { ReadyStates[i] = ready; return; }
     }
 
-    /// <summary>True se todos os jogadores presentes estiverem prontos (e há pelo menos 1).</summary>
+    /// <summary>True se todos os jogadores presentes estiverem prontos (e hï¿½ pelo menos 1).</summary>
     public bool AllReady()
     {
-        if (Clients.Count == 0) return false;
+        if (Clients.Count < 2) return false;
         for (int i = 0; i < Slots.Length; i++)
             if (Slots[i] != ulong.MaxValue && !ReadyStates[i]) return false;
         return true;
     }
 
-    /// <summary>"clientId0,clientId1,..." — ulong.MaxValue = vazio</summary>
+    /// <summary>"clientId0,clientId1,..." ï¿½ ulong.MaxValue = vazio</summary>
+    public void ResetReadyStates()
+    {
+        for (int i = 0; i < ReadyStates.Length; i++)
+            ReadyStates[i] = false;
+    }
+
     public string SerializeSlots() => string.Join(",", Slots);
 
-    /// <summary>"true,false,..." — estado de pronto por slot</summary>
+    /// <summary>"true,false,..." ï¿½ estado de pronto por slot</summary>
     public string SerializeReady() => string.Join(",", ReadyStates);
 }

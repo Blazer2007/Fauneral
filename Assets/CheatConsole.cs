@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 using System;
 using System.Collections.Generic;
@@ -55,7 +55,8 @@ public class CheatConsole : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        // Só abre/fecha com P se o campo de texto não estiver focado
+        if (Input.GetKeyDown(KeyCode.P) && (inputField == null || !inputField.isFocused))
         {
             bool isActive = !consolePanel.activeSelf;
             consolePanel.SetActive(isActive);

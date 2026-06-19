@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Wild Bounce
   m_EditorClassIdentifier: 
-  rarity: 
-  description: 
+  rarity: Common
+  description: +20% Altura de salto.
   image: {fileID: 0}
-  buffs: []
+  id: 13
+  dealType: 0
+  isClickable: 0
+  buffs:
+  - Stat: 1
+    Value: 20
+    IsPercent: 1
   debuffs: []
   time: 0
-  uses: 0
-  isinfinite: 0
+  uses: 1
+  isinfinite: 1
+  accessoryPrefab: {fileID: 0}

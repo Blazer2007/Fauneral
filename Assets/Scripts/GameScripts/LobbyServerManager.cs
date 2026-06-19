@@ -275,6 +275,19 @@ if (lobby.AllReady())
         return pin;
     }
 
+    public void ReturnAllToLobby(string pin)
+    {
+        if (!IsServer) return;
+        if (_lobbies.TryGetValue(pin, out LobbyData lobby))
+        {
+            lobby.ResetReadyStates();
+            // Notificamos os clientes se necessário (o LoadScene fará isso no Start)
+        }
+        
+        Debug.Log($"[Server] Retornando lobby {pin} ao menu de espera.");
+        NetworkManager.Singleton.SceneManager.LoadScene("LobbyMenu", UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
+
     private static ClientRpcParams MakeTarget(ulong id) =>
         new ClientRpcParams { Send = new ClientRpcSendParams { TargetClientIds = new[] { id } } };
 }

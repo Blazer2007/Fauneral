@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Fast Reflexes
   m_EditorClassIdentifier: 
+  rarity: Common
+  description: +15% Velocidade de movimento.
   image: {fileID: 0}
-  name: Fast Reflexes
-  rarity: B
-  description: You start to weeve through the wind but lose your strenght
-  cardindex: 0
+  id: 6
+  dealType: 0
+  isClickable: 0
   buffs:
-  - +25% Velocity
-  debuffs:
-  - -10% Attack
-  uses: 2
+  - Stat: 0
+    Value: 15
+    IsPercent: 1
+  debuffs: []
   time: 0
+  uses: 1
   isinfinite: 1
+  accessoryPrefab: {fileID: 0}

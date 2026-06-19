@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Angels Blessing
   m_EditorClassIdentifier: 
+  rarity: Rare
+  description: "B\xCAN\xC7\xC3O: +30 Vida m\xE1xima e +5% Redu\xE7\xE3o de dano."
   image: {fileID: 0}
-  name: Angels Blessing
-  rarity: DWA
-  description: A soft light graces your skin, you fell it healling your deepest wounds.
-  cardindex: 0
+  id: 1
+  dealType: 1
+  isClickable: 0
   buffs:
-  - +20 hp
-  - +15% Defense for 2 Rounds
-  debuffs:
-  - -10% Speed for 2 Rounds
-  uses: 1
+  - Stat: 10
+    Value: 30
+    IsPercent: 0
+  - Stat: 13
+    Value: 5
+    IsPercent: 0
+  debuffs: []
   time: 0
+  uses: 1
   isinfinite: 1
+  accessoryPrefab: {fileID: 0}

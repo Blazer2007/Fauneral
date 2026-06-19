@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
+  m_Name: Divine Speed
+  m_EditorClassIdentifier: 
+  rarity: Rare
+  description: "B\xCAN\xC7\xC3O: +25% Velocidade e +15% Altura de salto."
+  image: {fileID: 0}
+  id: 5
+  dealType: 1
+  isClickable: 0
+  buffs:
+  - Stat: 0
+    Value: 25
+    IsPercent: 1
+  - Stat: 1
+    Value: 15
+    IsPercent: 1
+  debuffs: []
+  time: 0
+  uses: 1
+  isinfinite: 1
+  accessoryPrefab: {fileID: 0}

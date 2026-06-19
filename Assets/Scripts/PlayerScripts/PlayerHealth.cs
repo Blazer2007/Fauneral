@@ -11,10 +11,6 @@ public class PlayerHealth : NetworkBehaviour
     [Tooltip("Referência ao PlayerStats do mesmo GameObject - MaxHP vem daqui")]
     private PlayerStats _playerStats;
 
-    [Header("Player Settings")]
-    [Tooltip("Player index: 0 = P1, 1 = P2, 2 = P3, 3 = P4")]
-    [SerializeField] private int _playerIndex = 0;
-
     [Header("Respawn")]
     [Tooltip("The position this player respawns at")]
     [SerializeField] private Transform _spawnPoint;
@@ -22,17 +18,15 @@ public class PlayerHealth : NetworkBehaviour
     [field: Header("Runtime State (Networked)")]
     public NetworkVariable<float> NetCurrentHP = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> NetIsAlive = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<int> NetPlayerIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public float CurrentHP => NetCurrentHP.Value;
     public bool IsAlive => NetIsAlive.Value;
-
-    public int PlayerIndex => _playerIndex;
+    public int PlayerIndex => NetPlayerIndex.Value;
 
     // MaxHP vem do PlayerStats - cartas de upgrade alteram este valor correctamente
     public float MaxHP => _playerStats != null ? _playerStats.MaxHP : 100f;
-
-
-
+    
     private RoundManager _roundManager;
     private SpriteRenderer[] _renderers;
     private Collider2D[] _colliders;
@@ -54,22 +48,56 @@ public class PlayerHealth : NetworkBehaviour
         {
             ResetHP();
         }
-    }
-    //private void Update()
-    //{
-    //    UpdateHP();
-    //}
 
-    /// <summary>
-    /// Apply damage to this player. Should be called on server.
-    /// </summary>
+        // Regista esta barra de vida na UI (em todos os clientes)
+        if (GameUI.Instance != null)
+            GameUI.Instance.RegisterPlayer(this);
+
+        // Reorganiza as barras quando o índice do jogador é atribuído pelo servidor
+        NetPlayerIndex.OnValueChanged += OnPlayerIndexChanged;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        NetPlayerIndex.OnValueChanged -= OnPlayerIndexChanged;
+
+        if (GameUI.Instance != null)
+            GameUI.Instance.UnregisterPlayer(this);
+    }
+
+    private void OnPlayerIndexChanged(int oldVal, int newVal)
+    {
+        if (GameUI.Instance != null)
+            GameUI.Instance.RefreshBars();
+    }
+
+    // Custo das cartas Devil: drena HP por segundo enquanto a ronda está activa.
+    private void Update()
+    {
+        if (!IsServer || !IsAlive || _playerStats == null) return;
+
+        if (_roundManager == null) _roundManager = RoundManager.Instance;
+        if (_roundManager == null || !_roundManager.RoundActive) return;
+
+        float drain = _playerStats.HpDrainPerSecond;
+        if (drain <= 0f) return;
+
+        NetCurrentHP.Value = Mathf.Max(0f, NetCurrentHP.Value - drain * Time.deltaTime);
+
+        if (NetCurrentHP.Value <= 0f)
+        {
+            Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu pelo custo do pacto (Devil).");
+            NetIsAlive.Value = false;
+            DieClientRpc();
+            _roundManager.OnPlayerDied(this);
+        }
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamageServerRpc(float amount)
     {
         TakeDamage(amount);
     }
-
 
     public void TakeDamage(float amount)
     {
@@ -78,6 +106,7 @@ public class PlayerHealth : NetworkBehaviour
 
         float armor = _playerStats != null ? _playerStats.Armor : 0f;
         float dmgRedPct = _playerStats != null ? _playerStats.DamageReduction : 0f;
+
         float mitigated = Mathf.Max(0f, amount - armor);
         mitigated *= (1f - Mathf.Clamp01(dmgRedPct));
 
@@ -85,7 +114,11 @@ public class PlayerHealth : NetworkBehaviour
         NetCurrentHP.Value = Mathf.Clamp(NetCurrentHP.Value, 0, MaxHP);
 
         if (NetCurrentHP.Value <= 0)
-            Die();
+        {
+            NetIsAlive.Value = false;
+            DieClientRpc();
+            _roundManager?.OnPlayerDied(this);
+        }
     }
 
     public void FallDeath()
@@ -93,63 +126,60 @@ public class PlayerHealth : NetworkBehaviour
         if (!IsServer) return;
         if (!IsAlive) return;
         NetCurrentHP.Value = 0;
-        Die();
-    }
-
-    private void Die()
-    {
-        // Tudo no servidor
         NetIsAlive.Value = false;
-        DisablePlayerClientRpc();
+        DieClientRpc();
         _roundManager?.OnPlayerDied(this);
     }
 
     [ClientRpc]
-    private void DisablePlayerClientRpc()
+    private void DieClientRpc()
     {
         Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu.");
-        foreach (var r in _renderers) r.enabled = false;
-        foreach (var c in _colliders) c.enabled = false;
-        var ctrl = GetComponent<PlayerController>();
-        if (ctrl != null) ctrl.enabled = false;
+        SetPlayerState(false);
     }
 
     public void ResetHP()
     {
         if (!IsServer) return;
+        
         NetCurrentHP.Value = MaxHP;
         NetIsAlive.Value = true;
-        EnablePlayerClientRpc();
+        SetPlayerState(true);
+
+        if (_spawnPoint != null)
+        {
+            transform.position = _spawnPoint.position;
+        }
+    }
+
+    public void SetPlayerState(bool active)
+    {
+        SetPlayerStateClientRpc(active);
     }
 
     [ClientRpc]
-    private void EnablePlayerClientRpc()
+    private void SetPlayerStateClientRpc(bool active)
     {
-        foreach (var r in _renderers) r.enabled = true;
-        foreach (var c in _colliders) c.enabled = true;
+        foreach (var r in _renderers) r.enabled = active;
+        foreach (var c in _colliders) c.enabled = active;
+        
+        var anim = GetComponentInChildren<Animator>();
+        if (anim != null) anim.enabled = active;
+        
         var ctrl = GetComponent<PlayerController>();
-        if (ctrl != null) ctrl.enabled = true;
-    }
-
-    public void SetPlayerIndex(int index) => _playerIndex = index;
-
-    public void TeleportTo(Vector3 position)
-    {
-        if (!IsServer) return;
-        transform.position = position;
-        TeleportClientRpc(position);
-    }
-
-    [ClientRpc]
-    private void TeleportClientRpc(Vector3 position)
-    {
-        transform.position = position;
+        if (ctrl != null) ctrl.enabled = active;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsServer) return;
-        if (collision.CompareTag("KillZone"))
+        if (collision.tag == "KillZone")
+        {
             FallDeath();
+        }
     }
-}    
+
+    public void SetPlayerIndex(int index)
+    {
+        if (IsServer) NetPlayerIndex.Value = index;
+    }
+}

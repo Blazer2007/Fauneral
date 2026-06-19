@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Quick Shadow
   m_EditorClassIdentifier: 
+  rarity: Uncommon
+  description: "ACTIV\xC1VEL: -40% cooldown de dash e +25% velocidade por 5s."
   image: {fileID: 0}
-  name: Quick Shadow
-  rarity: B
-  description: Your shadow is quicker than your enemys eyes
-  cardindex: 0
+  id: 11
+  dealType: 0
+  isClickable: 1
   buffs:
-  - +40% Speed after dash
-  debuffs:
-  - -15% Attack/8s
-  uses: 5
-  time: 8
+  - Stat: 3
+    Value: -40
+    IsPercent: 1
+  - Stat: 0
+    Value: 25
+    IsPercent: 1
+  debuffs: []
+  time: 5
+  uses: 2
   isinfinite: 0
+  accessoryPrefab: {fileID: 0}

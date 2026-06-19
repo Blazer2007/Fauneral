@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -53,6 +53,9 @@ public class CardSelectionManager : NetworkBehaviour
     // clientId → cardId que o jogador escolheu (-1 = ainda não escolheu)
     private Dictionary<ulong, int> _pendingChoices = new();
 
+    // clientId → número de cartas clicáveis que o jogador já adquiriu (limite 3)
+    private Dictionary<ulong, int> _clickableCount = new();
+
     // Número da ronda actual (para escalar raridade)
     private int _currentRound = 1;
 
@@ -103,77 +106,133 @@ public class CardSelectionManager : NetworkBehaviour
 
     private int[] DrawCardsForPlayer(ulong clientId)
     {
-        bool isWinner = (clientId == _lastWinnerId);
         bool isDraw = (_lastWinnerId == ulong.MaxValue);
+        bool isWinner = !isDraw && (clientId == _lastWinnerId);
+        bool isFirstRound = (_currentRound <= 1);
 
-        // VENCEDOR → Deal with the Devil
-        //   Pool de cartas mais raras/poderosas, mas os debuffs da carta são aplicados a si próprio.
-        //   Representa o risco de um pacto: ganhas poder mas pagas um preço.
-        //   Implementação: effectiveRound +2 (acede a cartas de raridade superior).
-        //
-        // PERDEDOR → Deal with the Angel
-        //   Pool de cartas limpas (só buffs, sem custo). Raridade normal — é uma graça, não um pacto.
-        //   Implementação: effectiveRound base, mas debuffs NÃO são aplicados a si próprio.
-        //
-        // EMPATE → sem modificador, pool base.
-        int effectiveRound = _currentRound;
-        if (isWinner && !isDraw) effectiveRound += 2; // Devil: acede a pool mais poderosa
+        var offered = new List<int>();  // Índices das cartas oferecidas
+        var used = new HashSet<int>();  // Índices já escolhidos (evita duplicados)
 
-        var offered = new List<int>(); // Índices das cartas sorteadas
-        var used = new HashSet<int>(); // Índices já sorteados 
-        int attempts = 0; 
-
-        
-        while (offered.Count < _offeredCardCount && attempts < 200)
+        // ── REGRA 1: a carta GARANTIDA (slot 0) ──────────────────────
+        // Ronda 1 → sem Angel/Devil (não há vencedor/perdedor ainda).
+        // Vencedor → 1 carta Devil garantida.
+        // Perdedor → 1 carta Angel garantida.
+        if (!isFirstRound)
         {
-            
-            attempts++; 
-            string targetRarity = _rarityTable != null
-                ? _rarityTable.RollRarity(effectiveRound)
-                : "Common";
-
-            int idx = TryGetCardOfRarity(targetRarity, used); // Sorteia uma carta da raridade pedida, excluindo as já sorteadas
-            
-            if (idx >= 0)
+            CardDealType guaranteed = isWinner ? CardDealType.Devil : CardDealType.Angel;
+            int guaranteedIdx = TryGetCardOfDeal(guaranteed, used);
+            if (guaranteedIdx >= 0)
             {
-                // Adiciona a carta sorteada à lista de oferecidas e marca como usada
-                offered.Add(idx);
-                used.Add(idx);
+                offered.Add(guaranteedIdx);
+                used.Add(guaranteedIdx);
             }
-            
         }
 
-        // Fallback: completa com cartas aleatórias se não houver suficientes de uma raridade
-        int safetyAttempts = 0; 
-        while (offered.Count < _offeredCardCount && safetyAttempts < 200)
+        // ── REGRA 2: o resto dos slots são cartas NEUTRAS ────────────
+        int safety = 0;
+        while (offered.Count < _offeredCardCount && safety < 500)
         {
-            safetyAttempts++;
-            int idx = Random.Range(0, _cardDatabase.Cards.Length);
-            if (!used.Contains(idx))
+            safety++;
+            int idx = TryGetNeutralCard(clientId, used);
+            if (idx < 0) break; // não há mais neutras disponíveis
+            offered.Add(idx);
+            used.Add(idx);
+        }
+
+        // ── FALLBACK: completa com qualquer carta neutra restante ────
+        if (offered.Count < _offeredCardCount)
+        {
+            for (int i = 0; i < _cardDatabase.Cards.Length && offered.Count < _offeredCardCount; i++)
             {
-                offered.Add(idx);
-                used.Add(idx);
+                var c = _cardDatabase.Cards[i];
+                if (c != null && c.dealType == CardDealType.Neutral && !used.Contains(i))
+                {
+                    offered.Add(i);
+                    used.Add(i);
+                }
             }
         }
 
         return offered.ToArray();
     }
 
-    private int TryGetCardOfRarity(string rarity, HashSet<int> exclude)
+    /// <summary>Sorteia uma carta de um dado DealType (Angel/Devil), respeitando raridade pela ronda.</summary>
+    private int TryGetCardOfDeal(CardDealType deal, HashSet<int> exclude)
     {
         if (_cardDatabase == null || _cardDatabase.Cards.Length == 0) return -1;
 
-        // Junta todos os índices com a raridade pedida, excluindo os já usados
+        string targetRarity = _rarityTable != null ? _rarityTable.RollRarity(_currentRound) : null;
+
+        // 1ª tentativa: deal + raridade sorteada
         var candidates = new List<int>();
         for (int i = 0; i < _cardDatabase.Cards.Length; i++)
         {
             var card = _cardDatabase.Cards[i];
-            if (card != null && card.rarity == rarity && !exclude.Contains(i))
-                candidates.Add(i);
+            if (card == null || exclude.Contains(i)) continue;
+            if (card.dealType != deal) continue;
+            if (targetRarity != null && card.rarity != targetRarity) continue;
+            candidates.Add(i);
+        }
+
+        // 2ª tentativa: qualquer carta do deal (ignora raridade)
+        if (candidates.Count == 0)
+        {
+            for (int i = 0; i < _cardDatabase.Cards.Length; i++)
+            {
+                var card = _cardDatabase.Cards[i];
+                if (card == null || exclude.Contains(i)) continue;
+                if (card.dealType == deal) candidates.Add(i);
+            }
         }
 
         if (candidates.Count == 0) return -1;
         return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    /// <summary>
+    /// Sorteia uma carta neutra. Respeita o limite de 3 cartas clicáveis por jogador:
+    /// se o jogador já tem 3 clicáveis, cartas clicáveis deixam de aparecer para ele.
+    /// </summary>
+    private int TryGetNeutralCard(ulong clientId, HashSet<int> exclude)
+    {
+        if (_cardDatabase == null || _cardDatabase.Cards.Length == 0) return -1;
+
+        bool atClickableLimit = GetClickableCount(clientId) >= 3;
+        string targetRarity = _rarityTable != null ? _rarityTable.RollRarity(_currentRound) : null;
+
+        // 1ª tentativa: neutra + raridade sorteada (+ filtro de clicáveis)
+        var candidates = new List<int>();
+        for (int i = 0; i < _cardDatabase.Cards.Length; i++)
+        {
+            var card = _cardDatabase.Cards[i];
+            if (card == null || exclude.Contains(i)) continue;
+            if (card.dealType != CardDealType.Neutral) continue;
+            if (atClickableLimit && card.isClickable) continue;
+            if (targetRarity != null && card.rarity != targetRarity) continue;
+            candidates.Add(i);
+        }
+
+        // 2ª tentativa: qualquer neutra (ignora raridade, mantém filtro de clicáveis)
+        if (candidates.Count == 0)
+        {
+            for (int i = 0; i < _cardDatabase.Cards.Length; i++)
+            {
+                var card = _cardDatabase.Cards[i];
+                if (card == null || exclude.Contains(i)) continue;
+                if (card.dealType != CardDealType.Neutral) continue;
+                if (atClickableLimit && card.isClickable) continue;
+                candidates.Add(i);
+            }
+        }
+
+        if (candidates.Count == 0) return -1;
+        return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    /// <summary>Quantas cartas clicáveis o jogador já possui (rastreado no servidor).</summary>
+    private int GetClickableCount(ulong clientId)
+    {
+        return _clickableCount.TryGetValue(clientId, out int n) ? n : 0;
     }
 
     // ── CLIENT RPC: mostra as cartas ao jogador ───────────────────
@@ -204,35 +263,40 @@ public class CardSelectionManager : NetworkBehaviour
             return;
         }
 
-        // Aplica os buffs permanentemente ao próprio jogador (duration=0 → permanente em PlayerStats)
         var stats = GetPlayerStats(senderId);
-        if (stats != null)
+
+        if (card.isClickable)
         {
-            //if (card.acessoryPrefab != null) 
-            //{
-                
-            //}
-            // Buffs → sempre aplicados ao próprio jogador
+            // ── CARTA CLICÁVEL (activável com tecla) ──────────────────
+            // Não aplica nada agora — vai para o inventário do jogador para uso em ronda.
+            // Conta para o limite de 3 clicáveis.
+            if (!_clickableCount.ContainsKey(senderId)) _clickableCount[senderId] = 0;
+            _clickableCount[senderId]++;
+
+            AddCardToPlayerClientRpc(cardId, new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams { TargetClientIds = new[] { senderId } }
+            });
+
+            Debug.Log($"[CardSelection] Jogador {senderId} adquiriu carta CLICÁVEL '{card.name}' " +
+                      $"({_clickableCount[senderId]}/3)");
+        }
+        else if (stats != null)
+        {
+            // ── CARTA PASSIVA (buff permanente) ───────────────────────
+            // Buffs → sempre aplicados permanentemente ao próprio jogador.
             stats.ApplyAll(card.buffs, 0f);
 
-            // Deal with the Devil (vencedor): os debuffs da carta são aplicados a si próprio.
-            // É o preço do pacto — ganhas cartas mais poderosas mas sofres as consequências.
-            bool isWinner = (senderId == _lastWinnerId) && (_lastWinnerId != ulong.MaxValue);
-            if (isWinner)
+            // Deal with the Devil: aplica também os debuffs (o custo do pacto).
+            // Angel / Neutral: sem custo — os debuffs são ignorados.
+            if (card.dealType == CardDealType.Devil)
                 stats.ApplyAll(card.debuffs, 0f);
 
-            // Deal with the Angel (perdedor): sem penalidade — os debuffs NÃO são aplicados.
-            // Os debuffs da carta continuam a existir no ScriptableCard mas são ignorados aqui.
+            Debug.Log($"[CardSelection] Jogador {senderId} adquiriu carta PASSIVA '{card.name}' " +
+                      $"(deal={card.dealType})");
         }
 
         _pendingChoices[senderId] = cardId;
-        Debug.Log($"[CardSelection] Jogador {senderId} escolheu carta '{card.name}'");
-
-        // Notifica o cliente para adicionar a carta ao inventário de uso em ronda
-        AddCardToPlayerClientRpc(cardId, new ClientRpcParams
-        {
-            Send = new ClientRpcSendParams { TargetClientIds = new[] { senderId } }
-        });
 
         // Notifica o cliente para fechar o canvas
         HideCanvasClientRpc(new ClientRpcParams
@@ -252,7 +316,8 @@ public class CardSelectionManager : NetworkBehaviour
 
         // Todos escolheram → inicia a ronda
         Debug.Log("[CardSelection] Todos os jogadores escolheram. A iniciar ronda...");
-        //_roundManager?.StartRoundClientRpc();
+        if (RoundManager.Instance != null)
+            RoundManager.Instance.StartNextRound();
     }
 
     // ── CLIENT RPC: adiciona carta ao PlayerCardUser ──────────────

@@ -1,0 +1,1261 @@
+fileFormatVersion: 2
+guid: 7cb0ef4be6aee354ba5e724fefeafa1d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 81744127758731630
+    second: victory_wolf_0
+  - first:
+      213: 7235354257324391024
+    second: victory_wolf_1
+  - first:
+      213: -5855231736630969953
+    second: victory_wolf_2
+  - first:
+      213: 7426137096339915370
+    second: victory_wolf_3
+  - first:
+      213: 9172419524422310177
+    second: victory_wolf_4
+  - first:
+      213: 8305494461735681733
+    second: victory_wolf_5
+  - first:
+      213: -6947656778207420841
+    second: victory_wolf_6
+  - first:
+      213: 2879928475601621809
+    second: victory_wolf_7
+  - first:
+      213: 5421791806166105154
+    second: victory_wolf_8
+  - first:
+      213: -8367543153709125619
+    second: victory_wolf_9
+  - first:
+      213: -2804995913699236768
+    second: victory_wolf_10
+  - first:
+      213: 5036132036481785862
+    second: victory_wolf_11
+  - first:
+      213: 4889473681744954390
+    second: victory_wolf_12
+  - first:
+      213: 1370472910255343269
+    second: victory_wolf_13
+  - first:
+      213: -7127431889427607796
+    second: victory_wolf_14
+  - first:
+      213: -1158945597277309262
+    second: victory_wolf_15
+  - first:
+      213: 707682794098639832
+    second: victory_wolf_16
+  - first:
+      213: -6892019587944212285
+    second: victory_wolf_17
+  - first:
+      213: -8057564381771536636
+    second: victory_wolf_18
+  - first:
+      213: 4404090234102823773
+    second: victory_wolf_19
+  - first:
+      213: -931967081635263175
+    second: victory_wolf_20
+  - first:
+      213: 5024178588842974678
+    second: victory_wolf_21
+  - first:
+      213: -1492652753392933946
+    second: victory_wolf_22
+  - first:
+      213: -670071533858456886
+    second: victory_wolf_23
+  - first:
+      213: 7550472285923120133
+    second: victory_wolf_24
+  - first:
+      213: -4407123481812851327
+    second: victory_wolf_25
+  - first:
+      213: -1799818990185732234
+    second: victory_wolf_26
+  - first:
+      213: 5333804757042350234
+    second: victory_wolf_27
+  - first:
+      213: -685410438003384295
+    second: victory_wolf_28
+  - first:
+      213: -5792876499105585535
+    second: victory_wolf_29
+  - first:
+      213: -1946370545147255900
+    second: victory_wolf_30
+  - first:
+      213: 1308372033987554417
+    second: victory_wolf_31
+  - first:
+      213: -4297680653596137600
+    second: victory_wolf_32
+  - first:
+      213: -6711672631094373698
+    second: victory_wolf_33
+  - first:
+      213: -2237497937887559537
+    second: victory_wolf_34
+  - first:
+      213: 6434279917895821218
+    second: victory_wolf_35
+  - first:
+      213: 564310323080740401
+    second: victory_wolf_36
+  - first:
+      213: 1821989719370203675
+    second: victory_wolf_37
+  - first:
+      213: -4961793874987250254
+    second: victory_wolf_38
+  - first:
+      213: -6954744853765964528
+    second: victory_wolf_39
+  - first:
+      213: -6364314091617973926
+    second: victory_wolf_40
+  - first:
+      213: 8537254001296651473
+    second: victory_wolf_41
+  - first:
+      213: 1701315326133470461
+    second: victory_wolf_42
+  - first:
+      213: 8993859913904889105
+    second: victory_wolf_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: victory_wolf_0
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1414
+        width: 80
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e698881e9d9622100800000000000000
+      internalID: 81744127758731630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_1
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 1414
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a3eebcc54296460800000000000000
+      internalID: 7235354257324391024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_2
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 1414
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99748402c90ebea0800000000000000
+      internalID: -5855231736630969953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_3
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 1414
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6201b00850fe0760800000000000000
+      internalID: 7426137096339915370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1299c0cb5fafa4f70800000000000000
+      internalID: 9172419524422310177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_5
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cebab3653b034370800000000000000
+      internalID: 8305494461735681733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_6
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e9c9178f6f49f90800000000000000
+      internalID: -6947656778207420841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13354c6a0bf87f720800000000000000
+      internalID: 2879928475601621809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c77acfbe21e3b40800000000000000
+      internalID: 5421791806166105154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d007a68b5d380eb80800000000000000
+      internalID: -8367543153709125619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 064e887f317a219d0800000000000000
+      internalID: -2804995913699236768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 1158
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6002674976fe3e540800000000000000
+      internalID: 5036132036481785862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61487037866ead340800000000000000
+      internalID: 4889473681744954390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6c01ec9d5e40310800000000000000
+      internalID: 1370472910255343269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_14
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f40e59576461d90800000000000000
+      internalID: -7127431889427607796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_15
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b67840ae199aefe0800000000000000
+      internalID: -1158945597277309262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_16
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d3c7e370c132d900800000000000000
+      internalID: 707682794098639832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_17
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c81d8343b0aa50a0800000000000000
+      internalID: -6892019587944212285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_18
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407eaa5b2e7cd2090800000000000000
+      internalID: -8057564381771536636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_19
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 902
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5b377aebb87e1d30800000000000000
+      internalID: 4404090234102823773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_20
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93dc5c480ecf013f0800000000000000
+      internalID: -931967081635263175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_21
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dddb1caec779b540800000000000000
+      internalID: 5024178588842974678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_22
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c3610daa38094be0800000000000000
+      internalID: -1492652753392933946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_23
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acaf34a7d7d63b6f0800000000000000
+      internalID: -670071533858456886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_24
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50411e83a8aa8c860800000000000000
+      internalID: 7550472285923120133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_25
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18523411b80c6d2c0800000000000000
+      internalID: -4407123481812851327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_26
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6772afd0a22c507e0800000000000000
+      internalID: -1799818990185732234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_27
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 646
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a984cc4ba2b750a40800000000000000
+      internalID: 5333804757042350234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_28
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 390
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 910a67d86deec76f0800000000000000
+      internalID: -685410438003384295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_29
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 390
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1866a1b14819b9fa0800000000000000
+      internalID: -5792876499105585535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_30
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 390
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a3e63f2d4a1df4e0800000000000000
+      internalID: -1946370545147255900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_31
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 390
+        width: 81
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c22efce65482210800000000000000
+      internalID: 1308372033987554417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_32
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 390
+        width: 80
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 087655437329b54c0800000000000000
+      internalID: -4297680653596137600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_33
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 390
+        width: 80
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb298ee4d495bd2a0800000000000000
+      internalID: -6711672631094373698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_34
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 390
+        width: 79
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f800b82fa7fc2f0e0800000000000000
+      internalID: -2237497937887559537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_35
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 390
+        width: 78
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a72c9bbe772b4950800000000000000
+      internalID: 6434279917895821218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_36
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 133
+        width: 79
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13e305ebf35d4d700800000000000000
+      internalID: 564310323080740401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_37
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 133
+        width: 78
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1289771ff1094910800000000000000
+      internalID: 1821989719370203675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_38
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 133
+        width: 78
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd0da862ca242bb0800000000000000
+      internalID: -4961793874987250254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_39
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 133
+        width: 77
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01dbdcf3768cb7f90800000000000000
+      internalID: -6954744853765964528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_40
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 133
+        width: 76
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a590912ad0a6da7a0800000000000000
+      internalID: -6364314091617973926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_41
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 133
+        width: 76
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4b198284b6a7670800000000000000
+      internalID: 8537254001296651473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_42
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 133
+        width: 75
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df40d1176494c9710800000000000000
+      internalID: 1701315326133470461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: victory_wolf_43
+      rect:
+        serializedVersion: 2
+        x: 1826
+        y: 133
+        width: 75
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d1defa0fb90dc70800000000000000
+      internalID: 8993859913904889105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      victory_wolf_0: 81744127758731630
+      victory_wolf_1: 7235354257324391024
+      victory_wolf_10: -2804995913699236768
+      victory_wolf_11: 5036132036481785862
+      victory_wolf_12: 4889473681744954390
+      victory_wolf_13: 1370472910255343269
+      victory_wolf_14: -7127431889427607796
+      victory_wolf_15: -1158945597277309262
+      victory_wolf_16: 707682794098639832
+      victory_wolf_17: -6892019587944212285
+      victory_wolf_18: -8057564381771536636
+      victory_wolf_19: 4404090234102823773
+      victory_wolf_2: -5855231736630969953
+      victory_wolf_20: -931967081635263175
+      victory_wolf_21: 5024178588842974678
+      victory_wolf_22: -1492652753392933946
+      victory_wolf_23: -670071533858456886
+      victory_wolf_24: 7550472285923120133
+      victory_wolf_25: -4407123481812851327
+      victory_wolf_26: -1799818990185732234
+      victory_wolf_27: 5333804757042350234
+      victory_wolf_28: -685410438003384295
+      victory_wolf_29: -5792876499105585535
+      victory_wolf_3: 7426137096339915370
+      victory_wolf_30: -1946370545147255900
+      victory_wolf_31: 1308372033987554417
+      victory_wolf_32: -4297680653596137600
+      victory_wolf_33: -6711672631094373698
+      victory_wolf_34: -2237497937887559537
+      victory_wolf_35: 6434279917895821218
+      victory_wolf_36: 564310323080740401
+      victory_wolf_37: 1821989719370203675
+      victory_wolf_38: -4961793874987250254
+      victory_wolf_39: -6954744853765964528
+      victory_wolf_4: 9172419524422310177
+      victory_wolf_40: -6364314091617973926
+      victory_wolf_41: 8537254001296651473
+      victory_wolf_42: 1701315326133470461
+      victory_wolf_43: 8993859913904889105
+      victory_wolf_5: 8305494461735681733
+      victory_wolf_6: -6947656778207420841
+      victory_wolf_7: 2879928475601621809
+      victory_wolf_8: 5421791806166105154
+      victory_wolf_9: -8367543153709125619
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

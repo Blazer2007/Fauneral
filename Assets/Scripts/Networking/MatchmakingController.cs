@@ -179,6 +179,7 @@ namespace Networking
         public async Task<string> StartHostLAN(string roomName, int maxPlayers)
         {
             Debug.Log($"[Matchmaking] Iniciando Host LAN: {roomName}");
+            await EnsureShutdown();
 
             if (NetworkManager.Singleton == null)
             {
@@ -186,19 +187,12 @@ namespace Networking
                 return null;
             }
 
-            if (NetworkManager.Singleton.IsListening)
-            {
-                Debug.Log("[Matchmaking] Parando conexão anterior...");
-                NetworkManager.Singleton.Shutdown();
-                await Task.Delay(1000);
-            }
-
             var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
             if (transport != null)
             {
                 // Para o Host, o 'Address' deve ser o IP local real se possível,
                 // e o 'Listen Address' deve ser 0.0.0.0 para aceitar conexões externas.
-                string localIp = GetLocalIPAddress();
+                string localIp = NetworkIPUtils.GetBestLocalIP();
                 transport.SetConnectionData(localIp, 7777, "0.0.0.0");
                 Debug.Log($"[Matchmaking] Host configurado no IP: {localIp}");
             }
@@ -218,7 +212,7 @@ namespace Networking
             }
 
             string localPin = "LAN" + UnityEngine.Random.Range(10, 99);
-            LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
+            LANDiscovery.Instance.StartBroadcasting(roomName, localPin, maxPlayers);
             // LANDiscovery.Instance.StartBroadcasting(roomName, localPin);
 
             return localPin;
@@ -249,27 +243,6 @@ namespace Networking
             }
 
             return clientStarted;
-        }
-
-        private string GetLocalIPAddress()
-        {
-            try
-            {
-                var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                    {
-                        if (ip.ToString() == "127.0.0.1") continue;
-                        return ip.ToString();
-                    }
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning("[Matchmaking] Erro ao obter IP local: " + e.Message);
-            }
-            return "127.0.0.1";
         }
     }
 }

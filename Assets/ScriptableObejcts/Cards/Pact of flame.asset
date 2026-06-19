@@ -12,17 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Pact of flame
   m_EditorClassIdentifier: 
+  rarity: Rare
+  description: 'PACTO: +40% Dano e +20% Vel. ataque, mas perdes 2 HP/s.'
   image: {fileID: 0}
-  name: 'Pact of Flame '
-  rarity: DWD
-  description: "Upon killing an enemy, the player gains a burst of massive speed
-    and strength \u2014 but loses health over time."
-  cardindex: 0
+  id: 9
+  dealType: 2
+  isClickable: 0
   buffs:
-  - '+25% Speed '
-  - +25% Strenght
+  - Stat: 4
+    Value: 40
+    IsPercent: 1
+  - Stat: 5
+    Value: 20
+    IsPercent: 1
   debuffs:
-  - -8 hp/s
-  uses: 2
-  time: 10
+  - Stat: 19
+    Value: 2
+    IsPercent: 0
+  time: 0
+  uses: 1
   isinfinite: 1
+  accessoryPrefab: {fileID: 0}

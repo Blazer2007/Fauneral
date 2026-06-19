@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: cce7b56f2a243b147b289b13673eb057
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3993639395201449274
+    second: air_idle_wolf_0
+  - first:
+      213: 1844063866314318356
+    second: air_idle_wolf_1
+  - first:
+      213: 2504476543356590392
+    second: air_idle_wolf_2
+  - first:
+      213: -6343055595571837080
+    second: air_idle_wolf_3
+  - first:
+      213: 8997938155650631736
+    second: air_idle_wolf_4
+  - first:
+      213: -2124501379528077510
+    second: air_idle_wolf_5
+  - first:
+      213: -2198067086404447533
+    second: air_idle_wolf_6
+  - first:
+      213: -3591247315632934493
+    second: air_idle_wolf_7
+  - first:
+      213: -300462291811084909
+    second: air_idle_wolf_8
+  - first:
+      213: -4426133309270771929
+    second: air_idle_wolf_9
+  - first:
+      213: 2033439325094630144
+    second: air_idle_wolf_10
+  - first:
+      213: -1840203009226539635
+    second: air_idle_wolf_11
+  - first:
+      213: -3873804932551096127
+    second: air_idle_wolf_12
+  - first:
+      213: -4710084515690000267
+    second: air_idle_wolf_13
+  - first:
+      213: 3622099251447598146
+    second: air_idle_wolf_14
+  - first:
+      213: 4527668009309238791
+    second: air_idle_wolf_15
+  - first:
+      213: 2784990471652214272
+    second: air_idle_wolf_16
+  - first:
+      213: -130737549492822376
+    second: air_idle_wolf_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: air_idle_wolf_0
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1393
+        width: 1904
+        height: 644
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 19, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c20308112eb398c0800000000000000
+      internalID: -3993639395201449274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_1
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4126ccee05e679910800000000000000
+      internalID: 1844063866314318356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_2
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839511b9520b1c220800000000000000
+      internalID: 2504476543356590392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_3
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8670363fa80f8f7a0800000000000000
+      internalID: -6343055595571837080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_4
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8384d7654191fdc70800000000000000
+      internalID: 8997938155650631736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_5
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3fc66c50414482e0800000000000000
+      internalID: -2124501379528077510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_6
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d2926a71a5ee71e0800000000000000
+      internalID: -2198067086404447533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 1875
+        y: 1910
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a1bf1bf793592ec0800000000000000
+      internalID: -3591247315632934493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3955334332b84dbf0800000000000000
+      internalID: -300462291811084909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7273464b4373392c0800000000000000
+      internalID: -4426133309270771929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0035394ea4a383c10800000000000000
+      internalID: 2033439325094630144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d7278ec194676e0800000000000000
+      internalID: -1840203009226539635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c8c22a20fa7d3ac0800000000000000
+      internalID: -3873804932551096127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 570da3c861b62aeb0800000000000000
+      internalID: -4710084515690000267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_14
+      rect:
+        serializedVersion: 2
+        x: 1875
+        y: 1654
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c0eb71418444230800000000000000
+      internalID: 3622099251447598146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_15
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1398
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 706f6cbd01285de30800000000000000
+      internalID: 4527668009309238791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_16
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1398
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0068da5141646a620800000000000000
+      internalID: 2784990471652214272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: air_idle_wolf_17
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1398
+        width: 90
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89edca334e68f2ef0800000000000000
+      internalID: -130737549492822376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 52879821e3d76af4fbbe7b419e65013d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      air_idle_wolf_0: -3993639395201449274
+      air_idle_wolf_1: 1844063866314318356
+      air_idle_wolf_10: 2033439325094630144
+      air_idle_wolf_11: -1840203009226539635
+      air_idle_wolf_12: -3873804932551096127
+      air_idle_wolf_13: -4710084515690000267
+      air_idle_wolf_14: 3622099251447598146
+      air_idle_wolf_15: 4527668009309238791
+      air_idle_wolf_16: 2784990471652214272
+      air_idle_wolf_17: -130737549492822376
+      air_idle_wolf_2: 2504476543356590392
+      air_idle_wolf_3: -6343055595571837080
+      air_idle_wolf_4: 8997938155650631736
+      air_idle_wolf_5: -2124501379528077510
+      air_idle_wolf_6: -2198067086404447533
+      air_idle_wolf_7: -3591247315632934493
+      air_idle_wolf_8: -300462291811084909
+      air_idle_wolf_9: -4426133309270771929
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

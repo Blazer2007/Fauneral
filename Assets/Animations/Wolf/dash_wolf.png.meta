@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 1272b8dbb4acfbb40a9bdf817d1fda64
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2189916547604879559
+    second: dash_wolf_0
+  - first:
+      213: -547265228237201490
+    second: dash_wolf_1
+  - first:
+      213: -4107548166361603389
+    second: dash_wolf_2
+  - first:
+      213: 3091459353437574276
+    second: dash_wolf_3
+  - first:
+      213: 1408691232980927954
+    second: dash_wolf_4
+  - first:
+      213: -406563107890903476
+    second: dash_wolf_5
+  - first:
+      213: -4331319971356856611
+    second: dash_wolf_6
+  - first:
+      213: -6942328187140638777
+    second: dash_wolf_7
+  - first:
+      213: -7939252047041847240
+    second: dash_wolf_8
+  - first:
+      213: -956149700199490291
+    second: dash_wolf_9
+  - first:
+      213: -822211642078116663
+    second: dash_wolf_10
+  - first:
+      213: 1224063272804101436
+    second: dash_wolf_11
+  - first:
+      213: -7611691135212997285
+    second: dash_wolf_12
+  - first:
+      213: 7526853495664675215
+    second: dash_wolf_13
+  - first:
+      213: -6116800116194431181
+    second: dash_wolf_14
+  - first:
+      213: -3066386471806097685
+    second: dash_wolf_15
+  - first:
+      213: 7107448445713730412
+    second: dash_wolf_16
+  - first:
+      213: -1835364629481869643
+    second: dash_wolf_17
+  - first:
+      213: -3821540782659027785
+    second: dash_wolf_18
+  - first:
+      213: 5614564101020908897
+    second: dash_wolf_19
+  - first:
+      213: -4774196659842218332
+    second: dash_wolf_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dash_wolf_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1927
+        width: 107
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937e24ca08adb91e0800000000000000
+      internalID: -2189916547604879559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1918
+        width: 108
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf9ff8ac29b768f0800000000000000
+      internalID: -547265228237201490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_2
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1915
+        width: 108
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2a53694be0ff6c0800000000000000
+      internalID: -4107548166361603389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_3
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 1919
+        width: 109
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484943717e117ea20800000000000000
+      internalID: 3091459353437574276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_4
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 1920
+        width: 109
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d5090c763dac8310800000000000000
+      internalID: 1408691232980927954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_5
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 1912
+        width: 101
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c464267e1099b5af0800000000000000
+      internalID: -406563107890903476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_6
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 1909
+        width: 93
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde28b23f6f04e3c0800000000000000
+      internalID: -4331319971356856611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 1913
+        width: 95
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c7fc4bbb45e7af90800000000000000
+      internalID: -6942328187140638777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1660
+        width: 95
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83027c1c35c12d190800000000000000
+      internalID: -7939252047041847240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 1667
+        width: 99
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d538fd9e21bb2f0800000000000000
+      internalID: -956149700199490291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1671
+        width: 104
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c44eb72edae694f0800000000000000
+      internalID: -822211642078116663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1660
+        width: 106
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d271eaf0fbcf010800000000000000
+      internalID: 1224063272804101436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1657
+        width: 107
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55b3a1bd37dd5690800000000000000
+      internalID: -7611691135212997285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1660
+        width: 108
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8900851061c47860800000000000000
+      internalID: 7526853495664675215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_14
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 1663
+        width: 109
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33fa928d3b2cc1ba0800000000000000
+      internalID: -6116800116194431181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_15
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 1657
+        width: 102
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be62fe310c10275d0800000000000000
+      internalID: -3066386471806097685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1397
+        width: 92
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b4b2a54bab2a260800000000000000
+      internalID: 7107448445713730412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_17
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1400
+        width: 94
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5beaa6af7997786e0800000000000000
+      internalID: -1835364629481869643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_18
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 1404
+        width: 97
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bcb0f2d7e827fac0800000000000000
+      internalID: -3821540782659027785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_19
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1412
+        width: 101
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16df20a7d40faed40800000000000000
+      internalID: 5614564101020908897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_wolf_20
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1415
+        width: 107
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a68f32ce65aebdb0800000000000000
+      internalID: -4774196659842218332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dash_wolf_0: -2189916547604879559
+      dash_wolf_1: -547265228237201490
+      dash_wolf_10: -822211642078116663
+      dash_wolf_11: 1224063272804101436
+      dash_wolf_12: -7611691135212997285
+      dash_wolf_13: 7526853495664675215
+      dash_wolf_14: -6116800116194431181
+      dash_wolf_15: -3066386471806097685
+      dash_wolf_16: 7107448445713730412
+      dash_wolf_17: -1835364629481869643
+      dash_wolf_18: -3821540782659027785
+      dash_wolf_19: 5614564101020908897
+      dash_wolf_2: -4107548166361603389
+      dash_wolf_20: -4774196659842218332
+      dash_wolf_3: 3091459353437574276
+      dash_wolf_4: 1408691232980927954
+      dash_wolf_5: -406563107890903476
+      dash_wolf_6: -4331319971356856611
+      dash_wolf_7: -6942328187140638777
+      dash_wolf_8: -7939252047041847240
+      dash_wolf_9: -956149700199490291
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
