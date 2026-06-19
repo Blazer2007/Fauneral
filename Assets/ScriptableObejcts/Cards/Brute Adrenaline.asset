@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Brute Adrenaline
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: ac80f037ce041b1489e006226ef7a0a5, type: 3}
-  name: Brute Adrenaline
-  rarity: B
-  description: An adrenaline discharge boosts your strenght and speed for 12 seconds
+  rarity: Common
+  description: +20% Dano.
+  image: {fileID: 0}
+  id: 4
+  dealType: 0
+  isClickable: 0
   buffs:
-  - +25% Strenght
-  - +25% Speed
+  - Stat: 4
+    Value: 20
+    IsPercent: 1
   debuffs: []
-  uses: 5
-  time: 12
-  isinfinite: 0
+  time: 0
+  uses: 1
+  isinfinite: 1
+  accessoryPrefab: {fileID: 0}

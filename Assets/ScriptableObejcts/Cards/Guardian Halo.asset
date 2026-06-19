@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
-  m_Name: Quick Shadow
+  m_Name: Guardian Halo
   m_EditorClassIdentifier: 
-  rarity: Uncommon
-  description: "ACTIV\xC1VEL: -40% cooldown de dash e +25% velocidade por 5s."
+  rarity: Rare
+  description: "B\xCAN\xC7\xC3O: +8 Armadura e +25 Vida m\xE1xima."
   image: {fileID: 0}
-  id: 11
-  dealType: 0
-  isClickable: 1
+  id: 8
+  dealType: 1
+  isClickable: 0
   buffs:
-  - Stat: 3
-    Value: -40
-    IsPercent: 1
-  - Stat: 0
+  - Stat: 12
+    Value: 8
+    IsPercent: 0
+  - Stat: 10
     Value: 25
-    IsPercent: 1
+    IsPercent: 0
   debuffs: []
-  time: 5
-  uses: 2
-  isinfinite: 0
+  time: 0
+  uses: 1
+  isinfinite: 1
   accessoryPrefab: {fileID: 0}

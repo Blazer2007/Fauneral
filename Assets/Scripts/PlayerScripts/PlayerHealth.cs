@@ -71,6 +71,28 @@ public class PlayerHealth : NetworkBehaviour
             GameUI.Instance.RefreshBars();
     }
 
+    // Custo das cartas Devil: drena HP por segundo enquanto a ronda está activa.
+    private void Update()
+    {
+        if (!IsServer || !IsAlive || _playerStats == null) return;
+
+        if (_roundManager == null) _roundManager = RoundManager.Instance;
+        if (_roundManager == null || !_roundManager.RoundActive) return;
+
+        float drain = _playerStats.HpDrainPerSecond;
+        if (drain <= 0f) return;
+
+        NetCurrentHP.Value = Mathf.Max(0f, NetCurrentHP.Value - drain * Time.deltaTime);
+
+        if (NetCurrentHP.Value <= 0f)
+        {
+            Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu pelo custo do pacto (Devil).");
+            NetIsAlive.Value = false;
+            DieClientRpc();
+            _roundManager.OnPlayerDied(this);
+        }
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamageServerRpc(float amount)
     {

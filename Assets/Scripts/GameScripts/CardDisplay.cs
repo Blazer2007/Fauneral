@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using TarodevController;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -46,7 +46,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
         if (rarityText != null) rarityText.text = _Card.rarity;
         if (descriptionText != null) descriptionText.text = _Card.description;
         if (timeText != null) timeText.text = _Card.time.ToString() + " seconds";
-        if (image != null) image.sprite = _Card.image != null ? _Card.image.sprite : null;
+        if (image != null) image.sprite = _Card.image;
     }
 
     void Start()
@@ -60,8 +60,8 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     {
         if (_Card == null) return;
 
-        if (image != null && _Card.image != null)
-            image.sprite = _Card.image.sprite;
+        if (image != null)
+            image.sprite = _Card.image;
 
         if (nameText != null) nameText.text = _Card.name;
         if (descriptionText != null) descriptionText.text = _Card.description;

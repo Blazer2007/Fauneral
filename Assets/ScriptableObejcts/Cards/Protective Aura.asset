@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Protective Aura
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: ac80f037ce041b1489e006226ef7a0a5, type: 3}
-  name: Protective Aura
-  rarity: C
-  description: A subtle aura covers you(+25% defense)
+  rarity: Common
+  description: +5 Armadura (reduz dano recebido).
+  image: {fileID: 0}
+  id: 10
+  dealType: 0
+  isClickable: 0
   buffs:
-  - +25% Defence
+  - Stat: 12
+    Value: 5
+    IsPercent: 0
   debuffs: []
-  uses: 1
   time: 0
+  uses: 1
   isinfinite: 1
+  accessoryPrefab: {fileID: 0}

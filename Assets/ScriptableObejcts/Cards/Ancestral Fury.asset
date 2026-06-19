@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Ancestral Fury
   m_EditorClassIdentifier: 
-  rarity: S
-  description: The power of your ancestors runs in your veins, but it comes at a
-    price.
+  rarity: Common
+  description: +10% Dano e +10% Velocidade de ataque.
   image: {fileID: 0}
+  id: 0
+  dealType: 0
+  isClickable: 0
   buffs:
-  - Stat: 0
-    Value: 0
-    IsPercent: 0
-  debuffs:
-  - Stat: 0
-    Value: 0
-    IsPercent: 0
-  time: 30
+  - Stat: 4
+    Value: 10
+    IsPercent: 1
+  - Stat: 5
+    Value: 10
+    IsPercent: 1
+  debuffs: []
+  time: 0
   uses: 1
-  isinfinite: 0
+  isinfinite: 1
+  accessoryPrefab: {fileID: 0}

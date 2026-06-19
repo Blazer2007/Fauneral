@@ -10,23 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
-  m_Name: Quick Shadow
+  m_Name: Bloodlust
   m_EditorClassIdentifier: 
-  rarity: Uncommon
-  description: "ACTIV\xC1VEL: -40% cooldown de dash e +25% velocidade por 5s."
+  rarity: Rare
+  description: "PACTO: +45% Dano e 20% Vampirismo, mas -20 Vida m\xE1xima."
   image: {fileID: 0}
-  id: 11
-  dealType: 0
-  isClickable: 1
+  id: 3
+  dealType: 2
+  isClickable: 0
   buffs:
-  - Stat: 3
-    Value: -40
+  - Stat: 4
+    Value: 45
     IsPercent: 1
-  - Stat: 0
-    Value: 25
-    IsPercent: 1
-  debuffs: []
-  time: 5
-  uses: 2
-  isinfinite: 0
+  - Stat: 7
+    Value: 20
+    IsPercent: 0
+  debuffs:
+  - Stat: 10
+    Value: -20
+    IsPercent: 0
+  time: 0
+  uses: 1
+  isinfinite: 1
   accessoryPrefab: {fileID: 0}

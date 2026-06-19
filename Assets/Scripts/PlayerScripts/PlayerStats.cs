@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +55,7 @@ public class PlayerStats : MonoBehaviour
     public float CardUses => Compute(StatType.CardUses, _baseCardUses);
     public float Vampirism => Compute(StatType.Vampirism, 0f);  // Não tem base, só modificadores
     public float FreezeDuration => Compute(StatType.freezeDuration, 0f); // Duração do congelamento (segundos)
+    public float HpDrainPerSecond => Compute(StatType.HpDrainPerSecond, 0f); // Custo Devil: HP perdido/segundo
 
     // ── API PÚBLICA ───────────────────────────────────────────────
 
@@ -128,6 +129,7 @@ public class PlayerStats : MonoBehaviour
             StatType.CardUses => CardUses,
             StatType.Vampirism => Vampirism,
             StatType.freezeDuration => FreezeDuration,
+            StatType.HpDrainPerSecond => HpDrainPerSecond,
             _ => 0f
         };
     }

@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
-  m_Name: Quick Shadow
+  m_Name: Divine Speed
   m_EditorClassIdentifier: 
-  rarity: Uncommon
-  description: "ACTIV\xC1VEL: -40% cooldown de dash e +25% velocidade por 5s."
+  rarity: Rare
+  description: "B\xCAN\xC7\xC3O: +25% Velocidade e +15% Altura de salto."
   image: {fileID: 0}
-  id: 11
-  dealType: 0
-  isClickable: 1
+  id: 5
+  dealType: 1
+  isClickable: 0
   buffs:
-  - Stat: 3
-    Value: -40
-    IsPercent: 1
   - Stat: 0
     Value: 25
     IsPercent: 1
+  - Stat: 1
+    Value: 15
+    IsPercent: 1
   debuffs: []
-  time: 5
-  uses: 2
-  isinfinite: 0
+  time: 0
+  uses: 1
+  isinfinite: 1
   accessoryPrefab: {fileID: 0}
