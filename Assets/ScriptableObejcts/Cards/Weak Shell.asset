@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Weak Shell
   m_EditorClassIdentifier: 
   rarity: Common
-  description: "+20 Vida m\xE1xima."
+  description: +20 Max HP.
   image: {fileID: 0}
-  id: 12
+  id: 22
   dealType: 0
   isClickable: 0
   buffs:

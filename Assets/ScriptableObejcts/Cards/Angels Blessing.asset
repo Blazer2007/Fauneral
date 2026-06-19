@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Angels Blessing
   m_EditorClassIdentifier: 
-  rarity: Rare
-  description: "B\xCAN\xC7\xC3O: +30 Vida m\xE1xima e +5% Redu\xE7\xE3o de dano."
+  rarity: Deal
+  description: 'BLESSING: +30 Max HP and +5% Damage Reduction.'
   image: {fileID: 0}
-  id: 1
+  id: 2
   dealType: 1
   isClickable: 0
   buffs:

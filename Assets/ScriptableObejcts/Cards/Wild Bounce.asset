@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wild Bounce
   m_EditorClassIdentifier: 
   rarity: Common
-  description: +20% Altura de salto.
+  description: +20% Jump Height.
   image: {fileID: 0}
-  id: 13
+  id: 23
   dealType: 0
   isClickable: 0
   buffs:

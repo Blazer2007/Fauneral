@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
-  m_Name: Fast Reflexes
+  m_Name: Lucky Charm
   m_EditorClassIdentifier: 
   rarity: Common
-  description: +15% Movement Speed.
+  description: +5% Damage.
   image: {fileID: 0}
-  id: 7
+  id: 14
   dealType: 0
   isClickable: 0
   buffs:
-  - Stat: 0
-    Value: 15
+  - Stat: 4
+    Value: 5
     IsPercent: 1
   debuffs: []
   time: 0

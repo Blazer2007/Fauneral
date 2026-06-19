@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Protective Aura
   m_EditorClassIdentifier: 
   rarity: Common
-  description: +5 Armadura (reduz dano recebido).
+  description: +5 Armor (reduces damage taken).
   image: {fileID: 0}
-  id: 10
+  id: 16
   dealType: 0
   isClickable: 0
   buffs:

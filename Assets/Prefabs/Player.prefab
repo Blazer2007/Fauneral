@@ -321,11 +321,6 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 100
-  NetMaxHP:
-    UpdateTraits:
-      MinSecondsBetweenUpdates: 0
-      MaxSecondsBetweenUpdates: 0
-    m_InternalValue: 100
   NetIsAlive:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -391,6 +386,10 @@ MonoBehaviour:
       NameHash: -823668238
       Synchronize: 1
       ParameterType: 1
+    - name: Die
+      NameHash: 20298039
+      Synchronize: 1
+      ParameterType: 9
   AnimatorParametersExpanded: 0
 --- !u!1 &5383004335717602447
 GameObject:
@@ -652,7 +651,7 @@ Animator:
   m_GameObject: {fileID: 5383004335717602447}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33312b02ee6c2b24088abd8a6d0ee912, type: 2}
+  m_Controller: {fileID: 22100000, guid: cf469ba70c23b4a42b65ebe86b67199e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

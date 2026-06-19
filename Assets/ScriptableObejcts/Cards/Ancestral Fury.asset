@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ancestral Fury
   m_EditorClassIdentifier: 
   rarity: Common
-  description: +10% Dano e +10% Velocidade de ataque.
+  description: +10% Damage and +10% Attack Speed.
   image: {fileID: 0}
-  id: 0
+  id: 1
   dealType: 0
   isClickable: 0
   buffs:

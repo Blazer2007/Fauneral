@@ -227,7 +227,21 @@ public class RoundManager : NetworkBehaviour
         MatchOver = false;
         RoundNumber = 0;
         RoundWins.Clear();
-        if (IsServer) BeginCardSelection(ulong.MaxValue);
+
+        // Limpa stats e cartas de todos os jogadores locais (em todos os clientes)
+        var players = FindObjectsByType<PlayerHealth>(FindObjectsSortMode.None);
+        foreach (var p in players)
+        {
+            p.GetComponent<PlayerStats>()?.ClearAll();
+            p.GetComponent<PlayerCardUser>()?.ClearCards();
+        }
+
+        if (IsServer)
+        {
+            // Servidor limpa contagem de cartas clicáveis para a nova partida
+            CardSelectionManager.Instance?.ResetClickableCount();
+            BeginCardSelection(ulong.MaxValue);
+        }
     }
 
     private void BeginCardSelection(ulong winnerId)

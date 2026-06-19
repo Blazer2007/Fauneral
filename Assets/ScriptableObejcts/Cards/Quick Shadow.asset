@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Quick Shadow
   m_EditorClassIdentifier: 
-  rarity: Uncommon
-  description: "ACTIV\xC1VEL: -40% cooldown de dash e +25% velocidade por 5s."
+  rarity: Rare
+  description: 'ACTIVE: -40% Dash Cooldown and +25% Speed for 5s.'
   image: {fileID: 0}
-  id: 11
+  id: 17
   dealType: 0
   isClickable: 1
   buffs:

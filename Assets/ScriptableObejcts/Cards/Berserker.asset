@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Berserker
   m_EditorClassIdentifier: 
-  rarity: Legendary
-  description: 'PACTO: +65% Dano, +20% Velocidade, +10 Armadura, mas perdes 4 HP/s.'
+  rarity: Deal
+  description: 'PACT: +65% Damage, +20% Speed, +10 Armor, but lose 4 HP/s.'
   image: {fileID: 0}
-  id: 2
+  id: 3
   dealType: 2
   isClickable: 0
   buffs:

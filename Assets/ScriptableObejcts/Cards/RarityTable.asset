@@ -15,21 +15,21 @@ MonoBehaviour:
   Tiers:
   - MinRound: 3
     CommonWeight: 80
-    UncommonWeight: 20
-    RareWeight: 0
+    RareWeight: 20
+    EpicWeight: 0
     LegendaryWeight: 0
   - MinRound: 3
-    CommonWeight: 50
-    UncommonWeight: 35
-    RareWeight: 15
+    CommonWeight: 80
+    RareWeight: 20
+    EpicWeight: 0
     LegendaryWeight: 0
   - MinRound: 2
-    CommonWeight: 20
-    UncommonWeight: 40
-    RareWeight: 35
-    LegendaryWeight: 5
+    CommonWeight: 80
+    RareWeight: 20
+    EpicWeight: 0
+    LegendaryWeight: 0
   - MinRound: 1
-    CommonWeight: 0
-    UncommonWeight: 20
-    RareWeight: 50
-    LegendaryWeight: 30
+    CommonWeight: 80
+    RareWeight: 20
+    EpicWeight: 0
+    LegendaryWeight: 0

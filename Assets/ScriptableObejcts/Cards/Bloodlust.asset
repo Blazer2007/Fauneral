@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Bloodlust
   m_EditorClassIdentifier: 
-  rarity: Rare
-  description: "PACTO: +45% Dano e 20% Vampirismo, mas -20 Vida m\xE1xima."
+  rarity: Deal
+  description: 'PACT: +45% Damage and 20% Lifesteal, but -20 Max HP.'
   image: {fileID: 0}
-  id: 3
+  id: 4
   dealType: 2
   isClickable: 0
   buffs:
@@ -24,7 +24,7 @@ MonoBehaviour:
     IsPercent: 1
   - Stat: 7
     Value: 20
-    IsPercent: 0
+    IsPercent: 1
   debuffs:
   - Stat: 10
     Value: -20

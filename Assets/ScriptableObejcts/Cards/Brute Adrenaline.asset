@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Brute Adrenaline
   m_EditorClassIdentifier: 
   rarity: Common
-  description: +20% Dano.
+  description: +20% Damage.
   image: {fileID: 0}
-  id: 4
+  id: 5
   dealType: 0
   isClickable: 0
   buffs:

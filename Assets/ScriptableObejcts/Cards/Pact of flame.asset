@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Pact of flame
   m_EditorClassIdentifier: 
-  rarity: Rare
-  description: 'PACTO: +40% Dano e +20% Vel. ataque, mas perdes 2 HP/s.'
+  rarity: Deal
+  description: 'PACT: +40% Damage and +20% Attack Speed, but lose 2 HP/s.'
   image: {fileID: 0}
-  id: 9
+  id: 15
   dealType: 2
   isClickable: 0
   buffs:

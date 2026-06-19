@@ -49,6 +49,10 @@ public class PlayerHealth : NetworkBehaviour
             ResetHP();
         }
 
+        // Garante que o jogador começa limpo (sem buffs de partidas anteriores se o objeto persistir)
+        GetComponent<PlayerStats>()?.ClearAll();
+        GetComponent<PlayerCardUser>()?.ClearCards();
+
         // Regista esta barra de vida na UI (em todos os clientes)
         if (GameUI.Instance != null)
             GameUI.Instance.RegisterPlayer(this);
@@ -134,8 +138,29 @@ public class PlayerHealth : NetworkBehaviour
     [ClientRpc]
     private void DieClientRpc()
     {
-        Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu.");
-        SetPlayerState(false);
+        Debug.Log($"[PlayerHealth] CLIENTE: Player {PlayerIndex} morreu visualmente.");
+        
+        // Desativa controles
+        var ctrl = GetComponent<PlayerController>();
+        if (ctrl != null) ctrl.enabled = false;
+
+        // Para o movimento físico
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+
+        // Toca animação de morte
+        var anim = GetComponentInChildren<Animator>();
+        if (anim != null)
+        {
+            anim.SetTrigger("Die");
+        }
+
+        // Desativa colisões para o corpo não atrapalhar
+        foreach (var c in _colliders) c.enabled = false;
     }
 
     public void ResetHP()
@@ -160,14 +185,28 @@ public class PlayerHealth : NetworkBehaviour
     [ClientRpc]
     private void SetPlayerStateClientRpc(bool active)
     {
+        Debug.Log($"[PlayerHealth] CLIENTE: SetPlayerState({active}) para Player {PlayerIndex}.");
         foreach (var r in _renderers) r.enabled = active;
         foreach (var c in _colliders) c.enabled = active;
         
         var anim = GetComponentInChildren<Animator>();
-        if (anim != null) anim.enabled = active;
+        if (anim != null)
+        {
+            anim.enabled = active;
+            if (active)
+            {
+                // Reset animator state and clear Die trigger
+                anim.ResetTrigger("Die");
+                anim.Play("Idle", 0, 0f);
+                anim.Update(0f); // Force update to apply the state immediately
+            }
+        }
         
         var ctrl = GetComponent<PlayerController>();
         if (ctrl != null) ctrl.enabled = active;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null) rb.simulated = active;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

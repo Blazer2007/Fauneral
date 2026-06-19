@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Divine Speed
   m_EditorClassIdentifier: 
-  rarity: Rare
-  description: "B\xCAN\xC7\xC3O: +25% Velocidade e +15% Altura de salto."
+  rarity: Deal
+  description: 'BLESSING: +25% Speed and +15% Jump Height.'
   image: {fileID: 0}
-  id: 5
+  id: 6
   dealType: 1
   isClickable: 0
   buffs:

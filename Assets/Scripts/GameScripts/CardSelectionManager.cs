@@ -229,6 +229,11 @@ public class CardSelectionManager : NetworkBehaviour
         return candidates[Random.Range(0, candidates.Count)];
     }
 
+    public void ResetClickableCount()
+    {
+        if (IsServer) _clickableCount.Clear();
+    }
+
     /// <summary>Quantas cartas clicáveis o jogador já possui (rastreado no servidor).</summary>
     private int GetClickableCount(ulong clientId)
     {

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d58253fef145745b117e4b2f31f976, type: 3}
   m_Name: Ghost Steps
   m_EditorClassIdentifier: 
-  rarity: Uncommon
-  description: "ACTIV\xC1VEL: rajada de +50% velocidade durante 4s."
+  rarity: Rare
+  description: 'ACTIVE: +50% Speed burst for 4s.'
   image: {fileID: 0}
-  id: 7
+  id: 8
   dealType: 0
   isClickable: 1
   buffs:
