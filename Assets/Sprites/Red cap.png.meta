@@ -103,10 +103,10 @@ TextureImporter:
       name: Red cap_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 29
-        width: 36
-        height: 26
+        x: 153
+        y: 329
+        width: 376
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0984828b41910d3468eeff9457927432
+guid: 54d17ae3803f36149b2622e58283b5b3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3537388000662477189
-    second: Black cap_0
+      213: 3859753152057796393
+    second: Top hat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Black cap_0
+      name: Top hat_0
       rect:
         serializedVersion: 2
         x: 153
-        y: 329
-        width: 376
-        height: 266
+        y: 285
+        width: 354
+        height: 310
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 589573c05a3571130800000000000000
-      internalID: 3537388000662477189
+      spriteID: 927691dba09909530800000000000000
+      internalID: 3859753152057796393
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Black cap_0: 3537388000662477189
+      Top hat_0: 3859753152057796393
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

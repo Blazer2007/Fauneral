@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 0984828b41910d3468eeff9457927432
+guid: 7fa0006eecc934942a8ca789e96fe757
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3537388000662477189
-    second: Black cap_0
+      213: 1133436676386591859
+    second: Profile_Button_0
+  - first:
+      213: 6355366702942675463
+    second: Profile_Button_1
+  - first:
+      213: -6536124385936695662
+    second: Profile_Button_2
+  - first:
+      213: 5828963560566752903
+    second: Profile_Button_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Black cap_0
+      name: Profile_Button_0
       rect:
         serializedVersion: 2
-        x: 153
-        y: 329
-        width: 376
-        height: 266
+        x: 799
+        y: 717
+        width: 239
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 589573c05a3571130800000000000000
-      internalID: 3537388000662477189
+      spriteID: 3741c67e6a6cabf00800000000000000
+      internalID: 1133436676386591859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Profile_Button_1
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 807
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7026e3a185cc23850800000000000000
+      internalID: 6355366702942675463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Profile_Button_2
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 588
+        width: 236
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e997830850b45a0800000000000000
+      internalID: -6536124385936695662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Profile_Button_3
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 448
+        width: 236
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7860744a973a4e050800000000000000
+      internalID: 5828963560566752903
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Black cap_0: 3537388000662477189
+      Profile_Button_0: 1133436676386591859
+      Profile_Button_1: 6355366702942675463
+      Profile_Button_2: -6536124385936695662
+      Profile_Button_3: 5828963560566752903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

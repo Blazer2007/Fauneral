@@ -69,4 +69,9 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene("CratesMenu");
     }
+
+    public void ProfileButton()
+    {
+        SceneManager.LoadScene("ProfileMenu");
+    }
 }

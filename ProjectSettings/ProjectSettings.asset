@@ -779,11 +779,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4463d27a-c19c-42b1-baf8-1566ad7fbf75
+  cloudProjectId: b6ca056c-ae89-434d-95ef-da5fb528ca23
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Fauneral (1)
-  organizationId: twofaces_xxx
+  projectName: Fauneral
+  organizationId: unity_f188762fc0f66b219b3a
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

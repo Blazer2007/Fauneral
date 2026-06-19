@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Substitui o ScriptableCard existente.
@@ -14,7 +15,7 @@ public class ScriptableCard : ScriptableObject
     [Header("Identidade")]
     public string rarity;
     public string description;
-    public SpriteRenderer image;
+    public Image image;
     public int id;
 
     [Header("Efeitos � cada entrada � um modificador de stat")]

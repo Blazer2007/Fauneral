@@ -124,10 +124,10 @@ TextureImporter:
       name: Fauneral_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 62
+        x: 2
+        y: 58
         width: 45
-        height: 60
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: Fauneral_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 62
+        x: 48
+        y: 58
         width: 55
-        height: 60
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,9 +169,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 103
-        y: 62
-        width: 54
-        height: 60
+        y: 58
+        width: 55
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,7 +191,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 159
-        y: 63
+        y: 58
         width: 59
         height: 58
       alignment: 0
@@ -212,9 +212,9 @@ TextureImporter:
       name: Fauneral_4
       rect:
         serializedVersion: 2
-        x: 220
-        y: 63
-        width: 49
+        x: 219
+        y: 58
+        width: 50
         height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -234,9 +234,9 @@ TextureImporter:
       name: Fauneral_5
       rect:
         serializedVersion: 2
-        x: 272
-        y: 63
-        width: 54
+        x: 270
+        y: 58
+        width: 55
         height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -256,8 +256,8 @@ TextureImporter:
       name: Fauneral_6
       rect:
         serializedVersion: 2
-        x: 328
-        y: 63
+        x: 326
+        y: 58
         width: 54
         height: 58
       alignment: 0
@@ -278,9 +278,9 @@ TextureImporter:
       name: Fauneral_7
       rect:
         serializedVersion: 2
-        x: 384
-        y: 63
-        width: 35
+        x: 381
+        y: 58
+        width: 36
         height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
