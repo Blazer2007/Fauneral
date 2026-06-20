@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1763741166
+  GlobalObjectIdHash: 4223130459
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -117,6 +117,15 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _stats: {fileID: 11400000, guid: 7dd9e7cb0fcb9544ab93e543e3682801, type: 2}
   _playerStats: {fileID: 2981820481530735267}
+  _jumpSound: {fileID: 8300000, guid: 1ee9cce2c131831409789245a733bc08, type: 3}
+  _lightAttackSounds:
+  - {fileID: 8300000, guid: e9294b912dd0f4040a5df481781c6230, type: 3}
+  - {fileID: 8300000, guid: 9ae1a582e07dac741a0388528d3843a4, type: 3}
+  - {fileID: 8300000, guid: 39938a9a66bc2224dbff60afeed92d6d, type: 3}
+  _heavyAttackSounds:
+  - {fileID: 8300000, guid: f0179ef22a535f643957195baf6f7419, type: 3}
+  - {fileID: 8300000, guid: fac3df25f47662f4182947be9346183b, type: 3}
+  - {fileID: 8300000, guid: bdb825e38230c3c42ba98b79e6653cd0, type: 3}
   NetFacingRight:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -319,6 +328,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _spawnPoint: {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: dbe18c5e45656f74eb757508a00d840c, type: 3}
+  _lightHitSounds:
+  - {fileID: 8300000, guid: e2c99b5aaf13e8b459e9e061fb58fc9a, type: 3}
+  - {fileID: 8300000, guid: 56739868d2c073041a6592dcd69a90c1, type: 3}
+  - {fileID: 8300000, guid: 3a5cf8cb6b304be41af7dfd394b681a4, type: 3}
+  _heavyHitSounds:
+  - {fileID: 8300000, guid: 88099512a2f13804dbd5cc98e99d52c3, type: 3}
+  - {fileID: 8300000, guid: f084cf29ef604b74e917d6586c37c018, type: 3}
+  - {fileID: 8300000, guid: 7ea9a402a7bd89340887ac26230b74dc, type: 3}
   NetCurrentHP:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -538,6 +556,7 @@ MonoBehaviour:
   _attackParticles: {fileID: 0}
   _lightAttackPoint: {fileID: 4717449762931161222}
   _heavyAttackPoint: {fileID: 7941050840790023024}
+  _movingSound: {fileID: 8300000, guid: 12aa1efda35a89b499b3be3a4d6312bb, type: 3}
 --- !u!82 &61808766425637193
 AudioSource:
   m_ObjectHideFlags: 0

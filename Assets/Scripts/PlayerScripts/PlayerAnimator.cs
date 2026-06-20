@@ -20,6 +20,10 @@ namespace TarodevController
         [SerializeField] private Transform _lightAttackPoint;
         [SerializeField] private Transform _heavyAttackPoint;
 
+        [Header("Audio Settings")]
+        [SerializeField] private AudioClip _movingSound;
+        private AudioSource _audioSource;
+
         private PlayerController _player;
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int SpeedKey = Animator.StringToHash("Speed");
@@ -30,6 +34,24 @@ namespace TarodevController
         private void Awake()
         {
             _player = GetComponentInParent<PlayerController>();
+            
+            // Setup movement audio source dynamically to keep footsteps independent
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.clip = _movingSound;
+            _audioSource.loop = true;
+            _audioSource.playOnAwake = false;
+            
+            AudioSource mainSource = GetComponent<AudioSource>();
+            if (mainSource != null)
+            {
+                _audioSource.outputAudioMixerGroup = mainSource.outputAudioMixerGroup;
+                _audioSource.spatialBlend = mainSource.spatialBlend;
+                _audioSource.volume = mainSource.volume;
+                _audioSource.pitch = mainSource.pitch;
+                _audioSource.minDistance = mainSource.minDistance;
+                _audioSource.maxDistance = mainSource.maxDistance;
+            }
+
             if (_lightAttackPoint != null) _lightX = _lightAttackPoint.localPosition.x;
             if (_heavyAttackPoint != null) _heavyX = _heavyAttackPoint.localPosition.x;
         }
@@ -68,14 +90,22 @@ namespace TarodevController
             // Still set IdleSpeed for legacy compatibility
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, animSpeed));
 
-            // Move Particles
+            // Move Particles and Sound
             if (isGrounded && animSpeed > 0.1f)
             {
                 if (_moveParticles != null && !_moveParticles.isPlaying) _moveParticles.Play();
+                if (_audioSource != null && _movingSound != null && !_audioSource.isPlaying)
+                {
+                    _audioSource.Play();
+                }
             }
             else
             {
                 if (_moveParticles != null && _moveParticles.isPlaying) _moveParticles.Stop();
+                if (_audioSource != null && _audioSource.isPlaying)
+                {
+                    _audioSource.Stop();
+                }
             }
 
             // Tilt

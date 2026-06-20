@@ -1,4 +1,4 @@
-﻿using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using TarodevController;
 
@@ -85,7 +85,7 @@ public class PlayerAttack : NetworkBehaviour
             if (health != null)
             {
                 float damageDealt = _playerstats.Damage;
-                health.TakeDamage(damageDealt, OwnerClientId);
+                health.TakeDamage(damageDealt, OwnerClientId, false);
 
                 // Vampirism e outros efeitos "ao causar dano" — opcional, só se a
                 // carta tiver sido escolhida (PlayerAbilityHandler trata disso internamente)
@@ -106,7 +106,7 @@ public class PlayerAttack : NetworkBehaviour
             if (health != null)
             {
                 float damageDealt = _playerstats.Damage * 2;
-                health.TakeDamage(damageDealt, OwnerClientId);
+                health.TakeDamage(damageDealt, OwnerClientId, true);
 
                 _abilityHandler?.OnDealtDamage(damageDealt);
             }

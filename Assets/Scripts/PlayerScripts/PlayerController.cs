@@ -10,6 +10,13 @@ namespace TarodevController
     {
         [SerializeField] private ScriptableStats _stats;
         [SerializeField] private PlayerStats _playerStats;
+        
+        [Header("Audio Settings")]
+        [SerializeField] private AudioClip _jumpSound;
+        [SerializeField] private AudioClip[] _lightAttackSounds;
+        [SerializeField] private AudioClip[] _heavyAttackSounds;
+        private AudioSource _audioSource;
+
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private NetworkAnimator _networkAnim;
@@ -38,6 +45,7 @@ namespace TarodevController
             _col = GetComponent<CapsuleCollider2D>();
             _networkAnim = GetComponent<NetworkAnimator>();
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
+            _audioSource = GetComponentInChildren<AudioSource>();
         }
 
         private void Update()
@@ -157,6 +165,7 @@ namespace TarodevController
             if (_networkAnim != null) _networkAnim.SetTrigger("Jump");
 
             Jumped?.Invoke();
+            PlayJumpSoundClientRpc();
         }
 
         private void HandleDirection()
@@ -222,12 +231,35 @@ namespace TarodevController
                 _attackTimer = 0f; _attackToConsume = false;
                 if (_networkAnim != null) _networkAnim.SetTrigger("Attack");
                 Attacked?.Invoke(true, false);
+                PlayAttackSoundClientRpc(false);
             }
             else if (_heavyAttackToConsume && _heavyAttackTimer >= attackInterval * 2f)
             {
                 _heavyAttackTimer = 0f; _heavyAttackToConsume = false;
                 if (_networkAnim != null) _networkAnim.SetTrigger("Attack");
                 Attacked?.Invoke(true, true);
+                PlayAttackSoundClientRpc(true);
+            }
+        }
+
+        [ClientRpc]
+        private void PlayJumpSoundClientRpc()
+        {
+            if (_audioSource != null && _jumpSound != null)
+            {
+                _audioSource.PlayOneShot(_jumpSound);
+            }
+        }
+
+        [ClientRpc]
+        private void PlayAttackSoundClientRpc(bool isHeavy)
+        {
+            if (_audioSource == null) return;
+            AudioClip[] clips = isHeavy ? _heavyAttackSounds : _lightAttackSounds;
+            if (clips != null && clips.Length > 0)
+            {
+                AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+                _audioSource.PlayOneShot(randomClip);
             }
         }
 

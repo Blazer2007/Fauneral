@@ -30,6 +30,12 @@ public class PlayerHealth : NetworkBehaviour
     [Tooltip("The position this player respawns at")]
     [SerializeField] private Transform _spawnPoint;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private AudioClip[] _lightHitSounds;
+    [SerializeField] private AudioClip[] _heavyHitSounds;
+    private AudioSource _audioSource;
+
     [field: Header("Runtime State (Networked)")]
     public NetworkVariable<float> NetCurrentHP = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> NetIsAlive = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -60,6 +66,7 @@ public class PlayerHealth : NetworkBehaviour
         _roundManager = FindFirstObjectByType<RoundManager>();
         _renderers = GetComponentsInChildren<SpriteRenderer>();
         _colliders = GetComponentsInChildren<Collider2D>();
+        _audioSource = GetComponentInChildren<AudioSource>();
 
         if (_playerStats == null)
             Debug.LogWarning($"[PlayerHealth] PlayerStats não encontrado em {gameObject.name}!", this);
@@ -152,7 +159,7 @@ public class PlayerHealth : NetworkBehaviour
     /// e morte mantém-se exactamente igual à tua versão — a única adição é o
     /// disparo de OnDamaged no fim, com o attackerId propagado.
     /// </summary>
-    public void TakeDamage(float amount, ulong attackerId)
+    public void TakeDamage(float amount, ulong attackerId, bool isHeavy = false)
     {
         if (!IsServer) return;
         if (!IsAlive) return;
@@ -173,6 +180,22 @@ public class PlayerHealth : NetworkBehaviour
             NetIsAlive.Value = false;
             DieClientRpc();
             _roundManager?.OnPlayerDied(this);
+        }
+        else
+        {
+            PlayHitSoundClientRpc(isHeavy);
+        }
+    }
+
+    [ClientRpc]
+    private void PlayHitSoundClientRpc(bool isHeavy)
+    {
+        if (_audioSource == null) return;
+        AudioClip[] clips = isHeavy ? _heavyHitSounds : _lightHitSounds;
+        if (clips != null && clips.Length > 0)
+        {
+            AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+            _audioSource.PlayOneShot(randomClip);
         }
     }
 
@@ -202,6 +225,10 @@ public class PlayerHealth : NetworkBehaviour
     private void DieClientRpc()
     {
         Debug.Log($"[PlayerHealth] Player {PlayerIndex} morreu.");
+        if (_audioSource != null && _deathSound != null)
+        {
+            _audioSource.PlayOneShot(_deathSound);
+        }
         SetPlayerState(false);
     }
 
