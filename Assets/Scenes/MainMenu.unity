@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 541434841508953071, guid: c6e093387fb183a4196e40e05b14151b, type: 3}
   m_PrefabInstance: {fileID: 7261082388963938959}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7261082388963938960}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d02807f0be5976c4f9b7c21e57099f2b, type: 3}
@@ -2558,8 +2558,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9169117772399092530, guid: c6e093387fb183a4196e40e05b14151b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7261082388963938962}
+    - targetCorrespondingSourceObject: {fileID: 9169117772399092530, guid: c6e093387fb183a4196e40e05b14151b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7261082388963938961}
   m_SourcePrefab: {fileID: 100100000, guid: c6e093387fb183a4196e40e05b14151b, type: 3}
+--- !u!1 &7261082388963938960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9169117772399092530, guid: c6e093387fb183a4196e40e05b14151b, type: 3}
+  m_PrefabInstance: {fileID: 7261082388963938959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7261082388963938961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261082388963938960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b052e443a4dbfa43bea389469a3fbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 1
+  playerName: Player
+  selectedAnimal: Wolf
+  equippedHatId: 
+--- !u!114 &7261082388963938962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261082388963938960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8a476226e70b94baae1006a5a495d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ namespace TarodevController
         [Header("Attack Points")]
         [SerializeField] private Transform _lightAttackPoint;
         [SerializeField] private Transform _heavyAttackPoint;
+        [SerializeField] private Transform _hatPoint;
 
         [Header("Audio Settings")]
         [SerializeField] private AudioClip _movingSound;
@@ -29,7 +30,7 @@ namespace TarodevController
         private static readonly int SpeedKey = Animator.StringToHash("Speed");
         private static readonly int IsGroundedKey = Animator.StringToHash("IsGrounded");
 
-        private float _lightX, _heavyX;
+        private float _lightX, _heavyX, _hatX;
 
         private void Awake()
         {
@@ -54,6 +55,7 @@ namespace TarodevController
 
             if (_lightAttackPoint != null) _lightX = _lightAttackPoint.localPosition.x;
             if (_heavyAttackPoint != null) _heavyX = _heavyAttackPoint.localPosition.x;
+            if (_hatPoint != null) _hatX = _hatPoint.localPosition.x;
         }
 
         private void Update()
@@ -75,6 +77,11 @@ namespace TarodevController
                 Vector3 p = _heavyAttackPoint.localPosition;
                 p.x = facingRight ? _heavyX : -_heavyX;
                 _heavyAttackPoint.localPosition = p;
+            }
+            if (_hatPoint != null) {
+                Vector3 p = _hatPoint.localPosition;
+                p.x = facingRight ? _hatX : -_hatX;
+                _hatPoint.localPosition = p;
             }
 
             // Speed and Grounded Sync

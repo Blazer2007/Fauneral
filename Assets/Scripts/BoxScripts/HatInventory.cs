@@ -44,6 +44,17 @@ public class HatInventory : MonoBehaviour
         Save();
 
         Debug.Log($"[Inventory] Desbloqueado: {hat.displayName} ({hat.rarity})");
+        
+        // Sync with server via ProfileManager
+        if (ProfileManager.Instance != null)
+        {
+            ProfileManager.Instance.SavePreferences(
+                ProfileManager.Instance.playerName, 
+                ProfileManager.Instance.selectedAnimal, 
+                ProfileManager.Instance.equippedHatId
+            );
+        }
+
         OnHatUnlocked?.Invoke(hat);
         return true;
     }
