@@ -72,6 +72,32 @@ public class WebRequestManager : MonoBehaviour
         }
     }
 
+    public IEnumerator SavePreferences(PlayerData.PlayerPreferences prefs)
+    {
+        string json = PlayerData.CreateJsonFromPrefs(prefs);
+        UnityWebRequest webRequest = new UnityWebRequest(_serverPath + "/player-preferences", "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        webRequest.downloadHandler = new DownloadHandlerBuffer();
+        webRequest.SetRequestHeader("Content-Type", "application/json");
+        webRequest.timeout = 5;
+
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Preferences saved to database!");
+        }
+        else
+        {
+            Debug.LogError($"Error saving preferences: {webRequest.error}");
+            if (webRequest.downloadHandler != null)
+            {
+                Debug.LogError($"Server response: {webRequest.downloadHandler.text}");
+            }
+        }
+    }
+
     private bool ValidateResponse (UnityWebRequest webRequest)
     {
         if(webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError|| webRequest.result == UnityWebRequest.Result.DataProcessingError)
